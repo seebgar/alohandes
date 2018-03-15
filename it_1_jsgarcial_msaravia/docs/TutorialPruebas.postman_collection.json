@@ -1,0 +1,266 @@
+{
+	"info": {
+		"name": "TutorialPruebas",
+		"_postman_id": "fa11b187-5e26-30c7-8b3e-8971a011c3d6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET with filter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores/filterBy?ciudad=Santa Marta&presupuesto=Alto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores",
+						"filterBy"
+					],
+					"query": [
+						{
+							"key": "ciudad",
+							"value": "Santa Marta",
+							"equals": true
+						},
+						{
+							"key": "presupuesto",
+							"value": "Alto",
+							"equals": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 9999,\n        \"nombre\": \"Florencia Williams\",\n        \"presupuesto\": \"Bajo\",\n        \"ciudad\": \"Santa Marta\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST with limitations (failed case)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 9999,\n        \"nombre\": \"Pepito Perez\",\n        \"presupuesto\": \"Bajo\",\n        \"ciudad\": \"Cartagena\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores/restriccionCantidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores",
+						"restriccionCantidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST with limitations (successful case)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 9999,\n        \"nombre\": \"Pepito Perez\",\n        \"presupuesto\": \"Bajo\",\n        \"ciudad\": \"Santa Marta\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores/restriccionCantidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores",
+						"restriccionCantidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 72,\n        \"nombre\": \"Maria Urrutia\",\n        \"presupuesto\": \"Bajo\",\n        \"ciudad\": \"Santa Marta\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 65,\n        \"nombre\": \"Guillermo Martin\",\n        \"presupuesto\": \"Bajo\",\n        \"ciudad\": \"Santa Marta\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8081/TutorialParranderos/rest/bebedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"TutorialParranderos",
+						"rest",
+						"bebedores"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
