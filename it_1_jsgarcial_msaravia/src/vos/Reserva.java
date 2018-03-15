@@ -51,6 +51,12 @@ public class Reserva {
 	 */
 	@JsonProperty(value="costo_total")
 	private Double costo_total;
+	
+	/**
+	 * Determina la cantidad de personas que ocuparan un inmueble por medio de esta reserva
+	 */
+	@JsonProperty(value="cantidad_personas")
+	private Integer cantidad_personas;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -73,13 +79,15 @@ public class Reserva {
 			@JsonProperty(value="fecha_cancelacion") String fecha_cancelacion,
 			@JsonProperty(value="fecha_inicio_estadia") String fecha_inicio_estadia,
 			@JsonProperty(value="duracion") Integer duracion,
-			@JsonProperty(value="costo_total") Double costo_total ) {
+			@JsonProperty(value="costo_total") Double costo_total,
+			@JsonProperty(value="cantidad_personas") Integer cantidad_personas ) {
 		this.id = id;
 		this.fecha_registro = fecha_registro;
 		this.fecha_cancelacion = fecha_cancelacion;
 		this.fecha_inicio_estadia = fecha_inicio_estadia;
 		this.duracion = duracion;
 		this.costo_total = costo_total;
+		this.cantidad_personas = cantidad_personas;
 	}
 
 
@@ -152,6 +160,14 @@ public class Reserva {
 
 	public void setCosto_total(Double costo_total) {
 		this.costo_total = costo_total;
+	}
+
+	public Integer getCantidad_personas() {
+		return cantidad_personas;
+	}
+
+	public void setCantidad_personas(Integer cantidad_personas) {
+		this.cantidad_personas = cantidad_personas;
 	}
 
 

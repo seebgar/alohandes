@@ -1,5 +1,6 @@
 package vos;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Representa una persona tipo Operador 
@@ -9,7 +10,7 @@ package vos;
  */
 public class Operador extends Persona {
 
-	public Operador( Long id, String nombre, String apellido, String tipo ) {
+	public Operador(  @JsonProperty(value="id")Long id, @JsonProperty(value="nombre")String nombre , @JsonProperty(  value="apellido")String apellido  ,   @JsonProperty(value="tipo")String tipo ) {                                
 		super(id, nombre, apellido, tipo);
 	}
 	
