@@ -1,5 +1,7 @@
 package vos;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -33,7 +35,16 @@ public class Habitacion {
 	@JsonProperty(value="tipo_habitacion")
 	private String tipo_habitacion;
 
-
+	/**
+	 * Servicios que dispone la habitacion
+	 */
+	@JsonProperty(value="servicios_basicos")
+	private List<ServicioBasico> serviciosBasicos;
+	
+	/**
+	 * propuesta de la habitacion
+	 */
+	private Propuesta propuesta;
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
@@ -89,6 +100,58 @@ public class Habitacion {
 
 	public void setTipo_habitacion(String tipo_habitacion) {
 		this.tipo_habitacion = tipo_habitacion;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @return the serviciosBasicos
+	 */
+	public List<ServicioBasico> getServiciosBasicos() {
+		return serviciosBasicos;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @param serviciosBasicos the serviciosBasicos to set
+	 */
+	public void setServiciosBasicos(List<ServicioBasico> serviciosBasicos) {
+		this.serviciosBasicos = serviciosBasicos;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @return the propuesta
+	 */
+	public Propuesta getPropuesta() {
+		return propuesta;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @param propuesta the propuesta to set
+	 */
+	public void setPropuesta(Propuesta propuesta) {
+		this.propuesta = propuesta;
 	}
 
 

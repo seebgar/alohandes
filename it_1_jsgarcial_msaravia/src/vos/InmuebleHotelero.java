@@ -48,9 +48,11 @@ public class InmuebleHotelero {
 	@JsonProperty(value="ubicacion")
 	private String ubicacion;
 
-
-
-
+	/**
+	 * propuesta del immueble
+	 */
+	private Propuesta propuesta;
+	
 
 
 
@@ -130,6 +132,34 @@ public class InmuebleHotelero {
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+
+
+
+
+
+
+
+	/**
+	 * @return the propuesta
+	 */
+	public Propuesta getPropuesta() {
+		return propuesta;
+	}
+
+
+
+
+
+
+
+
+	/**
+	 * @param propuesta the propuesta to set
+	 */
+	public void setPropuesta(Propuesta propuesta) {
+		this.propuesta = propuesta;
 	}
 
 

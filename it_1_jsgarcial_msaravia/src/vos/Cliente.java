@@ -10,8 +10,33 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class Cliente extends Persona{
 	
+	
+	//atributos
+	
+	/**
+	 * reserva que el cliente desea tener
+	 */
+	private Reserva reserva;
+	
+	//constructor
 	public Cliente(  @JsonProperty(value="id")Long id, @JsonProperty(value="nombre")String nombre , @JsonProperty(  value="apellido")String apellido  ,   @JsonProperty(value="tipo")String tipo ) {                                
 		super(id, nombre, apellido, tipo);
+	}
+	
+	//metodos
+
+	/**
+	 * @return the reserva
+	 */
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	/**
+	 * @param reserva the reserva to set
+	 */
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
 	}
 	
 

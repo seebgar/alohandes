@@ -1,5 +1,7 @@
 package vos;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -32,8 +34,16 @@ public class Apartamento {
 	@JsonProperty(value="costo_admin")
 	private Double costo_admin;
 
+	/**
+	 * servicios que ofrece el apartamento
+	 */
+	@JsonProperty(value="servicio")
+	private List<ServicioBasico> serviciosBasicos;
 
-
+	/**
+	 * propuesta que oferece el apartamento
+	 */	
+	private Propuesta propuesta;
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
@@ -88,6 +98,49 @@ public class Apartamento {
 
 	public void setCosto_admin(Double costo_admin) {
 		this.costo_admin = costo_admin;
+	}
+
+
+
+
+	/**
+	 * @return the serviciosBasicos
+	 */
+	public List<ServicioBasico> getServiciosBasicos() {
+		return serviciosBasicos;
+	}
+
+
+
+	/**
+	 * @param serviciosBasicos the serviciosBasicos to set
+	 */
+	public void setServiciosBasicos(List<ServicioBasico> serviciosBasicos) {
+		this.serviciosBasicos = serviciosBasicos;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the propuesta
+	 */
+	public Propuesta getPropuesta() {
+		return propuesta;
+	}
+
+
+
+
+
+
+	/**
+	 * @param propuesta the propuesta to set
+	 */
+	public void setPropuesta(Propuesta propuesta) {
+		this.propuesta = propuesta;
 	}
 
 
