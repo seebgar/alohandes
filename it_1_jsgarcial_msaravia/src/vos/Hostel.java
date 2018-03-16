@@ -5,32 +5,53 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * Clase que representa un Hostal pero en SQL lo escribi mal entonces quedo mo Hostel
+ * Clase que representa un Hostal pero en SQL lo escribi mal entonces quedo como Hostel
  * @author sebastian
  *
  */
 public class Hostel extends InmuebleHotelero {
 
-	
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
 	/**
 	 * Hora (0 - 24) de apertura de la administracion del hostal
 	 */
 	@JsonProperty(value="horario_admin_inicial")
 	private Integer horario_admin_inicial;
-	
+
 	/**
 	 * Hora (0 -24) de cierre de la administracion del hostal
 	 */
 	@JsonProperty(value="horario_admin_final")
 	private Integer horario_admin_final;
-	
+
 	/**
 	 * servicios de hotel que el hostel ofrece
 	 */
 	@JsonProperty(value="servicios_hoteleros")
 	private List<ServicioHotelero> serviciosHoteleros;
-	
-	//constructor
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODO CONSTRUCTOR
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * 
+	 * @param id
+	 * @param registro_camara_comercio
+	 * @param registro_superintendencia
+	 * @param tipo_habitacion
+	 * @param ubicacion
+	 * @param horario_admin_inicial
+	 * @param horario_admin_final
+	 */
 	public Hostel(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="registro_camara_comercio") String registro_camara_comercio,
@@ -42,7 +63,16 @@ public class Hostel extends InmuebleHotelero {
 		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion);
 		this.horario_admin_inicial = horario_admin_inicial;
 		this.horario_admin_final = horario_admin_final;
+		// TODO inicializar lista
 	}
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE LA CLASE
+	//----------------------------------------------------------------------------------------------------------------------------------
+
 
 	/**
 	 * Hora (0 - 24)
@@ -89,9 +119,9 @@ public class Hostel extends InmuebleHotelero {
 	public void setServiciosHoteleros(List<ServicioHotelero> serviciosHoteleros) {
 		this.serviciosHoteleros = serviciosHoteleros;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

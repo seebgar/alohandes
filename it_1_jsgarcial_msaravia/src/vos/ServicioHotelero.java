@@ -15,6 +15,7 @@ public class ServicioHotelero {
 	 *
 	 */
 //	@JsonProperty(value="tipo")
+	//TODO
 	public enum TIPO {	
 		Jacuzzi,
 		SalaIncluida, 

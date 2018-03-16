@@ -1,9 +1,6 @@
 package vos;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
->>>>>>> df0512da31cd84585ed0406c530c93edc782615a
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -15,34 +12,47 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  */
 public class Operador extends Persona {
-	
-	
-<<<<<<< HEAD
-	//private List<Propuesta> propuestas;
-	
 
-	public Operador(  
-			@JsonProperty(value="id")Long id, 
-			@JsonProperty(value="nombre")String nombre , 
-			@JsonProperty(  value="apellido")String apellido  ,   
-			@JsonProperty(value="tipo")String tipo ) {                                
-=======
-	//atributos
-	
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
 	/**
 	 * propuestas que trabaja cada operador
 	 */
+	@JsonProperty(value="propuestas")
 	private List<Propuesta> propuestas;
 
-	//constructor
-	
-	public Operador(  @JsonProperty(value="id")Long id, @JsonProperty(value="nombre")String nombre , @JsonProperty(  value="apellido")String apellido  ,   @JsonProperty(value="tipo")String tipo ) {                                
->>>>>>> df0512da31cd84585ed0406c530c93edc782615a
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODO CONSTUCTOR
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * 
+	 * @param id
+	 * @param nombre
+	 * @param apellido
+	 * @param tipo
+	 */
+	public Operador(  
+			@JsonProperty(value="id")Long id, 
+			@JsonProperty(value="nombre")String nombre , 
+			@JsonProperty(  value="apellido")String apellido  ,  
+			@JsonProperty(value="tipo")String tipo ) {                                
 		super(id, nombre, apellido, tipo);
-		//this.propuestas = new ArrayList<>();
+		// TODO this.propuestas = new ArrayList<>();
 	}
 
-	//metodos
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE LA CLASE
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
 	/**
 	 * @return the propuesta
 	 */
@@ -56,5 +66,5 @@ public class Operador extends Persona {
 	public void setPropuestas(List<Propuesta> propuestas) {
 		this.propuestas = propuestas;
 	}
-	
+
 }

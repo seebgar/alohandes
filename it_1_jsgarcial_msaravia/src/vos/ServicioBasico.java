@@ -14,6 +14,8 @@ public class ServicioBasico {
 	 * @author sebastian
 	 *
 	 */
+//	@JsonProperty(value="tipo")
+	// TODO
 	public enum TIPO {	
 		Luz,
 		Telefono, 

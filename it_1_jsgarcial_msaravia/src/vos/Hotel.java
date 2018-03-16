@@ -11,16 +11,36 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class Hotel extends InmuebleHotelero {
 
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
 	/**
 	 * Dtermina si el hotel tiene un horario de administracion las 24 horas
 	 */
 	@JsonProperty(value="horario_admin_24h")
 	private Boolean horario_admin_24h;
-	
-	@JsonProperty(value="servicioshoteleros")
+
+	@JsonProperty(value="servicios_hoteleros")
 	private List<ServicioHotelero> serviciosHoteleros;
-	
-	//constructor
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODO CONSTRUCTOR
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * 
+	 * @param id
+	 * @param registro_camara_comercio
+	 * @param registro_superintendencia
+	 * @param tipo_habitacion
+	 * @param ubicacion
+	 * @param horario_admin_24h
+	 */
 	public Hotel(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="registro_camara_comercio") String registro_camara_comercio,
@@ -30,7 +50,14 @@ public class Hotel extends InmuebleHotelero {
 			@JsonProperty(value="horario_admin_24h") Boolean horario_admin_24h ) {
 		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion);
 		this.horario_admin_24h = horario_admin_24h;
+		// TODO inicializar servicios
 	}
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE LA CLASE
+	//----------------------------------------------------------------------------------------------------------------------------------
+
 
 	public Boolean getHorario_admin_24h() {
 		return horario_admin_24h;
@@ -53,6 +80,6 @@ public class Hotel extends InmuebleHotelero {
 	public void setServiciosHoteleros(List<ServicioHotelero> serviciosHoteleros) {
 		this.serviciosHoteleros = serviciosHoteleros;
 	}
-	
-	
+
+
 }

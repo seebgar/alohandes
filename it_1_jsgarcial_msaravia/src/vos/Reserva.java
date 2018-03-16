@@ -61,6 +61,7 @@ public class Reserva {
 	/**
 	 * propuesta de la reserva
 	 */
+	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 	
 	/**
@@ -99,6 +100,7 @@ public class Reserva {
 		this.duracion = duracion;
 		this.costo_total = costo_total;
 		this.cantidad_personas = cantidad_personas;
+		//TODO inizialicar propuesta y cliente
 	}
 
 
@@ -180,7 +182,6 @@ public class Reserva {
 		return propuesta;
 	}
 
-
 	/**
 	 * @param propuesta the propuesta to set
 	 */
@@ -188,18 +189,12 @@ public class Reserva {
 		this.propuesta = propuesta;
 	}
 
-
-
-
 	/**
 	 * @return the cliente
 	 */
 	public Cliente getCliente() {
 		return cliente;
 	}
-
-
-
 
 	/**
 	 * @param cliente the cliente to set

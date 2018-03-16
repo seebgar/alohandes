@@ -10,9 +10,6 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class InmuebleHotelero {
 
 
-
-
-
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// ATRIBUTOS
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -51,6 +48,7 @@ public class InmuebleHotelero {
 	/**
 	 * propuesta del immueble
 	 */
+	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 	
 
@@ -60,6 +58,15 @@ public class InmuebleHotelero {
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
+	
+	/**
+	 * 
+	 * @param id
+	 * @param registro_camara_comercio
+	 * @param registro_superintendencia
+	 * @param tipo_habitacion
+	 * @param ubicacion
+	 */
 	public InmuebleHotelero(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="registro_camara_comercio") String registro_camara_comercio,
@@ -71,12 +78,8 @@ public class InmuebleHotelero {
 		this.registro_superintendencia = registro_superintendencia;
 		this.tipo_habitacion = tipo_habitacion;
 		this.ubicacion = ubicacion;
+		// TODO inicializar propuesta
 	}
-
-
-
-
-
 
 
 
@@ -134,26 +137,12 @@ public class InmuebleHotelero {
 		this.ubicacion = ubicacion;
 	}
 
-
-
-
-
-
-
-
 	/**
 	 * @return the propuesta
 	 */
 	public Propuesta getPropuesta() {
 		return propuesta;
 	}
-
-
-
-
-
-
-
 
 	/**
 	 * @param propuesta the propuesta to set

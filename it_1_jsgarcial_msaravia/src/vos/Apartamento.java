@@ -37,14 +37,19 @@ public class Apartamento {
 	/**
 	 * servicios que ofrece el apartamento
 	 */
-	@JsonProperty(value="servicio")
+	@JsonProperty(value="servicios")
 	private List<ServicioBasico> serviciosBasicos;
 
 	/**
 	 * propuesta que oferece el apartamento
 	 */	
+	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 
+	
+	
+	
+	
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -59,10 +64,11 @@ public class Apartamento {
 	public Apartamento(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="amoblado") Boolean amoblado,
-			@JsonProperty(value="costo_admin") Double costo_admin) {
+			@JsonProperty(value="costo_admin") Double costo_admin ) {
 		this.id = id;
 		this.amoblado = amoblado;
 		this.costo_admin = costo_admin;
+		// TODO propuesta y servicos basicos
 	}
 
 
@@ -100,17 +106,12 @@ public class Apartamento {
 		this.costo_admin = costo_admin;
 	}
 
-
-
-
 	/**
 	 * @return the serviciosBasicos
 	 */
 	public List<ServicioBasico> getServiciosBasicos() {
 		return serviciosBasicos;
 	}
-
-
 
 	/**
 	 * @param serviciosBasicos the serviciosBasicos to set
@@ -119,23 +120,13 @@ public class Apartamento {
 		this.serviciosBasicos = serviciosBasicos;
 	}
 
-
-
-
-
-
 	/**
 	 * @return the propuesta
 	 */
 	public Propuesta getPropuesta() {
 		return propuesta;
 	}
-
-
-
-
-
-
+	
 	/**
 	 * @param propuesta the propuesta to set
 	 */

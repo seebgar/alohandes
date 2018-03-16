@@ -44,8 +44,11 @@ public class Habitacion {
 	/**
 	 * propuesta de la habitacion
 	 */
+	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 
+	
+	
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -63,11 +66,8 @@ public class Habitacion {
 		this.id = id;
 		this.precio_especial = precio_especial;
 		this.tipo_habitacion = tipo_habitacion;
+		//TODO inicializar propesta y servicios
 	}
-
-
-
-
 
 
 

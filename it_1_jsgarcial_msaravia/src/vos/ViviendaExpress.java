@@ -42,12 +42,14 @@ public class ViviendaExpress {
 	/**
 	 * propuesta que ofrece la vivienda
 	 */
+	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
+	
 	/**
 	 * Constructor de la clase vivienda express
 	 * @param id
@@ -61,6 +63,7 @@ public class ViviendaExpress {
 		this.id = id;
 		this.menaje = menaje;
 		this.ubicacion = ubicacion;
+		// TODO inicializar propuesta
 	}
 
 
@@ -95,18 +98,12 @@ public class ViviendaExpress {
 		this.ubicacion = ubicacion;
 	}
 
-
-
-
 	/**
 	 * @return the serviciosBasicos
 	 */
 	public List<ServicioBasico> getServiciosBasicos() {
 		return serviciosBasicos;
 	}
-
-
-
 
 	/**
 	 * @param serviciosBasicos the serviciosBasicos to set
@@ -115,18 +112,12 @@ public class ViviendaExpress {
 		this.serviciosBasicos = serviciosBasicos;
 	}
 
-
-
-
 	/**
 	 * @return the propuesta
 	 */
 	public Propuesta getPropuesta() {
 		return propuesta;
 	}
-
-
-
 
 	/**
 	 * @param propuesta the propuesta to set
