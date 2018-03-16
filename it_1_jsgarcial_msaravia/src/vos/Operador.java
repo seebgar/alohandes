@@ -1,5 +1,8 @@
 package vos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -9,9 +12,18 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  */
 public class Operador extends Persona {
+	
+	
+	//private List<Propuesta> propuestas;
+	
 
-	public Operador(  @JsonProperty(value="id")Long id, @JsonProperty(value="nombre")String nombre , @JsonProperty(  value="apellido")String apellido  ,   @JsonProperty(value="tipo")String tipo ) {                                
+	public Operador(  
+			@JsonProperty(value="id")Long id, 
+			@JsonProperty(value="nombre")String nombre , 
+			@JsonProperty(  value="apellido")String apellido  ,   
+			@JsonProperty(value="tipo")String tipo ) {                                
 		super(id, nombre, apellido, tipo);
+		//this.propuestas = new ArrayList<>();
 	}
 	
 }

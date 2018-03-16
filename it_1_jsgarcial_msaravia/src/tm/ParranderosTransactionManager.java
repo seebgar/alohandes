@@ -32,6 +32,26 @@ import vos.Bebedor;
  * Responsabilidades de la clase: 
  * 		Intermediario entre los servicios REST de la aplicacion y la comunicacion con la Base de Datos
  * 		Modelar y manejar autonomamente las transacciones y las reglas de negocio.
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * En este componente se validan las reglas de negocio, se implementa la 
+ * lógica de la aplicación, se administran los recursos y se crea la conexión con
+ *  la base de datos para acceder a la información requerida. Por lo anterior, es 
+ *  posible evidenciar que este componente es esencial debido a que se encarga 
+ *  de procesar todas las peticiones que llegan.
+ *  
+ *  
+ *  
+ *  
+ *  (*) Téngase en cuenta que, de acuerdo a la vista presentada, solamente debe existir 
+ *  un Manejador de Transacciones dentro de la estructura del proyecto.
+ *  
+ *  
+ *  
  */
 public class ParranderosTransactionManager {
 

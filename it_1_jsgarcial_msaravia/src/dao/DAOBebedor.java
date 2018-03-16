@@ -25,6 +25,20 @@ import vos.*;
  * @author Santiago Cortes Fernandez 	- 	s.cortes@uniandes.edu.co
  * @author Juan David Vega Guzman		-	jd.vega11@uniandes.edu.co
  * Clase DAO que se conecta la base de datos usando JDBC para resolver los requerimientos de la aplicacion
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Data Access Object (DAO)
+ * Por medio de la conexión que se crea en el Transaction Manager, este componente ejecuta las distintas 
+ * sentencias SQL, recibe la información correspondiente y se encarga de transformar tales resultados 
+ * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones según sea el caso.
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 public class DAOBebedor {
 

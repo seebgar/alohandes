@@ -71,7 +71,11 @@ public class Persona {
 	 * @param apellido - Apellido de la persona.
 	 * @param tipo - tipo de la persona.
 	 */
-	public Persona(  @JsonProperty(value="id")Long id, @JsonProperty(value="nombre")String nombre , @JsonProperty(  value="apellido")String apellido  ,   @JsonProperty(value="tipo")String tipo ) {                                
+	public Persona(  
+			@JsonProperty(value="id")Long id, 
+			@JsonProperty(value="nombre")String nombre , 
+			@JsonProperty(  value="apellido")String apellido  ,   
+			@JsonProperty(value="tipo")String tipo ) {                                
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
