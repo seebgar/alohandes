@@ -1,5 +1,7 @@
 package vos;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -22,6 +24,13 @@ public class Hostel extends InmuebleHotelero {
 	@JsonProperty(value="horario_admin_final")
 	private Integer horario_admin_final;
 	
+	/**
+	 * servicios de hotel que el hostel ofrece
+	 */
+	@JsonProperty(value="servicios_hoteleros")
+	private List<ServicioHotelero> serviciosHoteleros;
+	
+	//constructor
 	public Hostel(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="registro_camara_comercio") String registro_camara_comercio,
@@ -65,6 +74,20 @@ public class Hostel extends InmuebleHotelero {
 	 */
 	public void setHorario_admin_final(Integer horario_admin_final) {
 		this.horario_admin_final = horario_admin_final;
+	}
+
+	/**
+	 * @return the serviciosHoteleros
+	 */
+	public List<ServicioHotelero> getServiciosHoteleros() {
+		return serviciosHoteleros;
+	}
+
+	/**
+	 * @param serviciosHoteleros the serviciosHoteleros to set
+	 */
+	public void setServiciosHoteleros(List<ServicioHotelero> serviciosHoteleros) {
+		this.serviciosHoteleros = serviciosHoteleros;
 	}
 	
 	

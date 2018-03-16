@@ -57,6 +57,17 @@ public class Reserva {
 	 */
 	@JsonProperty(value="cantidad_personas")
 	private Integer cantidad_personas;
+	
+	/**
+	 * propuesta de la reserva
+	 */
+	private Propuesta propuesta;
+	
+	/**
+	 * cliente que le corresponde a cada reserva
+	 */
+	@JsonProperty(value= "cliente")
+	private Cliente cliente;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -91,15 +102,7 @@ public class Reserva {
 	}
 
 
-
-
-
-
-
-
-
-
-
+		
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS DE LA CLASE
@@ -170,24 +173,40 @@ public class Reserva {
 		this.cantidad_personas = cantidad_personas;
 	}
 
+	/**
+	 * @return the propuesta
+	 */
+	public Propuesta getPropuesta() {
+		return propuesta;
+	}
+
+
+	/**
+	 * @param propuesta the propuesta to set
+	 */
+	public void setPropuesta(Propuesta propuesta) {
+		this.propuesta = propuesta;
+	}
 
 
 
 
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * @param cliente the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 
 

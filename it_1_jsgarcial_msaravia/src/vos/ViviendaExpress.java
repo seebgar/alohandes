@@ -1,5 +1,7 @@
 package vos;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -30,12 +32,22 @@ public class ViviendaExpress {
 	 */
 	@JsonProperty(value="ubicacion")
 	private String ubicacion;
+	
+	/**
+	 * servicios que ofrece la vivienda
+	 */
+	@JsonProperty(value="servicios")
+	private List<ServicioBasico> serviciosBasicos;
+	
+	/**
+	 * propuesta que ofrece la vivienda
+	 */
+	private Propuesta propuesta;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
-
 	/**
 	 * Constructor de la clase vivienda express
 	 * @param id
@@ -81,6 +93,46 @@ public class ViviendaExpress {
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+
+
+
+	/**
+	 * @return the serviciosBasicos
+	 */
+	public List<ServicioBasico> getServiciosBasicos() {
+		return serviciosBasicos;
+	}
+
+
+
+
+	/**
+	 * @param serviciosBasicos the serviciosBasicos to set
+	 */
+	public void setServiciosBasicos(List<ServicioBasico> serviciosBasicos) {
+		this.serviciosBasicos = serviciosBasicos;
+	}
+
+
+
+
+	/**
+	 * @return the propuesta
+	 */
+	public Propuesta getPropuesta() {
+		return propuesta;
+	}
+
+
+
+
+	/**
+	 * @param propuesta the propuesta to set
+	 */
+	public void setPropuesta(Propuesta propuesta) {
+		this.propuesta = propuesta;
 	}
 	
 
