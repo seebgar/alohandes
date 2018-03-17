@@ -52,6 +52,24 @@ public class Persona {
 	@JsonProperty(value="tipo")
 	private String tipo;
 	
+	/**
+	 * Determina el rol de la persona {cliente, operador}
+	 */
+	@JsonProperty(value="rol")
+	private String rol;
+	
+	/**
+	 * Representa el NIT de una persona, normalmento perosna tipo empresa
+	 */
+	@JsonProperty(value="nit")
+	private String nit;
+	
+	/**
+	 * Cedula de la persona
+	 */
+	@JsonProperty(value="cedula")
+	private String cedula;
+	
 	
 	
 	
@@ -72,11 +90,17 @@ public class Persona {
 			@JsonProperty(value="id")Long id, 
 			@JsonProperty(value="nombre")String nombre , 
 			@JsonProperty(  value="apellido")String apellido  ,   
-			@JsonProperty(value="tipo")String tipo ) {                                
+			@JsonProperty(value="tipo")String tipo,
+			@JsonProperty(value="rol") String rol,
+			@JsonProperty(value="nit") String nit,
+			@JsonProperty(value="cedula") String cedula ) {                                
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipo = tipo;
+		this.rol = rol;
+		this.nit = nit;
+		this.cedula = cedula;
 	}
 
 	
@@ -117,6 +141,38 @@ public class Persona {
 	}
 
 	public void setCiudad(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public String getNit() {
+		return nit;
+	}
+
+	public void setNit(String nit) {
+		this.nit = nit;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	

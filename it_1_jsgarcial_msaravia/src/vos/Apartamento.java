@@ -1,5 +1,8 @@
 package vos;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -134,6 +137,14 @@ public class Apartamento {
 		this.propuesta = propuesta;
 	}
 
+	public static void main(String[] args) {
+		Date d = new Date("12/26/1997 12:02:33");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		cal.add(Calendar.DAY_OF_YEAR, -46);
+		System.out.println(cal.getTime());
+		
+	}
 
 
 }
