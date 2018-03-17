@@ -1,5 +1,7 @@
 package vos;
 
+import javax.management.Query;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -59,6 +61,18 @@ public class Reserva {
 	private Integer cantidad_personas;
 	
 	/**
+	 * Determina si existe una multa hacia el cliente
+	 */
+	@JsonProperty(value= "hay_multa")
+	private Boolean hayMulta;
+	
+	/**
+	 * el costo se hay multa
+	 */
+	@JsonProperty(value="valor_multa")
+	private Double valorMulta;
+	
+	/**
 	 * propuesta de la reserva
 	 */
 	@JsonProperty(value="propuesta")
@@ -92,7 +106,9 @@ public class Reserva {
 			@JsonProperty(value="fecha_inicio_estadia") String fecha_inicio_estadia,
 			@JsonProperty(value="duracion") Integer duracion,
 			@JsonProperty(value="costo_total") Double costo_total,
-			@JsonProperty(value="cantidad_personas") Integer cantidad_personas ) {
+			@JsonProperty(value="cantidad_personas") Integer cantidad_personas,
+			@JsonProperty(value= "hay_multa") Boolean hayMulta,
+			@JsonProperty(value="vlor_multa") Double valorMulta) {
 		this.id = id;
 		this.fecha_registro = fecha_registro;
 		this.fecha_cancelacion = fecha_cancelacion;
@@ -100,6 +116,8 @@ public class Reserva {
 		this.duracion = duracion;
 		this.costo_total = costo_total;
 		this.cantidad_personas = cantidad_personas;
+		this.hayMulta= hayMulta;
+		this.valorMulta= valorMulta;
 		//TODO inizialicar propuesta y cliente
 	}
 
@@ -201,6 +219,55 @@ public class Reserva {
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	
+	
+	/**
+	 * @return the hayMulta
+	 */
+	public Boolean getHayMulta() {
+		return hayMulta;
+	}
+
+
+
+
+	/**
+	 * @param hayMulta the hayMulta to set
+	 */
+	public void setHayMulta(Boolean hayMulta) {
+		this.hayMulta = hayMulta;
+	}
+
+
+
+
+	/**
+	 * @return the valorMulta
+	 */
+	public Double getValorMulta() {
+		return valorMulta;
+	}
+
+
+
+
+	/**
+	 * @param valorMulta the valorMulta to set
+	 */
+	public void setValorMulta(Double valorMulta) {
+		this.valorMulta = valorMulta;
+	}
+
+
+
+
+	public void cancelarReserva(@JsonProperty(value="id") Long id){
+		
+		
+		
+		
 	}
 
 
