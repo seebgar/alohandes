@@ -102,24 +102,12 @@ public class Habitacion {
 		this.tipo_habitacion = tipo_habitacion;
 	}
 
-
-
-
-
-
-
 	/**
 	 * @return the serviciosBasicos
 	 */
 	public List<ServicioBasico> getServiciosBasicos() {
 		return serviciosBasicos;
 	}
-
-
-
-
-
-
 
 	/**
 	 * @param serviciosBasicos the serviciosBasicos to set
@@ -128,24 +116,17 @@ public class Habitacion {
 		this.serviciosBasicos = serviciosBasicos;
 	}
 
-
-
-
-
-
-
+	public void add_Servicio_Basico ( ServicioBasico serv, Double costo ) {
+		serv.setCosto(costo);
+		this.serviciosBasicos.add(serv);
+	}
+	
 	/**
 	 * @return the propuesta
 	 */
 	public Propuesta getPropuesta() {
 		return propuesta;
 	}
-
-
-
-
-
-
 
 	/**
 	 * @param propuesta the propuesta to set

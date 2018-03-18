@@ -51,7 +51,7 @@ public class Persona {
 	private String apellido;
 	
 	/**
-	 * Tipo de persona. Puede ser : estudiante, registrado, empleado, profesor, padre, invitado, empresa
+	 * Tipo de persona. Puede ser : estudiante, registrado, empleado, profesor, padre, invitado, empresa, egresado
 	 */
 	@JsonProperty(value="tipo")
 	private String tipo;
@@ -109,15 +109,20 @@ public class Persona {
 			@JsonProperty(value="rol") String rol,
 			@JsonProperty(value="nit") String nit,
 			@JsonProperty(value="cedula") String cedula,
-			@JsonProperty(value="email") String email ) {                                
+			@JsonProperty(value="email") String email ) { 
+		
+		if ( !tipo.equalsIgnoreCase("empresa") )
+			this.nit = null;
+		else
+			this.nit = nit;
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipo = tipo;
 		this.rol = rol;
-		this.nit = nit;
 		this.cedula = cedula;
 		this.email = email;
+		
 	}
 
 	

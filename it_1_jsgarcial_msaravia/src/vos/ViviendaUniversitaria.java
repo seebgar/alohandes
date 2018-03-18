@@ -1,5 +1,6 @@
 package vos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -60,8 +61,16 @@ public class ViviendaUniversitaria {
 	/**
 	 * Lista de servicios disponibles con el inmueble
 	 */
-	@JsonProperty(value="servicios")
-	private List<ServicioBasico> servicios;
+	@JsonProperty(value="servicios_basicos")
+	private List<ServicioBasico> servicios_basicos;
+	
+
+	/**
+	 * Servicios tipo hotel que puede ofrecer una vivienda universitaria
+	 */
+	@JsonProperty(value="servicios_hoteleros")
+	private List<ServicioHotelero> servicios_Hoteleros;
+	
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -84,6 +93,8 @@ public class ViviendaUniversitaria {
 		this.tipo = tipo;
 		this.mensual = mensual;
 		// TODO inicializar servicios
+		this.servicios_basicos = new ArrayList<>();
+		this.servicios_Hoteleros = new ArrayList<>();
 	}
 
 
@@ -147,13 +158,32 @@ public class ViviendaUniversitaria {
 		this.mensual = mensual;
 	}
 
-	public List<ServicioBasico> getServicios() {
-		return servicios;
+	public List<ServicioBasico> getServicios_basicos() {
+		return servicios_basicos;
+	}
+	
+	public void setServicios_basicos(List<ServicioBasico> servicios_basicos) {
+		this.servicios_basicos = servicios_basicos;
+	}
+	
+	public void add_Servicio_Basico ( ServicioBasico serv, Double costo ) {
+		serv.setCosto(costo);
+		this.servicios_basicos.add(serv);
 	}
 
-	public void setServicios(List<ServicioBasico> servicios) {
-		this.servicios = servicios;
+	public List<ServicioHotelero> getServicios_Hoteleros() {
+		return servicios_Hoteleros;
 	}
+
+	public void setServicios_Hoteleros(List<ServicioHotelero> servicios_Hoteleros) {
+		this.servicios_Hoteleros = servicios_Hoteleros;
+	}
+	
+	public void add_Servicio_Hotelero ( ServicioHotelero serv ) {
+		this.servicios_Hoteleros.add(serv);
+	}
+
+	
 
 
 

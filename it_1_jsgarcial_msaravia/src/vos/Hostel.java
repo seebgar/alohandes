@@ -29,14 +29,6 @@ public class Hostel extends InmuebleHotelero {
 	@JsonProperty(value="horario_admin_final")
 	private Integer horario_admin_final;
 
-	/**
-	 * servicios de hotel que el hostel ofrece
-	 */
-	@JsonProperty(value="servicios_hoteleros")
-	private List<ServicioHotelero> serviciosHoteleros;
-
-
-
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
@@ -106,22 +98,5 @@ public class Hostel extends InmuebleHotelero {
 		this.horario_admin_final = horario_admin_final;
 	}
 
-	/**
-	 * @return the serviciosHoteleros
-	 */
-	public List<ServicioHotelero> getServiciosHoteleros() {
-		return serviciosHoteleros;
-	}
-
-	/**
-	 * @param serviciosHoteleros the serviciosHoteleros to set
-	 */
-	public void setServiciosHoteleros(List<ServicioHotelero> serviciosHoteleros) {
-		this.serviciosHoteleros = serviciosHoteleros;
-	}
-
-
-
-
-
+	
 }

@@ -9,24 +9,46 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public class ServicioHotelero {
 	
-	/**
-	 * Constantes de Servicio
-	 * @author sebastian
-	 *
-	 */
-//	@JsonProperty(value="tipo")
-	//TODO
-	public enum TIPO {	
-		Jacuzzi,
-		SalaIncluida, 
-		Spa,
-		GYM, 
-		Restaurante,
-		SalaEstudia,
-		Aseo,
-		WIFI,
-		TV		
-	}
+	//----------------------------------------------------------------------------------------------------------------------------------
+		// ATRIBUTOS
+		//----------------------------------------------------------------------------------------------------------------------------------
+
+		
+		/**
+		 * Nombre del servicio basico = 
+		 * {jacuzzi, spa, gym , restaurante, sala}
+		 */
+		@JsonProperty(value="nombre")
+		private String nombre;
+		
+		
+		//----------------------------------------------------------------------------------------------------------------------------------
+		// Metodo Constructor
+		//----------------------------------------------------------------------------------------------------------------------------------
+
+		
+		/**
+		 * Constructor de un Servicio Hotelero
+		 * @param nombre
+		 * @param costo
+		 */
+		public ServicioHotelero( @JsonProperty(value="nombre") String nombre ) {
+			this.nombre = nombre;
+		}
+
+
+		
+		//----------------------------------------------------------------------------------------------------------------------------------
+		// Metodos de la clase
+		//----------------------------------------------------------------------------------------------------------------------------------
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
 		
 	
 

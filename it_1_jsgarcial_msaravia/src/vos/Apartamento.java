@@ -1,6 +1,7 @@
 package vos;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Apartamento {
 	/**
 	 * servicios que ofrece el apartamento
 	 */
-	@JsonProperty(value="servicios")
+	@JsonProperty(value="servicios_basicos")
 	private List<ServicioBasico> serviciosBasicos;
 
 	/**
@@ -72,6 +73,7 @@ public class Apartamento {
 		this.amoblado = amoblado;
 		this.costo_admin = costo_admin;
 		// TODO propuesta y servicos basicos
+		this.serviciosBasicos = new ArrayList<>();
 	}
 
 
@@ -122,6 +124,11 @@ public class Apartamento {
 	public void setServiciosBasicos(List<ServicioBasico> serviciosBasicos) {
 		this.serviciosBasicos = serviciosBasicos;
 	}
+	
+	public void add_Servicio_Basico ( ServicioBasico serv, Double costo ) {
+		serv.setCosto(costo);
+		this.serviciosBasicos.add(serv);
+	}
 
 	/**
 	 * @return the propuesta
@@ -137,14 +144,14 @@ public class Apartamento {
 		this.propuesta = propuesta;
 	}
 
-	public static void main(String[] args) {
-		Date d = new Date("12/26/1997 12:02:33");
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(d);
-		cal.add(Calendar.DAY_OF_YEAR, -46);
-		System.out.println(cal.getTime());
-		
-	}
+//	public static void main(String[] args) {
+//		Date d = new Date("12/26/1997 12:02:33");
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(d);
+//		cal.add(Calendar.DAY_OF_YEAR, -46);
+//		System.out.println(cal.getTime());
+//		
+//	}
 
 
 }

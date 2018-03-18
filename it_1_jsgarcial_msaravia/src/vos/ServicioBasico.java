@@ -1,5 +1,6 @@
 package vos;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Clase que representa los servicios basicos que un
@@ -9,37 +10,65 @@ package vos;
  */
 public class ServicioBasico {
 
+	
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
 	/**
-	 * Constantes de Servicio con un Costo
-	 * @author sebastian
-	 *
+	 * Nombre del servicio basico = 
+	 * {Luz, Telefono, agua, tv, desayuno, almuerzo, comida, cocina, bano, gym, apoyo social, apoyo acadmico}
 	 */
-//	@JsonProperty(value="tipo")
-	// TODO
-	public enum TIPO {	
-		Luz,
-		Telefono, 
-		Agua,
-		TV, 
-		Internet,
-		Comida,
-		Cocina,
-		Bano,
-		GYM,
-		ApoyoSocial,
-		ApoyoAcademico;
-		
-		/**
-		 * Costo Adicional de cada Servicio
-		 */
-		private Double costo;
-		public Double getCosto() {
-			return this.costo;
-		}
-		public void setCosto(Double costo) {
-			this.costo = costo;
-		}
+	@JsonProperty(value="nombre")
+	private String nombre;
+	
+	/**
+	 * Representa el costo de un servicio
+	 */
+	@JsonProperty(value="costo")
+	private Double costo = 0.0;
+	
+	
+	
+	
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// Metodo Constructor
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
+	/**
+	 * Constructor de un Servicio Basico
+	 * @param nombre
+	 * @param costo
+	 */
+	public ServicioBasico( @JsonProperty(value="nombre") String nombre,  @JsonProperty(value="costo") Double costo ) {
+		this.nombre = nombre;
+		this.costo = costo;
 	}
+
+
+	
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// Metodos de la clase
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+	
 
 		
 

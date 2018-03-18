@@ -1,5 +1,8 @@
 package vos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -51,6 +54,12 @@ public class InmuebleHotelero {
 	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
 	
+	/**
+	 * Servicios hoteleros ofrecido por el inmuble de tipo hotelero
+	 */
+	@JsonProperty(value="servicios_hoteleros")
+	private List<ServicioHotelero> servicios;
+	
 
 
 
@@ -79,6 +88,7 @@ public class InmuebleHotelero {
 		this.tipo_habitacion = tipo_habitacion;
 		this.ubicacion = ubicacion;
 		// TODO inicializar propuesta
+		this.servicios = new ArrayList<>();
 	}
 
 
@@ -150,6 +160,19 @@ public class InmuebleHotelero {
 	public void setPropuesta(Propuesta propuesta) {
 		this.propuesta = propuesta;
 	}
+
+	public List<ServicioHotelero> getServicios() {
+		return servicios;
+	}
+
+	public void setServicios(List<ServicioHotelero> servicios) {
+		this.servicios = servicios;
+	}
+	
+	public void add_Servicio_Hotelero ( ServicioHotelero serv) {
+		this.servicios.add(serv);
+	}
+	
 
 
 }

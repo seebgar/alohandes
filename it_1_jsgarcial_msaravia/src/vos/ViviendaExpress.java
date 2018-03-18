@@ -1,5 +1,6 @@
 package vos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -36,7 +37,7 @@ public class ViviendaExpress {
 	/**
 	 * servicios que ofrece la vivienda
 	 */
-	@JsonProperty(value="servicios")
+	@JsonProperty(value="servicios_basicos")
 	private List<ServicioBasico> serviciosBasicos;
 	
 	/**
@@ -64,6 +65,7 @@ public class ViviendaExpress {
 		this.menaje = menaje;
 		this.ubicacion = ubicacion;
 		// TODO inicializar propuesta
+		this.serviciosBasicos = new ArrayList<>();
 	}
 
 
@@ -110,6 +112,11 @@ public class ViviendaExpress {
 	 */
 	public void setServiciosBasicos(List<ServicioBasico> serviciosBasicos) {
 		this.serviciosBasicos = serviciosBasicos;
+	}
+	
+	public void add_Servicio_Basico ( ServicioBasico serv, Double costo ) {
+		serv.setCosto(costo);
+		this.serviciosBasicos.add(serv);
 	}
 
 	/**
