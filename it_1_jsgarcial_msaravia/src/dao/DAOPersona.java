@@ -19,7 +19,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import sun.tools.tree.AddExpression;
 import tm.BusinessLogicException;
 import vos.*;
 
@@ -128,6 +127,32 @@ public class DAOPersona {
 		return clientes;
 	}
 
+
+	/**
+	 * Metodo que obtiene la informacion de todos las propuestas en la Base de Datos <br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * @return	lista con la informacion de todos los clientes que se encuentran en la Base de Datos
+	 * @throws SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws Exception Si se genera un error dentro del metodo.
+	 */
+	public ArrayList<Propuesta> getPropuestas() throws SQLException, Exception {
+
+		ArrayList<Propuesta> props = new ArrayList<Propuesta>();
+
+		String sql = String.format("SELECT * FROM %1$s.PROPUESTAS", USUARIO);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while (rs.next()) {
+			props.add(convertResultSetTo_Propuesta(rs));
+		}
+		return props;
+	}
+
+
+
 	/**
 	 * Metodo que obtiene la informacion de todos LAS PERSONAS en la Base de Datos que son de TIPO = {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
 	 * dado por parametro<br/>
@@ -181,7 +206,10 @@ public class DAOPersona {
 	}
 
 	/**
-	 * Metodo que agregar la informacion de un nuevo bebedor en la Base de Datos a partir del parametro ingresado<br/>
+	 * REQUERIMIENTO 1
+	 * 
+	 * Metodo que agregar la informacion de un nuevo persona en la Base de Datos a partir del parametro ingresado<br/>
+	 * Se define el rol de la persona {cliente, operador}
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
 	 * @param bebedor Bebedor que desea agregar a la Base de Datos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
@@ -357,5 +385,164 @@ public class DAOPersona {
 
 		return pep;
 	}
+
+	public Propuesta convertResultSetTo_Propuesta(ResultSet resultSet) throws SQLException {
+
+		long id = resultSet.getLong("ID");
+		String tipo_inmueble = resultSet.getString("TIPO_INMUEBLE");
+
+		Propuesta prop = new Propuesta(id, tipo_inmueble);
+
+		if ( Propuesta.TIPO_INMUEBLE.APARTAMENTO.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.APARTAMENTOS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_APARTAMENTO"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setApartamento(new Apartamento(rs.getLong("ID"), rs.getInt("AMOBLADO") == 0 ? false : true , rs.getDouble("COSTO_ADMIN")));
+			}
+		} 
+
+		if ( Propuesta.TIPO_INMUEBLE.HABITACION.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HABITACIONES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HABITACION"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHabitacion( new Habitacion(rs.getLong("ID"), rs.getInt("PRECIO_ESPECIAL") == 0 ? false : true, rs.getString("TIPO_HABITACION")) );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.HOSTEL.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HOSTELES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HOSTEL"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHostel( new Hostel(rs.getLong("ID"), rs.getString("REGISTRO_CAMARA_COMERCIO"), rs.getString("REGISTRO_SUPERINTENDENCIA"), rs.getString("TIPO_HABITACION"), rs.getString("UBICACION"), rs.getInt("HORARIO_ADMIN_INICIAL"), rs.getInt("HORARIO_ADMIN_FINAL")) );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.HOTEL.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HOTELES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HOTEL"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHotel( new Hotel(rs.getLong("ID"), rs.getString("REGISTRO_CAMARA_COMERCIO"), rs.getString("REGISTRO_SUPERINTENDENCIA"), rs.getString("TIPO_HABITACION"), rs.getString("UBICACION"), rs.getInt("HORARIO_ADMIN_24H") == 0 ? false : true) );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.VIVIENDA_EXPRESS.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.VIVIENDAS_EXPRESS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_VIVIENDA_EXPRESS"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setVivienda_express( new ViviendaExpress(rs.getLong("ID"), rs.getString("MENAJE"), rs.getString("UBICACION")) );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.VIVIENDA_UNIVERSITARIA.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.VIVIENDAS_UNIVERSITARIAS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_VIVIENDA_UNIVERSITARIA"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setVivienda_universitarias( new ViviendaUniversitaria(rs.getLong("ID"), rs.getString("UBICACION"), rs.getString("CAPACIDAD"), rs.getString("MENAJE"), rs.getString("DESCRIPCION"), rs.getString("TIPO"), rs.getInt("MENSUAL") == 0 ? false : true) );
+			}
+		}
+
+
+		return prop;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// REQUERIMIENTOS FUNCIONALES DE CONSULTA
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+	/**
+	 * RFC2
+	 * 
+	 * Retorna las 20 orfertas más populares 
+	 * @return
+	 */
+	public ArrayList<String> _20_ofertas_mas_populares ()  throws SQLException, Exception {
+		
+		System.out.println("entra");
+		
+//		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
+//				"		FROM %1$s.RESERVAS \n" + 
+//				"		GROUP BY ID_PROPUESTA\n" + 
+//				"		ORDER BY \"Cantidad Reservas\" DESC", USUARIO);
+		
+		String sql = "SELECT * FROM RESERVAS  ";
+		
+		System.out.println("sale");
+		
+		ArrayList<String> populares = new ArrayList<String>();
+
+		System.out.println("-1");
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		System.out.println("0");
+		recursos.add(prepStmt);
+		System.out.println("1");
+		ResultSet rs = prepStmt.executeQuery();
+		System.out.println("2");
+		
+		System.out.println("query");
+
+		while (rs.next()) {
+			populares.add(rs.getLong("ID_PROPUESTA") + "");
+		}
+		return populares;
+		
+	}
+
+	
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
