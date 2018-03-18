@@ -19,6 +19,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import sun.tools.tree.AddExpression;
+import tm.BusinessLogicException;
 import vos.*;
 
 /**
@@ -39,23 +41,18 @@ import vos.*;
  * 
  */
 public class DAOPersona {
-	
-	// TODO CAMBIÈ EL NOMBRE DE LA CLASE, HAY QUE HACER LOS CMABIOS QUE CUENADREN CON LOGICA
-	
-	
-	
+
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// CONSTANTES
 	//----------------------------------------------------------------------------------------------------------------------------------
-	
+
 	/**
 	 * Constante para indicar el usuario Oracle del estudiante
 	 */
-	//TODO Requerimiento 1H: Modifique la constante, reemplazando al ususario PARRANDEROS por su ususario de Oracle
 	public final static String USUARIO = "ISIS2304A491810";
-	
-	
+
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// ATRIBUTOS
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -69,18 +66,18 @@ public class DAOPersona {
 	 * Atributo que genera la conexion a la base de datos
 	 */
 	private Connection conn;
-	
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS DE INICIALIZACION
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 	/**
-	 * Metodo constructor de la clase DAOBebedor <br/>
-	*/
+	 * Metodo constructor de la clase DAOPersona <br/>
+	 */
 	public DAOPersona() {
 		recursos = new ArrayList<Object>();
 	}
-	
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS DE COMUNICACION CON LA BASE DE DATOS
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -93,21 +90,44 @@ public class DAOPersona {
 	 * @throws Exception Si se genera un error dentro del metodo.
 	 */
 	public ArrayList<Persona> getOperadores() throws SQLException, Exception {
-		
+
 		ArrayList<Persona> operadores = new ArrayList<Persona>();
 
-		String sql = String.format("SELECT * FROM %1$s.PERSONAS AND ROL = 'operador'", USUARIO);
+		String sql = String.format("SELECT * FROM %1$s.PERSONAS WHERE ROL = 'operador'", USUARIO);
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
-	
+
 		while (rs.next()) {
 			operadores.add(convertResultSetTo_Persona(rs));
 		}
 		return operadores;
 	}
-	
+
+	/**
+	 * Metodo que obtiene la informacion de todos los clientes en la Base de Datos <br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * @return	lista con la informacion de todos los clientes que se encuentran en la Base de Datos
+	 * @throws SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws Exception Si se genera un error dentro del metodo.
+	 */
+	public ArrayList<Persona> getClientes() throws SQLException, Exception {
+
+		ArrayList<Persona> clientes = new ArrayList<Persona>();
+
+		String sql = String.format("SELECT * FROM %1$s.PERSONAS WHERE ROL = 'cliente'", USUARIO);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while (rs.next()) {
+			clientes.add(convertResultSetTo_Persona(rs));
+		}
+		return clientes;
+	}
+
 	/**
 	 * Metodo que obtiene la informacion de todos LAS PERSONAS en la Base de Datos que son de TIPO = {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
 	 * dado por parametro<br/>
@@ -119,12 +139,12 @@ public class DAOPersona {
 	 */
 
 	public ArrayList<Persona> getPersonas_Por_Tipo ( String tipo ) throws SQLException, Exception{
-		
+
 		ArrayList<Persona> personas = new ArrayList<Persona>();
-		
+
 		String sql = String.format("SELECT * FROM %1$s.PERSONAS WHERE TIPO = '%2$s'", USUARIO, tipo);
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		
+
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 
@@ -137,29 +157,29 @@ public class DAOPersona {
 	/**
 	 * Metodo que obtiene la informacion del bebedor en la Base de Datos que tiene el identificador dado por parametro<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/> 
-	 * @param id el identificador del bebedor
-	 * @return la informacion del bebedor que cumple con los criterios de la sentecia SQL
-	 * 			Null si no existe el bebedor conlos criterios establecidos
+	 * @param id el identificador de la persona
+	 * @return la informacion de la persona que cumple con los criterios de la sentecia SQL
+	 * 			Null si no existe la persona con los criterios establecidos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
 	 * @throws Exception Si se genera un error dentro del metodo.
 	 */
-	public Bebedor find_Persona_Id (Long id) throws SQLException, Exception 
+	public Persona findPersonaById ( Long id ) throws SQLException, Exception 
 	{
-		Bebedor bebedor = null;
+		Persona pep = null;
 
-		String sql = String.format("SELECT * FROM %1$s.BEBEDORES WHERE ID = %2$d", USUARIO, id); 
+		String sql = String.format("SELECT * FROM %1$s.PERSONAS WHERE ID = %2$d", USUARIO, id); 
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 
 		if(rs.next()) {
-			bebedor = convertResultSetToBebedor(rs);
+			pep = convertResultSetTo_Persona(rs);
 		}
 
-		return bebedor;
+		return pep;
 	}
-	
+
 	/**
 	 * Metodo que agregar la informacion de un nuevo bebedor en la Base de Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
@@ -167,93 +187,129 @@ public class DAOPersona {
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
 	 * @throws Exception Si se genera un error dentro del metodo.
 	 */
-	public void addBebedor(Bebedor bebedor) throws SQLException, Exception {
+	public void addPersona (Persona persona) throws SQLException, Exception {
 
-		String sql = String.format("INSERT INTO %1$s.BEBEDORES (ID, NOMBRE, PRESUPUESTO, CIUDAD) VALUES (%2$s, '%3$s', '%4$s', '%5$s')", 
-									USUARIO, 
-									bebedor.getId(), 
-									bebedor.getNombre(),
-									bebedor.getPresupuesto(), 
-									bebedor.getCiudad());
+		String sql = 
+				String.format(
+						"INSERT INTO %1$s.PERSONAS (ID, NOMBRE, APELLIDO, CEDULA, TIPO, NIT, ROL EMAIL) "
+								+ "VALUES (%2$s, '%3$s', '%4$s', '%5$s', '%6$s', '%7$s', '%8$s', '%9$s' )", 
+								USUARIO, 
+								persona.getId(), 
+								persona.getNombre(),
+								persona.getApellido(), 
+								persona.getCedula(),
+								persona.getTipo(),
+								persona.getNit(),
+								persona.getRol(),
+								persona.getEmail()
+						);
 		System.out.println(sql);
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
-
-	}
-	
-	/**
-	 * Metodo que actualiza la informacion del bebedor en la Base de Datos que tiene el identificador dado por parametro<br/>
-	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
-	 * @param bebedor Bebedor que desea actualizar a la Base de Datos
-	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
-	 * @throws Exception Si se genera un error dentro del metodo.
-	 */
-	public void updateBebedor(Bebedor bebedor) throws SQLException, Exception {
-
-		StringBuilder sql = new StringBuilder();
-		sql.append(String.format("UPDATE %s.BEBEDORES SET ", USUARIO));
-		sql.append(String.format("NOMBRE = '%1$s' AND CIUDAD = '%2$s' AND PRESUPUESTO = '%3$s' ", bebedor.getNombre(), bebedor.getCiudad(), bebedor.getPresupuesto()));
-		
-		System.out.println(sql);
-		
-		PreparedStatement prepStmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepStmt);
-		prepStmt.executeQuery();
 	}
 
+
 	/**
-	 * Metodo que actualiza la informacion del bebedor en la Base de Datos que tiene el identificador dado por parametro<br/>
-	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
-	 * @param bebedor Bebedor que desea actualizar a la Base de Datos
-	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
-	 * @throws Exception Si se genera un error dentro del metodo.
+	 * Agrega la informacion de una propuestas a la base de datos
+	 *  <b>Precondicion: </b> la conexion ha sido inicializada y la propuesta no puede existir sin una persona operador que la maneje <br/>  
+	 * @param persona
+	 * @param propuesta
+	 * @throws SQLException
+	 * @throws Exception
 	 */
-	public void deleteBebedor(Bebedor bebedor) throws SQLException, Exception {
+	public void addPropuesta ( Persona persona, Propuesta propuesta ) throws SQLException, Exception, BusinessLogicException {
 
-		String sql = String.format("DELETE FROM %1$s.BEBEDORES WHERE ID = %2$d", USUARIO, bebedor.getId());
-
-		System.out.println(sql);
-		
-		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		recursos.add(prepStmt);
-		prepStmt.executeQuery();
-	}
-	
-	/**
-	 * Metodo que obtiene la cantidad de bebedores de una ciudad especifica, dada por parametro<br/>
-	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
-	 * @param ciudad ciudad que se desea saber la cantidad de bebedores
-	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
-	 * @throws Exception Si se genera un error dentro del metodo.
-	 */
-	public double getCountBebedoresByCiudad(String ciudad) throws SQLException, Exception
-	{		
-		StringBuilder sql = new StringBuilder();
-		sql.append(String.format("SELECT COUNT(*) AS CANTIDAD_CIUDAD ", USUARIO));
-		sql.append(String.format("FROM %s.BEBEDORES ", USUARIO));
-		sql.append(String.format("WHERE CIUDAD = '%s' ", ciudad));
-		sql.append("GROUP BY CIUDAD");
-		
-		System.out.println(sql.toString());
-		
-		PreparedStatement prepStmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepStmt);	
-		ResultSet rs = prepStmt.executeQuery();
-
-		if(rs.next())
-		{
-			return rs.getInt("CANTIDAD_CIUDAD");	
+		if ( this.findPersonaById(persona.getId()) == null ) {
+			System.out.println(String.format("Actualmente la persona con id = {%1$s} {%2$s %3$s} no esta registrada. Debe estar registrado como operador y estar relacionado con la universidad para poder registrar una propuesta.", 
+					persona.getId(), persona.getNombre(), persona.getApellido()));
+			return;
 		}
-		return 0;
-		
+
+		// ESTA PARTE ASEGURA QUE LA PERSONA QUE ESTA HCIENDO LA PROPUESTA, SEA UN OPERADOR RELACIONADO A LA UNIVERSIDAD
+		try {
+			persona.addPropuesta(propuesta);
+		} catch ( BusinessLogicException e ) {
+			throw new BusinessLogicException(e.getMessage());
+		} 
+
+		String sql =
+				String.format("INSERT INTO %1$s.PROPUESTAS(ID, ID_PERSONA, ID_HOSTEL, ID_HOTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO"
+						+ ", ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION)"
+						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d  )",
+						propuesta.getId(),
+						persona.getId(),
+						propuesta.getHostel().getId(),
+						propuesta.getHotel().getId(),
+						propuesta.getVivienda_express().getId(),
+						propuesta.getApartamento().getId(),
+						propuesta.getVivienda_universitarias().getId(),
+						propuesta.getHabitacion().getId());
+
+		System.out.println(sql);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+
 	}
-	
+
+
+
+	/**
+	 * Metodo que actualiza la informacion de LA PERSONA en la Base de Datos que tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
+	 * @param persona Persona que desea actualizar a la Base de Datos
+	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws Exception Si se genera un error dentro del metodo.
+	 */
+	public void updatePersona ( Persona persona ) throws SQLException, Exception {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(String.format("UPDATE %s.PERSONAS SET ", USUARIO));
+		sql.append(String.format("NOMBRE = '%1$s' AND APELLIDO = '%2$s' AND CEDULA = '%3$s' "
+				+ "AND TIPO = '%4$s' AND NIT = '%5$s' AND ROL = '%6$s' AND EMAIL = '%7$s'",
+				persona.getNombre(), 
+				persona.getApellido(), 
+				persona.getCedula(),
+				persona.getTipo(),
+				persona.getNit(),
+				persona.getRol(),
+				persona.getEmail()
+				));
+
+		System.out.println(sql);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
+
+	/**
+	 * Metodo que elimina una Persona de la Base de Datos que tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
+	 * @param persona Persona que desea eliminar de la Base de Datos
+	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws Exception Si se genera un error dentro del metodo.
+	 */
+	public void deletePersona ( Persona persona ) throws SQLException, Exception {
+
+		String sql = String.format("DELETE FROM %1$s.PERSONAS WHERE ID = %2$d", USUARIO, persona.getId());
+
+		System.out.println(sql);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
+
+
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS AUXILIARES
 	//----------------------------------------------------------------------------------------------------------------------------------
-	
+
 	/**
 	 * Metodo encargado de inicializar la conexion del DAO a la Base de Datos a partir del parametro <br/>
 	 * <b>Postcondicion: </b> el atributo conn es inicializado <br/>
@@ -262,7 +318,7 @@ public class DAOPersona {
 	public void setConn(Connection connection){
 		this.conn = connection;
 	}
-	
+
 	/**
 	 * Metodo que cierra todos los recursos que se encuentran en el arreglo de recursos<br/>
 	 * <b>Postcondicion: </b> Todos los recurso del arreglo de recursos han sido cerrados.
@@ -277,7 +333,7 @@ public class DAOPersona {
 				}
 		}
 	}
-	
+
 	/**
 	 * Metodo que transforma el resultado obtenido de una consulta SQL (sobre la tabla PERSONAS) en una instancia de la clase PERSONA.
 	 * @param resultSet ResultSet con la informacion de un bebedor que se obtuvo de la base de datos.
@@ -285,8 +341,8 @@ public class DAOPersona {
 	 * @throws SQLException Si existe algun problema al extraer la informacion del ResultSet.
 	 */
 	public Persona convertResultSetTo_Persona(ResultSet resultSet) throws SQLException {
-		//TODO Requerimiento 1G: Complete el metodo con los atributos agregados previamente en la clase Bebedor. 
-		//						 Tenga en cuenta los nombres de las columnas de la Tabla en la Base de Datos (ID, NOMBRE, PRESUPUESTO, CIUDAD)
+		//Tenga en cuenta los nombres de las columnas de la Tabla en la Base de Datos 
+		//(ID, NOMBRE, APELLIDO, TIPO, CEDULA, ROL, NIT, EMAIL)
 
 		long id = resultSet.getLong("ID");
 		String nombre = resultSet.getString("NOMBRE");
@@ -295,9 +351,10 @@ public class DAOPersona {
 		String rol = resultSet.getString("ROL");
 		String cedula = resultSet.getString("CEDULA");
 		String nit = resultSet.getString("NIT");
+		String email = resultSet.getString("EMAIL");
 
-		Persona pep = new Operador(id, nombre, apellido, tipo, rol, nit, cedula);
-		
+		Persona pep = new Operador(id, nombre, apellido, tipo, rol, nit, cedula, email);
+
 		return pep;
 	}
 

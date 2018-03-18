@@ -39,8 +39,12 @@ public class Cliente extends Persona{
 			@JsonProperty(value="id")Long id, 
 			@JsonProperty(value="nombre")String nombre , 
 			@JsonProperty(  value="apellido")String apellido  ,   
-			@JsonProperty(value="tipo")String tipo ) {                                
-		super(id, nombre, apellido, tipo);
+			@JsonProperty(value="tipo")String tipo,
+			@JsonProperty(value="rol") String rol,
+			@JsonProperty(value="nit") String nit,
+			@JsonProperty(value="cedula") String cedula,
+			@JsonProperty(value="email") String email) {                                
+		super(id, nombre, apellido, tipo, rol, nit, cedula, email);
 		// TODO inicializar reserva
 	}
 

@@ -12,7 +12,11 @@
  */
 package vos;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.*;
+
+import tm.BusinessLogicException;
 
 /**
  * Clase que representa una Persona
@@ -70,6 +74,17 @@ public class Persona {
 	@JsonProperty(value="cedula")
 	private String cedula;
 	
+	/**
+	 * Correo electronico de la persona
+	 */
+	@JsonProperty(value="email")
+	private String email;
+	
+	/**
+	 * Lista de propuestad de un operador
+	 */
+	@JsonProperty(value="propuestas")
+	private List<Propuesta> propuestas;
 	
 	
 	
@@ -93,7 +108,8 @@ public class Persona {
 			@JsonProperty(value="tipo")String tipo,
 			@JsonProperty(value="rol") String rol,
 			@JsonProperty(value="nit") String nit,
-			@JsonProperty(value="cedula") String cedula ) {                                
+			@JsonProperty(value="cedula") String cedula,
+			@JsonProperty(value="email") String email ) {                                
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -101,6 +117,7 @@ public class Persona {
 		this.rol = rol;
 		this.nit = nit;
 		this.cedula = cedula;
+		this.email = email;
 	}
 
 	
@@ -174,6 +191,38 @@ public class Persona {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail( String email ) {
+		this.email = email;
+	}
+
+	public List<Propuesta> getPropuestas() {
+		return propuestas;
+	}
+
+	public void setPropuestas(List<Propuesta> propuestas) {
+		this.propuestas = propuestas;
+	}
+
+	/**
+	 * Para realizar una propuesta, se debe ser {operador} y estar asociado con
+	 * la universidad {estudiante, empleado, profesor, padre, empresa}
+	 * @param propuesta
+	 */
+	public void addPropuesta ( Propuesta propuesta ) throws BusinessLogicException {
+		
+		if (this.rol.equalsIgnoreCase("CLIENTE")) 
+			throw new BusinessLogicException("Un cliente no puede realizar propuestas de alohamiento. Debe estar registrado como operador y estar asociado con la universidad.");
+		if (this.tipo.equalsIgnoreCase("INVITADO") || this.tipo.equalsIgnoreCase("INVITADO")) 
+			throw new BusinessLogicException("El usuario no cuenta con los requisitos para relaizar una propuesta. Debe estar registrado como operador y estar asociado con la universidad.");
+			
+		this.propuestas.add(propuesta);
+		
 	}
 	
 	

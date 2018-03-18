@@ -45,8 +45,9 @@ public class Operador extends Persona {
 			@JsonProperty(value="tipo")String tipo,
 			@JsonProperty(value="rol") String rol,
 			@JsonProperty(value="nit") String nit,
-			@JsonProperty(value="cedula") String cedula) {                                
-		super(id, nombre, apellido, tipo, rol, nit, cedula);
+			@JsonProperty(value="cedula") String cedula,
+			@JsonProperty(value="email") String email) {                                
+		super(id, nombre, apellido, tipo, rol, nit, cedula, email);
 		// TODO this.propuestas = new ArrayList<>();
 	}
 
