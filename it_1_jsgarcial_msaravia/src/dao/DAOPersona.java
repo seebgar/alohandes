@@ -492,12 +492,12 @@ public class DAOPersona {
 		
 		System.out.println("entra");
 		
-//		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
-//				"		FROM %1$s.RESERVAS \n" + 
-//				"		GROUP BY ID_PROPUESTA\n" + 
-//				"		ORDER BY \"Cantidad Reservas\" DESC", USUARIO);
+		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
+				"		FROM %1$s.RESERVAS \n" + 
+				"		GROUP BY ID_PROPUESTA\n" + 
+				"		ORDER BY \"Cantidad Reservas\" DESC", USUARIO);
 		
-		String sql = "SELECT * FROM RESERVAS  ";
+		//String sql = "SELECT * FROM " + USUARIO + ".RESERVAS  ";
 		
 		System.out.println("sale");
 		
