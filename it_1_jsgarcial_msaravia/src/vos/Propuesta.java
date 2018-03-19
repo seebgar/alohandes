@@ -76,6 +76,12 @@ public class Propuesta {
 	 */
 	@JsonProperty(value="vivienda_universitaria")
 	private ViviendaUniversitaria vivienda_universitarias;
+	
+	/**
+	 * atributo que define si la propuesta se debe retirar
+	 */
+	@JsonProperty(value="se_va_retirar")
+	private Boolean seVaRetirar;
 
 	
 
@@ -93,6 +99,7 @@ public class Propuesta {
 		this.hotel = null;
 		this.vivienda_express = null;
 		this.vivienda_universitarias = null;
+		this.seVaRetirar= false;
 	}
 	
 
@@ -163,6 +170,22 @@ public class Propuesta {
 
 	public void setTipo_inmueble(String tipo_inmueble) {
 		this.tipo_inmueble = tipo_inmueble;
+	}
+
+
+	/**
+	 * @return the seVaRetirar
+	 */
+	public Boolean getSeVaRetirar() {
+		return seVaRetirar;
+	}
+
+
+	/**
+	 * @param seVaRetirar the seVaRetirar to set
+	 */
+	public void setSeVaRetirar(Boolean seVaRetirar) {
+		this.seVaRetirar = seVaRetirar;
 	}
 	
 	

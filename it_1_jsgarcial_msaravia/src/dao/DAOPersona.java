@@ -14,10 +14,16 @@ package dao;
 
 
 import java.sql.Connection; 
+
+import dao.DAOReserva;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import tm.BusinessLogicException;
 import vos.*;
@@ -30,9 +36,9 @@ import vos.*;
  * 
  * 
  * Data Access Object (DAO)
- * Por medio de la conexión que se crea en el Transaction Manager, este componente ejecuta las distintas 
- * sentencias SQL, recibe la información correspondiente y se encarga de transformar tales resultados 
- * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones según sea el caso.
+ * Por medio de la conexioÌ�n que se crea en el Transaction Manager, este componente ejecuta las distintas 
+ * sentencias SQL, recibe la informacioÌ�n correspondiente y se encarga de transformar tales resultados 
+ * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones seguÌ�n sea el caso.
  * 
  * 
  * 
@@ -65,6 +71,7 @@ public class DAOPersona {
 	 * Atributo que genera la conexion a la base de datos
 	 */
 	private Connection conn;
+	
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS DE INICIALIZACION
@@ -264,8 +271,8 @@ public class DAOPersona {
 
 		String sql =
 				String.format("INSERT INTO %1$s.PROPUESTAS(ID, ID_PERSONA, ID_HOSTEL, ID_HOTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO"
-						+ ", ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION)"
-						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d  )",
+						+ ", ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, SE_VA_RETIRAR)"
+						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d, %10$d  )",
 						propuesta.getId(),
 						persona.getId(),
 						propuesta.getHostel().getId(),
@@ -273,7 +280,8 @@ public class DAOPersona {
 						propuesta.getVivienda_express().getId(),
 						propuesta.getApartamento().getId(),
 						propuesta.getVivienda_universitarias().getId(),
-						propuesta.getHabitacion().getId());
+						propuesta.getHabitacion().getId(),
+						(propuesta.getSeVaRetirar()==false)? 0 : 1);
 
 		System.out.println(sql);
 
@@ -283,7 +291,70 @@ public class DAOPersona {
 
 	}
 
-
+	
+	/**
+	 * 
+	 * @param propuesta
+	 * @throws SQLException
+	 * @throws Exception
+	 * @throws BusinessLogicException
+	 */
+	public void retirarPropuesta(Propuesta propuesta)throws SQLException, Exception, BusinessLogicException{
+		
+		//Formateando la fecha:
+        DateFormat formatoConHora= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+        
+        //Fecha actual desglosada:
+        Calendar fecha = Calendar.getInstance();
+        int anio = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH) + 1;
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        int hora = fecha.get(Calendar.HOUR_OF_DAY);
+        int minuto = fecha.get(Calendar.MINUTE);
+        int segundo = fecha.get(Calendar.SECOND);
+        String actualDate= ""+anio+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo;
+        
+		Date fechaActual= formatoConHora.parse(actualDate);
+		
+		
+		//necesitio las reservas que tengan esa propuesta
+		ArrayList<Reserva> reservasConPropuesta = new ArrayList<>();
+		
+		String reservitas= String.format("SELECT * FROM RESERVAS WHERE ID_PROPUESTA = %2$d", USUARIO, propuesta.getId());
+		PreparedStatement prepStmt1= conn.prepareStatement(reservitas);
+		recursos.add(prepStmt1);	
+		ResultSet rs = prepStmt1.executeQuery();
+		DAOReserva dao= new DAOReserva();
+		
+		while(rs.next())
+			reservasConPropuesta.add(dao.convertResultSetToReserva(rs));
+		//obtengo las reservas con la propuesta dada
+		
+		Date lastDate= new Date("1500-01-01 00:00:00");
+		for(Reserva res: reservasConPropuesta) {
+			Date temp= res.getFechaFinal();
+			if(temp.after(lastDate)) {
+				lastDate= temp;
+			}
+		} //obtengo la fecha de la ultima reserva que se acaba
+		
+		if(fechaActual.before(lastDate)) {
+			propuesta.setSeVaRetirar(true);
+			StringBuilder sql = new StringBuilder();
+			sql.append(String.format("UPDATE PROPUESTAS SET ", USUARIO));
+			sql.append(String.format("SE_VA_RETIRAR = '%1$s' ", propuesta.getSeVaRetirar()));
+			
+		}
+		else if(fechaActual.after(lastDate)) {
+			String sql = String.format("DELETE FROM %1$s.PROPUESTAS WHERE ID = %2$d", USUARIO, propuesta.getId());
+			
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			prepStmt.executeQuery();
+		}
+		
+		
+	}
 
 	/**
 	 * Metodo que actualiza la informacion de LA PERSONA en la Base de Datos que tiene el identificador dado por parametro<br/>
@@ -452,7 +523,11 @@ public class DAOPersona {
 				prop.setVivienda_universitarias( new ViviendaUniversitaria(rs.getLong("ID"), rs.getString("UBICACION"), rs.getString("CAPACIDAD"), rs.getString("MENAJE"), rs.getString("DESCRIPCION"), rs.getString("TIPO"), rs.getInt("MENSUAL") == 0 ? false : true) );
 			}
 		}
-
+		
+		int retiro= resultSet.getInt("SE_VA_RETIRAR");
+		Boolean seVaRetirar= (retiro == 1)? true: false;
+		prop.setSeVaRetirar(seVaRetirar);
+		
 
 		return prop;
 	}
@@ -485,7 +560,7 @@ public class DAOPersona {
 	/**
 	 * RFC2
 	 * 
-	 * Retorna las 20 orfertas más populares 
+	 * Retorna las 20 orfertas mÃ¡s populares 
 	 * @return
 	 */
 	public ArrayList<String> _20_ofertas_mas_populares ()  throws SQLException, Exception {

@@ -10,8 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
+import tm.BusinessLogicException;
+import vos.Cliente;
+import vos.Persona;
+import vos.Propuesta;
 import vos.Reserva;
 
 public class DAOReserva {
@@ -35,6 +38,11 @@ public class DAOReserva {
 	 */
 	private Connection conn;
 	
+	/**
+	 * 
+	 */
+	private DAOPersona persona;
+	
 	//constructor
 	
 	/**
@@ -43,21 +51,75 @@ public class DAOReserva {
 	public DAOReserva(){
 		
 		recursos= new ArrayList<Object>();
+		persona= new DAOPersona();
 	}
+	
+	
 	
 	
 	//metodos
 	
 	/**
-	 * Metodo que actualiza la informacion del bebedor en la Base de Datos que tiene el identificador dado por parametro<br/>
+	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
-	 * @param bebedor Bebedor que desea actualizar a la Base de Datos
+	 * @param reserva Reserva que desea agregar a la Base de Datos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
-	 * @throws Exception Si se genera un error dentro del metodo.
+	 * @throws BusinessLogicException Si se genera un error dentro del metodo.
 	 */
-	public void cancelarReserva(Reserva reserva) throws SQLException, Exception {
+	public void registrarReserva(Reserva reserva) throws SQLException, BusinessLogicException, Exception {
+		
+		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
+		
+		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID = %2$d AND fecha_inicio_estadia= %3$d", USUARIO, reserva.getId(), reserva.getFecha_inicio_estadia());
+		PreparedStatement prepStmt1= conn.prepareStatement(reservas);
+		recursos.add(prepStmt1);	
+		ResultSet rs = prepStmt1.executeQuery(); //consigo las reservas que hay para ese día
+		
+		while(rs.next())
+			reservasEnFecha.add(convertResultSetToReserva(rs));
+		
+		Cliente solicitado= reserva.getCliente();
+		
+		for(Reserva res: reservasEnFecha) {
+			
+			Cliente cliente= res.getCliente();
+			if(solicitado == cliente)
+				throw new BusinessLogicException("No puede hacer más reservas el mismo día");
+			//se valida que el cliente no haga más reservas un mismo dia
+		}
+		
+		Propuesta propuesta= reserva.getPropuesta();
+		if(propuesta.getSeVaRetirar())
+			throw new BusinessLogicException("No se puede realizar la reserva porque la propuesta no esta disponible para más fechas");
+		//valido que la propuesta sea vigente
 		
 		
+		//sentencia para insertar la resrva en la base de datos
+		String sql = String.format("INSERT INTO %1$s.RESERVAS (ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL) VALUES (%2$s, '%3$s', '%4$s', '%5$s', '%6$s', '%7$s', '%8$s', '%9$s')", 
+				USUARIO, 
+				reserva.getId(), 
+				solicitado.getId(),
+				reserva.getPropuesta().getId(),
+				reserva.getFecha_registro(),
+				reserva.getFecha_cancelacion(),
+				reserva.getFecha_inicio_estadia(),
+				reserva.getDuracion(),
+				reserva.getCosto_total());
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery(); //se inserta la reserva
+
+	}
+	
+	/**
+	 * Metodo que actualiza la informacion de la reserva en la Base de Datos que tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
+	 * @param resrva Reserva que desea actualizar a la Base de Datos
+	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws BusinessLogicException Si se genera un error dentro del metodo.
+	 */
+	public void cancelarReserva(Reserva reserva) throws SQLException, BusinessLogicException, Exception {
         
         //Formateando la fecha:
         DateFormat formatoConHora= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
@@ -75,24 +137,23 @@ public class DAOReserva {
 		Date fechaActual= formatoConHora.parse(actualDate);
 		
 		//necesito la fecha de estadia
-		String darFechaEstadia = String.format("SELECT feha_inicio_estadia FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
+		String darFechaEstadia = String.format("SELECT * FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
 		PreparedStatement prepStmt = conn.prepareStatement(darFechaEstadia);
 		recursos.add(prepStmt);
 		
-		PreparedStatement prepStmt1 = conn.prepareStatement(darFechaEstadia);
 		ResultSet rs = prepStmt.executeQuery();
 		Reserva reserva1= convertResultSetToReserva(rs);
-		
+				
 		Date fechaDeEstadia= formatoConHora.parse(reserva1.getFecha_inicio_estadia()); // obtengo la fecha e estadia
 
 		//necesito la fecha de regisro
-		String fechaDeRegistro= String.format("SELECT feha_registro FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
-		
-		PreparedStatement prepStmt2 = conn.prepareStatement(fechaDeRegistro);
-		ResultSet rs2= prepStmt2.executeQuery();
-		Reserva reserva2= convertResultSetToReserva(rs2);
-		
-		Date fechaDeRegistroAQuedarse= formatoConHora.parse(reserva2.getFecha_registro());
+//		String fechaDeRegistro= String.format("SELECT * FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
+//		
+//		PreparedStatement prepStmt2 = conn.prepareStatement(fechaDeRegistro);
+//		ResultSet rs2= prepStmt2.executeQuery();
+//		Reserva reserva2= convertResultSetToReserva(rs2);
+//		
+//		Date fechaDeRegistroAQuedarse= formatoConHora.parse(reserva2.getFecha_registro());
 		 // me da la fecha que se hizo la reserva
 		
 		Calendar cal= Calendar.getInstance();
@@ -151,8 +212,7 @@ public class DAOReserva {
 	
 	
 	public Reserva convertResultSetToReserva(ResultSet resultSet) throws SQLException {
-		//TODO Requerimiento 1G: Complete el metodo con los atributos agregados previamente en la clase Bebedor. 
-		//						 Tenga en cuenta los nombres de las columnas de la Tabla en la Base de Datos (ID, NOMBRE, PRESUPUESTO, CIUDAD)
+		
 
 		Long id = resultSet.getLong("ID");
 		String fecha_registro = resultSet.getString("FECHA_REGISTRO");
@@ -160,18 +220,34 @@ public class DAOReserva {
 		String fecha_inicio_estadia = resultSet.getString("FECHA_INICIO_ESTADIA");
 		Integer duracion= resultSet.getInt("DURACION");
 		Double costo_total= resultSet.getDouble("COSTO_TOTAL");
-		Integer cantidad_personas= resultSet.getInt("CANTIDAD-PERSONAS");
+		Integer cantidad_personas= resultSet.getInt("CANTIDAD_PERSONAS");
 		int multa= resultSet.getInt("HAY_MULTA");
 		
 		Boolean hayMulta= (multa ==1)? true :false;
 		
 		Double valorMulta= resultSet.getDouble("VALOR_MULTA");
+		Long idCliente= resultSet.getLong("ID_PERSONA");
+		Long idPropuesta= resultSet.getLong("ID_PROPUESTA");
 		
+		String personita = String.format("SELECT * FROM PERSONAS WHERE ID = %2$d", USUARIO, idCliente);
+		PreparedStatement prepStmt = conn.prepareStatement(personita);
+		ResultSet rs2= prepStmt.executeQuery();
+
+		Persona personaRequerida= persona.convertResultSetTo_Persona(rs2);
+		Cliente cliente= new Cliente(personaRequerida.getId(), personaRequerida.getNombre()
+				, personaRequerida.getApellido(), personaRequerida.getTipo()
+				, personaRequerida.getRol(), personaRequerida.getNit(), personaRequerida.getCedula(), personaRequerida.getEmail());
 		
-		Reserva reserva= new Reserva(id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion, costo_total, cantidad_personas, hayMulta, valorMulta);
+		String propuestica = String.format("SELECT * FROM PROPUESTAS WHERE ID = %2$d", USUARIO, idPropuesta);
+		PreparedStatement prepStmt2 = conn.prepareStatement(propuestica);
+		ResultSet rs3= prepStmt2.executeQuery();
+		Propuesta propuesta= persona.convertResultSetTo_Propuesta(rs3);
+		
+		Reserva reserva= new Reserva(id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion, costo_total, cantidad_personas, hayMulta, valorMulta, propuesta, cliente);
 
 		return reserva;
 	}
+	
 	
 	public static void main(String[] args){
 		

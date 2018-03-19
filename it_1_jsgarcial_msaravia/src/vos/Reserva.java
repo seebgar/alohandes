@@ -1,5 +1,11 @@
 package vos;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.management.Query;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -96,8 +102,11 @@ public class Reserva {
 	 * @param fecha_registro
 	 * @param fecha_cancelacion
 	 * @param fecha_inicio_estadia
-	 * @param duracion en DIAS
+	 * @param duracion
 	 * @param costo_total
+	 * @param cantidad_personas
+	 * @param hayMulta
+	 * @param valorMulta
 	 */
 	public Reserva(
 			@JsonProperty(value="id") Long id,
@@ -108,7 +117,9 @@ public class Reserva {
 			@JsonProperty(value="costo_total") Double costo_total,
 			@JsonProperty(value="cantidad_personas") Integer cantidad_personas,
 			@JsonProperty(value= "hay_multa") Boolean hayMulta,
-			@JsonProperty(value="vlor_multa") Double valorMulta) {
+			@JsonProperty(value="vlor_multa") Double valorMulta,
+			@JsonProperty(value= "propuesta") Propuesta propuesta,
+			@JsonProperty(value= "cliente") Cliente cliente) {
 		this.id = id;
 		this.fecha_registro = fecha_registro;
 		this.fecha_cancelacion = fecha_cancelacion;
@@ -119,6 +130,10 @@ public class Reserva {
 		this.hayMulta= hayMulta;
 		this.valorMulta= valorMulta;
 		//TODO inizialicar propuesta y cliente
+		
+		this.propuesta= propuesta;
+		this.cliente=cliente;
+		
 	}
 
 
@@ -263,13 +278,21 @@ public class Reserva {
 
 
 
-	public void cancelarReserva(@JsonProperty(value="id") Long id){
+	public Date getFechaFinal() throws Exception{
 		
+        DateFormat formato= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+		Date fechaInicio;
 		
+		fechaInicio = formato.parse(fecha_inicio_estadia);
+        
+		Calendar cal= Calendar.getInstance();
 		
+		cal.setTime(fechaInicio);
+		cal.add(Calendar.DAY_OF_YEAR, duracion);
+		Date fechaFin= cal.getTime();
 		
+		return fechaFin;
 	}
-
 
 
 
