@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_AZKiUCuCEeiGfabwoJ7AXg" name="model">
+  <eAnnotations xmi:id="_AZKiUSuCEeiGfabwoJ7AXg" source="genmymodel">
+    <details xmi:id="_AZKiUiuCEeiGfabwoJ7AXg" key="uuid" value="_gJb8ACZeEeiYD9TOdwevwA"/>
+    <details xmi:id="_AZKiUyuCEeiGfabwoJ7AXg" key="author" value="js.garcial1"/>
+    <details xmi:id="_AZKiVCuCEeiGfabwoJ7AXg" key="company" value="Uniandes"/>
+  </eAnnotations>
+  <ownedComment xmi:id="_AZKiVSuCEeiGfabwoJ7AXg" body="Persona.TIPO = [Estudiante, Registrado, Empleado, Profesor, Padres, Invitado, Empresa, Egresado].  Nota : Tipo de persona Regitsrado es el mismo que Natural en el caso de estudio ">
+    <eAnnotations xmi:id="_AZKiViuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiVyuCEeiGfabwoJ7AXg" key="uuid" value="_zC7iQAklEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiWCuCEeiGfabwoJ7AXg" body="El TIPO de Persona del Operador de estos Inmuebles (Apartamento y Vivienda Express) NO puede ser 'Inivitado'">
+    <eAnnotations xmi:id="_AZKiWSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiWiuCEeiGfabwoJ7AXg" key="uuid" value="_rbZ6wAkmEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiWyuCEeiGfabwoJ7AXg" body="Servicio.TIPO = [Jacuzzi, Sala, Spa, Gym, Restaurante, SalaEstudio, Aseo,  Internet, TV, WIFI, ]">
+    <eAnnotations xmi:id="_AZKiXCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiXSuCEeiGfabwoJ7AXg" key="uuid" value="_nkaloAknEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiXiuCEeiGfabwoJ7AXg" body="Hostel.TIPO_HABITACION = [Compartida]">
+    <eAnnotations xmi:id="_AZKiXyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiYCuCEeiGfabwoJ7AXg" key="uuid" value="_jYUjMAkoEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiYSuCEeiGfabwoJ7AXg" body="Hostel.TIPO_HABITACION = [Estandar, Semisuite, Suite]">
+    <eAnnotations xmi:id="_AZKiYiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiYyuCEeiGfabwoJ7AXg" key="uuid" value="_zYRYwAkoEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiZCuCEeiGfabwoJ7AXg" body="Habitacion.duracionContrat (en dias) >= 30 dias">
+    <eAnnotations xmi:id="_AZKiZSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiZiuCEeiGfabwoJ7AXg" key="uuid" value="_AnXQQAkpEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiZyuCEeiGfabwoJ7AXg" body="ServicioBasico.TIPO = [Luz, telefono, agua, TV, Internet, Comida, Cocina, Baño, ApoyoSocial, ApoyoAcademico] cada una con un precio especificado por la propuesta">
+    <eAnnotations xmi:id="_AZKiaCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiaSuCEeiGfabwoJ7AXg" key="uuid" value="_xX9iUAkyEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKiaiuCEeiGfabwoJ7AXg" body="ViviendaUniversitaria.TIPO_HABITACION = [Individual, Compartida]">
+    <eAnnotations xmi:id="_AZKiayuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKibCuCEeiGfabwoJ7AXg" key="uuid" value="_TpJTkAkzEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKibSuCEeiGfabwoJ7AXg" body="ViviendaUniversitaria.mensual = false := entonces es semestral">
+    <eAnnotations xmi:id="_AZKibiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKibyuCEeiGfabwoJ7AXg" key="uuid" value="_Y0pvIAkzEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKicCuCEeiGfabwoJ7AXg" body="ViviendaUniversitaria.descripcion = descripción amoldamiento, disponibilidad de porteria">
+    <eAnnotations xmi:id="_AZKicSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiciuCEeiGfabwoJ7AXg" key="uuid" value="_gkH8QAkzEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKicyuCEeiGfabwoJ7AXg" body="Apartamento.duracionContato (en dias) >= 30 dias">
+    <eAnnotations xmi:id="_AZKidCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKidSuCEeiGfabwoJ7AXg" key="uuid" value="_w-DYEAkzEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKidiuCEeiGfabwoJ7AXg" body="ViviendaExpress.duracionContrato (en dias) &lt;= 30 días por anño">
+    <eAnnotations xmi:id="_AZKidyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKieCuCEeiGfabwoJ7AXg" key="uuid" value="_C9h1YAk0EDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKieSuCEeiGfabwoJ7AXg" body="ViviendaExpress.costoTotal INCLUYE un Seguro">
+    <eAnnotations xmi:id="_AZKieiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKieyuCEeiGfabwoJ7AXg" key="uuid" value="_bO8K0Ak0EDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKifCuCEeiGfabwoJ7AXg" body="Hoteles : Regla de negocio: El operador solo puede ser de tipo Empresa">
+    <eAnnotations xmi:id="_AZKifSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKifiuCEeiGfabwoJ7AXg" key="uuid" value="_K6hxAAoMEDa9B4-ckmpWGQ"/>
+    </eAnnotations>
+  </ownedComment>
+  <ownedComment xmi:id="_AZKifyuCEeiGfabwoJ7AXg" body="Precio especial si son varios meses prepagados">
+    <eAnnotations xmi:id="_AZKigCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKigSuCEeiGfabwoJ7AXg" key="uuid" value="_OAbMgAzhEDaNNIlAuPhqbw"/>
+    </eAnnotations>
+  </ownedComment>
+  <packageImport xmi:id="_AZKigiuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKigyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKihCuCEeiGfabwoJ7AXg" key="uuid" value="_gJcjECZeEeiYD9TOdwevwA"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKihSuCEeiGfabwoJ7AXg" name="Persona">
+    <eAnnotations xmi:id="_AZKihiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKihyuCEeiGfabwoJ7AXg" key="uuid" value="_grQY4AiMEDais8sKFRB03w"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKiiCuCEeiGfabwoJ7AXg" name="id" visibility="private" type="_AZKilCuCEeiGfabwoJ7AXg" isID="true">
+      <eAnnotations xmi:id="_AZKiiSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiiiuCEeiGfabwoJ7AXg" key="uuid" value="_QVMp0AkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKiiyuCEeiGfabwoJ7AXg" name="nombre" visibility="private">
+      <eAnnotations xmi:id="_AZKijCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKijSuCEeiGfabwoJ7AXg" key="uuid" value="_RR2fUQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKijiuCEeiGfabwoJ7AXg" name="apellido" visibility="private">
+      <eAnnotations xmi:id="_AZKijyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKikCuCEeiGfabwoJ7AXg" key="uuid" value="_Sm9REQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKikSuCEeiGfabwoJ7AXg" name="TIPO" visibility="private" isStatic="true" isReadOnly="true">
+      <eAnnotations xmi:id="_AZKikiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKikyuCEeiGfabwoJ7AXg" key="uuid" value="_iXH20QkmEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_AZKilCuCEeiGfabwoJ7AXg" name="Long">
+    <eAnnotations xmi:id="_AZKilSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiliuCEeiGfabwoJ7AXg" key="uuid" value="_Q10qoAkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKilyuCEeiGfabwoJ7AXg" name="Cliente">
+    <eAnnotations xmi:id="_AZKimCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKimSuCEeiGfabwoJ7AXg" key="uuid" value="_T8VIkAkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <generalization xmi:id="_AZKimiuCEeiGfabwoJ7AXg" general="_AZKihSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKimyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKinCuCEeiGfabwoJ7AXg" key="uuid" value="_XbNqQQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKinSuCEeiGfabwoJ7AXg" name="Operador">
+    <eAnnotations xmi:id="_AZKiniuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKinyuCEeiGfabwoJ7AXg" key="uuid" value="_fh3BQAkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <generalization xmi:id="_AZKioCuCEeiGfabwoJ7AXg" general="_AZKihSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKioSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKioiuCEeiGfabwoJ7AXg" key="uuid" value="_gavKAQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKioyuCEeiGfabwoJ7AXg" name="Reserva">
+    <eAnnotations xmi:id="_AZKipCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKipSuCEeiGfabwoJ7AXg" key="uuid" value="_mIUX4QkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKipiuCEeiGfabwoJ7AXg" name="fecha_registro" visibility="private">
+      <eAnnotations xmi:id="_AZKipyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiqCuCEeiGfabwoJ7AXg" key="uuid" value="_5N6lUAoLEDa9B4-ckmpWGQ"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKiqSuCEeiGfabwoJ7AXg" name="fecha_cancelacion" visibility="private">
+      <eAnnotations xmi:id="_AZKiqiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiqyuCEeiGfabwoJ7AXg" key="uuid" value="_i6RDcAoTEDa9B4-ckmpWGQ"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKirCuCEeiGfabwoJ7AXg" name="fecha_inicio_estadia" visibility="private">
+      <eAnnotations xmi:id="_AZKirSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiriuCEeiGfabwoJ7AXg" key="uuid" value="_otj3wAoTEDa9B4-ckmpWGQ"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKiryuCEeiGfabwoJ7AXg" name="duracion" visibility="private">
+      <eAnnotations xmi:id="_AZKisCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKisSuCEeiGfabwoJ7AXg" key="uuid" value="_meb0IAobEDa9B4-ckmpWGQ"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKisiuCEeiGfabwoJ7AXg" name="costoTotal" visibility="private" type="_AZKjvCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKisyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKitCuCEeiGfabwoJ7AXg" key="uuid" value="_pNTOIAobEDa9B4-ckmpWGQ"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKitSuCEeiGfabwoJ7AXg" name="Reserva_Cliente" memberEnd="_AZKiuCuCEeiGfabwoJ7AXg _AZKivyuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKiuCuCEeiGfabwoJ7AXg _AZKivyuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKitiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKityuCEeiGfabwoJ7AXg" key="uuid" value="_nclcJQkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKiuCuCEeiGfabwoJ7AXg" name="cliente" type="_AZKilyuCEeiGfabwoJ7AXg" association="_AZKitSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKiuSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiuiuCEeiGfabwoJ7AXg" key="uuid" value="_nclcIgkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKiuyuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKivCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKivSuCEeiGfabwoJ7AXg" key="uuid" value="_nclcIwkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKiviuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKivyuCEeiGfabwoJ7AXg" name="reserva" type="_AZKioyuCEeiGfabwoJ7AXg" association="_AZKitSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKiwCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiwSuCEeiGfabwoJ7AXg" key="uuid" value="_nck1EQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKiwiuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKiwyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKixCuCEeiGfabwoJ7AXg" key="uuid" value="_nclcIAkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKixSuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKixiuCEeiGfabwoJ7AXg" name="Propuesta">
+    <eAnnotations xmi:id="_AZKixyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiyCuCEeiGfabwoJ7AXg" key="uuid" value="_r_CToQkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKiySuCEeiGfabwoJ7AXg" name="id" visibility="private" type="_AZKilCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKiyiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKiyyuCEeiGfabwoJ7AXg" key="uuid" value="_n4rugAziEDajIMVuu50VQg"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKizCuCEeiGfabwoJ7AXg" name="Operador_Propuesta" memberEnd="_AZKizyuCEeiGfabwoJ7AXg _AZKi1iuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKizyuCEeiGfabwoJ7AXg _AZKi1iuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKizSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKiziuCEeiGfabwoJ7AXg" key="uuid" value="_wys28AkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKizyuCEeiGfabwoJ7AXg" name="propuestas" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKizCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKi0CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi0SuCEeiGfabwoJ7AXg" key="uuid" value="_wysP4QkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKi0iuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKi0yuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKi1CuCEeiGfabwoJ7AXg" key="uuid" value="_wysP4gkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKi1SuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKi1iuCEeiGfabwoJ7AXg" name="operador" type="_AZKinSuCEeiGfabwoJ7AXg" association="_AZKizCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKi1yuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi2CuCEeiGfabwoJ7AXg" key="uuid" value="_wyro0QkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKi2SuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKi2iuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKi2yuCEeiGfabwoJ7AXg" key="uuid" value="_wyro0gkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKi3CuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKi3SuCEeiGfabwoJ7AXg" name="InmuebleHotelero">
+    <eAnnotations xmi:id="_AZKi3iuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKi3yuCEeiGfabwoJ7AXg" key="uuid" value="_12PCQAkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKi4CuCEeiGfabwoJ7AXg" name="registroCamaracComercio" visibility="private">
+      <eAnnotations xmi:id="_AZKi4SuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi4iuCEeiGfabwoJ7AXg" key="uuid" value="_fsxl4QklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKi4yuCEeiGfabwoJ7AXg" name="registroSuperintendencia" visibility="private">
+      <eAnnotations xmi:id="_AZKi5CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi5SuCEeiGfabwoJ7AXg" key="uuid" value="_lHydEQklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKi5iuCEeiGfabwoJ7AXg" name="Hotel">
+    <eAnnotations xmi:id="_AZKi5yuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKi6CuCEeiGfabwoJ7AXg" key="uuid" value="_3ZlrYQkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <generalization xmi:id="_AZKi6SuCEeiGfabwoJ7AXg" general="_AZKi3SuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKi6iuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi6yuCEeiGfabwoJ7AXg" key="uuid" value="_5qaegQkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+    </generalization>
+    <ownedAttribute xmi:id="_AZKi7CuCEeiGfabwoJ7AXg" name="TIPO_HABITACION" visibility="private" isStatic="true" isReadOnly="true">
+      <eAnnotations xmi:id="_AZKi7SuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi7iuCEeiGfabwoJ7AXg" key="uuid" value="_BKoAQAknEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKi7yuCEeiGfabwoJ7AXg" name="tamaño" visibility="private">
+      <eAnnotations xmi:id="_AZKi8CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi8SuCEeiGfabwoJ7AXg" key="uuid" value="_DxjmQQknEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKi8iuCEeiGfabwoJ7AXg" name="ubicacion" visibility="private">
+      <eAnnotations xmi:id="_AZKi8yuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi9CuCEeiGfabwoJ7AXg" key="uuid" value="_MXtjwQknEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKi9SuCEeiGfabwoJ7AXg" name="horario_admin_24h" visibility="private">
+      <eAnnotations xmi:id="_AZKi9iuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi9yuCEeiGfabwoJ7AXg" key="uuid" value="_BXpU0Qp1EDaW6op0gToygg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKi-CuCEeiGfabwoJ7AXg" name="Hostal">
+    <eAnnotations xmi:id="_AZKi-SuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKi-iuCEeiGfabwoJ7AXg" key="uuid" value="_4G5dUQkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <generalization xmi:id="_AZKi-yuCEeiGfabwoJ7AXg" general="_AZKi3SuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKi_CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKi_SuCEeiGfabwoJ7AXg" key="uuid" value="_6ElSAgkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+    </generalization>
+    <ownedAttribute xmi:id="_AZKi_iuCEeiGfabwoJ7AXg" name="TIPO_HABITACION" visibility="private" isStatic="true" isReadOnly="true">
+      <eAnnotations xmi:id="_AZKi_yuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjACuCEeiGfabwoJ7AXg" key="uuid" value="_fuO3EAkoEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjASuCEeiGfabwoJ7AXg" name="horario_admin_inicial" visibility="private">
+      <eAnnotations xmi:id="_AZKjAiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjAyuCEeiGfabwoJ7AXg" key="uuid" value="_DgWtwQp1EDaW6op0gToygg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjBCuCEeiGfabwoJ7AXg" name="horario_admin_final" visibility="private">
+      <eAnnotations xmi:id="_AZKjBSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjBiuCEeiGfabwoJ7AXg" key="uuid" value="_FEn84Qp1EDaW6op0gToygg"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjByuCEeiGfabwoJ7AXg" name="Propuesta_ServicioHotelero" memberEnd="_AZKjCiuCEeiGfabwoJ7AXg _AZKjEyuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjCiuCEeiGfabwoJ7AXg _AZKjEyuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjCCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjCSuCEeiGfabwoJ7AXg" key="uuid" value="_8EMZVQkjEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjCiuCEeiGfabwoJ7AXg" name="servicioHotelero" type="_AZKi3SuCEeiGfabwoJ7AXg" association="_AZKjByuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjCyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjDCuCEeiGfabwoJ7AXg" key="uuid" value="_8EMZUgkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjDSuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjDiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjDyuCEeiGfabwoJ7AXg" key="uuid" value="_8EMZUwkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjECuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjESuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjEiuCEeiGfabwoJ7AXg" key="uuid" value="_8EMZVAkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjEyuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjByuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjFCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjFSuCEeiGfabwoJ7AXg" key="uuid" value="_8ELyQgkjEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjFiuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjFyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjGCuCEeiGfabwoJ7AXg" key="uuid" value="_8EMZUAkjEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjGSuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjGiuCEeiGfabwoJ7AXg" name="Habitacion">
+    <eAnnotations xmi:id="_AZKjGyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjHCuCEeiGfabwoJ7AXg" key="uuid" value="_XsOFQQkkEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjHSuCEeiGfabwoJ7AXg" name="precioEspecial" visibility="private">
+      <eAnnotations xmi:id="_AZKjHiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjHyuCEeiGfabwoJ7AXg" key="uuid" value="_4gNtgQkpEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjICuCEeiGfabwoJ7AXg" name="TIPO_HABITACION" visibility="private">
+      <eAnnotations xmi:id="_AZKjISuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjIiuCEeiGfabwoJ7AXg" key="uuid" value="_OWuXsQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjIyuCEeiGfabwoJ7AXg" name="ViviendaUniversitaria">
+    <eAnnotations xmi:id="_AZKjJCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjJSuCEeiGfabwoJ7AXg" key="uuid" value="_r9HLkQkkEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjJiuCEeiGfabwoJ7AXg" name="ubicacion" visibility="private">
+      <eAnnotations xmi:id="_AZKjJyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjKCuCEeiGfabwoJ7AXg" key="uuid" value="_IE83oQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjKSuCEeiGfabwoJ7AXg" name="capacidad" visibility="private">
+      <eAnnotations xmi:id="_AZKjKiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjKyuCEeiGfabwoJ7AXg" key="uuid" value="_I2x9MQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjLCuCEeiGfabwoJ7AXg" name="menaje" visibility="private">
+      <eAnnotations xmi:id="_AZKjLSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjLiuCEeiGfabwoJ7AXg" key="uuid" value="_J8C8IQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjLyuCEeiGfabwoJ7AXg" name="TIPO_HABITACION" visibility="private">
+      <eAnnotations xmi:id="_AZKjMCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjMSuCEeiGfabwoJ7AXg" key="uuid" value="_M0kBYQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjMiuCEeiGfabwoJ7AXg" name="mensual" visibility="private">
+      <eAnnotations xmi:id="_AZKjMyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjNCuCEeiGfabwoJ7AXg" key="uuid" value="_RLBrUQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjNSuCEeiGfabwoJ7AXg" name="descripcion" visibility="private">
+      <eAnnotations xmi:id="_AZKjNiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjNyuCEeiGfabwoJ7AXg" key="uuid" value="_fVvdkQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjOCuCEeiGfabwoJ7AXg" name="Apartamento">
+    <eAnnotations xmi:id="_AZKjOSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjOiuCEeiGfabwoJ7AXg" key="uuid" value="_unEQYAkkEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjOyuCEeiGfabwoJ7AXg" name="amoblado" visibility="private">
+      <eAnnotations xmi:id="_AZKjPCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjPSuCEeiGfabwoJ7AXg" key="uuid" value="_rgDeUAkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjPiuCEeiGfabwoJ7AXg" name="costoAdministracion" visibility="private" type="_AZKjvCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjPyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjQCuCEeiGfabwoJ7AXg" key="uuid" value="_2wuhUQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjQSuCEeiGfabwoJ7AXg" name="ViviendaExpress">
+    <eAnnotations xmi:id="_AZKjQiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjQyuCEeiGfabwoJ7AXg" key="uuid" value="_wnl9sQkkEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjRCuCEeiGfabwoJ7AXg" name="numeroHabitaciones" visibility="private">
+      <eAnnotations xmi:id="_AZKjRSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjRiuCEeiGfabwoJ7AXg" key="uuid" value="_5-6UkQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjRyuCEeiGfabwoJ7AXg" name="menaje" visibility="private">
+      <eAnnotations xmi:id="_AZKjSCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjSSuCEeiGfabwoJ7AXg" key="uuid" value="_8RdmAAkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjSiuCEeiGfabwoJ7AXg" name="ubicacion" visibility="private">
+      <eAnnotations xmi:id="_AZKjSyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjTCuCEeiGfabwoJ7AXg" key="uuid" value="_9CPisQkzEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjTSuCEeiGfabwoJ7AXg" name="Habitacion_Propuesta" memberEnd="_AZKjUCuCEeiGfabwoJ7AXg _AZKjVyuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjUCuCEeiGfabwoJ7AXg _AZKjVyuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjTiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjTyuCEeiGfabwoJ7AXg" key="uuid" value="_75wOcAkkEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjUCuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjTSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjUSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjUiuCEeiGfabwoJ7AXg" key="uuid" value="_75vnZAkkEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjUyuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjVCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjVSuCEeiGfabwoJ7AXg" key="uuid" value="_75vnZQkkEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjViuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjVyuCEeiGfabwoJ7AXg" name="habitacion" type="_AZKjGiuCEeiGfabwoJ7AXg" association="_AZKjTSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjWCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjWSuCEeiGfabwoJ7AXg" key="uuid" value="_75vnYQkkEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjWiuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjWyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjXCuCEeiGfabwoJ7AXg" key="uuid" value="_75vnYgkkEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjXSuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjXiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjXyuCEeiGfabwoJ7AXg" key="uuid" value="_75vnYwkkEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjYCuCEeiGfabwoJ7AXg" name="ViviendaUniversitaria_Propuesta" memberEnd="_AZKjYyuCEeiGfabwoJ7AXg _AZKjaiuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjYyuCEeiGfabwoJ7AXg _AZKjaiuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjYSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjYiuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq9gklEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjYyuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjYCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjZCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjZSuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq8wklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjZiuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjZyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjaCuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq9AklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjaSuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjaiuCEeiGfabwoJ7AXg" name="viviendaUniversitaria" type="_AZKjIyuCEeiGfabwoJ7AXg" association="_AZKjYCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjayuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjbCuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq8AklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjbSuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjbiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjbyuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq8QklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjcCuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjcSuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjciuCEeiGfabwoJ7AXg" key="uuid" value="_EiMq8gklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjcyuCEeiGfabwoJ7AXg" name="Apartamento_Propuesta" memberEnd="_AZKjdiuCEeiGfabwoJ7AXg _AZKjfSuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjdiuCEeiGfabwoJ7AXg _AZKjfSuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjdCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjdSuCEeiGfabwoJ7AXg" key="uuid" value="_Hn-wIgklEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjdiuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjcyuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjdyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjeCuCEeiGfabwoJ7AXg" key="uuid" value="_Hn-JEgklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjeSuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjeiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjeyuCEeiGfabwoJ7AXg" key="uuid" value="_Hn-wIAklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjfCuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjfSuCEeiGfabwoJ7AXg" name="apartamento" type="_AZKjOCuCEeiGfabwoJ7AXg" association="_AZKjcyuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjfiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjfyuCEeiGfabwoJ7AXg" key="uuid" value="_Hn9iAgklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjgCuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjgSuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjgiuCEeiGfabwoJ7AXg" key="uuid" value="_Hn-JEAklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjgyuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjhCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjhSuCEeiGfabwoJ7AXg" key="uuid" value="_Hn-JEQklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjhiuCEeiGfabwoJ7AXg" name="ViviendaExpress_Propuesta" memberEnd="_AZKjiSuCEeiGfabwoJ7AXg _AZKjkCuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjiSuCEeiGfabwoJ7AXg _AZKjkCuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjhyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjiCuCEeiGfabwoJ7AXg" key="uuid" value="_LA07RQklEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjiSuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjhiuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjiiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjiyuCEeiGfabwoJ7AXg" key="uuid" value="_LA07QgklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjjCuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjjSuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjjiuCEeiGfabwoJ7AXg" key="uuid" value="_LA07QwklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjjyuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjkCuCEeiGfabwoJ7AXg" name="viviendaExpress" type="_AZKjQSuCEeiGfabwoJ7AXg" association="_AZKjhiuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjkSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjkiuCEeiGfabwoJ7AXg" key="uuid" value="_LA0UMQklEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjkyuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjlCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjlSuCEeiGfabwoJ7AXg" key="uuid" value="_LA07QAklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjliuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjlyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjmCuCEeiGfabwoJ7AXg" key="uuid" value="_LA07QQklEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_AZKjmSuCEeiGfabwoJ7AXg" name="Stirng">
+    <eAnnotations xmi:id="_AZKjmiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjmyuCEeiGfabwoJ7AXg" key="uuid" value="_MKJB0AknEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjnCuCEeiGfabwoJ7AXg" name="ServicioHotelero">
+    <eAnnotations xmi:id="_AZKjnSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjniuCEeiGfabwoJ7AXg" key="uuid" value="_aXf4YQknEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjnyuCEeiGfabwoJ7AXg" name="TIPO" visibility="private" isStatic="true" isReadOnly="true">
+      <eAnnotations xmi:id="_AZKjoCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjoSuCEeiGfabwoJ7AXg" key="uuid" value="_dJQOUQknEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjoiuCEeiGfabwoJ7AXg" name="Reserva_Propuesta" memberEnd="_AZKjpSuCEeiGfabwoJ7AXg _AZKjrCuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKjpSuCEeiGfabwoJ7AXg _AZKjrCuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjoyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjpCuCEeiGfabwoJ7AXg" key="uuid" value="_rmNKogkoEDa2sJWVVP5RhA"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjpSuCEeiGfabwoJ7AXg" name="propuesta" type="_AZKixiuCEeiGfabwoJ7AXg" association="_AZKjoiuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjpiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjpyuCEeiGfabwoJ7AXg" key="uuid" value="_rmMjkwkoEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjqCuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjqSuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjqiuCEeiGfabwoJ7AXg" key="uuid" value="_rmNKoAkoEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjqyuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKjrCuCEeiGfabwoJ7AXg" name="reserva" type="_AZKioyuCEeiGfabwoJ7AXg" association="_AZKjoiuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjrSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjriuCEeiGfabwoJ7AXg" key="uuid" value="_rmMjkAkoEDa2sJWVVP5RhA"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjryuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjsCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjsSuCEeiGfabwoJ7AXg" key="uuid" value="_rmMjkQkoEDa2sJWVVP5RhA"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKjsiuCEeiGfabwoJ7AXg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_AZKjsyuCEeiGfabwoJ7AXg" name="ServiciosBasicos">
+    <eAnnotations xmi:id="_AZKjtCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjtSuCEeiGfabwoJ7AXg" key="uuid" value="_otuWEQkyEDaFI-l3051Pvw"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_AZKjtiuCEeiGfabwoJ7AXg" name="TIPO" visibility="private" isStatic="true" isReadOnly="true">
+      <eAnnotations xmi:id="_AZKjtyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjuCuCEeiGfabwoJ7AXg" key="uuid" value="_uVpA0QkyEDaFI-l3051Pvw"/>
+      </eAnnotations>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#//String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AZKjuSuCEeiGfabwoJ7AXg" name="costo" visibility="private" type="_AZKjvCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjuiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjuyuCEeiGfabwoJ7AXg" key="uuid" value="_-VtLIQkyEDaFI-l3051Pvw"/>
+      </eAnnotations>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_AZKjvCuCEeiGfabwoJ7AXg" name="Double">
+    <eAnnotations xmi:id="_AZKjvSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjviuCEeiGfabwoJ7AXg" key="uuid" value="__1PEMAkyEDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_AZKjvyuCEeiGfabwoJ7AXg" name="Doouble">
+    <eAnnotations xmi:id="_AZKjwCuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjwSuCEeiGfabwoJ7AXg" key="uuid" value="_N8SB8Ak0EDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:DataType" xmi:id="_AZKjwiuCEeiGfabwoJ7AXg" name="Doubñe">
+    <eAnnotations xmi:id="_AZKjwyuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjxCuCEeiGfabwoJ7AXg" key="uuid" value="_V6EX4Ak0EDaFI-l3051Pvw"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKjxSuCEeiGfabwoJ7AXg" name="ServicioHotelero_Hotel" memberEnd="_AZKjyCuCEeiGfabwoJ7AXg _AZKj0SuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKj0SuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKjxiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKjxyuCEeiGfabwoJ7AXg" key="uuid" value="_zBSPkAk9EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKjyCuCEeiGfabwoJ7AXg" name="hotel" type="_AZKi5iuCEeiGfabwoJ7AXg" association="_AZKjxSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKjySuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKjyiuCEeiGfabwoJ7AXg" key="uuid" value="_zBRogQk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjyyuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKjzCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKjzSuCEeiGfabwoJ7AXg" key="uuid" value="_zBRoggk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKjziuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKjzyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj0CuCEeiGfabwoJ7AXg" key="uuid" value="_zBRogwk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKj0SuCEeiGfabwoJ7AXg" name="servicioHotelero" type="_AZKjnCuCEeiGfabwoJ7AXg" association="_AZKjxSuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKj0iuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKj0yuCEeiGfabwoJ7AXg" key="uuid" value="_zBPzUQk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj1CuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKj1SuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj1iuCEeiGfabwoJ7AXg" key="uuid" value="_zBRBcAk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKj1yuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKj2CuCEeiGfabwoJ7AXg" name="ServicioHotelero_Hostel" memberEnd="_AZKj2yuCEeiGfabwoJ7AXg _AZKj5CuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKj5CuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKj2SuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKj2iuCEeiGfabwoJ7AXg" key="uuid" value="_1i3bhQk9EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKj2yuCEeiGfabwoJ7AXg" name="hostel" type="_AZKi-CuCEeiGfabwoJ7AXg" association="_AZKj2CuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKj3CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKj3SuCEeiGfabwoJ7AXg" key="uuid" value="_1i3bggk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj3iuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKj3yuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj4CuCEeiGfabwoJ7AXg" key="uuid" value="_1i3bgwk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj4SuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKj4iuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj4yuCEeiGfabwoJ7AXg" key="uuid" value="_1i3bhAk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKj5CuCEeiGfabwoJ7AXg" name="servicioHotelero" type="_AZKjnCuCEeiGfabwoJ7AXg" association="_AZKj2CuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKj5SuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKj5iuCEeiGfabwoJ7AXg" key="uuid" value="_1i20cgk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj5yuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKj6CuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj6SuCEeiGfabwoJ7AXg" key="uuid" value="_1i3bgAk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKj6iuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKj6yuCEeiGfabwoJ7AXg" name="ServiciosBasicos_Habitacion" memberEnd="_AZKj7iuCEeiGfabwoJ7AXg _AZKj9yuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKj9yuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKj7CuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKj7SuCEeiGfabwoJ7AXg" key="uuid" value="__yyzNgk9EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKj7iuCEeiGfabwoJ7AXg" name="habitacion" type="_AZKjGiuCEeiGfabwoJ7AXg" association="_AZKj6yuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKj7yuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKj8CuCEeiGfabwoJ7AXg" key="uuid" value="__yyzMwk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj8SuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKj8iuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj8yuCEeiGfabwoJ7AXg" key="uuid" value="__yyzNAk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj9CuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKj9SuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj9iuCEeiGfabwoJ7AXg" key="uuid" value="__yyzNQk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKj9yuCEeiGfabwoJ7AXg" name="serviciosBasicos" type="_AZKjsyuCEeiGfabwoJ7AXg" association="_AZKj6yuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKj-CuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKj-SuCEeiGfabwoJ7AXg" key="uuid" value="__yyzMAk9EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKj-iuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKj-yuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKj_CuCEeiGfabwoJ7AXg" key="uuid" value="__yyzMQk9EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKj_SuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKj_iuCEeiGfabwoJ7AXg" name="ServiciosBasicos_ViviendaUniversitaria" memberEnd="_AZKkASuCEeiGfabwoJ7AXg _AZKkCiuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKkCiuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKj_yuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKkACuCEeiGfabwoJ7AXg" key="uuid" value="_EPXsMgk-EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKkASuCEeiGfabwoJ7AXg" name="viviendaUniversitaria" type="_AZKjIyuCEeiGfabwoJ7AXg" association="_AZKj_iuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkAiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkAyuCEeiGfabwoJ7AXg" key="uuid" value="_EPXFIwk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkBCuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkBSuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkBiuCEeiGfabwoJ7AXg" key="uuid" value="_EPXsMAk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkByuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKkCCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkCSuCEeiGfabwoJ7AXg" key="uuid" value="_EPXsMQk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKkCiuCEeiGfabwoJ7AXg" name="serviciosBasicos" type="_AZKjsyuCEeiGfabwoJ7AXg" association="_AZKj_iuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkCyuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkDCuCEeiGfabwoJ7AXg" key="uuid" value="_EPXFIAk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkDSuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkDiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkDyuCEeiGfabwoJ7AXg" key="uuid" value="_EPXFIQk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKkECuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKkESuCEeiGfabwoJ7AXg" name="ServiciosBasicos_Apartamento" memberEnd="_AZKkFCuCEeiGfabwoJ7AXg _AZKkHSuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKkHSuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKkEiuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKkEyuCEeiGfabwoJ7AXg" key="uuid" value="_MUUaEQk-EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKkFCuCEeiGfabwoJ7AXg" name="apartamento" type="_AZKjOCuCEeiGfabwoJ7AXg" association="_AZKkESuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkFSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkFiuCEeiGfabwoJ7AXg" key="uuid" value="_MUTzAQk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkFyuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkGCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkGSuCEeiGfabwoJ7AXg" key="uuid" value="_MUTzAgk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkGiuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKkGyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkHCuCEeiGfabwoJ7AXg" key="uuid" value="_MUUaEAk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKkHSuCEeiGfabwoJ7AXg" name="serviciosBasicos" type="_AZKjsyuCEeiGfabwoJ7AXg" association="_AZKkESuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkHiuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkHyuCEeiGfabwoJ7AXg" key="uuid" value="_MUSk4Qk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkICuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkISuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkIiuCEeiGfabwoJ7AXg" key="uuid" value="_MUTL8Ak-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKkIyuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_AZKkJCuCEeiGfabwoJ7AXg" name="ServiciosBasicos_ViviendaExpress" memberEnd="_AZKkJyuCEeiGfabwoJ7AXg _AZKkMCuCEeiGfabwoJ7AXg" navigableOwnedEnd="_AZKkMCuCEeiGfabwoJ7AXg">
+    <eAnnotations xmi:id="_AZKkJSuCEeiGfabwoJ7AXg" source="genmymodel">
+      <details xmi:id="_AZKkJiuCEeiGfabwoJ7AXg" key="uuid" value="_U3df0Qk-EDaaSqlg8gs3lg"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_AZKkJyuCEeiGfabwoJ7AXg" name="viviendaExpress" type="_AZKjQSuCEeiGfabwoJ7AXg" association="_AZKkJCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkKCuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkKSuCEeiGfabwoJ7AXg" key="uuid" value="_U3c4xQk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkKiuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkKyuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkLCuCEeiGfabwoJ7AXg" key="uuid" value="_U3c4xgk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkLSuCEeiGfabwoJ7AXg" value="1">
+        <eAnnotations xmi:id="_AZKkLiuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkLyuCEeiGfabwoJ7AXg" key="uuid" value="_U3df0Ak-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_AZKkMCuCEeiGfabwoJ7AXg" name="serviciosBasicos" type="_AZKjsyuCEeiGfabwoJ7AXg" association="_AZKkJCuCEeiGfabwoJ7AXg">
+      <eAnnotations xmi:id="_AZKkMSuCEeiGfabwoJ7AXg" source="genmymodel">
+        <details xmi:id="_AZKkMiuCEeiGfabwoJ7AXg" key="uuid" value="_U3c4wgk-EDaaSqlg8gs3lg"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_AZKkMyuCEeiGfabwoJ7AXg">
+        <eAnnotations xmi:id="_AZKkNCuCEeiGfabwoJ7AXg" source="genmymodel">
+          <details xmi:id="_AZKkNSuCEeiGfabwoJ7AXg" key="uuid" value="_U3c4wwk-EDaaSqlg8gs3lg"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZKkNiuCEeiGfabwoJ7AXg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
