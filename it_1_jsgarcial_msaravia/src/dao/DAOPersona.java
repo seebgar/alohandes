@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
 import tm.BusinessLogicException;
 import vos.*;
 
@@ -556,6 +557,49 @@ public class DAOPersona {
 	// REQUERIMIENTOS FUNCIONALES DE CONSULTA
 	//----------------------------------------------------------------------------------------------------------------------------------
 
+	/**
+	 * RFC 1
+	 * 
+	 * EL DINERO RECIBIDO POR CADA PROVEEDOR DE ALOJAMIENTO DURANTE EL AÑO ACTUAL Y EL AÑO CORRIDO
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public ArrayList<String> _dinero_recibido () throws SQLException, Exception {
+		
+		String sql = "SELECT PP.*, ASW.ID_PROPUESTA, asw.\"TOTAL GANANCIAS\" FROM (\n" + 
+				"\n" + 
+				"SELECT RE.ID_PROPUESTA AS \"ID_PROPUESTA\", SUM(RE.COSTO_TOTAL) AS \"TOTAL GANANCIAS\"\n" + 
+				"FROM RESERVAS RE\n" + 
+				"WHERE RE.ID_PROPUESTA IN (\n" + 
+				"    SELECT PT.ID\n" + 
+				"    FROM PROPUESTAS PT \n" + 
+				"    WHERE PT.ID_PERSONA IN (\n" + 
+				"        SELECT PEP.ID  \n" + 
+				"        FROM PERSONAS PEP \n" + 
+				"        WHERE ROL = 'operador'\n" + 
+				"    )\n" + 
+				")\n" + 
+				"GROUP BY RE.ID_PROPUESTA\n" + 
+				") ASW\n" + 
+				"INNER JOIN PROPUESTAS PU\n" + 
+				"ON PU.ID = ASW.ID_PROPUESTA\n" + 
+				"\n" + 
+				"INNER JOIN PERSONAS PP\n" + 
+				"ON PP.ID = PU.ID_PERSONA\n" + 
+				"\n" + 
+				"ORDER BY asw.\"TOTAL GANANCIAS\" DESC\n";
+		
+		
+		ArrayList<String> pagos = new ArrayList<>();
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			pagos.add(rs.getString("ID") + "\t" + rs.getString("NOMBRE") + "\t" + rs.getString("ASW.ID_PROPUESTA") + "\t" + rs.getString("TOTAL GANANCIAS"));
+		}
+		return pagos;
+	}
 
 	/**
 	 * RFC2
@@ -564,9 +608,7 @@ public class DAOPersona {
 	 * @return
 	 */
 	public ArrayList<String> _20_ofertas_mas_populares ()  throws SQLException, Exception {
-		
-		System.out.println("entra");
-		
+				
 		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
 				"		FROM %1$s.RESERVAS \n" + 
 				"		GROUP BY ID_PROPUESTA\n" + 
@@ -574,19 +616,13 @@ public class DAOPersona {
 		
 		//String sql = "SELECT * FROM " + USUARIO + ".RESERVAS  ";
 		
-		System.out.println("sale");
 		
 		ArrayList<String> populares = new ArrayList<String>();
 
-		System.out.println("-1");
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		System.out.println("0");
 		recursos.add(prepStmt);
-		System.out.println("1");
 		ResultSet rs = prepStmt.executeQuery();
-		System.out.println("2");
 		
-		System.out.println("query");
 
 		while (rs.next()) {
 			populares.add(rs.getLong("ID_PROPUESTA") + "");
