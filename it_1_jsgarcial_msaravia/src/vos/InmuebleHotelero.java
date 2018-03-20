@@ -61,6 +61,11 @@ public class InmuebleHotelero {
 	private List<ServicioHotelero> servicios;
 	
 
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
 
 
 
@@ -81,7 +86,8 @@ public class InmuebleHotelero {
 			@JsonProperty(value="registro_camara_comercio") String registro_camara_comercio,
 			@JsonProperty(value="registro_superintendencia") String registro_superintendencia,
 			@JsonProperty(value="tipo_habitacion") String tipo_habitacion,
-			@JsonProperty(value="ubicacion") String ubicacion ) {
+			@JsonProperty(value="ubicacion") String ubicacion,
+			@JsonProperty(value="capacidad_maxima") Integer cap) {
 		this.id = id;
 		this.registro_camara_comercio = registro_camara_comercio;
 		this.registro_superintendencia = registro_superintendencia;
@@ -89,6 +95,7 @@ public class InmuebleHotelero {
 		this.ubicacion = ubicacion;
 		// TODO inicializar propuesta
 		this.servicios = new ArrayList<>();
+		this.capacidad_maxima = cap;
 	}
 
 

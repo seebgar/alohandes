@@ -46,6 +46,12 @@ public class Habitacion {
 	 */
 	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
+	
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
 
 	
 	
@@ -62,11 +68,13 @@ public class Habitacion {
 	public Habitacion (
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="precio_especial") Boolean precio_especial,
-			@JsonProperty(value="tipo_habitacion") String tipo_habitacion) {
+			@JsonProperty(value="tipo_habitacion") String tipo_habitacion,
+			@JsonProperty(value="capacidad_maxima") Integer cap ) {
 		this.id = id;
 		this.precio_especial = precio_especial;
 		this.tipo_habitacion = tipo_habitacion;
 		//TODO inicializar propesta y servicios
+		this.capacidad_maxima = cap;
 	}
 
 
@@ -133,6 +141,18 @@ public class Habitacion {
 	 */
 	public void setPropuesta(Propuesta propuesta) {
 		this.propuesta = propuesta;
+	}
+
+
+
+	public Integer getCapacidad_maxima() {
+		return capacidad_maxima;
+	}
+
+
+
+	public void setCapacidad_maxima(Integer capacidad_maxima) {
+		this.capacidad_maxima = capacidad_maxima;
 	}
 
 

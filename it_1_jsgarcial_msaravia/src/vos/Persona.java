@@ -86,6 +86,9 @@ public class Persona {
 	@JsonProperty(value="propuestas")
 	private List<Propuesta> propuestas;
 	
+	@JsonProperty(value="costo_multa")
+	private Double costo_multa;
+	
 	
 	
 	
@@ -122,6 +125,7 @@ public class Persona {
 		this.rol = rol;
 		this.cedula = cedula;
 		this.email = email;
+		this.costo_multa = 0.0;
 		
 	}
 
@@ -228,6 +232,14 @@ public class Persona {
 			
 		this.propuestas.add(propuesta);
 		
+	}
+
+	public Double getCosto_multa() {
+		return costo_multa;
+	}
+
+	public void setCosto_multa(Double costo_multa) {
+		this.costo_multa = costo_multa;
 	}
 	
 	

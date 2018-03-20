@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import tm.BusinessLogicException;
+
 /**
  * Representa una vivienda univeristaria
  * @author sebastian
@@ -71,6 +73,12 @@ public class ViviendaUniversitaria {
 	@JsonProperty(value="servicios_hoteleros")
 	private List<ServicioHotelero> servicios_Hoteleros;
 	
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
+	
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -84,7 +92,8 @@ public class ViviendaUniversitaria {
 			@JsonProperty(value="menaje") String menaje,
 			@JsonProperty(value="descripcion") String descripcion,
 			@JsonProperty(value="tipo") String tipo,
-			@JsonProperty(value="mensual") Boolean mensual ) {
+			@JsonProperty(value="mensual") Boolean mensual,
+			@JsonProperty(value="capacidad_maxima") Integer cap) {
 		this.id = id;
 		this.ubicacion = ubicacion;
 		this.capacidad = capacidad;
@@ -95,6 +104,7 @@ public class ViviendaUniversitaria {
 		// TODO inicializar servicios
 		this.servicios_basicos = new ArrayList<>();
 		this.servicios_Hoteleros = new ArrayList<>();
+		this.capacidad_maxima = cap;
 	}
 
 
@@ -175,8 +185,9 @@ public class ViviendaUniversitaria {
 		return servicios_Hoteleros;
 	}
 
-	public void setServicios_Hoteleros(List<ServicioHotelero> servicios_Hoteleros) {
+	public void setServicios_Hoteleros(List<ServicioHotelero> servicios_Hoteleros) throws BusinessLogicException {
 		this.servicios_Hoteleros = servicios_Hoteleros;
+		this.verificar();
 	}
 	
 	public void add_Servicio_Hotelero ( ServicioHotelero serv ) {
@@ -184,8 +195,19 @@ public class ViviendaUniversitaria {
 	}
 
 	
+	public Integer getCapacidad_maxima() {
+		return this.capacidad_maxima;
+	}
+	
+	public void setCapacidad_maxima( Integer cap ) {
+		this.capacidad_maxima = cap;
+	}
 
 
+	public void verificar() throws BusinessLogicException {
+		if ( this.servicios_Hoteleros.contains("piscina") )
+			throw new BusinessLogicException("Una vivienda universitaria no puede tener piscina.");
+	}
 
 
 

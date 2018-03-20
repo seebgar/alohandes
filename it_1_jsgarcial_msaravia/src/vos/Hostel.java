@@ -51,8 +51,9 @@ public class Hostel extends InmuebleHotelero {
 			@JsonProperty(value="tipo_habitacion") String tipo_habitacion,
 			@JsonProperty(value="ubicacion") String ubicacion,
 			@JsonProperty(value="horario_admin_inicial")Integer horario_admin_inicial,
-			@JsonProperty(value="horario_admin_final")Integer horario_admin_final ) {
-		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion);
+			@JsonProperty(value="horario_admin_final")Integer horario_admin_final,
+			@JsonProperty(value="capacidad_maxima") Integer cap) {
+		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion, cap);
 		this.horario_admin_inicial = horario_admin_inicial;
 		this.horario_admin_final = horario_admin_final;
 		// TODO inicializar lista

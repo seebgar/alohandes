@@ -47,8 +47,9 @@ public class Hotel extends InmuebleHotelero {
 			@JsonProperty(value="registro_superintendencia") String registro_superintendencia,
 			@JsonProperty(value="tipo_habitacion") String tipo_habitacion,
 			@JsonProperty(value="ubicacion") String ubicacion,
-			@JsonProperty(value="horario_admin_24h") Boolean horario_admin_24h ) {
-		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion);
+			@JsonProperty(value="horario_admin_24h") Boolean horario_admin_24h,
+			@JsonProperty(value="capacidad_maxima") Integer cap ) {
+		super(id, registro_camara_comercio, registro_superintendencia, tipo_habitacion, ubicacion, cap);
 		this.horario_admin_24h = horario_admin_24h;
 		// TODO inicializar servicios
 	}

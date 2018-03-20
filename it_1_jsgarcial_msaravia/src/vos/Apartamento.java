@@ -49,6 +49,12 @@ public class Apartamento {
 	 */	
 	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
+	
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
 
 	
 	
@@ -68,12 +74,14 @@ public class Apartamento {
 	public Apartamento(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="amoblado") Boolean amoblado,
-			@JsonProperty(value="costo_admin") Double costo_admin ) {
+			@JsonProperty(value="costo_admin") Double costo_admin,
+			@JsonProperty(value="capacidad_maxima") Integer cap_max) {
 		this.id = id;
 		this.amoblado = amoblado;
 		this.costo_admin = costo_admin;
 		// TODO propuesta y servicos basicos
 		this.serviciosBasicos = new ArrayList<>();
+		this.capacidad_maxima = cap_max;
 	}
 
 
@@ -144,14 +152,12 @@ public class Apartamento {
 		this.propuesta = propuesta;
 	}
 
-//	public static void main(String[] args) {
-//		Date d = new Date("12/26/1997 12:02:33");
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(d);
-//		cal.add(Calendar.DAY_OF_YEAR, -46);
-//		System.out.println(cal.getTime());
-//		
-//	}
-
+	public Integer getCapacidad_maxima() {
+		return capacidad_maxima;
+	}
+	
+	public void setCapacidad_maxima( Integer cap ) {
+		this.capacidad_maxima = cap;
+	}
 
 }

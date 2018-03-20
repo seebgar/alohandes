@@ -45,6 +45,12 @@ public class ViviendaExpress {
 	 */
 	@JsonProperty(value="propuesta")
 	private Propuesta propuesta;
+	
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -60,12 +66,14 @@ public class ViviendaExpress {
 	public ViviendaExpress(
 			@JsonProperty(value="id") Long id,
 			@JsonProperty(value="menaje") String menaje,
-			@JsonProperty(value="ubicacion") String ubicacion) {
+			@JsonProperty(value="ubicacion") String ubicacion,
+			@JsonProperty(value="capacidad_maxima") Integer cap) {
 		this.id = id;
 		this.menaje = menaje;
 		this.ubicacion = ubicacion;
 		// TODO inicializar propuesta
 		this.serviciosBasicos = new ArrayList<>();
+		this.capacidad_maxima = cap;
 	}
 
 
@@ -131,6 +139,14 @@ public class ViviendaExpress {
 	 */
 	public void setPropuesta(Propuesta propuesta) {
 		this.propuesta = propuesta;
+	}
+	
+	public Integer getCapacidad_maxima() {
+		return this.capacidad_maxima;
+	}
+	
+	public void setCapacidad_maxima( Integer cap) {
+		this.capacidad_maxima = cap;
 	}
 	
 

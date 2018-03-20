@@ -82,6 +82,12 @@ public class Propuesta {
 	 */
 	@JsonProperty(value="se_va_retirar")
 	private Boolean seVaRetirar;
+	
+	/**
+	 * Numero maximo de personas que pueder habitar este inmueble
+	 */
+	@JsonProperty(value="capacidad_maxima")
+	private Integer capacidad_maxima;
 
 	
 	
@@ -91,7 +97,8 @@ public class Propuesta {
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 	public Propuesta ( @JsonProperty(value="id") Long id,
-			@JsonProperty(value="id") String tipo_inmueble ) {
+			@JsonProperty(value="id") String tipo_inmueble,
+			@JsonProperty(value="capacidad_maxima") Integer cap) {
 		this.id = id;
 		this.tipo_inmueble = tipo_inmueble;
 		this.apartamento = null;
@@ -101,6 +108,8 @@ public class Propuesta {
 		this.vivienda_express = null;
 		this.vivienda_universitarias = null;
 		this.seVaRetirar= false;
+		this.capacidad_maxima = cap;
+		this.seVaRetirar = false;
 	}
 	
 
@@ -187,6 +196,16 @@ public class Propuesta {
 	 */
 	public void setSeVaRetirar(Boolean seVaRetirar) {
 		this.seVaRetirar = seVaRetirar;
+	}
+
+
+	public Integer getCapacidad_maxima() {
+		return capacidad_maxima;
+	}
+
+
+	public void setCapacidad_maxima(Integer capacidad_maxima) {
+		this.capacidad_maxima = capacidad_maxima;
 	}
 	
 	

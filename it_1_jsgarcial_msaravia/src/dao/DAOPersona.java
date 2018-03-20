@@ -316,6 +316,9 @@ public class DAOPersona {
 
 	
 	/**
+	 * RF-6
+	 * 
+	 * 
 	 * 
 	 * @param propuesta
 	 * @throws SQLException

@@ -82,52 +82,74 @@ public class DAOReserva {
 		return reserva;
 	}
 	
+	
+	
 	/**
+	 * RF-4
+	 * 
+	 * 
+	 * 
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
 	 * @param reserva Reserva que desea agregar a la Base de Datos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
 	 * @throws BusinessLogicException Si se genera un error dentro del metodo.
 	 */
-	public void registrarReserva(Reserva reserva) throws SQLException, BusinessLogicException, Exception {
+	public void registrarReserva( Reserva reserva ) throws SQLException, BusinessLogicException, Exception {
+		
+		// REGLAS:
+		// 1. una persona no puede reservar maÃÅs de un alojamiento en un mismo diÃÅa
+		// 2. un alojamiento no acepta reservas que superen su capacidad <CAPACIDAD_MAXIMA>
+		// 3.  el alojamiento en vivienda universitaria soÃÅlo estaÃÅ habilitado a estudiantes, profesores, empleados y profesores visitantes.
 		
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 		
-		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID = %2$d AND fecha_inicio_estadia= %3$d", USUARIO, reserva.getId(), reserva.getFecha_inicio_estadia());
+		//consigo las reservas que hay para ese dia
+		String reservas = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID = %2$d AND FECHA_INICIO_ESTADIA = %3$d",
+				USUARIO, reserva.getId(), reserva.getFecha_inicio_estadia());
 		PreparedStatement prepStmt1= conn.prepareStatement(reservas);
 		recursos.add(prepStmt1);	
-		ResultSet rs = prepStmt1.executeQuery(); //consigo las reservas que hay para ese dÌa
+		ResultSet rs = prepStmt1.executeQuery(); 
 		
 		while(rs.next())
 			reservasEnFecha.add(convertResultSetToReserva(rs));
 		
 		Cliente solicitado= reserva.getCliente();
 		
+		//se valida que el cliente no haga mas reservas un mismo dia
 		for(Reserva res: reservasEnFecha) {
-			
-			Cliente cliente= res.getCliente();
-			if(solicitado == cliente)
-				throw new BusinessLogicException("No puede hacer m·s reservas el mismo dÌa");
-			//se valida que el cliente no haga m·s reservas un mismo dia
+			Cliente cliente = res.getCliente();
+			if( solicitado.getId() == cliente.getId() )
+				throw new BusinessLogicException("No puede hacer mas reservas el mismo dia");
 		}
 		
-		Propuesta propuesta= reserva.getPropuesta();
-		if(propuesta.getSeVaRetirar())
-			throw new BusinessLogicException("No se puede realizar la reserva porque la propuesta no esta disponible para m·s fechas");
+		
 		//valido que la propuesta sea vigente
+		Propuesta propuesta = reserva.getPropuesta();
+		if( propuesta.getSeVaRetirar() )
+			throw new BusinessLogicException("No se puede realizar la reserva porque la propuesta no esta disponible para mas fechas");
+		
+		
+		// valida que la cantidad de personas a usar lel inmueble no exceda la capacidad maxima de este
+		if ( reserva.getCantidad_personas() > propuesta.getCapacidad_maxima() )
+			throw new BusinessLogicException("La reserva exceda la capacidad maxima de personas permitido para el alohamiento");
 		
 		
 		//sentencia para insertar la resrva en la base de datos
-		String sql = String.format("INSERT INTO %1$s.RESERVAS (ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL) VALUES (%2$s, '%3$s', '%4$s', '%5$s', '%6$s', '%7$s', '%8$s', '%9$s')", 
-				USUARIO, 
-				reserva.getId(), 
-				solicitado.getId(),
-				reserva.getPropuesta().getId(),
-				reserva.getFecha_registro(),
-				reserva.getFecha_cancelacion(),
-				reserva.getFecha_inicio_estadia(),
-				reserva.getDuracion(),
-				reserva.getCosto_total());
+		String sql = 
+				String.format("INSERT INTO $1%s.RESERVAS ( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA ) "
+						+ "VALUES ( $2%d, $3%d, $4%d, '$5%s', '$6%s', '$7%s', '$8%s', '$9%s', '$10%s', '$11%s', '$12%s')", 
+						reserva.getId(),
+						solicitado.getId(),
+						reserva.getPropuesta().getId(),
+						reserva.getFecha_registro(),
+						reserva.getFecha_cancelacion(),
+						reserva.getFecha_inicio_estadia(),
+						reserva.getDuracion(),
+						reserva.getCosto_total(),
+						reserva.getCantidad_personas(),
+						reserva.getHayMulta(),
+						reserva.getValorMulta());
 		
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
@@ -136,16 +158,81 @@ public class DAOReserva {
 	}
 	
 	/**
+	 * RF-5
+	 * 
+	 * 
+	 * 
 	 * Metodo que actualiza la informacion de la reserva en la Base de Datos que tiene el identificador dado por parametro<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
 	 * @param resrva Reserva que desea actualizar a la Base de Datos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
 	 * @throws BusinessLogicException Si se genera un error dentro del metodo.
 	 */
-	public void cancelarReserva(Reserva reserva) throws SQLException, BusinessLogicException, Exception {
-        
+	public void cancelarReserva( Reserva reserva ) throws SQLException, BusinessLogicException, Exception {
+		
+		// REGLAS:
+		// Si cancela antes del tiempo minimo, multa de 10% del costo total reserva
+		// Si se cancela entre el tiempo limite y el dia anterior a la fecha de llegada, multa de 30% del costo total de la  reserva
+		// Se se cancela luego de la fecha inicio estadia, multa de 50% del costo total de la reserva
+		// Tiempo limite en dias: 3 dias. en semanas o meses: 1 semana
+		
+//		Date actual = new Date();
+//		Double multa = 0.0;
+//		
+//		String string = reserva.getFecha_inicio_estadia();
+//		DateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+//		Date fecha_inicio_estadia = format.parse(string);
+//		
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(fecha_inicio_estadia);
+//		
+//		// fecha limite de cancelacion. Determina el porcentaje de multa
+//		Date fecha_limite;
+//		
+//		// Apartamento y Habitacion y Vivienda Universitaria es por meses :: Tiempo Limite 1 semana
+//		if ( reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
+//				reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
+//				reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
+//			cal.add(Calendar.DAY_OF_YEAR, -7);
+//			fecha_limite = cal.getTime();
+//		} else {
+//			cal.add(Calendar.DAY_OF_YEAR, -3);
+//			fecha_limite = cal.getTime();
+//		}
+//	
+//		// Determina los percentajes
+//		if ( actual.before(fecha_inicio_estadia) && actual.after(fecha_limite) ) {
+//			multa = reserva.getCosto_total() * 0.30;
+//			reserva.setHayMulta(true);
+//			reserva.setCosto_total(multa);
+//		} else if ( actual.before(fecha_limite) ) {
+//			multa = reserva.getCosto_total() * 0.10;
+//			reserva.setHayMulta(true);
+//			reserva.setCosto_total(multa);
+//		} else if ( actual.after(fecha_inicio_estadia) ) {
+//			multa = reserva.getCosto_total() * 0.50;
+//			reserva.setHayMulta(true);
+//			reserva.setCosto_total(multa);
+//		} else {
+//			multa = reserva.getCosto_total() * 0.50;
+//			reserva.setHayMulta(true);
+//			reserva.setCosto_total(multa);
+//		}
+//        
+//		// Se le asigna la multa a la persona correspondiente
+//		String sql = String.format("UPDATE %1$s.PERSONAS P SET COSTO_MULTA = %2$d WHERE P.ID = %3$d; ", USUARIO, reserva.getCosto_total() ,reserva.getCliente().getId());
+//		PreparedStatement prepStmt = conn.prepareStatement(sql);
+//		recursos.add(prepStmt);
+//		ResultSet rs = prepStmt.executeQuery();
+		
+		
+
+		
+		
+		
+		
         //Formateando la fecha:
-        DateFormat formatoConHora= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+        DateFormat formatoConHora = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
         
         //Fecha actual desglosada:
         Calendar fecha = Calendar.getInstance();
@@ -155,7 +242,7 @@ public class DAOReserva {
         int hora = fecha.get(Calendar.HOUR_OF_DAY);
         int minuto = fecha.get(Calendar.MINUTE);
         int segundo = fecha.get(Calendar.SECOND);
-        String actualDate= ""+anio+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo;
+        String actualDate = ""+anio+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo;
         
 		Date fechaActual= formatoConHora.parse(actualDate);
 		
@@ -186,7 +273,7 @@ public class DAOReserva {
 		Date fechaMaxima= cal.getTime();
 		
 		if(fechaActual.before(fechaMaxima)){
-			// primera regla de negocio, si esta antes de la fecha m·xima de cancelacion se cobra el 10%
+			// primera regla de negocio, si esta antes de la fecha mÔøΩxima de cancelacion se cobra el 10%
 			double valorMulta= reserva.getCosto_total();
 			reserva.setValorMulta(valorMulta*0.1);
 			reserva.setCosto_total(valorMulta);
@@ -309,7 +396,7 @@ public class DAOReserva {
         
         //Fecha actual desglosada:
         Calendar fecha = Calendar.getInstance();
-        int aÒo = fecha.get(Calendar.YEAR);
+        int ano = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH) + 1;
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
         int hora = fecha.get(Calendar.HOUR_OF_DAY);
@@ -318,12 +405,12 @@ public class DAOReserva {
         
      
 
-        System.out.println("Fecha Actual: "+ dia + "/" + (mes) + "/" + aÒo);
+        System.out.println("Fecha Actual: "+ dia + "/" + (mes) + "/" + ano);
         System.out.printf("Hora Actual: %02d:%02d:%02d %n", hora, minuto, segundo);
         System.out.println("-------------Fecha desglosada----------------");
-        System.out.println("El aÒo es: "+ aÒo);
+        System.out.println("El aÔøΩo es: "+ ano);
         System.out.println("El mes es: "+ mes);
-        System.out.println("El dÌa es: "+ dia);
+        System.out.println("El dÔøΩa es: "+ dia);
         System.out.printf("La hora es: %02d %n", hora);
         System.out.printf("El minuto es: %02d %n", minuto);
         System.out.printf("El segundo es: %02d %n", segundo);
