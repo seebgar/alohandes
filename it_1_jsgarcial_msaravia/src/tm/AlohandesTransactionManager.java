@@ -623,7 +623,7 @@ public class AlohandesTransactionManager {
 	 * @param reserva
 	 * @throws Exception
 	 */
-	public void rgistrarReserva(Reserva reserva) throws Exception {
+	public void registrarReserva(Reserva reserva) throws Exception {
 		
 		DAOReserva dao= new DAOReserva();
 		
@@ -697,6 +697,44 @@ public class AlohandesTransactionManager {
 		}
 	}
 	
+	public Propuesta getPropuestaById(Long id) throws Exception{
+		
+		DAOPersona dao= new DAOPersona();
+		Propuesta propuesta= null;
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			propuesta = dao.getPropuestaById(id);
+			if(propuesta == null)
+				throw new Exception("La propuesta con el id = " + id + " no se encuentra persistido en la base de datos.");				
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return propuesta;
+	}
+	
 	
 	/**
 	 * 
@@ -710,8 +748,10 @@ public class AlohandesTransactionManager {
 		{
 			this.conn = darConexion();
 			dao.setConn( conn );
-			dao.retirarPropuesta(propuesta);
-
+			if(this.getPropuestaById(propuesta.getId()) == null)
+				throw new Exception("La propuesta con el id = " + propuesta.getId() + " no se encuentra persistido en la base de datos.");
+			else
+				dao.retirarPropuesta(propuesta);
 		}
 		catch (SQLException sqlException) {
 			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());

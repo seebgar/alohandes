@@ -158,6 +158,28 @@ public class DAOPersona {
 		}
 		return props;
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Propuesta getPropuestaById(Long id) throws SQLException, Exception {
+		
+		Propuesta propuesta = null;
+
+		String sql = String.format("SELECT * FROM %1$s.PROPUESTAS WHERE ID = %2$d", USUARIO, id); 
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		if(rs.next()) {
+			propuesta = convertResultSetTo_Propuesta(rs);
+		}
+
+		return propuesta;
+	}
 
 
 
@@ -339,19 +361,16 @@ public class DAOPersona {
 			}
 		} //obtengo la fecha de la ultima reserva que se acaba
 		
-		if(fechaActual.before(lastDate)) {
+		if(fechaActual.after(lastDate)) {
 			propuesta.setSeVaRetirar(true);
 			StringBuilder sql = new StringBuilder();
 			sql.append(String.format("UPDATE PROPUESTAS SET ", USUARIO));
 			sql.append(String.format("SE_VA_RETIRAR = '%1$s' ", propuesta.getSeVaRetirar()));
 			
 		}
-		else if(fechaActual.after(lastDate)) {
-			String sql = String.format("DELETE FROM %1$s.PROPUESTAS WHERE ID = %2$d", USUARIO, propuesta.getId());
+		else {
 			
-			PreparedStatement prepStmt = conn.prepareStatement(sql);
-			recursos.add(prepStmt);
-			prepStmt.executeQuery();
+			throw new BusinessLogicException("No se pueden retirar propuestas hasta que se terminen las reservas");
 		}
 		
 		

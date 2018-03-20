@@ -95,6 +95,26 @@ public class PropuestasService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	
+	/**
+	 * 
+	 * @param propuesta
+	 * @return
+	 */
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retirarPropuesta(Propuesta propuesta) {
+		
+		try {
+			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+			tm.retirarPropuesta(propuesta);
+			return Response.status( 200 ).entity(propuesta).build();
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
 
 	
 
