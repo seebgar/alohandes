@@ -60,6 +60,29 @@ public class DAOReserva {
 	//metodos
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public Reserva getReservaById(Long id) throws SQLException, Exception {
+		Reserva reserva = null;
+
+		String sql = String.format("SELECT * FROM %1$s.RSERVAS WHERE ID = %2$d", USUARIO, id); 
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		if(rs.next()) {
+			reserva = convertResultSetToReserva(rs);
+		}
+
+		return reserva;
+	}
+	
+	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
 	 * @param reserva Reserva que desea agregar a la Base de Datos
@@ -246,6 +269,30 @@ public class DAOReserva {
 		Reserva reserva= new Reserva(id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion, costo_total, cantidad_personas, hayMulta, valorMulta, propuesta, cliente);
 
 		return reserva;
+	}
+	
+	/**
+	 * Metodo encargado de inicializar la conexion del DAO a la Base de Datos a partir del parametro <br/>
+	 * <b>Postcondicion: </b> el atributo conn es inicializado <br/>
+	 * @param connection la conexion generada en el TransactionManager para la comunicacion con la Base de Datos
+	 */
+	public void setConn(Connection connection){
+		this.conn = connection;
+	}
+	
+	/**
+	 * Metodo que cierra todos los recursos que se encuentran en el arreglo de recursos<br/>
+	 * <b>Postcondicion: </b> Todos los recurso del arreglo de recursos han sido cerrados.
+	 */
+	public void cerrarRecursos() {
+		for(Object ob : recursos){
+			if(ob instanceof PreparedStatement)
+				try {
+					((PreparedStatement) ob).close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
 	}
 	
 	

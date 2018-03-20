@@ -21,9 +21,11 @@ import java.util.Properties;
 
 import dao.DAOBebedor;
 import dao.DAOPersona;
+import dao.DAOReserva;
 import vos.Bebedor;
 import vos.Persona;
 import vos.Propuesta;
+import vos.Reserva;
 
 /**
  * 
@@ -33,12 +35,12 @@ import vos.Propuesta;
  * 		Modelar y manejar autonomamente las transacciones y las reglas de negocio.
 
  * En este componente se validan las reglas de negocio, se implementa la 
- * lógica de la aplicación, se administran los recursos y se crea la conexión con
- *  la base de datos para acceder a la información requerida. Por lo anterior, es 
+ * loÌ�gica de la aplicacioÌ�n, se administran los recursos y se crea la conexioÌ�n con
+ *  la base de datos para acceder a la informacioÌ�n requerida. Por lo anterior, es 
  *  posible evidenciar que este componente es esencial debido a que se encarga 
  *  de procesar todas las peticiones que llegan.
  * 
- *  (*) Téngase en cuenta que, de acuerdo a la vista presentada, solamente debe existir 
+ *  (*) TeÌ�ngase en cuenta que, de acuerdo a la vista presentada, solamente debe existir 
  *  un Manejador de Transacciones dentro de la estructura del proyecto.
  *  
  */
@@ -577,13 +579,164 @@ public class AlohandesTransactionManager {
 		}	
 	}
 
+	
+	public Reserva getReservaById(Long id) throws Exception{
+		
+		DAOReserva dao= new DAOReserva();
+		Reserva reserva= null;
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			reserva = dao.getReservaById(id);
+			if(reserva == null)
+				throw new Exception("La reserva con el id = " + id + " no se encuentra persistido en la base de datos.");				
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return reserva;
+	}
+	
+	/**
+	 * metodo que registra la reserva en la base de datos
+	 * @param reserva
+	 * @throws Exception
+	 */
+	public void rgistrarReserva(Reserva reserva) throws Exception {
+		
+		DAOReserva dao= new DAOReserva();
+		
+		try {
+			this.conn= darConexion();
+			dao.setConn(conn);
+			dao.registrarReserva(reserva);
+		}catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		}catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
 
+	/**
+	 * 
+	 * @param reserva
+	 * @throws Exception
+	 */
+	public void cancelarReserva(Reserva reserva) throws Exception{
+		
+		DAOReserva dao= new DAOReserva();
+		
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			if ( this.getReservaById(reserva.getId())== null )
+				throw new Exception("La reserva con el id = " + reserva.getId() + " no se encuentra persistida en la base de datos.");
+			else
+				dao.cancelarReserva(reserva);
+		}catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * @param propuesta
+	 * @throws Exception
+	 */
+	public void retirarPropuesta(Propuesta propuesta) throws Exception {
+		
+		DAOPersona dao = new DAOPersona( );
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			dao.retirarPropuesta(propuesta);
 
-
-
-
-
-
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
