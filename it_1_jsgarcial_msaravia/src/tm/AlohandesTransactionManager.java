@@ -19,10 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import dao.DAOBebedor;
 import dao.DAOPersona;
 import dao.DAOReserva;
-import vos.Bebedor;
 import vos.Persona;
 import vos.Propuesta;
 import vos.Reserva;
@@ -149,12 +147,6 @@ public class AlohandesTransactionManager {
 		System.out.println("[ALOHANDES APP] Attempting Connection to: " + url + " - By User: " + user);
 		return DriverManager.getConnection(url, user, password);
 	}
-
-
-
-
-
-
 
 
 
@@ -388,6 +380,9 @@ public class AlohandesTransactionManager {
 
 	/**
 	 * REQUERIMIENTO 1 - 3
+	 * TODO
+	 * 
+	 * 
 	 * 
 	 * Metodo que modela la transaccion que agrega una persona a la base de datos. <br/>
 	 * <b> post: </b> se ha agregado la persona que entra como parametro <br/>
@@ -437,6 +432,10 @@ public class AlohandesTransactionManager {
 
 	/**
 	 * REQUERIMIENTO 2
+	 * TODO
+	 * 
+	 * 
+	 * 
 	 * 
 	 * Metodo que modela la transaccion que agrega una propuesta a la base de datos. <br/>
 	 * <b> pre: </b> se ha agregado la persona que entra como parametro <br/>
@@ -445,7 +444,7 @@ public class AlohandesTransactionManager {
 	 * @param propuesta - Propuesta ha ser agregada.
 	 * @throws Exception - Cualquier error que se genere agregando el bebedor
 	 */
-	public void addPropuesta( Persona persona, Propuesta propuesta ) throws Exception 
+	public void addPropuesta( Propuesta propuesta ) throws Exception 
 	{
 
 		DAOPersona dao = new DAOPersona();
@@ -454,7 +453,7 @@ public class AlohandesTransactionManager {
 			this.conn = darConexion();
 			dao.setConn(conn);
 
-			dao.addPropuesta(persona, propuesta);
+			dao.addPropuesta( propuesta);
 
 		}
 		catch (SQLException sqlException) {
@@ -579,9 +578,9 @@ public class AlohandesTransactionManager {
 		}	
 	}
 
-	
+
 	public Reserva getReservaById(Long id) throws Exception{
-		
+
 		DAOReserva dao= new DAOReserva();
 		Reserva reserva= null;
 		try 
@@ -617,16 +616,19 @@ public class AlohandesTransactionManager {
 		}
 		return reserva;
 	}
-	
+
 	/**
+	 * RF 4
+	 * TODO
+	 * 
 	 * metodo que registra la reserva en la base de datos
 	 * @param reserva
 	 * @throws Exception
 	 */
 	public void registrarReserva(Reserva reserva) throws Exception {
-		
+
 		DAOReserva dao= new DAOReserva();
-		
+
 		try {
 			this.conn= darConexion();
 			dao.setConn(conn);
@@ -656,14 +658,17 @@ public class AlohandesTransactionManager {
 	}
 
 	/**
+	 * RF 5
+	 * TODO
+	 * 
 	 * 
 	 * @param reserva
 	 * @throws Exception
 	 */
 	public void cancelarReserva(Reserva reserva) throws Exception{
-		
+
 		DAOReserva dao= new DAOReserva();
-		
+
 		try
 		{
 			this.conn = darConexion();
@@ -696,9 +701,9 @@ public class AlohandesTransactionManager {
 			}
 		}
 	}
-	
+
 	public Propuesta getPropuestaById(Long id) throws Exception{
-		
+
 		DAOPersona dao= new DAOPersona();
 		Propuesta propuesta= null;
 		try 
@@ -734,15 +739,19 @@ public class AlohandesTransactionManager {
 		}
 		return propuesta;
 	}
-	
-	
+
+
 	/**
+	 * RF 6
+	 * TODO
+	 * 
+	 * 
 	 * 
 	 * @param propuesta
 	 * @throws Exception
 	 */
 	public void retirarPropuesta(Propuesta propuesta) throws Exception {
-		
+
 		DAOPersona dao = new DAOPersona( );
 		try
 		{
@@ -783,10 +792,57 @@ public class AlohandesTransactionManager {
 	// REQUERIMIENTOS FUNCIONALES DE CONSULTA
 	//----------------------------------------------------------------------------------------------------------------------------------
 
-	
-	
+
+	/**
+	 * RFC 1
+	 * TODO
+	 * 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> dinero_por_operador() throws Exception 
+	{
+		DAOPersona dao = new DAOPersona( );
+		List<String> ss = new ArrayList<>();
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			ss = dao._dinero_recibido();
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+
+		return ss;
+	}
+
+
 	/**
 	 * RFC 2
+	 * TODO
 	 * 
 	 * 
 	 * @return
@@ -826,26 +882,119 @@ public class AlohandesTransactionManager {
 				throw exception;
 			}
 		}	
-		
+
 		return ss;
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// PRIVACIDAD
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
+	/**
+	 * Rettorna las reservas de una perosna por id
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Reserva> get_Reservas_Cliente_PorID( Long id_persona ) throws Exception 
+	{
+		DAOReserva dao = new DAOReserva( );
+		List<Reserva> ss = new ArrayList<>();
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			ss = dao.get_Reservas_Cliente_PorID(id_persona);
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+
+		return ss;
+	}
+
+
+
+	/**
+	 * Retorna las propuestas de un operador por id
+	 * @param id_persona
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Propuesta> get_Propuestas_Operador_PorID( Long id_persona ) throws Exception 
+	{
+		DAOPersona dao = new DAOPersona( );
+		List<Propuesta> ss = new ArrayList<>();
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			ss = dao.get_Porpuestas_Operador_PorID(id_persona);
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+
+		return ss;
+	}
+
+
+
 	
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

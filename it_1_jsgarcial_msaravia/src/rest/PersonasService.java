@@ -28,6 +28,8 @@ import javax.ws.rs.core.Response;
 
 import tm.AlohandesTransactionManager;
 import vos.Persona;
+import vos.Propuesta;
+import vos.Reserva;
 
 /**
  * Clase que expone servicios REST con ruta base: 
@@ -65,14 +67,12 @@ public class PersonasService {
 		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
 	}
 
-
-
-
-
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS REST
 	//----------------------------------------------------------------------------------------------------------------------------------
 
+	
+	
 	/**
 	 * Metodo GET que trae a todos las personas de la Base de datos. <br/>
 	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
@@ -95,6 +95,8 @@ public class PersonasService {
 		}
 	}
 
+	
+	
 	/**
 	 * Metodo GET que trae a la persona en la Base de Datos con el ID dado por parametro <br/>
 	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
@@ -119,6 +121,8 @@ public class PersonasService {
 		}
 	}
 
+	
+	
 	/**
 	 * Metodo que trae a las personas de la Base de Datos que son del tipo por parametro <br/>
 	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
@@ -149,6 +153,10 @@ public class PersonasService {
 	}
 
 	/**
+	 * RF 1 3
+	 * TODO
+	 * 
+	 * 
 	 * Metodo que recibe una persona en formato JSON y lo agrega a la Base de Datos <br/>
 	 * <b>Precondicion: </b> El archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
 	 * <b>Postcondicion: </b> Se agrega a la Base de datos la informacion correspondiente a LA PERSONA. <br/>
@@ -160,7 +168,6 @@ public class PersonasService {
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
-
 	public Response addPersona(Persona persona) {
 
 		try{
@@ -220,6 +227,126 @@ public class PersonasService {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}
 	}
+
+	
+	
+	
+	/**
+	 * Conexion con el servicio de reservas {@link ReservaService}
+	 * 
+	 * Este método conecta la ruta de /personas con las rutas de /reservas que dependen
+	 * de la persona, es una redirección al servicio que maneja el segmento de la 
+	 * URL que se encarga de las reservas.
+	 * 
+	 * @param idPersona El ID de la persona con respecto al cual se accede al servicio.
+	 * @return El servicio de Reservas para esa persona en paricular.
+	 */
+	@Path("{idPersona: \\d+}/reservas")
+	public Response getReservas(@PathParam("idPersona") Long idPersona) {
+
+		try {
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			List<Reserva> res = tm.get_Reservas_Cliente_PorID(idPersona);		
+			if (res == null) {
+				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
+			}
+
+			return Response.status( 200 ).entity(res).build();
+
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+
+	
+	/**
+	 * Conexion con el servicio de propuestas {@link PropuestasService}
+	 * 
+	 * Este método conecta la ruta de /personas con las rutas de /propuestas que dependen
+	 * de la persona, es una redirección al servicio que maneja el segmento de la 
+	 * URL que se encarga de las propuestas.
+	 * 
+	 * @param idPersona El ID de la persona con respecto al cual se accede al servicio.
+	 * @return El servicio de Porpuestas para esa persona en paricular.
+	 */
+	@Path("{idPersona: \\d+}/propuestas")
+	public Response getPropuestas (@PathParam("idPersona") Long idPersona) {
+
+		try {
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			List<Propuesta> res = tm.get_Propuestas_Operador_PorID(idPersona);	
+			if (res == null) {
+				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
+			}
+
+			return Response.status( 200 ).entity(res).build();
+
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE CONSULTA
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+	/**
+	 * RFC 2
+	 * TODO
+	 * 
+	 * Metodo que trae el dinero recibido por cada operador de la Base de Datos  <br/>
+	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
+	 * 
+	 * <b>URL: </b> http://localhost:8080/TutorialParranderos/rest/bebedores/filterBy?nombre=---&apellido=--- <br/>
+	 * 
+	 * @param ciudad - <em>[QueryParam]</em> parametro que indica la ciudad de los bebedores
+	 * @param presupuesto - <em>[QueryParam]</em> parametro que indica el presupuesto de los bebedores
+	 * @return	<b>Response Status 200</b> - JSONs que contienen a los bebedores que tengan el nombre o el apellido correspondiente<br/>
+	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
+	 */
+	@GET
+	@Path( "/query" )
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response get_dinero_por_operador(@QueryParam("dinero")String populares ){
+
+		try{
+			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+			List<String> dineros;
+			dineros = tm.dinero_por_operador();
+
+			return Response.status( 200 ).entity( dineros ).build( );			
+		}
+		catch( Exception e )
+		{
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

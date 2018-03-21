@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import tm.BusinessLogicException;
 import vos.Cliente;
@@ -17,16 +17,33 @@ import vos.Persona;
 import vos.Propuesta;
 import vos.Reserva;
 
+
+/**
+ * Clase DAO que se conecta la base de datos usando JDBC para resolver los requerimientos de la aplicacion
+ * 
+ * Data Access Object (DAO)
+ * Por medio de la conexioÌ�n que se crea en el Transaction Manager, este componente ejecuta las distintas 
+ * sentencias SQL, recibe la informacioÌ�n correspondiente y se encarga de transformar tales resultados 
+ * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones seguÌ�n sea el caso.
+ * 
+ * 
+ */
 public class DAOReserva {
 
-	//constantes
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// CONSTANTES
+	//----------------------------------------------------------------------------------------------------------------------------------
 
 	/**
-	 * constante que contiene el usuario de oracle
+	 * Constante para indicar el usuario Oracle del estudiante
 	 */
 	public final static String USUARIO = "ISIS2304A491810";
 
-	//atributos
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
 
 	/**
 	 * Arraylits de recursos que se usan para la ejecucion de sentencias SQL
@@ -38,29 +55,25 @@ public class DAOReserva {
 	 */
 	private Connection conn;
 
-	/**
-	 * 
-	 */
-	private DAOPersona persona;
 
-	//constructor
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE INICIALIZACION
+	//----------------------------------------------------------------------------------------------------------------------------------
 
 	/**
-	 * 
+	 * Metodo constructor de la clase DAOPersona <br/>
 	 */
-	public DAOReserva(){
-
-		recursos= new ArrayList<Object>();
-		persona= new DAOPersona();
+	public DAOReserva() {
+		recursos = new ArrayList<Object>();
 	}
 
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE COMUNICACION CON LA BASE DE DATOS
+	//----------------------------------------------------------------------------------------------------------------------------------
 
-
-
-	//metodos
 
 	/**
-	 * 
+	 * Retorna la reserva por id
 	 * @param id
 	 * @return
 	 * @throws SQLException
@@ -234,94 +247,6 @@ public class DAOReserva {
 		recursos.add(delete_sql);
 		delete_sql.executeQuery();
 
-
-
-
-
-
-		//        //Formateando la fecha:
-		//        DateFormat formatoConHora = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
-		//        
-		//        //Fecha actual desglosada:
-		//        Calendar fecha = Calendar.getInstance();
-		//        int anio = fecha.get(Calendar.YEAR);
-		//        int mes = fecha.get(Calendar.MONTH) + 1;
-		//        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-		//        int hora = fecha.get(Calendar.HOUR_OF_DAY);
-		//        int minuto = fecha.get(Calendar.MINUTE);
-		//        int segundo = fecha.get(Calendar.SECOND);
-		//        String actualDate = ""+anio+"-"+mes+"-"+dia+" "+hora+":"+minuto+":"+segundo;
-		//        
-		//		Date fechaActual= formatoConHora.parse(actualDate);
-		//		
-		//		//necesito la fecha de estadia
-		//		String darFechaEstadia = String.format("SELECT * FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
-		//		PreparedStatement prepStmt = conn.prepareStatement(darFechaEstadia);
-		//		recursos.add(prepStmt);
-		//		
-		//		ResultSet rs = prepStmt.executeQuery();
-		//		Reserva reserva1= convertResultSetToReserva(rs);
-		//				
-		//		Date fechaDeEstadia= formatoConHora.parse(reserva1.getFecha_inicio_estadia()); // obtengo la fecha e estadia
-		//
-		//		//necesito la fecha de regisro
-		////		String fechaDeRegistro= String.format("SELECT * FROM RESERVAS WHERE ID = %2$d", USUARIO, reserva.getId());
-		////		
-		////		PreparedStatement prepStmt2 = conn.prepareStatement(fechaDeRegistro);
-		////		ResultSet rs2= prepStmt2.executeQuery();
-		////		Reserva reserva2= convertResultSetToReserva(rs2);
-		////		
-		////		Date fechaDeRegistroAQuedarse= formatoConHora.parse(reserva2.getFecha_registro());
-		//		 // me da la fecha que se hizo la reserva
-		//		
-		//		Calendar cal= Calendar.getInstance();
-		//		
-		//		cal.setTime(fechaDeEstadia);
-		//		cal.add(Calendar.DAY_OF_YEAR, -8);
-		//		Date fechaMaxima= cal.getTime();
-		//		
-		//		if(fechaActual.before(fechaMaxima)){
-		//			// primera regla de negocio, si esta antes de la fecha m�xima de cancelacion se cobra el 10%
-		//			double valorMulta= reserva.getCosto_total();
-		//			reserva.setValorMulta(valorMulta*0.1);
-		//			reserva.setCosto_total(valorMulta);
-		//			StringBuilder sql = new StringBuilder();
-		//			sql.append(String.format("UPDATE RESERVAS SET ", USUARIO));
-		//			sql.append(String.format("FECHA_CANCELACION = '%1$s' AND HAY_MULTA = '%2$s' AND VALOR_MULTA = '%3$s' ", fechaActual.toString(), 1, reserva.getValorMulta()));
-		//		}else if(fechaActual.after(fechaMaxima) && fechaActual.before(fechaDeEstadia)){
-		//			//segunda regla de negocio, si se reserva despues de la fecha maxima y antes de la fecha de inicio de la estadia se cobra el 30%
-		//			double valorMulta= reserva.getCosto_total();
-		//			reserva.setValorMulta(valorMulta*0.3);
-		//			reserva.setCosto_total(valorMulta);
-		//			StringBuilder sql = new StringBuilder();
-		//			sql.append(String.format("UPDATE RESERVAS SET ", USUARIO));
-		//			sql.append(String.format("FECHA_CANCELACION = '%1$s' AND HAY_MULTA = '%2$s' AND VALOR_MULTA = '%3$s' ", fechaActual.toString(), 1, reserva.getValorMulta()));
-		//		}else{
-		//			//tercera regla de negocio (una parte), si se reserva despues de la fecha de inicio de estadia, se cobra el 50%
-		//			double valorMulta= reserva.getCosto_total();
-		//			reserva.setValorMulta(valorMulta*0.5);
-		//			reserva.setCosto_total(valorMulta);
-		//			StringBuilder sql = new StringBuilder();
-		//			sql.append(String.format("UPDATE RESERVAS SET ", USUARIO));
-		//			sql.append(String.format("FECHA_CANCELACION = '%1$s' AND HAY_MULTA = '%2$s' AND VALOR_MULTA = '%3$s' ", fechaActual.toString(), 1, reserva.getValorMulta()));
-		//		}
-
-		//		String[] particion= fechaDeRegistroAQuedarse.toString().split("-");
-		//		int dia1= Integer.parseInt(particion[2]);
-		//		
-		//		
-		//		Calendar calendario= Calendar.getInstance();
-		//		calendario.se
-		//		int diaMax;
-		//		int mesMax;
-		//		int anioMax;
-		//		
-		//		if()
-		//		String sql = String.format("DELETE FROM RECURSOS WHERE ID = %2$d", USUARIO, reserva.getId());
-		//		
-		//		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		//		recursos.add(prepStmt);
-		//		prepStmt.executeQuery();
 	}
 
 
@@ -388,6 +313,51 @@ public class DAOReserva {
 				}
 		}
 	}
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// PROVACIDAD
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+	/**
+	 * Retorna las reservas de un cliente por id 
+	 * @param id_cliente
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public List<Reserva> get_Reservas_Cliente_PorID ( Long id_cliente) throws SQLException, Exception {
+
+		ArrayList<Reserva> res = new ArrayList<>();
+
+		String sql = " SELECT * FROM " + USUARIO + ".RESERVAS R WHERE R.ID_PERSONA = " + id_cliente;
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet set = prepStmt.executeQuery();
+
+		while (set.next()) {
+			res.add(this.convertResultSetTo_Reserva(set));
+		}
+
+		return res;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -89,6 +89,11 @@ public class Propuesta {
 	@JsonProperty(value="capacidad_maxima")
 	private Integer capacidad_maxima;
 
+	/**
+	 * Id del operador responsable de esta propuesta
+	 */
+	@JsonProperty(value="persona")
+	private Integer id_persona;
 	
 	
 
@@ -98,7 +103,8 @@ public class Propuesta {
 
 	public Propuesta ( @JsonProperty(value="id") Long id,
 			@JsonProperty(value="id") String tipo_inmueble,
-			@JsonProperty(value="capacidad_maxima") Integer cap) {
+			@JsonProperty(value="capacidad_maxima") Integer cap,
+			@JsonProperty(value="persona") Integer id_persona) {
 		this.id = id;
 		this.tipo_inmueble = tipo_inmueble;
 		this.apartamento = null;
@@ -110,6 +116,7 @@ public class Propuesta {
 		this.seVaRetirar= false;
 		this.capacidad_maxima = cap;
 		this.seVaRetirar = false;
+		this.id_persona = id_persona;
 	}
 	
 
@@ -121,6 +128,16 @@ public class Propuesta {
 	public Long getId() {
 		return id;
 	}
+
+	public Integer getId_persona() {
+		return id_persona;
+	}
+
+
+	public void setId_persona(Integer id_persona) {
+		this.id_persona = id_persona;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;

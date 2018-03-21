@@ -2,6 +2,7 @@ package rest;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -17,38 +18,42 @@ import vos.Reserva;
 
 @Path("reservas")
 public class ReservaService {
-	
-	//atributos
-	
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ATRIBUTOS
+	//----------------------------------------------------------------------------------------------------------------------------------
+
 	/**
-	 * 
+	 * Atributo que usa la anotacion @Context para tener el ServletContext de la conexion actual.
 	 */
 	@Context
 	private ServletContext context;
 
-	
-	//inicializaciones
-	
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS DE INICIALIZACION
+	//----------------------------------------------------------------------------------------------------------------------------------
 	/**
-	 * 
-	 * @return
+	 * Metodo que retorna el path de la carpeta WEB-INF/ConnectionData en el deploy actual dentro del servidor.
+	 * @return path de la carpeta WEB-INF/ConnectionData en el deploy actual.
 	 */
 	private String getPath() {
 		return context.getRealPath("WEB-INF/ConnectionData");
 	}
-	
-	/**
-	 * 
-	 * @param e
-	 * @return
-	 */
-	private String doErrorMessage(Exception e) {
+
+
+	private String doErrorMessage(Exception e){
 		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
 	}
-	
-	//metodos rest
-	
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// METODOS REST
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 	/**
+	 * Retorna una reserva por id
 	 * 
 	 * @param id
 	 * @return
@@ -57,20 +62,24 @@ public class ReservaService {
 	@Path("{id: \\d+}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getReservaById(@PathParam("id") Long id) {
-		
+
 		try {
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
-			
+
 			Reserva reserva = tm.getReservaById(id);
 			return Response.status(200).entity(reserva).build();
 		}catch( Exception e )
 		{
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
 		}
-		
+
 	}
-	
+
 	/**
+	 * RF 4
+	 * TODO
+	 * Agrega una reserva a la base de datos
+	 * 
 	 * 
 	 * @param reserva
 	 * @return
@@ -79,26 +88,30 @@ public class ReservaService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
 	public Response registrarReserva(Reserva reserva) {
-		
+
 		try {
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 			tm.registrarReserva(reserva);
 			return Response.status(200).entity(reserva).build();
-			}catch( Exception e ){
-				return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
-			}
+		}catch( Exception e ){
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
 	}
-	
+
 	/**
+	 * RF 5
+	 * TODO
+	 * 
+	 * Elimina una reserva de la base de datos
 	 * 
 	 * @param reserva
 	 * @return
 	 */
-	@PUT
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response cancelarReserva(Reserva reserva) {
-		
+
 		try {
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 			tm.cancelarReserva(reserva);
@@ -107,6 +120,6 @@ public class ReservaService {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}
 	}
-	
-	
+
+
 }
