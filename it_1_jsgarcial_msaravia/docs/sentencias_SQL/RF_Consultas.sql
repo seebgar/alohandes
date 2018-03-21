@@ -2,6 +2,7 @@
 -- Iteracion 1
 -- Grupo B-09
 
+
 -- RFC1: Mostrar el dinero recibido por cada proveedor durante el año actual y transcurrido
 SELECT PP.*, ASW.ID_PROPUESTA, asw."TOTAL GANANCIAS" FROM (
 
@@ -37,6 +38,7 @@ FROM RESERVAS
 GROUP BY ID_PROPUESTA
 ORDER BY "Cantidad Reservas" DESC)
 WHERE ROWNUM <= 20;
+
 
 
 
