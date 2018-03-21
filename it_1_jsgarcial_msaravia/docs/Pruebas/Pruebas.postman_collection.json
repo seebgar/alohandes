@@ -10,7 +10,7 @@
 		{
 			"name": "GET persona by ID",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/12",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/27",
 				"method": "GET",
 				"header": [
 					{
@@ -188,7 +188,7 @@
 			"response": []
 		},
 		{
-			"name": "POST  crea un cliente",
+			"name": "POST  FAIL crea un cliente por PK",
 			"request": {
 				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
 				"method": "POST",
@@ -208,6 +208,26 @@
 			"response": []
 		},
 		{
+			"name": "POST  crea un cliente por PK",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 2997,\n        \"nombre\": \"Florencia\",\n        \"apellido\": \"Ramirez\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"cliente\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "POST crea una reserva",
 			"request": {
 				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas",
@@ -221,14 +241,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n\t    \"id\": 1995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 22,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"hay_multa\": false,\n\t    \"propuesta\": null,\n\t    \"cliente\": null,\n\t    \"valor_multa\": 0,\n\t    \"hayMulta\": false,\n\t    \"valorMulta\": 0,\n\t    \"fechaFinal\": 1515930647000\n  }"
+					"raw": " {\n\t    \"id\": 2995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 2,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"id_propuesta\": 3,\n\t    \"id_cliente\": 3,\n\t    \"hay_multa\": false,\n\t    \"valor_multa\": 0\n  }"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "POST crea un operador",
+			"name": "POST FAIL crea un operador PK",
 			"request": {
 				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
 				"method": "POST",
@@ -261,7 +281,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"id\": 1997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n    }"
+					"raw": " {\n        \"id\": 2997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n    }"
 				},
 				"description": ""
 			},
@@ -271,6 +291,17 @@
 			"name": "DELETE persona fail por FK integridad",
 			"request": {
 				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/90",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE persona por id",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/3997",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
