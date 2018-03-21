@@ -51,7 +51,8 @@ public class Persona {
 	private String apellido;
 	
 	/**
-	 * Tipo de persona. Puede ser : estudiante, registrado, empleado, profesor, padre, invitado, empresa, egresado
+	 * Tipo de persona. Puede 
+	 * ser : estudiante, registrado, empleado, profesor, padre, invitado, empresa, egresado
 	 */
 	@JsonProperty(value="tipo")
 	private String tipo;

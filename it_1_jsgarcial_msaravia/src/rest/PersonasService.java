@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import tm.AlohandesTransactionManager;
+import vos.DineroOperador;
 import vos.Persona;
 import vos.Propuesta;
 import vos.Reserva;
@@ -81,6 +82,7 @@ public class PersonasService {
 	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
 	 */			
 	@GET
+	@Path( "/operadores" )
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getOperadores() {
 
@@ -88,6 +90,29 @@ public class PersonasService {
 			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
 			List<Persona> operadores;
 			operadores = tm.getAllOperadores();
+			return Response.status(200).entity(operadores).build();
+		} 
+		catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	/**
+	 * Metodo GET que trae a todos las personas de la Base de datos. <br/>
+	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
+	 * <b>URL: </b> http://localhost:8080/TutorialParranderos/rest/personaes <br/>
+	 * @return	<b>Response Status 200</b> - JSON que contiene a todos las personas que estan en la Base de Datos <br/>
+	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
+	 */			
+	@GET
+	@Path( "/clientes" )
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getClientes() {
+
+		try {
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			List<Persona> operadores;
+			operadores = tm.getAllClientes();
 			return Response.status(200).entity(operadores).build();
 		} 
 		catch (Exception e) {
@@ -125,6 +150,9 @@ public class PersonasService {
 	
 	/**
 	 * Metodo que trae a las personas de la Base de Datos que son del tipo por parametro <br/>
+	 * 
+	 * {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
+	 * 
 	 * <b>Precondicion: </b> el archivo <em>'conectionData'</em> ha sido inicializado con las credenciales del usuario <br/>
 	 * <b>URL: </b> http://localhost:8080/TutorialParranderos/rest/personas/filterBy?tipo=---&apellido=--- <br/>
 	 * @param ciudad - <em>[QueryParam]</em> parametro que indica la ciudad de los personaes
@@ -166,17 +194,18 @@ public class PersonasService {
 	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
 	 */
 	@POST
-	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Response addPersona(Persona persona) {
 
 		try{
 			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
 			tm.addPersona(persona);
-			return Response.status( 200 ).entity( persona ).build( );			
+			return Response.status( 200 ).entity( persona.toString() ).build( );			
 		}
 		catch( Exception e )
 		{
+			System.out.println("<<<<<<<< CATCH POST PERSONA " + e.getMessage());
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
 		}
 	}
@@ -228,6 +257,25 @@ public class PersonasService {
 		}
 	}
 
+	
+	/**
+	 * Delete por id
+	 * @param persona
+	 * @return
+	 */
+	@DELETE
+	@Path( "{id: \\d+}" )
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deletePersona_byId( @PathParam( "id" ) Long id ) {
+		try {
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			tm.deletePersona_byId(id);
+			return Response.status( 200 ).entity(id).build();
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
 	
 	
 	
@@ -313,14 +361,14 @@ public class PersonasService {
 	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
 	 */
 	@GET
-	@Path( "/query" )
+	@Path( "/dinero" )
 	@Produces( { MediaType.APPLICATION_JSON } )
 	@Consumes( { MediaType.APPLICATION_JSON } )
-	public Response get_dinero_por_operador(@QueryParam("dinero")String populares ){
+	public Response get_dinero_por_operador(  ){
 
 		try{
 			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
-			List<String> dineros;
+			List<DineroOperador> dineros;
 			dineros = tm.dinero_por_operador();
 
 			return Response.status( 200 ).entity( dineros ).build( );			

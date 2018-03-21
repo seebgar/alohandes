@@ -204,7 +204,8 @@ public class DAOPersona {
 
 
 	/**
-	 * Metodo que obtiene la informacion de todos LAS PERSONAS en la Base de Datos que son de TIPO = {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
+	 * Metodo que obtiene la informacion de todos LAS PERSONAS en la Base de Datos que son de 
+	 * TIPO = {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
 	 * dado por parametro<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
 	 * @param tipo de la persona que se quiere buscar = {estudiante, registrado, empleado, profesor, padre, invitado, empresa}
@@ -254,6 +255,30 @@ public class DAOPersona {
 
 		return pep;
 	}
+	
+	/**
+	 * Null si la propuesta no existe
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public Propuesta find_Propuestas_ById ( Long id ) throws SQLException, Exception 
+	{
+		Propuesta pep = null;
+
+		String sql = String.format("SELECT * FROM %1$s.PROPUESTAS WHERE ID = %2$d", USUARIO, id); 
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		if(rs.next()) {
+			pep = convertResultSetTo_Propuesta(rs);
+		}
+
+		return pep;
+	}
 
 	/**
 	 * RF-1
@@ -285,9 +310,9 @@ public class DAOPersona {
 								persona.getTipo(),
 								persona.getNit(),
 								persona.getRol(),
-								persona.getEmail()
+								null
 						);
-		System.out.println(sql);
+		System.out.println( " >>>>>>>>>>>>>>> ADD PERSONA :: \t" + sql);
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
@@ -399,6 +424,48 @@ public class DAOPersona {
 		}
 
 	}
+	
+	/**
+	 * Mismo metodo pero con propuesta por id
+	 * @param propuesta
+	 * @throws SQLException
+	 * @throws Exception
+	 * @throws BusinessLogicException
+	 */
+	public void retirarPropuesta_porId(Long id)throws SQLException, Exception, BusinessLogicException {
+
+		if ( this.find_Propuestas_ById(id) == null )
+			throw new BusinessLogicException("La propuesta que se piensa retirar es nula.");
+
+		String sql = String.format("SELECT * FROM %1$s.RESERVAS R WHERE R.ID_PROPUESTA = %2$d AND ROWNUM = 1 ORDER BY R.FECHA_INICIO_ESTADIA DESC", USUARIO, id);
+		System.out.println(sql);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		Reserva res = null;
+
+		if( rs.next() ) {
+			res = convertResultSetTo_Reserva(rs);
+		}
+
+		if ( res == null ) {
+			System.out.println("La propuesta no tiene reservas vigentes. Se puede eliminar de forma inmediata.");
+			String delete = String.format("DELETE FROM %1$s.PROPUESTAS P WHERE P.ID = %2$d", USUARIO, id);
+			System.out.println(delete);
+			PreparedStatement prepStmt_del = conn.prepareStatement(delete);
+			recursos.add(prepStmt_del);
+			prepStmt_del.executeQuery();
+		} else {
+			this.find_Propuestas_ById(id).setSeVaRetirar(true);
+			String update = String.format("UPDATE %1$s.PROPUESTAS P SET P.SE_VA_RETIRAR = 1 WHERE P.ID = %2$d", USUARIO, id);
+			System.out.println(update);
+			PreparedStatement prepStmt_up = conn.prepareStatement(update);
+			recursos.add(prepStmt_up);
+			prepStmt_up.executeQuery();
+			System.out.println("La propuesta cuenta con reservas vigentes. Por lo que tiene que esperar a que se acabe la ultima reserva el { que inicia el " + res.getFecha_inicio_estadia() + " y tiene una duracion de " + res.getDuracion() + " dias } para poder eliminar esta propuesta");
+		}
+
+	}
 
 	/**
 	 * Metodo que actualiza la informacion de LA PERSONA en la Base de Datos que tiene el identificador dado por parametro<br/>
@@ -447,6 +514,17 @@ public class DAOPersona {
 		prepStmt.executeQuery();
 	}
 
+	
+	public void deletePersona_byId ( Long id ) throws SQLException, Exception {
+
+		String sql = String.format("DELETE FROM %1$s.PERSONAS WHERE ID = %2$d", USUARIO, id);
+
+		System.out.println(sql);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -494,9 +572,9 @@ public class DAOPersona {
 		String rol = resultSet.getString("ROL");
 		String cedula = resultSet.getString("CEDULA");
 		String nit = resultSet.getString("NIT");
-		String email = resultSet.getString("EMAIL");
+		//String email = resultSet.getString("EMAIL");
 
-		Persona pep = new Operador(id, nombre, apellido, tipo, rol, nit, cedula, email);
+		Persona pep = new Operador(id, nombre, apellido, tipo, rol, nit, cedula, null);
 
 		return pep;
 	}
@@ -613,7 +691,7 @@ public class DAOPersona {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public ArrayList<String> _dinero_recibido () throws SQLException, Exception {
+	public List<DineroOperador> _dinero_recibido () throws SQLException, Exception {
 
 		String sql = "SELECT PP.*, ASW.ID_PROPUESTA, asw.\"TOTAL GANANCIAS\" FROM (\n" + 
 				"\n" + 
@@ -639,12 +717,14 @@ public class DAOPersona {
 				"ORDER BY asw.\"TOTAL GANANCIAS\" DESC\n";
 
 
-		ArrayList<String> pagos = new ArrayList<>();
+		ArrayList<DineroOperador> pagos = new ArrayList<>();
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
+		
 		while (rs.next()) {
-			pagos.add(rs.getString("ID") + "\t" + rs.getString("NOMBRE") + "\t" + rs.getString("ASW.ID_PROPUESTA") + "\t" + rs.getString("TOTAL GANANCIAS"));
+			DineroOperador dd = new DineroOperador(rs.getLong("ID"),rs.getString("NOMBRE") , rs.getString("APELLIDO"), rs.getLong("ID_PROPUESTA"), rs.getFloat("TOTAL GANANCIAS"));
+			pagos.add(dd);
 		}
 		return pagos;
 	}
@@ -658,7 +738,7 @@ public class DAOPersona {
 	 * Retorna las 20 orfertas mÃ¡s populares 
 	 * @return
 	 */
-	public ArrayList<String> _20_ofertas_mas_populares ()  throws SQLException, Exception {
+	public List<Populares> _20_ofertas_mas_populares ()  throws SQLException, Exception {
 
 		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
 				"		FROM %1$s.RESERVAS \n" + 
@@ -668,7 +748,7 @@ public class DAOPersona {
 		//String sql = "SELECT * FROM " + USUARIO + ".RESERVAS  ";
 
 
-		ArrayList<String> populares = new ArrayList<String>();
+		ArrayList<Populares> populares = new ArrayList<>();
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
@@ -676,7 +756,9 @@ public class DAOPersona {
 
 
 		while (rs.next()) {
-			populares.add(rs.getLong("ID_PROPUESTA") + "");
+			Populares pp = new Populares(rs.getLong("ID_PROPUESTA"), rs.getInt("Cantidad Reservas"));
+			
+			populares.add(pp);
 		}
 		return populares;
 

@@ -21,7 +21,9 @@ import java.util.Properties;
 
 import dao.DAOPersona;
 import dao.DAOReserva;
+import vos.DineroOperador;
 import vos.Persona;
+import vos.Populares;
 import vos.Propuesta;
 import vos.Reserva;
 
@@ -579,6 +581,56 @@ public class AlohandesTransactionManager {
 	}
 
 
+	/**
+	 * 
+	 * @param persona
+	 * @throws Exception
+	 */
+	public void deletePersona_byId (Long id ) throws Exception 
+	{
+		DAOPersona dao = new DAOPersona( );
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			if ( this.getPersonaById(id) == null )
+				throw new Exception("El bebedor con el id = " + id + " no se encuentra persistido en la base de datos.");
+			else 
+				dao.deletePersona_byId(id);
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Reserva getReservaById(Long id) throws Exception{
 
 		DAOReserva dao= new DAOReserva();
@@ -701,6 +753,48 @@ public class AlohandesTransactionManager {
 			}
 		}
 	}
+	
+	/**
+	 * lO MISMO PERO POR ID
+	 * @param reserva
+	 * @throws Exception
+	 */
+	public void cancelarReserva_porid ( Long id ) throws Exception{
+
+		DAOReserva dao= new DAOReserva();
+
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			if ( this.getReservaById(id)== null )
+				throw new Exception("La reserva con el id = " + id + " no se encuentra persistida en la base de datos.");
+			else
+				dao.cancelarReserva(this.getReservaById(id));
+		}catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
 
 	public Propuesta getPropuestaById(Long id) throws Exception{
 
@@ -787,6 +881,48 @@ public class AlohandesTransactionManager {
 		}
 	}
 
+	
+	/**
+	 * Mismo pero por id
+	 * @param propuesta
+	 * @throws Exception
+	 */
+	public void retirarPropuesta_byid(Long id) throws Exception {
+
+		DAOPersona dao = new DAOPersona( );
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			if(this.getPropuestaById(id) == null)
+				throw new Exception("La propuesta con el id = " + id + " no se encuentra persistido en la base de datos.");
+			else
+				dao.retirarPropuesta_porId(id);
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+	}
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// REQUERIMIENTOS FUNCIONALES DE CONSULTA
@@ -801,10 +937,10 @@ public class AlohandesTransactionManager {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<String> dinero_por_operador() throws Exception 
+	public List<DineroOperador> dinero_por_operador() throws Exception 
 	{
 		DAOPersona dao = new DAOPersona( );
-		List<String> ss = new ArrayList<>();
+		List<DineroOperador> ss = new ArrayList<>();
 		try
 		{
 			this.conn = darConexion();
@@ -848,10 +984,10 @@ public class AlohandesTransactionManager {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<String> Propuestas_Populares() throws Exception 
+	public List<Populares> Propuestas_Populares() throws Exception 
 	{
 		DAOPersona dao = new DAOPersona( );
-		List<String> ss = new ArrayList<>();
+		List<Populares> ss = new ArrayList<>();
 		try
 		{
 			this.conn = darConexion();

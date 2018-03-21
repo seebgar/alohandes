@@ -121,5 +121,24 @@ public class ReservaService {
 		}
 	}
 
+	/**
+	 * Lo mismo pero por id
+	 * @param reserva
+	 * @return
+	 */
+	@DELETE
+	@Path( "{id: \\d+}" )
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response cancelarReserva_porId( @PathParam( "id" ) Long id ) {
+
+		try {
+			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+			tm.cancelarReserva_porid(id);
+			return Response.status( 200 ).entity(id).build();
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
 
 }

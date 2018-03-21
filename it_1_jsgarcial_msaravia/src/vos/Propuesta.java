@@ -102,7 +102,7 @@ public class Propuesta {
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 	public Propuesta ( @JsonProperty(value="id") Long id,
-			@JsonProperty(value="id") String tipo_inmueble,
+			@JsonProperty(value="tipo_inmueble") String tipo_inmueble,
 			@JsonProperty(value="capacidad_maxima") Integer cap,
 			@JsonProperty(value="persona") Integer id_persona) {
 		this.id = id;

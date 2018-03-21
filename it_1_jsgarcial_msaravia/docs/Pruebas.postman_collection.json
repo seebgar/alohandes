@@ -1,0 +1,304 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas",
+		"_postman_id": "72beafd2-60a5-1055-564c-8a48ac8f0ee9",
+		"description": "Pruba los servicios ofrcidos por alohandes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET persona by ID",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/12",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET all operadores",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET all clientes",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET reservas de persona id",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/1/reservas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET propuestas de persona id",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/15/propuestas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET dinero operadores",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/dinero",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET all propuestas",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET 20 propuestas mas populares",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/populares",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET reserva by id",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas/25",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST  crea un cliente",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 1997,\n        \"nombre\": \"Florencia\",\n        \"apellido\": \"Ramirez\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"cliente\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST crea una reserva",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n\t    \"id\": 1995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 22,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"hay_multa\": false,\n\t    \"propuesta\": null,\n\t    \"cliente\": null,\n\t    \"valor_multa\": 0,\n\t    \"hayMulta\": false,\n\t    \"valorMulta\": 0,\n\t    \"fechaFinal\": 1515930647000\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST crea un operador",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 297,\n        \"nombre\": \"Sebastian\",\n        \"apellido\": \"Garcia\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"operador\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST crea una propuesta",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": 1997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE persona fail por FK integridad",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/90",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE reserva",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas/90",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE propuesta",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuesta/90",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

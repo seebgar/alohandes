@@ -22,9 +22,9 @@ import vos.Reserva;
  * Clase DAO que se conecta la base de datos usando JDBC para resolver los requerimientos de la aplicacion
  * 
  * Data Access Object (DAO)
- * Por medio de la conexioÌ�n que se crea en el Transaction Manager, este componente ejecuta las distintas 
- * sentencias SQL, recibe la informacioÌ�n correspondiente y se encarga de transformar tales resultados 
- * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones seguÌ�n sea el caso.
+ * Por medio de la conexioÃŒï¿½n que se crea en el Transaction Manager, este componente ejecuta las distintas 
+ * sentencias SQL, recibe la informacioÃŒï¿½n correspondiente y se encarga de transformar tales resultados 
+ * (ResultSets) en objetos que se manipulan posteriormente para atender las peticiones seguÃŒï¿½n sea el caso.
  * 
  * 
  */
@@ -82,7 +82,7 @@ public class DAOReserva {
 	public Reserva getReservaById(Long id) throws SQLException, Exception {
 		Reserva reserva = null;
 
-		String sql = String.format("SELECT * FROM %1$s.RSERVAS WHERE ID = %2$d", USUARIO, id); 
+		String sql = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID = %2$d", USUARIO, id); 
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
@@ -114,9 +114,9 @@ public class DAOReserva {
 			throw new BusinessLogicException("La reserva que se piensa registrar es nula.");
 
 		// REGLAS:
-		// 1. una persona no puede reservar más de un alojamiento en un mismo día
+		// 1. una persona no puede reservar maÌ�s de un alojamiento en un mismo diÌ�a
 		// 2. un alojamiento no acepta reservas que superen su capacidad <CAPACIDAD_MAXIMA>
-		// 3.  el alojamiento en vivienda universitaria sólo está habilitado a estudiantes, profesores, empleados y profesores visitantes.
+		// 3.  el alojamiento en vivienda universitaria soÌ�lo estaÌ� habilitado a estudiantes, profesores, empleados y profesores visitantes.
 
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 
@@ -206,11 +206,16 @@ public class DAOReserva {
 		Date fecha_limite;
 
 		// Apartamento y Habitacion y Vivienda Universitaria es por meses :: Tiempo Limite 1 semana
-		if ( reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
-				reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
-				reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
-			cal.add(Calendar.DAY_OF_YEAR, -7);
-			fecha_limite = cal.getTime();
+		if ( reserva.getPropuesta() != null ) {
+			if ( reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
+					reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
+					reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
+				cal.add(Calendar.DAY_OF_YEAR, -7);
+				fecha_limite = cal.getTime();
+			} else {
+				cal.add(Calendar.DAY_OF_YEAR, -3);
+				fecha_limite = cal.getTime();
+			}
 		} else {
 			cal.add(Calendar.DAY_OF_YEAR, -3);
 			fecha_limite = cal.getTime();
@@ -275,10 +280,16 @@ public class DAOReserva {
 
 		id_propuesta = resultSet.getInt("ID_PROPUESTA");
 		DAOPersona dao = new DAOPersona();
-		Propuesta propuesta = dao.getPropuestaById((long)id_propuesta);
+		Propuesta propuesta = null;
+		try {
+			propuesta = dao.getPropuestaById((long)id_propuesta);
+		} catch (Exception e) {	}
 
 		id_persona = resultSet.getInt("ID_PERSONA");
-		Persona persona = dao.get_Persona_ById((long)id_persona);
+		Persona persona = null;
+		try {
+			persona =  dao.get_Persona_ById((long)id_persona);
+		} catch (Exception e) {}
 
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 

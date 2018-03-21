@@ -29,6 +29,7 @@ import javax.ws.rs.core.Response;
 import tm.AlohandesTransactionManager;
 import vos.Bebedor;
 import vos.Persona;
+import vos.Populares;
 import vos.Propuesta;
 
 /**
@@ -140,6 +141,25 @@ public class PropuestasService {
 	}
 
 
+	/**
+	 * Delte por id
+	 * @param propuesta
+	 * @return
+	 */
+	@DELETE
+	@Path( "{id: \\d+}" )
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retirarPropuesta_porId ( @PathParam( "id" ) Long id ) {
+
+		try {
+			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+			tm.retirarPropuesta_byid(id);
+			return Response.status( 200 ).entity(id).build();
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
 
 
 	
@@ -171,14 +191,14 @@ public class PropuestasService {
 	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
 	 */
 	@GET
-	@Path( "/query" )
+	@Path( "/populares" )
 	@Produces( { MediaType.APPLICATION_JSON } )
 	@Consumes( { MediaType.APPLICATION_JSON } )
-	public Response get_20_propuestas_mas_populares(@QueryParam("popuales")String populares ){
+	public Response get_20_propuestas_mas_populares( ){
 
 		try{
 			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
-			List<String> pops;
+			List<Populares> pops;
 			pops = tm.Propuestas_Populares();
 
 			return Response.status( 200 ).entity( pops ).build( );			
