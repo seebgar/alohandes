@@ -2,6 +2,8 @@
 -- 
 -- CREAR
 -- 
+-- Grupo B-09
+-- En este archivo se crean y se definen las PKs y FKs de cada tabla
 -- 
 
 

@@ -3,6 +3,8 @@
 -- 
 -- INSERT DATA
 -- 
+-- Grupo B-09
+-- En este archivo se pueblan todas las tablas (RF 1, 2 y 3) para poder realizar pruebas
 -- 
 
 
