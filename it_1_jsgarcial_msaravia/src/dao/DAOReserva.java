@@ -121,7 +121,7 @@ public class DAOReserva {
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 
 		//consigo las reservas que hay para ese dia
-		String reservas = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID = %2$d AND FECHA_INICIO_ESTADIA = %3$d",
+		String reservas = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID = %2$d AND FECHA_INICIO_ESTADIA = %3$s",
 				USUARIO, reserva.getId(), reserva.getFecha_inicio_estadia());
 		PreparedStatement prepStmt1= conn.prepareStatement(reservas);
 		recursos.add(prepStmt1);	

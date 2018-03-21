@@ -107,7 +107,7 @@ public class ReservaService {
 	 * @param reserva
 	 * @return
 	 */
-	@DELETE
+	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response cancelarReserva(Reserva reserva) {
@@ -126,7 +126,7 @@ public class ReservaService {
 	 * @param reserva
 	 * @return
 	 */
-	@DELETE
+	@PUT
 	@Path( "{id: \\d+}" )
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

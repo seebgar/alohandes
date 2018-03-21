@@ -12,6 +12,7 @@
  */
 package vos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.*;
@@ -127,6 +128,8 @@ public class Persona {
 		this.cedula = cedula;
 		this.email = email;
 		this.costo_multa = 0.0;
+		
+		this.propuestas = new ArrayList<>();
 		
 	}
 

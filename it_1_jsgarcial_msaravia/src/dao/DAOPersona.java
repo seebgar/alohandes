@@ -300,8 +300,8 @@ public class DAOPersona {
 
 		String sql = 
 				String.format(
-						"INSERT INTO %1$s.PERSONAS (ID, NOMBRE, APELLIDO, CEDULA, TIPO, NIT, ROL EMAIL) "
-								+ "VALUES (%2$s, '%3$s', '%4$s', '%5$s', '%6$s', '%7$s', '%8$s', '%9$s' )", 
+						"INSERT INTO %1$s.PERSONAS (ID, NOMBRE, APELLIDO, CEDULA, TIPO, NIT, ROL) "
+								+ "VALUES (%2$s, '%3$s', '%4$s', '%5$s', '%6$s', '%7$s', '%8$s' )", 
 								USUARIO, 
 								persona.getId(), 
 								persona.getNombre(),
@@ -309,8 +309,7 @@ public class DAOPersona {
 								persona.getCedula(),
 								persona.getTipo(),
 								persona.getNit(),
-								persona.getRol(),
-								null
+								persona.getRol()
 						);
 		System.out.println( " >>>>>>>>>>>>>>> ADD PERSONA :: \t" + sql);
 
@@ -318,10 +317,12 @@ public class DAOPersona {
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 
-		if ( persona.getTipo().equalsIgnoreCase("cliente") ) {
+		if ( persona.getRol().equalsIgnoreCase("cliente") ) {
 			System.out.println("Se ha registrado correctamente un Cliente a la base de datos.");
-		} else 
+		} else if ( persona.getRol().equalsIgnoreCase("operador") )
 			System.out.println("Se ha registrado correctamente un Operador a la base de datos.");
+		else
+			System.out.println("Se registro pero no se que es");
 
 	}
 
@@ -363,7 +364,8 @@ public class DAOPersona {
 						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d, %10$d  )",
 						propuesta.getId(),
 						operador.getId(),
-						propuesta.getHostel().getId(),
+						propuesta.getHostel() == null ? null : propuesta.getHostel().getId(),
+								//TODO
 						propuesta.getHotel().getId(),
 						propuesta.getVivienda_express().getId(),
 						propuesta.getApartamento().getId(),
