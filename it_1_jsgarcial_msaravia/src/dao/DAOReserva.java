@@ -298,7 +298,7 @@ public class DAOReserva {
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
-						id_propuesta,  id_propuesta);
+						id_propuesta,  id_persona);
 
 		return res;
 
