@@ -17,6 +17,7 @@ import tm.AlohandesTransactionManager;
 import vos.Reserva;
 
 @Path("reservas")
+//@Path("books/{booksId: \\d+}/authors")
 public class ReservaService {
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -107,7 +108,7 @@ public class ReservaService {
 	 * @param reserva
 	 * @return
 	 */
-	@PUT
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response cancelarReserva(Reserva reserva) {
@@ -126,7 +127,7 @@ public class ReservaService {
 	 * @param reserva
 	 * @return
 	 */
-	@PUT
+	@DELETE
 	@Path( "{id: \\d+}" )
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

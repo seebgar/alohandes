@@ -81,14 +81,14 @@ public class Reserva {
 	/**
 	 * propuesta de la reserva
 	 */
-	@JsonProperty(value="propuesta")
-	private Propuesta propuesta;
+	@JsonProperty(value="id_propuesta")
+	private Long id_propuesta;
 	
 	/**
 	 * cliente que le corresponde a cada reserva
 	 */
-	@JsonProperty(value= "cliente")
-	private Cliente cliente;
+	@JsonProperty(value= "id_cliente")
+	private Long id_cliente;
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -117,9 +117,9 @@ public class Reserva {
 			@JsonProperty(value="costo_total") Double costo_total,
 			@JsonProperty(value="cantidad_personas") Integer cantidad_personas,
 			@JsonProperty(value= "hay_multa") Boolean hayMulta,
-			@JsonProperty(value="vlor_multa") Double valorMulta,
-			@JsonProperty(value= "propuesta") Propuesta propuesta,
-			@JsonProperty(value= "cliente") Cliente cliente) {
+			@JsonProperty(value="valor_multa") Double valorMulta,
+			@JsonProperty(value= "id_propuesta") Long propuesta,
+			@JsonProperty(value= "id_cliente") Long cliente) {
 		this.id = id;
 		this.fecha_registro = fecha_registro;
 		this.fecha_cancelacion = fecha_cancelacion;
@@ -131,8 +131,8 @@ public class Reserva {
 		this.valorMulta= valorMulta;
 		//TODO inizialicar propuesta y cliente
 		
-		this.propuesta= propuesta;
-		this.cliente=cliente;
+		this.id_propuesta= propuesta;
+		this.id_cliente=cliente;
 		
 	}
 
@@ -211,30 +211,8 @@ public class Reserva {
 	/**
 	 * @return the propuesta
 	 */
-	public Propuesta getPropuesta() {
-		return propuesta;
-	}
 
-	/**
-	 * @param propuesta the propuesta to set
-	 */
-	public void setPropuesta(Propuesta propuesta) {
-		this.propuesta = propuesta;
-	}
-
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	
 	
 	
 	
@@ -243,6 +221,34 @@ public class Reserva {
 	 */
 	public Boolean getHayMulta() {
 		return hayMulta;
+	}
+
+
+
+
+	public Long getId_propuesta() {
+		return id_propuesta;
+	}
+
+
+
+
+	public void setId_propuesta(Long id_propuesta) {
+		this.id_propuesta = id_propuesta;
+	}
+
+
+
+
+	public Long getId_cliente() {
+		return id_cliente;
+	}
+
+
+
+
+	public void setId_cliente(Long id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 

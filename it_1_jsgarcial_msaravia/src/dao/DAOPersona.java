@@ -362,16 +362,16 @@ public class DAOPersona {
 				String.format("INSERT INTO %1$s.PROPUESTAS(ID, ID_PERSONA, ID_HOSTEL, ID_HOTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO"
 						+ ", ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, SE_VA_RETIRAR)"
 						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d, %10$d  )",
+						USUARIO,
 						propuesta.getId(),
 						operador.getId(),
 						propuesta.getHostel() == null ? null : propuesta.getHostel().getId(),
-								//TODO
-						propuesta.getHotel().getId(),
-						propuesta.getVivienda_express().getId(),
-						propuesta.getApartamento().getId(),
-						propuesta.getVivienda_universitarias().getId(),
-						propuesta.getHabitacion().getId(),
-						(propuesta.getSeVaRetirar()==false)? 0 : 1);
+						propuesta.getHotel() == null ? null : propuesta.getHotel().getId(),
+						propuesta.getVivienda_express() == null ? null : propuesta.getVivienda_express().getId(),
+						propuesta.getApartamento() == null ? null : propuesta.getApartamento().getId(),
+						propuesta.getVivienda_universitarias() == null ? null : propuesta.getVivienda_universitarias().getId(),
+						propuesta.getHabitacion() == null ? null : propuesta.getHabitacion().getId(),
+						(propuesta.getSeVaRetirar() == false) ? null : 1);
 
 		System.out.println(sql);
 
@@ -385,7 +385,9 @@ public class DAOPersona {
 	/**
 	 * RF-6
 	 * TODO
-	 * 
+	 * Elimina una Propuestas si es posible
+	 * Si tiene reservas solo se cambia su estado de se_va_retirar a true
+	 * para que no acepte más reservas
 	 * 
 	 * @param propuesta
 	 * @throws SQLException
@@ -507,7 +509,7 @@ public class DAOPersona {
 	 */
 	public void deletePersona ( Persona persona ) throws SQLException, Exception {
 
-		String sql = String.format("DELETE FROM %1$s.PERSONAS WHERE ID = %2$d", USUARIO, persona.getId());
+		String sql = String.format("DELETE FROM %1$s.PERSONAS P WHERE P.ID = %2$d", USUARIO, persona.getId());
 
 		System.out.println(sql);
 
@@ -519,7 +521,7 @@ public class DAOPersona {
 	
 	public void deletePersona_byId ( Long id ) throws SQLException, Exception {
 
-		String sql = String.format("DELETE FROM %1$s.PERSONAS WHERE ID = %2$d", USUARIO, id);
+		String sql = String.format("DELETE FROM %1$s.PERSONAS P WHERE P.ID = %2$d", USUARIO, id);
 
 		System.out.println(sql);
 
@@ -777,12 +779,12 @@ public class DAOPersona {
 	 */
 	public Reserva convertResultSetTo_Reserva ( ResultSet resultSet ) throws Exception {
 
-		Integer id, id_persona, id_propuesta, duracion_contrato, cantidad_personas, hay_multa;
+		Integer id, duracion_contrato, cantidad_personas, hay_multa;
+		Long id_persona, id_propuesta;
 		String fecha_registro, fecha_cancelacion, fecha_inicio_estadia;
 		float costo_total, valor_multa; 
 
 		id = resultSet.getInt("ID");
-		id_persona = resultSet.getInt("ID_PERSONA");
 		fecha_registro = resultSet.getString("FECHA_REGISTRO");
 		fecha_cancelacion = resultSet.getString("FECHA_CANCELACION");
 		fecha_inicio_estadia = resultSet.getString("FECHA_INICIO_ESTADIA");
@@ -792,16 +794,13 @@ public class DAOPersona {
 		hay_multa = resultSet.getInt("HAY_MULTA");
 		valor_multa = resultSet.getFloat("VALOR_MULTA");
 
-		id_propuesta = resultSet.getInt("ID_PROPUESTA");
-		Propuesta propuesta = this.getPropuestaById((long)id_propuesta);
-
-		id_persona = resultSet.getInt("ID_PERSONA");
-		Persona persona = this.get_Persona_ById((long)id_persona);
+		id_propuesta = resultSet.getLong("ID_PROPUESTA");
+		id_persona = resultSet.getLong("ID_PERSONA");
 
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
-						propuesta, (Cliente) persona);
+						id_propuesta, id_persona);
 
 
 		return res;

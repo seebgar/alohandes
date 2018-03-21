@@ -130,18 +130,21 @@ public class DAOReserva {
 		while(rs.next())
 			reservasEnFecha.add(convertResultSetTo_Reserva(rs));
 
-		Cliente solicitado= reserva.getCliente();
+		// para usar un buscador de persona o propuesta por id
+		DAOPersona dao = new DAOPersona();
+		
+		Persona solicitado = dao.get_Persona_ById(reserva.getId_cliente());
 
 		//se valida que el cliente no haga mas reservas un mismo dia
 		for(Reserva res: reservasEnFecha) {
-			Cliente cliente = res.getCliente();
+			Persona cliente = dao.get_Persona_ById(res.getId_cliente());
 			if( solicitado.getId() == cliente.getId() )
 				throw new BusinessLogicException("No puede hacer mas reservas el mismo dia");
 		}
 
 
 		//valido que la propuesta sea vigente
-		Propuesta propuesta = reserva.getPropuesta();
+		Propuesta propuesta = dao.getPropuestaById(reserva.getId_propuesta());
 		if( propuesta.getSeVaRetirar() )
 			throw new BusinessLogicException("No se puede realizar la reserva porque la propuesta no esta disponible para mas fechas");
 
@@ -156,8 +159,8 @@ public class DAOReserva {
 				String.format("INSERT INTO $1%s.RESERVAS ( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA ) "
 						+ "VALUES ( $2%d, $3%d, $4%d, '$5%s', '$6%s', '$7%s', '$8%s', '$9%s', '$10%s', '$11%s', '$12%s')", 
 						reserva.getId(),
-						solicitado.getId(),
-						reserva.getPropuesta().getId(),
+						reserva.getId_cliente(),
+						reserva.getId_propuesta(),
 						reserva.getFecha_registro(),
 						reserva.getFecha_cancelacion(),
 						reserva.getFecha_inicio_estadia(),
@@ -175,8 +178,6 @@ public class DAOReserva {
 
 	/**
 	 * RF-5
-	 * 
-	 * 
 	 * 
 	 * Metodo que actualiza la informacion de la reserva en la Base de Datos que tiene el identificador dado por parametro<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
@@ -206,10 +207,12 @@ public class DAOReserva {
 		Date fecha_limite;
 
 		// Apartamento y Habitacion y Vivienda Universitaria es por meses :: Tiempo Limite 1 semana
-		if ( reserva.getPropuesta() != null ) {
-			if ( reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
-					reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
-					reserva.getPropuesta().getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
+		DAOPersona dao = new DAOPersona();
+		Propuesta prop = dao.getPropuestaById(reserva.getId_propuesta());
+		if ( prop != null ) {
+			if ( prop.getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
+					prop.getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
+					prop.getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
 				cal.add(Calendar.DAY_OF_YEAR, -7);
 				fecha_limite = cal.getTime();
 			} else {
@@ -241,7 +244,7 @@ public class DAOReserva {
 		}
 
 		// Se le asigna la multa a la persona correspondiente
-		String sql = String.format("UPDATE %1$s.PERSONAS P SET COSTO_MULTA = %2$d WHERE P.ID = %3$d; ", USUARIO, reserva.getCosto_total() ,reserva.getCliente().getId());
+		String sql = String.format("UPDATE %1$s.PERSONAS P SET COSTO_MULTA = %2$d WHERE P.ID = %3$d; ", USUARIO, reserva.getCosto_total() ,reserva.getId_cliente());
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
@@ -263,12 +266,12 @@ public class DAOReserva {
 	 */
 	public Reserva convertResultSetTo_Reserva ( ResultSet resultSet ) throws Exception {
 
-		Integer id, id_persona, id_propuesta, duracion_contrato, cantidad_personas, hay_multa;
+		Integer id,  duracion_contrato, cantidad_personas, hay_multa;
+		Long id_persona, id_propuesta;
 		String fecha_registro, fecha_cancelacion, fecha_inicio_estadia;
 		float costo_total, valor_multa; 
 
 		id = resultSet.getInt("ID");
-		id_persona = resultSet.getInt("ID_PERSONA");
 		fecha_registro = resultSet.getString("FECHA_REGISTRO");
 		fecha_cancelacion = resultSet.getString("FECHA_CANCELACION");
 		fecha_inicio_estadia = resultSet.getString("FECHA_INICIO_ESTADIA");
@@ -278,23 +281,24 @@ public class DAOReserva {
 		hay_multa = resultSet.getInt("HAY_MULTA");
 		valor_multa = resultSet.getFloat("VALOR_MULTA");
 
-		id_propuesta = resultSet.getInt("ID_PROPUESTA");
-		DAOPersona dao = new DAOPersona();
-		Propuesta propuesta = null;
-		try {
-			propuesta = dao.getPropuestaById((long)id_propuesta);
-		} catch (Exception e) {	}
+		id_propuesta = resultSet.getLong("ID_PROPUESTA");
+		id_persona = resultSet.getLong("ID_PERSONA");
 
-		id_persona = resultSet.getInt("ID_PERSONA");
-		Persona persona = null;
-		try {
-			persona =  dao.get_Persona_ById((long)id_persona);
-		} catch (Exception e) {}
+		
+//		DAOPersona dao = new DAOPersona();
+//		Propuesta propuesta = null;
+//		try {
+//			propuesta = dao.getPropuestaById((long)id_propuesta);
+//		} catch (Exception e) {	}
+//		Persona persona = null;
+//		try {
+//			persona =  dao.get_Persona_ById((long)id_persona);
+//		} catch (Exception e) {}
 
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
-						propuesta, (Cliente) persona);
+						id_propuesta,  id_propuesta);
 
 		return res;
 

@@ -126,7 +126,7 @@ public class PropuestasService {
 	 * @param propuesta
 	 * @return
 	 */
-	@PUT
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response retirarPropuesta(Propuesta propuesta) {
@@ -146,7 +146,7 @@ public class PropuestasService {
 	 * @param propuesta
 	 * @return
 	 */
-	@PUT
+	@DELETE
 	@Path( "{id: \\d+}" )
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
