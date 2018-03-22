@@ -281,7 +281,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"id\": 2997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n    }"
+					"raw": " {\n        \"id\": 3997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n  }"
 				},
 				"description": ""
 			},
