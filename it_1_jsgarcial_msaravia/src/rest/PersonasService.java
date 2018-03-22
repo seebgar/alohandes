@@ -28,6 +28,8 @@ import javax.ws.rs.core.Response;
 
 import tm.AlohandesTransactionManager;
 import vos.DineroOperador;
+import vos.Filtro;
+import vos.Indice;
 import vos.Persona;
 import vos.Propuesta;
 import vos.Reserva;
@@ -381,6 +383,57 @@ public class PersonasService {
 
 
 
+	
+	/**
+	 * BONO
+	 * RFC 3
+	 * Indices de ocupacion
+	 * @return
+	 */
+	@GET
+	@Path( "/indices" )
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response indices_ocupacion(  ){
+
+		try{
+			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+			List<Indice> ins;
+			ins = tm.indices_ocupacion();
+
+			return Response.status( 200 ).entity( ins ).build( );			
+		}
+		catch( Exception e )
+		{
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
+
+	
+	/**
+	 * BONO
+	 * RFC 3
+	 * Indices de ocupacion
+	 * @return
+	 */
+	@GET
+	@Path( "/filtro" )
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response filtro(  ){
+
+		try{
+			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+			List<Filtro> ins;
+			ins = tm.filtros();
+
+			return Response.status( 200 ).entity( ins ).build( );			
+		}
+		catch( Exception e )
+		{
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
 
 
 

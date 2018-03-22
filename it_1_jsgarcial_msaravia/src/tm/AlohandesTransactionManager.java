@@ -22,6 +22,8 @@ import java.util.Properties;
 import dao.DAOPersona;
 import dao.DAOReserva;
 import vos.DineroOperador;
+import vos.Filtro;
+import vos.Indice;
 import vos.Persona;
 import vos.Populares;
 import vos.Propuesta;
@@ -1024,6 +1026,99 @@ public class AlohandesTransactionManager {
 
 
 
+	
+	/**
+	 * RFC 3
+	 * TODO
+	 * 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Indice> indices_ocupacion() throws Exception 
+	{
+		DAOPersona dao = new DAOPersona( );
+		List<Indice> ss = new ArrayList<>();
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			ss = dao.get_indice_ocupacion();
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+
+		return ss;
+	}
+	
+	
+	/**
+	 * RFC 4
+	 * TODO
+	 * 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Filtro> filtros() throws Exception 
+	{
+		DAOPersona dao = new DAOPersona( );
+		List<Filtro> ss = new ArrayList<>();
+		try
+		{
+			this.conn = darConexion();
+			dao.setConn( conn );
+			ss = dao.get_filtros_bono();
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}	
+
+		return ss;
+	}
 
 
 

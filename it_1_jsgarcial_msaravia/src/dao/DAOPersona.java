@@ -255,7 +255,7 @@ public class DAOPersona {
 
 		return pep;
 	}
-	
+
 	/**
 	 * Null si la propuesta no existe
 	 * @param id
@@ -366,12 +366,12 @@ public class DAOPersona {
 						propuesta.getId(),
 						operador.getId(),
 						propuesta.getHostel() == null ? null : propuesta.getHostel().getId(),
-						propuesta.getHotel() == null ? null : propuesta.getHotel().getId(),
-						propuesta.getVivienda_express() == null ? null : propuesta.getVivienda_express().getId(),
-						propuesta.getApartamento() == null ? null : propuesta.getApartamento().getId(),
-						propuesta.getVivienda_universitarias() == null ? null : propuesta.getVivienda_universitarias().getId(),
-						propuesta.getHabitacion() == null ? null : propuesta.getHabitacion().getId(),
-						(propuesta.getSeVaRetirar() == false) ? null : 1);
+								propuesta.getHotel() == null ? null : propuesta.getHotel().getId(),
+										propuesta.getVivienda_express() == null ? null : propuesta.getVivienda_express().getId(),
+												propuesta.getApartamento() == null ? null : propuesta.getApartamento().getId(),
+														propuesta.getVivienda_universitarias() == null ? null : propuesta.getVivienda_universitarias().getId(),
+																propuesta.getHabitacion() == null ? null : propuesta.getHabitacion().getId(),
+																		(propuesta.getSeVaRetirar() == false) ? null : 1);
 
 		System.out.println(sql);
 
@@ -428,7 +428,7 @@ public class DAOPersona {
 		}
 
 	}
-	
+
 	/**
 	 * Mismo metodo pero con propuesta por id
 	 * @param propuesta
@@ -518,7 +518,7 @@ public class DAOPersona {
 		prepStmt.executeQuery();
 	}
 
-	
+
 	public void deletePersona_byId ( Long id ) throws SQLException, Exception {
 
 		String sql = String.format("DELETE FROM %1$s.PERSONAS P WHERE P.ID = %2$d", USUARIO, id);
@@ -725,7 +725,7 @@ public class DAOPersona {
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
-		
+
 		while (rs.next()) {
 			DineroOperador dd = new DineroOperador(rs.getLong("ID"),rs.getString("NOMBRE") , rs.getString("APELLIDO"), rs.getLong("ID_PROPUESTA"), rs.getFloat("TOTAL GANANCIAS"));
 			pagos.add(dd);
@@ -744,10 +744,13 @@ public class DAOPersona {
 	 */
 	public List<Populares> _20_ofertas_mas_populares ()  throws SQLException, Exception {
 
-		String sql =String.format( "SELECT  ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\" \n" + 
-				"		FROM %1$s.RESERVAS \n" + 
-				"		GROUP BY ID_PROPUESTA\n" + 
-				"		ORDER BY \"Cantidad Reservas\" DESC", USUARIO);
+		String sql =String.format( "SELECT  *\r\n" + 
+				"FROM \r\n" + 
+				"( SELECT ID_PROPUESTA, COUNT(ID_PROPUESTA) AS \"Cantidad Reservas\"  \r\n" + 
+				"FROM RESERVAS \r\n" + 
+				"GROUP BY ID_PROPUESTA\r\n" + 
+				"ORDER BY \"Cantidad Reservas\" DESC)\r\n" + 
+				"WHERE ROWNUM <= 20");
 
 		//String sql = "SELECT * FROM " + USUARIO + ".RESERVAS  ";
 
@@ -761,12 +764,113 @@ public class DAOPersona {
 
 		while (rs.next()) {
 			Populares pp = new Populares(rs.getLong("ID_PROPUESTA"), rs.getInt("Cantidad Reservas"));
-			
+
 			populares.add(pp);
 		}
 		return populares;
 
 	}
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// BONO
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+	/**
+	 * RFC 3
+	 * indice de ocupacion
+	 */
+	public List<Indice> get_indice_ocupacion() throws SQLException {
+		String sql = "SELECT R.ID_PROPUESTA, SUM( R.CANTIDAD_PERSONAS), SUM(P.CAPACIDAD_MAXIMA), ( SUM( R.CANTIDAD_PERSONAS) / SUM(P.CAPACIDAD_MAXIMA) ) AS \"INDICE\"\r\n" + 
+				"\r\n" + 
+				"	FROM RESERVAS R\r\n" + 
+				"	INNER JOIN PROPUESTAS P \r\n" + 
+				"	ON R.ID_PROPUESTA = P.ID\r\n" + 
+				"\r\n" + 
+				"	GROUP BY R.ID_PROPUESTA\r\n" + 
+				"";
+		
+		ArrayList<Indice> ins = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+
+		while (rs.next()) {
+			
+			Indice i = new Indice(rs.getLong("ID_PROPUESTA"), rs.getInt("SUM(R.CANTIDAD_PERSONAS)"), rs.getInt("SUM(P.CAPACIDAD_MAXIMA)"), rs.getFloat("INDICE"));
+
+			ins.add(i);
+		}
+		return ins;
+		
+		
+	}
+	
+	
+	/**
+	 * rfc 4
+	 * alohamientos con un filtro
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Filtro> get_filtros_bono() throws SQLException {
+		
+		String sql = "SELECT R.ID_PROPUESTA, R.FECHA_INICIO_ESTADIA, R.DURACION_CONTRATO,\r\n" + 
+				"	P.ID_APARTAMENTO, P.ID_VIVIENDA_EXPRESS, P.ID_VIVIENDA_UNIVERSITARIA, P.ID_HABITACION\r\n" + 
+				"\r\n" + 
+				"	FROM RESERVAS R\r\n" + 
+				"	INNER JOIN PROPUESTAS P\r\n" + 
+				"	ON R.ID_PROPUESTA = P.ID\r\n" + 
+				"\r\n" + 
+				"	WHERE \r\n" + 
+				"	R.FECHA_INICIO_ESTADIA BETWEEN '2018-01-19 21:48:01' AND '2018-01-25 21:48:01'\r\n" + 
+				"	    AND ( P.ID_HABITACION IN (\r\n" + 
+				"	        SELECT S.ID_HABITACION FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO\r\n" + 
+				"	        WHERE T.NOMBRE = 'baño' OR T.NOMBRE = 'cocina'\r\n" + 
+				"	    )\r\n" + 
+				"	    OR P.ID_APARTAMENTO IN (\r\n" + 
+				"	         SELECT S.ID_APARTAMENTO FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO\r\n" + 
+				"	        WHERE T.NOMBRE = 'baño' OR T.NOMBRE = 'cocina'\r\n" + 
+				"	    )\r\n" + 
+				"	    OR P.ID_VIVIENDA_EXPRESS IN (\r\n" + 
+				"	         SELECT S.ID_VIVIENDA_EXPRESS FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO\r\n" + 
+				"	        WHERE T.NOMBRE = 'baño' OR T.NOMBRE = 'cocina'\r\n" + 
+				"	    )\r\n" + 
+				"	    OR P.ID_VIVIENDA_UNIVERSITARIA IN (\r\n" + 
+				"	         SELECT S.ID_VIVIENDA_UNIVERSITARIA FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO\r\n" + 
+				"	        WHERE T.NOMBRE = 'baño' OR T.NOMBRE = 'cocina'\r\n" + 
+				"	    )\r\n" + 
+				"	   \r\n" + 
+				"	)";
+		
+		
+		ArrayList<Filtro> fs = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+
+		while (rs.next()) {
+			
+			Filtro f = new Filtro(rs.getLong("ID_PROPUESTA"), rs.getString("FECHA_INICIO_ESTADIA"),
+					rs.getInt("DURACION_CONTRATO"), rs.getLong("ID_APARTAMENTO"), rs.getLong("ID_VIVIENDA_EXPRESS"), rs.getLong("ID_VIVIENDA_UNIVERSITARIA"),
+					rs.getLong("ID_HABITACION"));
+
+			fs.add(f);
+		}
+		return fs;
+		
+	}
+	
+
+
+
 
 
 
