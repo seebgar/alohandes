@@ -39,7 +39,8 @@ import vos.Propuesta;
  * @author sebastian
  *
  */
-@Path("propuestas")
+//@Path("propuestas")
+@Path("personas/operadores/{idPropuesta: \\d+}/propuestas")
 public class PropuestasService {
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -80,17 +81,20 @@ public class PropuestasService {
 	 * 			<b>Response Status 500</b> - Excepcion durante el transcurso de la transaccion
 	 */			
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response getPropuestas() {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getPropuestas_por_Persona (@PathParam("idPropuesta") Long idPersona) {
 
 		try {
 			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
-			List<Propuesta> props;
-			props = tm.getAllPropuestas();
-			return Response.status(200).entity(props).build();
-		} 
-		catch (Exception e) {
-			return Response.status(500).entity(doErrorMessage(e)).build();
+			List<Propuesta> res = tm.get_Propuestas_Operador_PorID(idPersona);	
+			if (res == null) {
+				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
+			}
+
+			return Response.status( 200 ).entity(res).build();
+
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}
 	}
 

@@ -289,22 +289,22 @@ public class PersonasService {
 	 * @param idPersona El ID de la persona con respecto al cual se accede al servicio.
 	 * @return El servicio de Reservas para esa persona en paricular.
 	 */
-	@Path("{idPersona: \\d+}/reservas")
-	public Response getReservas(@PathParam("idPersona") Long idPersona) {
-
-		try {
-			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
-			List<Reserva> res = tm.get_Reservas_Cliente_PorID(idPersona);		
-			if (res == null) {
-				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
-			}
-
-			return Response.status( 200 ).entity(res).build();
-
-		} catch (Exception e) {
-			return Response.status( 500 ).entity(doErrorMessage(e)).build();
-		}
-	}
+//	@Path("{idPersona: \\d+}/reservas")
+//	public Response getReservas(@PathParam("idPersona") Long idPersona) {
+//
+//		try {
+//			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+//			List<Reserva> res = tm.get_Reservas_Cliente_PorID(idPersona);		
+//			if (res == null) {
+//				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
+//			}
+//
+//			return Response.status( 200 ).entity(res).build();
+//
+//		} catch (Exception e) {
+//			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+//		}
+//	}
 	
 
 	
@@ -318,22 +318,22 @@ public class PersonasService {
 	 * @param idPersona El ID de la persona con respecto al cual se accede al servicio.
 	 * @return El servicio de Porpuestas para esa persona en paricular.
 	 */
-	@Path("{idPersona: \\d+}/propuestas")
-	public Response getPropuestas (@PathParam("idPersona") Long idPersona) {
-
-		try {
-			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
-			List<Propuesta> res = tm.get_Propuestas_Operador_PorID(idPersona);	
-			if (res == null) {
-				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
-			}
-
-			return Response.status( 200 ).entity(res).build();
-
-		} catch (Exception e) {
-			return Response.status( 500 ).entity(doErrorMessage(e)).build();
-		}
-	}
+//	@Path("{idPersona: \\d+}/propuestas")
+//	public Response getPropuestas (@PathParam("idPersona") Long idPersona) {
+//
+//		try {
+//			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+//			List<Propuesta> res = tm.get_Propuestas_Operador_PorID(idPersona);	
+//			if (res == null) {
+//				throw new Exception("El recurso /personas/" + idPersona + "/reviews no existe." + 404);
+//			}
+//
+//			return Response.status( 200 ).entity(res).build();
+//
+//		} catch (Exception e) {
+//			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+//		}
+//	}
 
 
 

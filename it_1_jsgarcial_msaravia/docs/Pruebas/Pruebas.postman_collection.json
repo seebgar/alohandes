@@ -70,7 +70,7 @@
 		{
 			"name": "GET reservas de persona id",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/1/reservas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/1/reservas",
 				"method": "GET",
 				"header": [
 					{
@@ -90,7 +90,7 @@
 		{
 			"name": "GET propuestas de persona id",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/15/propuestas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/15/propuestas",
 				"method": "GET",
 				"header": [
 					{
@@ -128,49 +128,9 @@
 			"response": []
 		},
 		{
-			"name": "GET all propuestas",
-			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "GET 20 propuestas mas populares",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/populares",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "GET reserva by id",
-			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas/25",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/1/propuestas/populares",
 				"method": "GET",
 				"header": [
 					{

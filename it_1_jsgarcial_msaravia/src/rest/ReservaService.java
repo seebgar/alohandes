@@ -1,5 +1,7 @@
 package rest;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -16,8 +18,8 @@ import javax.ws.rs.core.Response;
 import tm.AlohandesTransactionManager;
 import vos.Reserva;
 
-@Path("reservas")
-//@Path("books/{booksId: \\d+}/authors")
+//@Path("reservas")
+@Path("personas/clientes/{idCliente: \\d+}/reservas")
 public class ReservaService {
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -74,6 +76,27 @@ public class ReservaService {
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
 		}
 
+	}
+	
+	/**
+	 * Todas las reservas por cliente
+	 * @param pIDCliente
+	 * @return
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response get_Reservas (@PathParam ("idCliente") Long pIDCliente) {
+		
+		try {
+			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+
+			List<Reserva> reserva = tm.get_Reservas_Cliente_PorID(pIDCliente);
+			return Response.status(200).entity(reserva).build();
+		}catch( Exception e )
+		{
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+		
 	}
 
 	/**
