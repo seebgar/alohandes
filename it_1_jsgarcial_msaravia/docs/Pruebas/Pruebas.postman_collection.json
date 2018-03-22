@@ -230,7 +230,7 @@
 		{
 			"name": "POST crea una reserva",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/4/reservas",
 				"method": "POST",
 				"header": [
 					{
@@ -270,7 +270,7 @@
 		{
 			"name": "POST crea una propuesta",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/15/propuestas",
 				"method": "POST",
 				"header": [
 					{
@@ -281,7 +281,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"id\": 3997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n  }"
+					"raw": " {\n        \"id\": 4997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n  }"
 				},
 				"description": ""
 			},
