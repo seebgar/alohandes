@@ -1,11 +1,12 @@
 # alohandes
-Iteracion 1 de Sistemas Transaccionales
-Universiad de Los Andes
-
-Sebastian Garcia 201630047
-Mateo Saravia 201629885
-Grupo B-09
-
+<br/>
+Iteracion 1 - Sistemas Transaccionales<br/>
+Universiad de Los Andes<br/><br/>
+<br/>
+Sebastian Garcia 201630047<br/>
+Mateo Saravia 201629885<br/>
+Grupo B-09<br/>
+<br/>
 Instrucciones
 1. En la carpeta docs > Sentencias_SQL se encuentran las sentencias utilizadas para la creacion, alteracion y la insercion de datos a las tablas
 1.1 Tener Eclipse con los plugins necesarios para poder correr una aplicacion en un servidor. (RedHat y Wildfly 10.x)
