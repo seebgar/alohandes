@@ -1,10 +1,10 @@
 # alohandes
 <br/>
-Iteracion 1 - Sistemas Transaccionales<br/>
+Iteracion 2 - Sistemas Transaccionales<br/>
 Universiad de Los Andes<br/><br/>
 
 Sebastian Garcia 201630047<br/>
-Mateo Saravia 201629885<br/>
+Nicolas Sotelo 201623026<br/>
 Grupo B-09<br/>
 <br/>
 Instrucciones<br/>
