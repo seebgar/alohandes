@@ -3,8 +3,8 @@ Iteracion 1 de Sistemas Transaccionales
 Universiad de Los Andes
 
 Sebastian Garcia 201630047
-Mateo Saravia 201629885
-Grupo B-09
+Nicolas Sotelo 201623026
+
 
 Instrucciones
 1. En la carpeta docs > Sentencias_SQL se encuentran las sentencias utilizadas para la creacion, alteracion y la insercion de datos a las tablas
