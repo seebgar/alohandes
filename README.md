@@ -5,7 +5,7 @@ Universiad de Los Andes<br/><br/>
 
 Sebastian Garcia 201630047<br/>
 Nicolas Sotelo 201623026<br/>
-Grupo<br/>
+Grupo D-05<br/>
 <br/>
 Instrucciones<br/>
 1. En la carpeta docs > Sentencias_SQL se encuentran las sentencias utilizadas para la creacion, alteracion y la insercion de datos a las tablas<br/>
