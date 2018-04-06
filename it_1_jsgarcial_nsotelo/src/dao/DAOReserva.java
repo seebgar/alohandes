@@ -38,7 +38,7 @@ public class DAOReserva {
 	/**
 	 * Constante para indicar el usuario Oracle del estudiante
 	 */
-	public final static String USUARIO = "ISIS2304A491810";
+	public final static String USUARIO = "ISIS2304A331810";
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -154,17 +154,30 @@ public class DAOReserva {
 
 
 		//sentencia para insertar la resrva en la base de datos
-		String sql = 
-
-				String.format("INSERT INTO RESERVAS ( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA, ID_COLECTIVO ) "
-
-	+ "VALUES ("+reserva.getId() +","+reserva.getId_cliente()+","+ reserva.getId_propuesta()+",'" + reserva.getFecha_registro()+"','"+ reserva.getFecha_cancelacion()+"','" + reserva.getFecha_inicio_estadia()+"',"+ reserva.getDuracion() +","+ reserva.getCosto_total()+","+reserva.getCantidad_personas() +","+reserva.getHayMulta() +","+ reserva.getValorMulta()+", 'null' )");               
-
+		int hay_m = reserva.getHayMulta().toString().equals("true") ? 1 : 0;
+		String xx = reserva.getFecha_cancelacion() == null ? "null" : reserva.getFecha_cancelacion(); // TODO
+		String sql = "INSERT INTO RESERVAS  " + 
+				"( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA, ID_COLECTIVO ) " + 
+				"VALUES " + 
+				"(  " + reserva.getId() + " , " + 
+				"  " + reserva.getId_cliente() + " , " + 
+				"  " + reserva.getId_propuesta() + " , " + 
+				"'" + reserva.getFecha_registro() + "'," + 
+				"  " + xx + "   , " + 
+				"'"+ reserva.getFecha_inicio_estadia() +"'," + 
+				"   " + reserva.getDuracion() + "  , " + 
+				"   " + reserva.getCosto_total() + "   , " + 
+				"   " + reserva.getCantidad_personas() + "   , " + 
+				"   " + hay_m + " , " + 
+				"  " + reserva.getValorMulta() + " ,  " + 
+				"   null  )";
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		System.out.println(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery(); //se inserta la reserva
 
 	}
+
 
 	/**
 	 * RF-5

@@ -52,7 +52,7 @@ public class DAOPersona {
 	/**
 	 * Constante para indicar el usuario Oracle del estudiante
 	 */
-	public final static String USUARIO = "ISIS2304A491810";
+	public final static String USUARIO = "ISIS2304A331810";
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------

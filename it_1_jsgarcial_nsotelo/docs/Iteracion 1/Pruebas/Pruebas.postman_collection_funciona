@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Pruebas",
-		"_postman_id": "72beafd2-60a5-1055-564c-8a48ac8f0ee9",
+		"_postman_id": "c29a8f64-0327-ee32-6533-cfa51b6a20db",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -230,7 +230,7 @@
 		{
 			"name": "POST crea una reserva",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/4/reservas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/8/reservas",
 				"method": "POST",
 				"header": [
 					{
@@ -241,7 +241,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n\t    \"id\": 2995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 2,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"id_propuesta\": 3,\n\t    \"id_cliente\": 3,\n\t    \"hay_multa\": false,\n\t    \"valor_multa\": 0\n  }"
+					"raw": " {\n\t    \"id\": 7995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 2,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"id_propuesta\": 3,\n\t    \"id_cliente\": 3,\n\t    \"hay_multa\": false,\n\t    \"valor_multa\": 0\n  }"
 				},
 				"description": ""
 			},
@@ -293,7 +293,10 @@
 				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/90",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -304,7 +307,10 @@
 				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/3997",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -315,7 +321,10 @@
 				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas/90",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -326,7 +335,10 @@
 				"url": "http://localhost:8080/Alohandes_IT1/rest/propuesta/90",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
