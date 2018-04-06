@@ -109,7 +109,8 @@ public class DAOReserva {
 	 * @throws BusinessLogicException Si se genera un error dentro del metodo.
 	 */
 	public void registrarReserva( Reserva reserva ) throws SQLException, BusinessLogicException, Exception {
-
+		DAOPersona dao = new DAOPersona();
+		dao.setConn(conn);
 		if ( reserva == null )
 			throw new BusinessLogicException("La reserva que se piensa registrar es nula.");
 
@@ -121,18 +122,16 @@ public class DAOReserva {
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 
 		//consigo las reservas que hay para ese dia
-		String reservas = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID = %2$d AND FECHA_INICIO_ESTADIA = %3$s",
-				USUARIO, reserva.getId(), reserva.getFecha_inicio_estadia());
+		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID ="+ reserva.getId()+" AND FECHA_INICIO_ESTADIA ='"+reserva.getFecha_inicio_estadia()+"'");
+		System.out.println(reservas);
 		PreparedStatement prepStmt1= conn.prepareStatement(reservas);
-		recursos.add(prepStmt1);	
+		recursos.add(prepStmt1); 
 		ResultSet rs = prepStmt1.executeQuery(); 
 
 		while(rs.next())
 			reservasEnFecha.add(convertResultSetTo_Reserva(rs));
 
 		// para usar un buscador de persona o propuesta por id
-		DAOPersona dao = new DAOPersona();
-		
 		Persona solicitado = dao.get_Persona_ById(reserva.getId_cliente());
 
 		//se valida que el cliente no haga mas reservas un mismo dia
@@ -156,19 +155,10 @@ public class DAOReserva {
 
 		//sentencia para insertar la resrva en la base de datos
 		String sql = 
-				String.format("INSERT INTO $1%s.RESERVAS ( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA ) "
-						+ "VALUES ( $2%d, $3%d, $4%d, '$5%s', '$6%s', '$7%s', '$8%s', '$9%s', '$10%s', '$11%s', '$12%s')", 
-						reserva.getId(),
-						reserva.getId_cliente(),
-						reserva.getId_propuesta(),
-						reserva.getFecha_registro(),
-						reserva.getFecha_cancelacion(),
-						reserva.getFecha_inicio_estadia(),
-						reserva.getDuracion(),
-						reserva.getCosto_total(),
-						reserva.getCantidad_personas(),
-						reserva.getHayMulta(),
-						reserva.getValorMulta());
+
+				String.format("INSERT INTO RESERVAS ( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA, ID_COLECTIVO ) "
+
+	+ "VALUES ("+reserva.getId() +","+reserva.getId_cliente()+","+ reserva.getId_propuesta()+",'" + reserva.getFecha_registro()+"','"+ reserva.getFecha_cancelacion()+"','" + reserva.getFecha_inicio_estadia()+"',"+ reserva.getDuracion() +","+ reserva.getCosto_total()+","+reserva.getCantidad_personas() +","+reserva.getHayMulta() +","+ reserva.getValorMulta()+", 'null' )");               
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
@@ -284,16 +274,16 @@ public class DAOReserva {
 		id_propuesta = resultSet.getLong("ID_PROPUESTA");
 		id_persona = resultSet.getLong("ID_PERSONA");
 
-		
-//		DAOPersona dao = new DAOPersona();
-//		Propuesta propuesta = null;
-//		try {
-//			propuesta = dao.getPropuestaById((long)id_propuesta);
-//		} catch (Exception e) {	}
-//		Persona persona = null;
-//		try {
-//			persona =  dao.get_Persona_ById((long)id_persona);
-//		} catch (Exception e) {}
+
+		//		DAOPersona dao = new DAOPersona();
+		//		Propuesta propuesta = null;
+		//		try {
+		//			propuesta = dao.getPropuestaById((long)id_propuesta);
+		//		} catch (Exception e) {	}
+		//		Persona persona = null;
+		//		try {
+		//			persona =  dao.get_Persona_ById((long)id_persona);
+		//		} catch (Exception e) {}
 
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
