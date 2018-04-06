@@ -9,7 +9,7 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * Clase que representa l dinero recibido por cada operador
+ * Clase que representa el dinero recibido por cada operador
  * @author sebastian
  *
  */

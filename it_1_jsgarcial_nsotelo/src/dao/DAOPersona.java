@@ -576,9 +576,9 @@ public class DAOPersona {
 		String rol = resultSet.getString("ROL");
 		String cedula = resultSet.getString("CEDULA");
 		String nit = resultSet.getString("NIT");
-		//String email = resultSet.getString("EMAIL");
+		String email = resultSet.getString("EMAIL");
 
-		Persona pep = new Operador(id, nombre, apellido, tipo, rol, nit, cedula, null);
+		Persona pep = new Persona(id, nombre, apellido, tipo, rol, nit, cedula, email);
 
 		return pep;
 	}
@@ -589,8 +589,14 @@ public class DAOPersona {
 		String tipo_inmueble = resultSet.getString("TIPO_INMUEBLE");
 		Integer capacidad = resultSet.getInt("CAPACIDAD_MAXIMA");
 		Integer id_persona = resultSet.getInt("ID_PERSONA");
+		//TODOO
+		Boolean disponible =resultSet.getInt("DISPONIBLE")==1?true : false ;
+		String fecha_inicio_disponibilidad=resultSet.getString("FECHA_INICIO_DISPONIBILIDAD");
+		String fecha_fin_disponibilidad=resultSet.getString("FECHA_FINAL_DISPONIBILIDAD");
+		Integer dias_disponibilidad=resultSet.getInt("CANTIDAD_DIAS_DISPONIBLE");
+		
 
-		Propuesta prop = new Propuesta(id, tipo_inmueble, capacidad, id_persona);
+		Propuesta prop = new Propuesta(id, tipo_inmueble, capacidad, id_persona,dias_disponibilidad,fecha_inicio_disponibilidad,fecha_fin_disponibilidad,disponible);
 
 		if ( Propuesta.TIPO_INMUEBLE.APARTAMENTO.toString().equalsIgnoreCase(tipo_inmueble) ) {
 			String sql = String.format("SELECT * FROM %1$s.APARTAMENTOS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_APARTAMENTO"));
@@ -884,7 +890,7 @@ public class DAOPersona {
 	public Reserva convertResultSetTo_Reserva ( ResultSet resultSet ) throws Exception {
 
 		Integer id, duracion_contrato, cantidad_personas, hay_multa;
-		Long id_persona, id_propuesta;
+		Long id_persona, id_propuesta,id_colectivo;
 		String fecha_registro, fecha_cancelacion, fecha_inicio_estadia;
 		float costo_total, valor_multa; 
 
@@ -900,11 +906,12 @@ public class DAOPersona {
 
 		id_propuesta = resultSet.getLong("ID_PROPUESTA");
 		id_persona = resultSet.getLong("ID_PERSONA");
+		id_colectivo = resultSet.getLong("ID_COLECTIVO");
 
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
-						id_propuesta, id_persona);
+						id_propuesta, id_persona,id_colectivo);
 
 
 		return res;

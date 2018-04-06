@@ -59,41 +59,48 @@ public class Reserva {
 	 */
 	@JsonProperty(value="costo_total")
 	private Double costo_total;
-	
+
 	/**
 	 * Determina la cantidad de personas que ocuparan un inmueble por medio de esta reserva
 	 */
 	@JsonProperty(value="cantidad_personas")
 	private Integer cantidad_personas;
-	
+
 	/**
 	 * Determina si existe una multa hacia el cliente
 	 */
 	@JsonProperty(value= "hay_multa")
 	private Boolean hayMulta;
-	
+
 	/**
 	 * el costo se hay multa
 	 */
 	@JsonProperty(value="valor_multa")
 	private Double valorMulta;
-	
+
 	/**
 	 * propuesta de la reserva
 	 */
 	@JsonProperty(value="id_propuesta")
 	private Long id_propuesta;
-	
+
 	/**
 	 * cliente que le corresponde a cada reserva
 	 */
 	@JsonProperty(value= "id_cliente")
 	private Long id_cliente;
 
-
+	/**
+	 * id colectivo que representa si una reserva es colectiva o no
+	 */
+	@JsonProperty(value= "id_colectivo")
+	private Long id_colectivo;
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
+
 
 	/**
 	 * Metodo constructor de la clase Reserva
@@ -119,7 +126,8 @@ public class Reserva {
 			@JsonProperty(value= "hay_multa") Boolean hayMulta,
 			@JsonProperty(value="valor_multa") Double valorMulta,
 			@JsonProperty(value= "id_propuesta") Long propuesta,
-			@JsonProperty(value= "id_cliente") Long cliente) {
+			@JsonProperty(value= "id_cliente") Long cliente,
+			@JsonProperty(value= "id_colectivo") Long colectivo) {
 		this.id = id;
 		this.fecha_registro = fecha_registro;
 		this.fecha_cancelacion = fecha_cancelacion;
@@ -130,14 +138,15 @@ public class Reserva {
 		this.hayMulta= hayMulta;
 		this.valorMulta= valorMulta;
 		//TODO inizialicar propuesta y cliente
-		
+
 		this.id_propuesta= propuesta;
 		this.id_cliente=cliente;
-		
+		this.id_colectivo=colectivo;
+
 	}
 
 
-		
+
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS DE LA CLASE
@@ -212,10 +221,10 @@ public class Reserva {
 	 * @return the propuesta
 	 */
 
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * @return the hayMulta
 	 */
@@ -282,21 +291,32 @@ public class Reserva {
 	}
 
 
+	public Long getId_colectivo() {
+		return id_colectivo;
+	}
+
+
+
+
+	public void setId_colectivo(Long id_colectivo) {
+		this.id_colectivo = id_colectivo;
+	}
+
 
 
 	public Date getFechaFinal() throws Exception{
-		
-        DateFormat formato= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+
+		DateFormat formato= new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
 		Date fechaInicio;
-		
+
 		fechaInicio = formato.parse(fecha_inicio_estadia);
-        
+
 		Calendar cal= Calendar.getInstance();
-		
+
 		cal.setTime(fechaInicio);
 		cal.add(Calendar.DAY_OF_YEAR, duracion);
 		Date fechaFin= cal.getTime();
-		
+
 		return fechaFin;
 	}
 

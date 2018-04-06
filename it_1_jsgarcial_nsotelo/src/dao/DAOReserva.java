@@ -270,7 +270,7 @@ public class DAOReserva {
 	public Reserva convertResultSetTo_Reserva ( ResultSet resultSet ) throws Exception {
 
 		Integer id,  duracion_contrato, cantidad_personas, hay_multa;
-		Long id_persona, id_propuesta;
+		Long id_persona, id_propuesta,id_colectivo;
 		String fecha_registro, fecha_cancelacion, fecha_inicio_estadia;
 		float costo_total, valor_multa; 
 
@@ -286,22 +286,11 @@ public class DAOReserva {
 
 		id_propuesta = resultSet.getLong("ID_PROPUESTA");
 		id_persona = resultSet.getLong("ID_PERSONA");
-
-
-		//		DAOPersona dao = new DAOPersona();
-		//		Propuesta propuesta = null;
-		//		try {
-		//			propuesta = dao.getPropuestaById((long)id_propuesta);
-		//		} catch (Exception e) {	}
-		//		Persona persona = null;
-		//		try {
-		//			persona =  dao.get_Persona_ById((long)id_persona);
-		//		} catch (Exception e) {}
-
+		id_colectivo=resultSet.getLong("ID_COLECTIVO");
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
-						id_propuesta,  id_persona);
+						id_propuesta,  id_persona,id_colectivo);
 
 		return res;
 

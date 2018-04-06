@@ -94,17 +94,79 @@ public class Propuesta {
 	 */
 	@JsonProperty(value="persona")
 	private Integer id_persona;
-	
-	
+	/**
+	 * Boolean que representa si una propuesta esta disponble o no
+	 */
+	@JsonProperty(value="disponible")
+	private Boolean disonible;
+	/**
+	 * Fecha inicial desde la cual la propuesta esta disponible
+	 */
+	@JsonProperty(value="fecha_inicio_disponibilidad")
+	private String fecha_inicio_disponibilidad;
+	/**
+	 * Fecha final desde la cual la propuesta esta no disponible
+	 */
+	@JsonProperty(value="fecha_final_disponibilidad")
+	private String fecha_final_disponibilidad;
+	/**
+	 * cantidad de dias disponibles que lleva libre una propuesta
+	 */
+	@JsonProperty(value="cantidad_dias_disponibles")
+	private Integer cantidad_dias_disponibles;
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR
 	//----------------------------------------------------------------------------------------------------------------------------------
 
+	public Boolean getDisonible() {
+		return disonible;
+	}
+
+
+	public void setDisonible(Boolean disonible) {
+		this.disonible = disonible;
+	}
+
+
+	public String getFecha_inicio_disponibilidad() {
+		return fecha_inicio_disponibilidad;
+	}
+
+
+	public void setFecha_inicio_disponibilidad(String fecha_inicio_disponibilidad) {
+		this.fecha_inicio_disponibilidad = fecha_inicio_disponibilidad;
+	}
+
+
+	public String getFecha_final_disponibilidad() {
+		return fecha_final_disponibilidad;
+	}
+
+
+	public void setFecha_final_disponibilidad(String fecha_final_disponibilidad) {
+		this.fecha_final_disponibilidad = fecha_final_disponibilidad;
+	}
+
+
+	public Integer getCantidad_dias_disponibles() {
+		return cantidad_dias_disponibles;
+	}
+
+
+	public void setCantidad_dias_disponibles(Integer cantidad_dias_disponibles) {
+		this.cantidad_dias_disponibles = cantidad_dias_disponibles;
+	}
+
+
 	public Propuesta ( @JsonProperty(value="id") Long id,
 			@JsonProperty(value="tipo_inmueble") String tipo_inmueble,
 			@JsonProperty(value="capacidad_maxima") Integer cap,
-			@JsonProperty(value="persona") Integer id_persona) {
+			@JsonProperty(value="persona") Integer id_persona,
+			@JsonProperty(value="cantidad_dias_disponibles") Integer dias_dispo,
+	@JsonProperty(value="fecha_final_disponibilidad")String fecha_inicio_dispo,
+	@JsonProperty(value="fecha_inicio_disponibilidad")String fecha_final_dispo,
+	@JsonProperty(value="disponible") Boolean disponible) {
 		this.id = id;
 		this.tipo_inmueble = tipo_inmueble;
 		this.apartamento = null;
@@ -117,6 +179,11 @@ public class Propuesta {
 		this.capacidad_maxima = cap;
 		this.seVaRetirar = false;
 		this.id_persona = id_persona;
+		this.disonible=disponible;
+		this.cantidad_dias_disponibles= dias_dispo;
+		this.fecha_final_disponibilidad=fecha_final_dispo;
+		this.fecha_inicio_disponibilidad=fecha_inicio_dispo;
+		
 	}
 	
 

@@ -203,7 +203,7 @@ public class PersonasService {
 		try{
 			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
 			tm.addPersona(persona);
-			return Response.status( 200 ).entity( persona.toString() ).build( );			
+			return Response.status( 200 ).entity( persona ).build( );			
 		}
 		catch( Exception e )
 		{
