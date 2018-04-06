@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Pruebas",
-		"_postman_id": "c29a8f64-0327-ee32-6533-cfa51b6a20db",
+		"_postman_id": "94b48275-8a52-08dc-429b-72d2419d554c",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -10,7 +10,7 @@
 		{
 			"name": "GET persona by ID",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/27",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/1",
 				"method": "GET",
 				"header": [
 					{
@@ -110,7 +110,7 @@
 		{
 			"name": "GET reservas de persona id",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/1/reservas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas",
 				"method": "GET",
 				"header": [
 					{
@@ -130,7 +130,7 @@
 		{
 			"name": "GET propuestas de persona id",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/15/propuestas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/16/propuestas",
 				"method": "GET",
 				"header": [
 					{
@@ -230,7 +230,7 @@
 		{
 			"name": "POST crea una reserva",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/8/reservas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas",
 				"method": "POST",
 				"header": [
 					{
@@ -241,7 +241,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n\t    \"id\": 7995,\n\t    \"fecha_registro\": \"2016-03-22 20:01:34\",\n\t    \"fecha_cancelacion\": null,\n\t    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\n\t    \"duracion\": 2,\n\t    \"costo_total\": 164071.734375,\n\t    \"cantidad_personas\": 3,\n\t    \"id_propuesta\": 3,\n\t    \"id_cliente\": 3,\n\t    \"hay_multa\": false,\n\t    \"valor_multa\": 0\n  }"
+					"raw": "{\r\n\r\n    \"id\": 1002,\r\n\r\n    \"fecha_registro\": \"2016-03-22 20:01:34\",\r\n\r\n    \"fecha_cancelacion\": null,\r\n\r\n    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\r\n\r\n    \"duracion\": 2,\r\n\r\n    \"costo_total\": 164071.734375,\r\n\r\n    \"cantidad_personas\": 3,\r\n\r\n    \"hay_multa\": false,\r\n\r\n    \"valor_multa\": 0,\r\n\r\n    \"id_propuesta\": 3,\r\n\r\n    \"id_cliente\": 212,\r\n\r\n    \"id_colectivo\": null,\r\n\r\n    \"hayMulta\": false,\r\n\r\n    \"valorMulta\": 0\r\n}"
 				},
 				"description": ""
 			},
@@ -270,7 +270,7 @@
 		{
 			"name": "POST crea una propuesta",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/15/propuestas",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/192/propuestas",
 				"method": "POST",
 				"header": [
 					{
@@ -281,7 +281,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"id\": 4997,\n        \"tipo_inmueble\": \"apartamento\",\n        \"capacidad_maxima\": 6,\n        \"persona\" : 15\n  }"
+					"raw": "{\r\n\r\n    \"id\": 5997,\r\n\r\n    \"tipo_inmueble\": \"apartamento\",\r\n\r\n    \"capacidad_maxima\": 6,\r\n\r\n    \"persona\": 192,\r\n\r\n    \"cantidad_dias_disponibles\": null,\r\n\r\n    \"fecha_final_disponibilidad\": \"2018-02-12 06:50:47\",\r\n\r\n    \"fecha_inicio_disponibilidad\": \"2018-02-12 06:50:47\",\r\n\r\n    \"disponible\": true,\r\n\r\n    \"vivienda_universitaria\": null,\r\n\r\n    \"se_va_retirar\": false,\r\n\r\n    \"disonible\": true,\r\n\r\n    \"id_persona\": 192,\r\n\r\n    \"apartamento\": null,\r\n\r\n    \"habitacion\": null,\r\n\r\n    \"hostel\": null,\r\n\r\n    \"hotel\": null,\r\n\r\n    \"vivienda_express\": null,\r\n\r\n    \"vivienda_universitarias\": null,\r\n\r\n    \"seVaRetirar\": false\r\n\r\n}"
 				},
 				"description": ""
 			},
@@ -302,23 +302,9 @@
 			"response": []
 		},
 		{
-			"name": "DELETE persona por id",
-			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/3997",
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "DELETE reserva",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/reservas/90",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas/1002",
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -332,7 +318,7 @@
 		{
 			"name": "DELETE propuesta",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/propuesta/90",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/16/propuestas/300",
 				"method": "DELETE",
 				"header": [],
 				"body": {

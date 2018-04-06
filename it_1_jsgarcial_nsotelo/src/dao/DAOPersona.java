@@ -163,19 +163,23 @@ public class DAOPersona {
 	public Propuesta getPropuestaById(Long id) throws SQLException, Exception {
 
 		Propuesta propuesta = null;
-
-		String sql = String.format("SELECT * FROM %1$s.PROPUESTAS WHERE ID = %2$d", USUARIO, id); 
-
+		
+		System.out.println( id + " >>>>>>>>>>>>>>>>>> ES EL ID DE LA PROPUESTA SE SE PIENSA BUSCAR >>>>>>>>>>>>>>>>>>>>>>>>");
+		String sql = "SELECT * FROM PROPUESTAS WHERE ID = " + id; 
+		System.out.println(sql + " <<<<<<<<<<<<<<<<<<< sql busqueda de propuesta >>>>>>>>>>>>>>>>>>>>>");
+		
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 
+		System.out.println(" <<<<<<<<<<<<<<<<<<< ahora se va a hacer la covercion de json a objeto propuesta >>>>>>>>>>>>>>>>>>>>>");
 		if(rs.next()) {
 			propuesta = convertResultSetTo_Propuesta(rs);
 		}
-
+		System.out.println(propuesta + " <<<<<<<<<<<<<<<<<<< ES LA PROPUESTA >>>>>>>>>>>>>>>>>>>>>");
 		return propuesta;
 	}
+
 
 	/**
 	 * 

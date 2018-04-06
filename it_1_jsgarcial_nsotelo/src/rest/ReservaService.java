@@ -137,9 +137,11 @@ public class ReservaService {
 	public Response cancelarReserva(Reserva reserva) {
 
 		try {
+			
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 			tm.cancelarReserva(reserva);
 			return Response.status( 200 ).entity(reserva).build();
+			
 		} catch (Exception e) {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}

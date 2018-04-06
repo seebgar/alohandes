@@ -211,22 +211,62 @@ public class DAOReserva {
 
 		// Apartamento y Habitacion y Vivienda Universitaria es por meses :: Tiempo Limite 1 semana
 		DAOPersona dao = new DAOPersona();
-		Propuesta prop = dao.getPropuestaById(reserva.getId_propuesta());
-		if ( prop != null ) {
-			if ( prop.getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
-					prop.getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
-					prop.getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
-				cal.add(Calendar.DAY_OF_YEAR, -7);
-				fecha_limite = cal.getTime();
+
+		Long id_prop = reserva.getId_propuesta();
+		System.out.println(id_prop + " << ID PROPUESTA DE LA RESERVA >> " + reserva.getId());
+
+		if ( id_prop == null )
+			throw new BusinessLogicException("La reserva con id = " + reserva.getId() + " tiene una propuesta id = " + id_prop + " invalido");
+
+		try {
+			
+			Propuesta prop = dao.getPropuestaById( id_prop );
+			
+			if ( prop != null ) {
+				if ( prop.getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
+						prop.getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
+						prop.getTipo_inmueble().equalsIgnoreCase("Vivienda Universitaria") ) {
+					cal.add(Calendar.DAY_OF_YEAR, -7);
+					fecha_limite = cal.getTime();
+				} else {
+					cal.add(Calendar.DAY_OF_YEAR, -3);
+					fecha_limite = cal.getTime();
+				}
 			} else {
 				cal.add(Calendar.DAY_OF_YEAR, -3);
 				fecha_limite = cal.getTime();
 			}
-		} else {
+			
+			this.cancelarReserva_Auxiliar(cal, actual, fecha_limite, fecha_inicio_estadia, reserva, multa);
+			
+		} catch (Exception e) {
+			
 			cal.add(Calendar.DAY_OF_YEAR, -3);
 			fecha_limite = cal.getTime();
+			
+			this.cancelarReserva_Auxiliar(cal, actual, fecha_limite, fecha_inicio_estadia, reserva, multa);
 		}
 
+
+
+	}
+
+
+	/**
+	 * Metodo Auxiliar a cancelar reserva, la funcion de este metodo es factorizar para que no queda tan largo el metodo cancelar reserva
+	 * Asimismo, aqui es donde se hacen las sentencias SQL para eliminar una reserva y asignar la multa al cliente correspondiente si 
+	 * es necesario
+	 * @param cal
+	 * @param prop
+	 * @param actual
+	 * @param fecha_limite
+	 * @param fecha_inicio_estadia
+	 * @param reserva
+	 * @param multa
+	 * @throws SQLException
+	 */
+	public void cancelarReserva_Auxiliar( Calendar cal, Date actual, Date fecha_limite, Date  fecha_inicio_estadia, Reserva reserva, Double multa  ) throws SQLException {
+	
 		// Determina los percentajes
 		if ( actual.before(fecha_inicio_estadia) && actual.after(fecha_limite) ) {
 			multa = reserva.getCosto_total() * 0.30;
@@ -247,17 +287,24 @@ public class DAOReserva {
 		}
 
 		// Se le asigna la multa a la persona correspondiente
-		String sql = String.format("UPDATE %1$s.PERSONAS P SET COSTO_MULTA = %2$d WHERE P.ID = %3$d; ", USUARIO, reserva.getCosto_total() ,reserva.getId_cliente());
+		String sql = String.format(
+				"UPDATE PERSONAS P "
+				+ "SET COSTO_MULTA = " + reserva.getCosto_total()
+				+ " WHERE P.ID = " + reserva.getId_cliente()
+				);
+		System.out.println(sql);
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 
 		// Se elimina la reserva de la base de datos
-		String delete = String.format("DELETE FROM %1$s.RESERVAS R WHERE R.ID = %2$d ", USUARIO, reserva.getId());
+		String delete = String.format(
+				"DELETE FROM RESERVAS R "
+				+ "WHERE R.ID = " + reserva.getId());
+		System.out.println(delete);
 		PreparedStatement delete_sql = conn.prepareStatement(delete);
 		recursos.add(delete_sql);
 		delete_sql.executeQuery();
-
 	}
 
 
