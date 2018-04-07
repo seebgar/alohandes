@@ -177,7 +177,6 @@ public class Propuesta {
 		this.vivienda_universitarias = null;
 		this.seVaRetirar= false;
 		this.capacidad_maxima = cap;
-		this.seVaRetirar = false;
 		this.id_persona = id_persona;
 		this.disonible=disponible;
 		this.cantidad_dias_disponibles= dias_dispo;

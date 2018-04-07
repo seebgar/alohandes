@@ -163,11 +163,11 @@ public class DAOPersona {
 	public Propuesta getPropuestaById(Long id) throws SQLException, Exception {
 
 		Propuesta propuesta = null;
-		
+
 		System.out.println( id + " >>>>>>>>>>>>>>>>>> ES EL ID DE LA PROPUESTA SE SE PIENSA BUSCAR >>>>>>>>>>>>>>>>>>>>>>>>");
 		String sql = "SELECT * FROM PROPUESTAS WHERE ID = " + id; 
 		System.out.println(sql + " <<<<<<<<<<<<<<<<<<< sql busqueda de propuesta >>>>>>>>>>>>>>>>>>>>>");
-		
+
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
@@ -362,20 +362,58 @@ public class DAOPersona {
 			throw new BusinessLogicException(e.getMessage());
 		} 
 
+		Object ID_HOTEL, ID_HOSTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION;
+
+		//Verificacion de IDS para conectar el inmueble
+		if ( propuesta.getHostel() == null ) ID_HOSTEL = "null";
+		else ID_HOSTEL = propuesta.getHostel().getId();
+
+		if ( propuesta.getHotel() == null ) ID_HOTEL = "null";
+		else ID_HOTEL = propuesta.getHotel().getId();
+
+		if ( propuesta.getVivienda_express() == null ) ID_VIVIENDA_EXPRESS = "null";
+		else ID_VIVIENDA_EXPRESS = propuesta.getVivienda_express().getId();
+
+		if ( propuesta.getApartamento() == null ) ID_APARTAMENTO = "null";
+		else ID_APARTAMENTO = propuesta.getApartamento().getId();
+
+		if ( propuesta.getVivienda_universitarias() == null ) ID_VIVIENDA_UNIVERSITARIA = "null";
+		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias().getId();
+
+		if ( propuesta.getVivienda_universitarias() == null ) ID_VIVIENDA_UNIVERSITARIA = "null";
+		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias().getId();
+
+		if ( propuesta.getHabitacion() == null ) ID_HABITACION = "null";
+		else ID_HABITACION = propuesta.getHabitacion().getId();
+
+		Integer DISPONIBLE = propuesta.getDisonible() == true ? 1 : 0;
+
+		Integer CANTIDAD_DIAS_DISPONIBLES = propuesta.getCantidad_dias_disponibles() == null ? 0 : propuesta.getCantidad_dias_disponibles();
+
+		// SE VA RETIRAR se inicializa con false en el constructor de propuesta
+		// FECHA_INICIO_DISPONIBILIDAD se entiende como la fecha en la que se registra la propuesta. Luego se cambia cuando se acaba una reserva.
 		String sql =
-				String.format("INSERT INTO %1$s.PROPUESTAS(ID, ID_PERSONA, ID_HOSTEL, ID_HOTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO"
-						+ ", ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, SE_VA_RETIRAR)"
-						+ " VALUES ( %2$d, %3$d, %4$d, %5$d, %6$d, %7$d, %8$d, %9$d, %10$d  )",
-						USUARIO,
-						propuesta.getId(),
-						operador.getId(),
-						propuesta.getHostel() == null ? null : propuesta.getHostel().getId(),
-								propuesta.getHotel() == null ? null : propuesta.getHotel().getId(),
-										propuesta.getVivienda_express() == null ? null : propuesta.getVivienda_express().getId(),
-												propuesta.getApartamento() == null ? null : propuesta.getApartamento().getId(),
-														propuesta.getVivienda_universitarias() == null ? null : propuesta.getVivienda_universitarias().getId(),
-																propuesta.getHabitacion() == null ? null : propuesta.getHabitacion().getId(),
-																		(propuesta.getSeVaRetirar() == false) ? null : 1);
+				"INSERT INTO PROPUESTAS (ID, TIPO_INMUEBLE, ID_PERSONA, ID_HOTEL, ID_HOSTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, CAPACIDAD_MAXIMA, DISPONIBLE, FECHA_INICIO_DISPONIBILIDAD,"
+						+ " FECHA_FINAL_DISPONIBILIDAD, CANTIDAD_DIAS_DISPONIBLE "
+
+				+ " VALUES ( "
+
+				+ propuesta.getId() + ", " // ID
+				+ propuesta.getTipo_inmueble() +  ", " // TIPO_INMUEBLE
+				+ propuesta.getId_persona() + ", " // ID_PERSONA
+				+ ID_HOTEL + ", " // ID_HOTEL
+				+ ID_HOSTEL + ", " // ID_HOSTEL
+				+ ID_VIVIENDA_EXPRESS + ", " // ID_VIVIENDA_EXPRESS
+				+ ID_APARTAMENTO + ", " // ID_APARTAMENTO
+				+ ID_VIVIENDA_UNIVERSITARIA + ", " // ID_VIVIENDA_UNIVERSITARIA
+				+ ID_HABITACION + ", " // ID_HABITACION
+				+ propuesta.getCapacidad_maxima() == null ? "0" :  propuesta.getCapacidad_maxima()  + ", "	// CAPACIDAD_MAXIMA
+						+ DISPONIBLE  + ", "		//DISPOBLE
+						+ propuesta.getFecha_inicio_disponibilidad() + ", "			// FECHA_INICIO_DISPONIBILIDAD
+						+ propuesta.getFecha_final_disponibilidad() == null ? "null" : propuesta.getFecha_final_disponibilidad() + ", "			// FECHA_FINAL_DISPONIBILIDAD
+								+ CANTIDAD_DIAS_DISPONIBLES + ", "			// CANTIDAD_DIAS_DISPONIBLES
+
+								+ " )";
 
 		System.out.println(sql);
 
@@ -598,7 +636,7 @@ public class DAOPersona {
 		String fecha_inicio_disponibilidad=resultSet.getString("FECHA_INICIO_DISPONIBILIDAD");
 		String fecha_fin_disponibilidad=resultSet.getString("FECHA_FINAL_DISPONIBILIDAD");
 		Integer dias_disponibilidad=resultSet.getInt("CANTIDAD_DIAS_DISPONIBLE");
-		
+
 
 		Propuesta prop = new Propuesta(id, tipo_inmueble, capacidad, id_persona,dias_disponibilidad,fecha_inicio_disponibilidad,fecha_fin_disponibilidad,disponible);
 
@@ -802,7 +840,7 @@ public class DAOPersona {
 				"\r\n" + 
 				"	GROUP BY R.ID_PROPUESTA\r\n" + 
 				"";
-		
+
 		ArrayList<Indice> ins = new ArrayList<>();
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -811,17 +849,17 @@ public class DAOPersona {
 
 
 		while (rs.next()) {
-			
+
 			Indice i = new Indice(rs.getLong("ID_PROPUESTA"), rs.getInt("SUM(R.CANTIDAD_PERSONAS)"), rs.getInt("SUM(P.CAPACIDAD_MAXIMA)"), rs.getFloat("INDICE"));
 
 			ins.add(i);
 		}
 		return ins;
-		
-		
+
+
 	}
-	
-	
+
+
 	/**
 	 * rfc 4
 	 * alohamientos con un filtro
@@ -829,7 +867,7 @@ public class DAOPersona {
 	 * @throws SQLException
 	 */
 	public List<Filtro> get_filtros_bono() throws SQLException {
-		
+
 		String sql = "SELECT R.ID_PROPUESTA, R.FECHA_INICIO_ESTADIA, R.DURACION_CONTRATO,\r\n" + 
 				"	P.ID_APARTAMENTO, P.ID_VIVIENDA_EXPRESS, P.ID_VIVIENDA_UNIVERSITARIA, P.ID_HABITACION\r\n" + 
 				"\r\n" + 
@@ -857,8 +895,8 @@ public class DAOPersona {
 				"	    )\r\n" + 
 				"	   \r\n" + 
 				"	)";
-		
-		
+
+
 		ArrayList<Filtro> fs = new ArrayList<>();
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -867,7 +905,7 @@ public class DAOPersona {
 
 
 		while (rs.next()) {
-			
+
 			Filtro f = new Filtro(rs.getLong("ID_PROPUESTA"), rs.getString("FECHA_INICIO_ESTADIA"),
 					rs.getInt("DURACION_CONTRATO"), rs.getLong("ID_APARTAMENTO"), rs.getLong("ID_VIVIENDA_EXPRESS"), rs.getLong("ID_VIVIENDA_UNIVERSITARIA"),
 					rs.getLong("ID_HABITACION"));
@@ -875,9 +913,9 @@ public class DAOPersona {
 			fs.add(f);
 		}
 		return fs;
-		
+
 	}
-	
+
 
 
 
@@ -958,6 +996,48 @@ public class DAOPersona {
 		return props;
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ITERACION 2
+	// SISTEMAS TRANSACCIONALES
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

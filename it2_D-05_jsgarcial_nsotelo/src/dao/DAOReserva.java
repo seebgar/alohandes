@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import tm.BusinessLogicException;
 import vos.Cliente;
@@ -401,6 +402,116 @@ public class DAOReserva {
 
 	}
 
+
+	
+	
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ITERACION 2
+	// SISTEMAS TRANSACCIONALES
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
+	/**
+	 * RF7
+	 * 
+	 * Esta operacion es comun en los casos de eventos masivos (conferencias, foros, festivales,…). El usuario indica
+	 * el tipo de alojamiento deseado y la cantidad deseada, por ejemplo, 100 habitaciones sencillas con ciertos
+	 * servicios deseados. ALOHANDES debe revisar si esta en capacidad de satisfacer esa solicitud, eventualmente
+	 * con varios proveedores, y en caso afirmativo realizar las reservas individuales correspondientes. La reserva
+	 * colectiva es identificable de manera individual. Tanto en caso afirmativo como negativo debe informar de
+	 * manera completa y coherente las operaciones realizadas
+	 * 
+	 * @param id_colectivo_reserva ID que representa una reserva colectiva
+	 * @param dias Cantidad de dias que durara la reserva
+	 * @param tipo_inmueble < HOTEL | HOSTEL | VIVIENDA EXPRESS | APARTAMENTO | VIVIENDA UNIVERSITARIA | HABITACION >
+	 * @param privacidad < COMPARTIDA | SENCILLA >  ; PERO si es HOTEL = < SEMISUITE | SUITE | ESTANDAR >
+	 * @param cantidad_inmuebles Intege que representa la cantidad de Inmuebles en total que se pretenden reservar
+	 * @param servicios_deseados Lista de String que representan los servicios que se desean ::
+	 * { para Hotel/Hostel = < SALA_ESTUDIO | GYM | RESTAURANTE | JACUZZI > } 
+	 * { para inmuebles = < LUZ | TV | AGUA | INTERNET | COMIDA | BAÑO | APOYOSOCIAL | APOYOACADEMICO > } 
+	 * 
+	 * @return LISTA DE RESERVAS REALIZADAS
+	 * @throws SQLException Normalemente por que el SQL no se escribio bien o no cuadra con la base de datos
+	 * 
+	 */
+	public List<Reserva> RF7_registrar_reserva_colectiva ( Long id_colectivo_reserva, Integer dias, String tipo_inmueble, String privacidad , 
+			Integer cantidad_inmuebles, List<String> servicios_deseados ) throws SQLException, BusinessLogicException {
+		// TODO
+		
+		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
+		String cadena_servicios = "( ";
+		
+		for( String serv : servicios_deseados ) {
+			cadena_servicios += "'" + serv.toLowerCase() + "', "; // tiene comillas simples
+		}
+		cadena_servicios = cadena_servicios.substring( 0, cadena_servicios.length() - 2 ); 
+		cadena_servicios += ")";
+		
+		// retorna los ID de propuestas que cumplen con las restricciones de servicios deseados y el tipo de inmueble
+		String propuestas = 
+				"SELECT P.ID " + 
+				"FROM PROPUESTAS P " + 
+				"WHERE UPPER(TIPO_INMUEBLE) = UPPER('" + tipo_inmueble + "') " +  
+				"AND P.ID_" + tipo_inmueble + " " + 
+				"IN ( " + 
+				"SELECT S.ID_" + tipo_inmueble + " " +
+				"FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO " + 
+				"WHERE T.NOMBRE IN " + cadena_servicios + " "  +
+				");" + 
+				"";
+		
+		System.out.println(propuestas);
+		PreparedStatement prepStmt = conn.prepareStatement(propuestas);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		
+		List<Integer> propuestas_id = new ArrayList<>();
+		while( rs.next() ) 
+			propuestas_id.add(rs.getInt("ID"));
+		
+		// <Syso> para mostrar un mensaje en la Interfaz. No se por ahora como mostrarlo
+		// TODO Que se muestre este mensaje en la interfaz el mensaje 
+		if ( propuestas_id.size() < cantidad_inmuebles )
+			System.out.println("El sistema no cuenta con los suficientes inmuebles que se requieren. # " + tipo_inmueble + "s = " + propuestas_id.size());
+		
+		if ( propuestas_id.size() == 0 )
+			throw new BusinessLogicException("El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + cadena_servicios + " para el tipo de inmueble " + tipo_inmueble);
+		
+		//reservas a relaizar
+		List<Reserva> reservas = new ArrayList<>();
+		 
+		DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); // formato fecha SQL
+		Date today = Calendar.getInstance().getTime(); // Fecha en la que se registro la reserva, supone que es el mismo dia de la transaccion        
+		String fecha_registro = df.format(today);
+		
+		propuestas_id.forEach( prop -> {
+			
+			// TODO ID POR RESERVA NUEVA SIN QUE SE REPITA
+			// 06680d37-e537-4a5d-b806-75b0f497980b
+			String uniqueID = UUID.randomUUID().toString();
+			
+			Integer cantidad_personas = (int) (Math.random() * 4) + 1;
+
+			//TODO DE DEONDE SACO ESOOOO
+			Reserva res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
+			
+			reservas.add(res);
+		});
+		
+		
+		// TODO AHORA UN FOR EACH PARA RESERVA Y HACAERLAS LLAMANDO A THIS REGISTRAR RESEVA
+		
+		
+		return null;
+	}
 
 
 
