@@ -485,7 +485,7 @@ public class DAOReserva {
 		if ( propuestas_id.size() == 0 )
 			throw new BusinessLogicException("El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + cadena_servicios + " para el tipo de inmueble " + tipo_inmueble);
 
-		//reservas a relaizar
+		//reservas a realizar
 		List<Reserva> reservas = new ArrayList<>();
 
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); // formato fecha SQL
@@ -498,85 +498,102 @@ public class DAOReserva {
 			// 06680d37-e537-4a5d-b806-75b0f497980b
 			String uniqueID = UUID.randomUUID().toString();
 
+			// no se sabe cuantos van a ocupar por persona, ni el ID de la persona
+			// podria entar un JSON Object con valores ID y Cantidad Personas
 			Integer cantidad_personas = (int) (Math.random() * 4) + 1;
 
 			//TODO DE DEONDE SACO ESOOOO
-			//TODO Preguntar a la propuesta actual su precio subtotal e ir sumando para conseguir el costo_total de la reserva
-			//Reserva res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
+			//TODO Preguntar a la propuesta actual su precio subtotal y sumarle los costos de los servicios para conseguir el costo_total de la reserva
+			Reserva res = null;
+			//res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
 
-			//reservas.add(res);
+			reservas.add(res);
 		});
 
 
 		// TODO AHORA UN FOR EACH PARA RESERVA Y HACAERLAS LLAMANDO A THIS REGISTRAR RESEVA
+		reservas.forEach( reserva -> {
+			try {
+				this.registrarReserva(reserva);
+			} catch (Exception e) {
+				System.out.println("FAIL CREANDO RESERVA COLECTIVA RF8");
+				e.printStackTrace();
+			}
+		});
 
 
-		return null;
+		return reservas;
 	}
 
 
 	/**
+	 * RF8
+	 * 
+	 * 
 	 * Operación inversa al registro colectivo de reserva . 
 	 * El usuario indica la reserva colectiva que quiere cancelar y ALOHANDES 
 	 * cancela las reservas individuales correspondientes y
-	 *  calcula también las penalizaciones correspondientes.
-	 *@param id_colectivo_reserva id de la reserva colectiva que se quiere cancelar
+	 * calcula también las penalizaciones correspondientes.
+	 * @param id_colectivo_reserva id de la reserva colectiva que se quiere cancelar
 	 * @throws Exception 
 	 */
 
-	public void cancelarReservaColectiva( Long id_colectivo_reserva) throws Exception
-	{
-
+	public void cancelarReservaColectiva( Long id_colectivo_reserva) throws Exception {
 		List<Reserva> reservas_a_cancelar= new ArrayList<>();
-		
-		String sentecnia = "SELECT * FROM RESERVAS R WHERE R.ID_COLECTIVO = "+id_colectivo_reserva;
+
+		String sentecnia = "SELECT * FROM RESERVAS R WHERE R.ID_COLECTIVO = " + id_colectivo_reserva;
 		System.out.println(sentecnia);
-		
+
 		PreparedStatement prepStmt = conn.prepareStatement(sentecnia);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
-				
+
 		while (rs.next())
 			reservas_a_cancelar.add(convertResultSetTo_Reserva(rs));
-		
-		for ( Reserva reserva : reservas_a_cancelar)
-		{
+
+		for ( Reserva reserva : reservas_a_cancelar) {
 			PreparedStatement sentenciaParaCancelar;
 			try {
-				sentenciaParaCancelar = conn.prepareStatement("UPDATE RESERVAS SET ID_COLECTIVO = NULL WHERE ID=?");
-				System.out.println(reserva.getId());
+				
+				sentenciaParaCancelar = conn.prepareStatement("UPDATE RESERVAS SET ID_COLECTIVO = NULL WHERE ID = ?");
 				sentenciaParaCancelar.setLong(1, reserva.getId());
 				System.out.println(sentenciaParaCancelar);
 				sentenciaParaCancelar.executeUpdate();
 				try {
 					cancelarReserva(reserva);
 				} catch (Exception e) {
-					
 					System.out.println("FAIL ELIMIANDO DESDE RF8");
+					e.printStackTrace();
 				}
-			} catch (SQLException e) {
 				
+			} catch (SQLException e) {
 				System.out.println("FAIL SQL< ELIMIANDO DESDE RF8");
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 
-	public List<Reserva> getReservasColectivas(Long id_colectiva) throws Exception
-	{
+	
+	/**
+	 * Retorna todas las reservas que se hicieron de manera colectiva ::
+	 * por id colevtivo
+	 * @param id_colectiva
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Reserva> getReservasColectivas(Long id_colectivo) throws Exception {
 		List<Reserva> rta= new ArrayList<>();
 		PreparedStatement sentenciaParaBuscar;
-		
-		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas where id_colectivo= ?");
-		sentenciaParaBuscar.setLong(1, id_colectiva);
+
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo = ?");
+		sentenciaParaBuscar.setLong(1, id_colectivo);
 		ResultSet rs = sentenciaParaBuscar.executeQuery();
-		
+
 		while (rs.next())
 			rta.add(convertResultSetTo_Reserva(rs));
-	return rta;
 		
-		
+		return rta;
 	}
 
 

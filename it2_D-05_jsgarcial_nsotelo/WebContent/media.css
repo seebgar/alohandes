@@ -1,0 +1,53 @@
+
+header {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.60)), to(rgba(0, 0, 0, 0.40))), url(resources/bogota.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.40)), url(resources/bogota.jpg);
+    /*background-attachment: fixed;*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 105vh;
+}
+
+
+
+.c1_text_box {
+    margin-top: 2em;
+    text-align: center;
+    -webkit-transform: scale(1.7);
+    transform: scale(1.7)
+}
+
+.c1_text_box > .btn:link,
+.c1_text_box > .btn:visited {
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    padding: 0.3em 0.9em;
+    font-weight: 400;
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+.btn_main:link,
+.btn_main:visited, 
+.btn_sec:link,
+.btn_sec:visited {
+    border: 1px solid whitesmoke;
+    border-radius: 10em;
+    color: whitesmoke;
+    margin-right: 0.7em;
+}
+.btn_main:hover,
+.btn_sec:hover {
+    border: 1px solid whitesmoke;
+    background-color: whitesmoke;
+    border-radius: 10em;
+    color: whitesmoke;
+}
+    
+.logo {
+    width: 30em;
+    margin: auto;
+    display: block;
+    padding-top: 10em;
+}
