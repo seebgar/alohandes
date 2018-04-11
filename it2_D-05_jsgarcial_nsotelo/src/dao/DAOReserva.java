@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
+import tm.AlohandesTransactionManager;
 import tm.BusinessLogicException;
 import vos.Cliente;
 import vos.Persona;
@@ -220,9 +220,9 @@ public class DAOReserva {
 			throw new BusinessLogicException("La reserva con id = " + reserva.getId() + " tiene una propuesta id = " + id_prop + " invalido");
 
 		try {
-			
+
 			Propuesta prop = dao.getPropuestaById( id_prop );
-			
+
 			if ( prop != null ) {
 				if ( prop.getTipo_inmueble().equalsIgnoreCase("Apartamento") || 
 						prop.getTipo_inmueble().equalsIgnoreCase("Habiatcion") || 
@@ -237,14 +237,14 @@ public class DAOReserva {
 				cal.add(Calendar.DAY_OF_YEAR, -3);
 				fecha_limite = cal.getTime();
 			}
-			
+
 			this.cancelarReserva_Auxiliar(cal, actual, fecha_limite, fecha_inicio_estadia, reserva, multa);
-			
+
 		} catch (Exception e) {
-			
+
 			cal.add(Calendar.DAY_OF_YEAR, -3);
 			fecha_limite = cal.getTime();
-			
+
 			this.cancelarReserva_Auxiliar(cal, actual, fecha_limite, fecha_inicio_estadia, reserva, multa);
 		}
 
@@ -267,7 +267,7 @@ public class DAOReserva {
 	 * @throws SQLException
 	 */
 	public void cancelarReserva_Auxiliar( Calendar cal, Date actual, Date fecha_limite, Date  fecha_inicio_estadia, Reserva reserva, Double multa  ) throws SQLException {
-	
+
 		// Determina los percentajes
 		if ( actual.before(fecha_inicio_estadia) && actual.after(fecha_limite) ) {
 			multa = reserva.getCosto_total() * 0.30;
@@ -290,8 +290,8 @@ public class DAOReserva {
 		// Se le asigna la multa a la persona correspondiente
 		String sql = String.format(
 				"UPDATE PERSONAS P "
-				+ "SET COSTO_MULTA = " + reserva.getCosto_total()
-				+ " WHERE P.ID = " + reserva.getId_cliente()
+						+ "SET COSTO_MULTA = " + reserva.getCosto_total()
+						+ " WHERE P.ID = " + reserva.getId_cliente()
 				);
 		System.out.println(sql);
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -301,7 +301,7 @@ public class DAOReserva {
 		// Se elimina la reserva de la base de datos
 		String delete = String.format(
 				"DELETE FROM RESERVAS R "
-				+ "WHERE R.ID = " + reserva.getId());
+						+ "WHERE R.ID = " + reserva.getId());
 		System.out.println(delete);
 		PreparedStatement delete_sql = conn.prepareStatement(delete);
 		recursos.add(delete_sql);
@@ -403,8 +403,8 @@ public class DAOReserva {
 	}
 
 
-	
-	
+
+
 
 
 
@@ -418,7 +418,7 @@ public class DAOReserva {
 	// SISTEMAS TRANSACCIONALES
 	//----------------------------------------------------------------------------------------------------------------------------------
 
-	
+
 	/**
 	 * RF7
 	 * 
@@ -445,81 +445,139 @@ public class DAOReserva {
 	public List<Reserva> RF7_registrar_reserva_colectiva ( Long id_colectivo_reserva, Integer dias, String tipo_inmueble, String privacidad , 
 			Integer cantidad_inmuebles, List<String> servicios_deseados ) throws SQLException, BusinessLogicException {
 		// TODO
-		
+
 		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
 		String cadena_servicios = "( ";
-		
+
 		for( String serv : servicios_deseados ) {
 			cadena_servicios += "'" + serv.toLowerCase() + "', "; // tiene comillas simples
 		}
 		cadena_servicios = cadena_servicios.substring( 0, cadena_servicios.length() - 2 ); 
 		cadena_servicios += ")";
-		
+
 		// retorna los ID de propuestas que cumplen con las restricciones de servicios deseados y el tipo de inmueble
 		String propuestas = 
 				"SELECT P.ID " + 
-				"FROM PROPUESTAS P " + 
-				"WHERE UPPER(TIPO_INMUEBLE) = UPPER('" + tipo_inmueble + "') " +  
-				"AND P.ID_" + tipo_inmueble + " " + 
-				"IN ( " + 
-				"SELECT S.ID_" + tipo_inmueble + " " +
-				"FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO " + 
-				"WHERE T.NOMBRE IN " + cadena_servicios + " "  +
-				");" + 
-				"";
-		
+						"FROM PROPUESTAS P " + 
+						"WHERE UPPER(TIPO_INMUEBLE) = UPPER('" + tipo_inmueble + "') " +  
+						"AND P.ID_" + tipo_inmueble + " " + 
+						"IN ( " + 
+						"SELECT S.ID_" + tipo_inmueble + " " +
+						"FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO " + 
+						"WHERE T.NOMBRE IN " + cadena_servicios + " "  +
+						");" + 
+						"";
+
 		System.out.println(propuestas);
 		PreparedStatement prepStmt = conn.prepareStatement(propuestas);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
-		
+
 		List<Integer> propuestas_id = new ArrayList<>();
 		while( rs.next() ) 
 			propuestas_id.add(rs.getInt("ID"));
-		
+
 		// <Syso> para mostrar un mensaje en la Interfaz. No se por ahora como mostrarlo
 		// TODO Que se muestre este mensaje en la interfaz el mensaje 
 		if ( propuestas_id.size() < cantidad_inmuebles )
 			System.out.println("El sistema no cuenta con los suficientes inmuebles que se requieren. # " + tipo_inmueble + "s = " + propuestas_id.size());
-		
+
 		if ( propuestas_id.size() == 0 )
 			throw new BusinessLogicException("El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + cadena_servicios + " para el tipo de inmueble " + tipo_inmueble);
-		
+
 		//reservas a relaizar
 		List<Reserva> reservas = new ArrayList<>();
-		 
+
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); // formato fecha SQL
 		Date today = Calendar.getInstance().getTime(); // Fecha en la que se registro la reserva, supone que es el mismo dia de la transaccion        
 		String fecha_registro = df.format(today);
-		
+
 		propuestas_id.forEach( prop -> {
-			
+
 			// TODO ID POR RESERVA NUEVA SIN QUE SE REPITA
 			// 06680d37-e537-4a5d-b806-75b0f497980b
 			String uniqueID = UUID.randomUUID().toString();
-			
+
 			Integer cantidad_personas = (int) (Math.random() * 4) + 1;
 
 			//TODO DE DEONDE SACO ESOOOO
-			Reserva res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
-			
-			reservas.add(res);
+			//TODO Preguntar a la propuesta actual su precio subtotal e ir sumando para conseguir el costo_total de la reserva
+			//Reserva res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
+
+			//reservas.add(res);
 		});
-		
-		
+
+
 		// TODO AHORA UN FOR EACH PARA RESERVA Y HACAERLAS LLAMANDO A THIS REGISTRAR RESEVA
-		
-		
+
+
 		return null;
 	}
 
 
+	/**
+	 * Operación inversa al registro colectivo de reserva . 
+	 * El usuario indica la reserva colectiva que quiere cancelar y ALOHANDES 
+	 * cancela las reservas individuales correspondientes y
+	 *  calcula también las penalizaciones correspondientes.
+	 *@param id_colectivo_reserva id de la reserva colectiva que se quiere cancelar
+	 * @throws Exception 
+	 */
 
+	public void cancelarReservaColectiva( Long id_colectivo_reserva) throws Exception
+	{
 
+		List<Reserva> reservas_a_cancelar= new ArrayList<>();
+		
+		String sentecnia = "SELECT * FROM RESERVAS R WHERE R.ID_COLECTIVO = "+id_colectivo_reserva;
+		System.out.println(sentecnia);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sentecnia);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+				
+		while (rs.next())
+			reservas_a_cancelar.add(convertResultSetTo_Reserva(rs));
+		
+		for ( Reserva reserva : reservas_a_cancelar)
+		{
+			PreparedStatement sentenciaParaCancelar;
+			try {
+				sentenciaParaCancelar = conn.prepareStatement("UPDATE RESERVAS SET ID_COLECTIVO = NULL WHERE ID=?");
+				System.out.println(reserva.getId());
+				sentenciaParaCancelar.setLong(1, reserva.getId());
+				System.out.println(sentenciaParaCancelar);
+				sentenciaParaCancelar.executeUpdate();
+				try {
+					cancelarReserva(reserva);
+				} catch (Exception e) {
+					
+					System.out.println("FAIL ELIMIANDO DESDE RF8");
+				}
+			} catch (SQLException e) {
+				
+				System.out.println("FAIL SQL< ELIMIANDO DESDE RF8");
+				e.printStackTrace();
+			}
+			
+		}
+	}
 
-
-
-
+	public List<Reserva> getReservasColectivas(Long id_colectiva) throws Exception
+	{
+		List<Reserva> rta= new ArrayList<>();
+		PreparedStatement sentenciaParaBuscar;
+		
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas where id_colectivo= ?");
+		sentenciaParaBuscar.setLong(1, id_colectiva);
+		ResultSet rs = sentenciaParaBuscar.executeQuery();
+		
+		while (rs.next())
+			rta.add(convertResultSetTo_Reserva(rs));
+	return rta;
+		
+		
+	}
 
 
 

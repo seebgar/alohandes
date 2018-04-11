@@ -77,7 +77,7 @@ public class ReservaService {
 		}
 
 	}
-	
+
 	/**
 	 * Todas las reservas por cliente
 	 * @param pIDCliente
@@ -86,7 +86,7 @@ public class ReservaService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response get_Reservas (@PathParam ("idCliente") Long pIDCliente) {
-		
+
 		try {
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 
@@ -96,7 +96,7 @@ public class ReservaService {
 		{
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
 		}
-		
+
 	}
 
 	/**
@@ -137,11 +137,11 @@ public class ReservaService {
 	public Response cancelarReserva(Reserva reserva) {
 
 		try {
-			
+
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 			tm.cancelarReserva(reserva);
 			return Response.status( 200 ).entity(reserva).build();
-			
+
 		} catch (Exception e) {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}
