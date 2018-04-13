@@ -178,6 +178,8 @@ public class DAOReserva {
 		System.out.println(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery(); //se inserta la reserva
+		
+		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
 
 	}
 
@@ -308,6 +310,8 @@ public class DAOReserva {
 		PreparedStatement delete_sql = conn.prepareStatement(delete);
 		recursos.add(delete_sql);
 		delete_sql.executeQuery();
+		
+		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
 	}
 
 
