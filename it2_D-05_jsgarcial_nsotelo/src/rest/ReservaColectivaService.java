@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,7 +23,7 @@ import vos.Reserva;
 
 @Path("reservasColectivas")
 public class ReservaColectivaService {
-	
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// ATRIBUTOS
 	//----------------------------------------------------------------------------------------------------------------------------------
@@ -51,10 +52,10 @@ public class ReservaColectivaService {
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODOS REST
 	//----------------------------------------------------------------------------------------------------------------------------------
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * RF7
 	 * 
@@ -67,22 +68,42 @@ public class ReservaColectivaService {
 	public Response RF7_Registrar_Reserva_Colectiva( Colectivo reserva ) {
 
 		try {
-			
+
 			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
 			tm.RF7_registrar_reserva_colectiva(reserva);
 			return Response.status(200).entity(reserva).build();
-			
+
 		}catch( Exception e ){
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+	/**
+	 * Obtener todas las reservas colectivas 
+	 * @return 
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getReservasColectivas() {
+
+		try {
+
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			List<Reserva> red = tm.obtenerTodasLasReservasColectivas();
+
+			return Response.status(200).entity(red).build();
+
+		}catch( Exception e ){
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
+
+
+
+
 	/**
 	 * RF8
 	 * 
@@ -103,10 +124,10 @@ public class ReservaColectivaService {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

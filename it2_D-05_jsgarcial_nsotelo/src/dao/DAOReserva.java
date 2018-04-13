@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -158,7 +159,7 @@ public class DAOReserva {
 
 		//sentencia para insertar la resrva en la base de datos
 		int hay_m = reserva.getHayMulta().toString().equals("true") ? 1 : 0;
-		String xx = reserva.getFecha_cancelacion() == null ? "null" : reserva.getFecha_cancelacion(); // TODO
+		String xx = reserva.getFecha_cancelacion() == null ? "null" : reserva.getFecha_cancelacion(); 
 		String sql = "INSERT INTO RESERVAS  " + 
 				"( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA, ID_COLECTIVO ) " + 
 				"VALUES " + 
@@ -318,6 +319,12 @@ public class DAOReserva {
 		delete_sql.executeQuery();
 
 		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
+		PreparedStatement estado = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE PROPUESTA.ID=? ");            
+		estado.setLong(1, reserva.getId_propuesta());
+		recursos.add(estado);
+		estado.executeQuery();
+
+
 	}
 
 
@@ -455,7 +462,6 @@ public class DAOReserva {
 	 * 
 	 */
 	public List<Reserva> RF7_registrar_reserva_colectiva ( Colectivo reserva_colectiva ) throws Exception {
-		// TODO
 
 		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
 		String cadena_servicios = "( ";
@@ -529,8 +535,7 @@ public class DAOReserva {
 			suma--;
 		}
 
-
-		// TODO AHORA UN FOR EACH PARA RESERVA Y HACAERLAS LLAMANDO A THIS REGISTRAR RESEVA
+		//REALIZA EFECTIVAMENTE LA RESERVA EN EL SISTEMA
 		reservas.forEach( reserva -> {
 			try {
 				this.registrarReserva(reserva);
@@ -601,19 +606,62 @@ public class DAOReserva {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Reserva> getReservasColectivas(Long id_colectivo) throws Exception {
+	public List<Reserva> getReservasColectivas() throws Exception {
 		List<Reserva> rta= new ArrayList<>();
 		PreparedStatement sentenciaParaBuscar;
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null");
 
-		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo = ?");
-		sentenciaParaBuscar.setLong(1, id_colectivo);
 		ResultSet rs = sentenciaParaBuscar.executeQuery();
-
 		while (rs.next())
 			rta.add(convertResultSetTo_Reserva(rs));
 
 		return rta;
 	}
+
+
+
+
+
+
+
+
+	/**
+	 * RF9
+	 * 
+	 * Esta operación se hace necesaria cuando por motivos externos (obras internas de mantenimiento, orden
+	 * público, etc.) una oferta de alojamiento debe deshabilitarse de manera temporal. Las reservas vigentes sobre
+	 * esa oferta de alojamiento deben entonces relocalizarse en las otras ofertas de alojamiento disponibles en
+	 * ALOHANDES, dando prioridad a las vigentes en el momento que se realiza la operación y luego en el orden en
+	 * que fueron realizadas las reservas. Siendo un caso excepcional, las reservas colectivas involucradas deben
+	 * desagregarse a las reservas individuales correspondientes y puede haber reservas que no pueden ser
+	 * satisfechas con la oferta disponible en el momento que se realiza la operación. ALOHANDES debe informar de
+	 * manera completa y clara las operaciones realizadas, tanto el traslado exitoso de reservas como las reservas
+	 * que no pudieron ser trasladadas. La oferta de alojamiento en cuestión no debe ser tenida en cuenta para
+	 * reservas mientras no se haya rehabilitado (ver RF10)
+	 * @param propuesta
+	 * @return
+	 */
+	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) {
+
+		Date hoy = new Date();
+
+		//		String fecha = reserva.getFecha_inicio_estadia();
+		//		DateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		//		Date fecha_inicio_estadia = format.parse(fecha);
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(hoy);
+
+
+		return null;
+
+	}
+
+
+
+
+
+
 
 
 
