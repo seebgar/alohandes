@@ -14,9 +14,11 @@ import java.util.UUID;
 import tm.AlohandesTransactionManager;
 import tm.BusinessLogicException;
 import vos.Cliente;
+import vos.Colectivo;
 import vos.Persona;
 import vos.Propuesta;
 import vos.Reserva;
+import vos.UsuarioEnColectivo;
 
 
 /**
@@ -442,18 +444,19 @@ public class DAOReserva {
 	 * @throws SQLException Normalemente por que el SQL no se escribio bien o no cuadra con la base de datos
 	 * 
 	 */
-	public List<Reserva> RF7_registrar_reserva_colectiva ( Long id_colectivo_reserva, Integer dias, String tipo_inmueble, String privacidad , 
-			Integer cantidad_inmuebles, List<String> servicios_deseados ) throws SQLException, BusinessLogicException {
+	public List<Reserva> RF7_registrar_reserva_colectiva ( Colectivo reserva_colectiva ) throws SQLException, BusinessLogicException {
 		// TODO
 
 		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
 		String cadena_servicios = "( ";
 
-		for( String serv : servicios_deseados ) {
+		for( String serv : reserva_colectiva.getServicios_deseados() ) {
 			cadena_servicios += "'" + serv.toLowerCase() + "', "; // tiene comillas simples
 		}
 		cadena_servicios = cadena_servicios.substring( 0, cadena_servicios.length() - 2 ); 
 		cadena_servicios += ")";
+
+		String tipo_inmueble = reserva_colectiva.getTipo_inmueble();
 
 		// retorna los ID de propuestas que cumplen con las restricciones de servicios deseados y el tipo de inmueble
 		String propuestas = 
@@ -479,7 +482,7 @@ public class DAOReserva {
 
 		// <Syso> para mostrar un mensaje en la Interfaz. No se por ahora como mostrarlo
 		// TODO Que se muestre este mensaje en la interfaz el mensaje 
-		if ( propuestas_id.size() < cantidad_inmuebles )
+		if ( propuestas_id.size() < reserva_colectiva.getCantidad_inmuebles() )
 			System.out.println("El sistema no cuenta con los suficientes inmuebles que se requieren. # " + tipo_inmueble + "s = " + propuestas_id.size());
 
 		if ( propuestas_id.size() == 0 )
@@ -492,23 +495,28 @@ public class DAOReserva {
 		Date today = Calendar.getInstance().getTime(); // Fecha en la que se registro la reserva, supone que es el mismo dia de la transaccion        
 		String fecha_registro = df.format(today);
 
-		propuestas_id.forEach( prop -> {
-
-			// TODO ID POR RESERVA NUEVA SIN QUE SE REPITA
-			// 06680d37-e537-4a5d-b806-75b0f497980b
-			String uniqueID = UUID.randomUUID().toString();
-
-			// no se sabe cuantos van a ocupar por persona, ni el ID de la persona
-			// podria entar un JSON Object con valores ID y Cantidad Personas
-			Integer cantidad_personas = (int) (Math.random() * 4) + 1;
-
-			//TODO DE DEONDE SACO ESOOOO
-			//TODO Preguntar a la propuesta actual su precio subtotal y sumarle los costos de los servicios para conseguir el costo_total de la reserva
-			Reserva res = null;
-			//res = new Reserva(id, fecha_registro, null, fecha_inicio_estadia, dias, costo_total, cantidad_personas, 0, 0, prop, cliente, id_colectivo_reserva);
-
-			reservas.add(res);
-		});
+		int suma = reserva_colectiva.getCantidad_inmuebles();
+		
+		PROPUESTAS : for ( Integer prop : propuestas_id ) {
+			if ( suma > 0 ) {
+				UsuarioEnColectivo usuario = reserva_colectiva.getUusuarios().get(suma);
+				
+				// id reserva / fecha registro / fecha cancelacion / fecha inicio estadia / duracion / costo total / cantidad personas / hay multa / valor multa / propuesta / cliente / id colectivo
+				try {
+				Reserva res = new Reserva(usuario.getId_reserva(), fecha_registro, null, reserva_colectiva.getFecha_inicio_estadia(), 
+						reserva_colectiva.getDuracion(), this.getReservaById(usuario.getId_reserva()).getCosto_total(), 
+						usuario.getCantidad_personas(), false, 0.0, Long.parseLong(""+prop), usuario.getId(), 
+						reserva_colectiva.getId());
+				reservas.add(res);
+				} catch (Exception e) {
+					System.out.println("FAIL CRENADO RESERVA COLECTIVA EN RF 7");
+					e.printStackTrace();
+					break PROPUESTAS;
+				}
+			} else 
+				break PROPUESTAS;
+			suma--;
+		}
 
 
 		// TODO AHORA UN FOR EACH PARA RESERVA Y HACAERLAS LLAMANDO A THIS REGISTRAR RESEVA
@@ -516,7 +524,7 @@ public class DAOReserva {
 			try {
 				this.registrarReserva(reserva);
 			} catch (Exception e) {
-				System.out.println("FAIL CREANDO RESERVA COLECTIVA RF8");
+				System.out.println("FAIL CREANDO RESERVA COLECTIVA RF7");
 				e.printStackTrace();
 			}
 		});
@@ -554,7 +562,7 @@ public class DAOReserva {
 		for ( Reserva reserva : reservas_a_cancelar) {
 			PreparedStatement sentenciaParaCancelar;
 			try {
-				
+
 				sentenciaParaCancelar = conn.prepareStatement("UPDATE RESERVAS SET ID_COLECTIVO = NULL WHERE ID = ?");
 				sentenciaParaCancelar.setLong(1, reserva.getId());
 				System.out.println(sentenciaParaCancelar);
@@ -565,7 +573,7 @@ public class DAOReserva {
 					System.out.println("FAIL ELIMIANDO DESDE RF8");
 					e.printStackTrace();
 				}
-				
+
 			} catch (SQLException e) {
 				System.out.println("FAIL SQL< ELIMIANDO DESDE RF8");
 				e.printStackTrace();
@@ -574,7 +582,7 @@ public class DAOReserva {
 		}
 	}
 
-	
+
 	/**
 	 * Retorna todas las reservas que se hicieron de manera colectiva ::
 	 * por id colevtivo
@@ -592,7 +600,7 @@ public class DAOReserva {
 
 		while (rs.next())
 			rta.add(convertResultSetTo_Reserva(rs));
-		
+
 		return rta;
 	}
 

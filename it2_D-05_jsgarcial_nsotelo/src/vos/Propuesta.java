@@ -114,6 +114,8 @@ public class Propuesta {
 	 */
 	@JsonProperty(value="cantidad_dias_disponibles")
 	private Integer cantidad_dias_disponibles;
+	
+	
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// METODO CONSTRUCTOR

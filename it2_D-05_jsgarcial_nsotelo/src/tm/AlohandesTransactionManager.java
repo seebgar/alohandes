@@ -21,6 +21,7 @@ import java.util.Properties;
 
 import dao.DAOPersona;
 import dao.DAOReserva;
+import vos.Colectivo;
 import vos.DineroOperador;
 import vos.Filtro;
 import vos.Indice;
@@ -625,8 +626,8 @@ public class AlohandesTransactionManager {
 			}
 		}	
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param id
@@ -755,7 +756,7 @@ public class AlohandesTransactionManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * lO MISMO PERO POR ID
 	 * @param reserva
@@ -883,7 +884,7 @@ public class AlohandesTransactionManager {
 		}
 	}
 
-	
+
 	/**
 	 * Mismo pero por id
 	 * @param propuesta
@@ -1026,7 +1027,7 @@ public class AlohandesTransactionManager {
 
 
 
-	
+
 	/**
 	 * RFC 3
 	 * TODO
@@ -1072,8 +1073,8 @@ public class AlohandesTransactionManager {
 
 		return ss;
 	}
-	
-	
+
+
 	/**
 	 * RFC 4
 	 * TODO
@@ -1132,7 +1133,7 @@ public class AlohandesTransactionManager {
 	// PRIVACIDAD
 	//----------------------------------------------------------------------------------------------------------------------------------
 
-	
+
 	/**
 	 * Rettorna las reservas de una perosna por id
 	 * @return
@@ -1223,12 +1224,76 @@ public class AlohandesTransactionManager {
 	}
 
 
-/**
- * Metodo que permite cancelar una reserva colectiva (RF8)
- * @param  id_colectivo_reserva id de la reserva colectiva que se quiere cancelar.
- * 
- */
-	public void cancelarReservaColectiva(Long  id_colectivo_reserva )throws Exception 
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ITERACION 2
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+	/**
+	 * RF 7
+	 * 
+	 * Registra una reserva de forma colectiva
+	 * @param reserva_colectiva
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Reserva> RF7_registrar_reserva_colectiva( Colectivo reserva_colectiva ) throws Exception{
+
+		DAOReserva dao= new DAOReserva();
+		List<Reserva> reservas = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			reservas = dao.RF7_registrar_reserva_colectiva(reserva_colectiva);	
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return reservas;
+	}
+
+
+
+
+
+
+
+	/**
+	 * Metodo que permite cancelar una reserva colectiva (RF8)
+	 * @param  id_colectivo_reserva id de la reserva colectiva que se quiere cancelar.
+	 * 
+	 */
+	public void RF8_cancelarReservaColectiva(Long  id_colectivo_reserva )throws Exception 
 	{
 		DAOReserva dao= new DAOReserva();
 		try
@@ -1262,14 +1327,14 @@ public class AlohandesTransactionManager {
 				throw exception;
 			}
 		}		
-	
-	
-	
-	
-	
+
+
+
+
+
 	}
-	
-	
+
+
 
 
 
