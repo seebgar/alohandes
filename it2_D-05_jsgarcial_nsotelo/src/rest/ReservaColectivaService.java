@@ -69,8 +69,8 @@ public class ReservaColectivaService {
 		try {
 			
 			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
-			List<Reserva> red = tm.RF7_registrar_reserva_colectiva(reserva);
-			return Response.status(200).entity(red).build();
+			tm.RF7_registrar_reserva_colectiva(reserva);
+			return Response.status(200).entity(reserva).build();
 			
 		}catch( Exception e ){
 			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );

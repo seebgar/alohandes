@@ -1262,7 +1262,7 @@ public class AlohandesTransactionManager {
 			throw sqlException;
 		} 
 		catch (Exception exception) {
-			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
 			exception.printStackTrace();
 			throw exception;
 		} 

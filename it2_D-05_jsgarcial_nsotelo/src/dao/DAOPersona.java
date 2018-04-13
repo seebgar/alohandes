@@ -165,12 +165,12 @@ public class DAOPersona {
 		Propuesta propuesta = null;
 
 		System.out.println( id + " >>>>>>>>>>>>>>>>>> ES EL ID DE LA PROPUESTA SE SE PIENSA BUSCAR >>>>>>>>>>>>>>>>>>>>>>>>");
-		String sql = "SELECT * FROM PROPUESTAS WHERE ID = " + id; 
-		System.out.println(sql + " <<<<<<<<<<<<<<<<<<< sql busqueda de propuesta >>>>>>>>>>>>>>>>>>>>>");
+		String sql = "SELECT * FROM PROPUESTAS p WHERE p.ID = " + id; 
+		System.out.println(sql + "\n <<<<<<<<<<<<<<<<<<< sql busqueda de propuesta >>>>>>>>>>>>>>>>>>>>>");
 
-		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		recursos.add(prepStmt);
-		ResultSet rs = prepStmt.executeQuery();
+		PreparedStatement mt = conn.prepareStatement(sql);
+		recursos.add(mt);
+		ResultSet rs = mt.executeQuery();
 
 		System.out.println(" <<<<<<<<<<<<<<<<<<< ahora se va a hacer la covercion de json a objeto propuesta >>>>>>>>>>>>>>>>>>>>>");
 		if(rs.next()) {
@@ -636,9 +636,10 @@ public class DAOPersona {
 		String fecha_inicio_disponibilidad=resultSet.getString("FECHA_INICIO_DISPONIBILIDAD");
 		String fecha_fin_disponibilidad=resultSet.getString("FECHA_FINAL_DISPONIBILIDAD");
 		Integer dias_disponibilidad=resultSet.getInt("CANTIDAD_DIAS_DISPONIBLE");
+		Double sub_total = resultSet.getDouble("SUB_TOTAL");
 
 
-		Propuesta prop = new Propuesta(id, tipo_inmueble, capacidad, id_persona,dias_disponibilidad,fecha_inicio_disponibilidad,fecha_fin_disponibilidad,disponible);
+		Propuesta prop = new Propuesta(id, tipo_inmueble, capacidad, id_persona,dias_disponibilidad,fecha_inicio_disponibilidad,fecha_fin_disponibilidad,disponible, sub_total);
 
 		if ( Propuesta.TIPO_INMUEBLE.APARTAMENTO.toString().equalsIgnoreCase(tipo_inmueble) ) {
 			String sql = String.format("SELECT * FROM %1$s.APARTAMENTOS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_APARTAMENTO"));

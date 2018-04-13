@@ -141,7 +141,7 @@ public class DAOReserva {
 		for(Reserva res: reservasEnFecha) {
 			Persona cliente = dao.get_Persona_ById(res.getId_cliente());
 			if( solicitado.getId() == cliente.getId() )
-				throw new BusinessLogicException("No puede hacer mas reservas el mismo dia");
+				throw new BusinessLogicException("No puede hacer mas reservas el mismo dia :: ID = " + solicitado.getId() );
 		}
 
 
@@ -178,8 +178,14 @@ public class DAOReserva {
 		System.out.println(sql);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery(); //se inserta la reserva
-		
-		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
+
+		//  CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
+
+		String update = "UPDATE PROPUESTAS P SET P.DISPONIBLE = 0 WHERE P.ID = " + reserva.getId_propuesta();
+		PreparedStatement up = conn.prepareStatement(update);
+		System.out.println(update);
+		recursos.add(up);
+		up.executeQuery();
 
 	}
 
@@ -310,7 +316,7 @@ public class DAOReserva {
 		PreparedStatement delete_sql = conn.prepareStatement(delete);
 		recursos.add(delete_sql);
 		delete_sql.executeQuery();
-		
+
 		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
 	}
 
@@ -445,10 +451,10 @@ public class DAOReserva {
 	 * { para inmuebles = < LUZ | TV | AGUA | INTERNET | COMIDA | BAÑO | APOYOSOCIAL | APOYOACADEMICO > } 
 	 * 
 	 * @return LISTA DE RESERVAS REALIZADAS
-	 * @throws SQLException Normalemente por que el SQL no se escribio bien o no cuadra con la base de datos
+	 * @throws Exception 
 	 * 
 	 */
-	public List<Reserva> RF7_registrar_reserva_colectiva ( Colectivo reserva_colectiva ) throws SQLException, BusinessLogicException {
+	public List<Reserva> RF7_registrar_reserva_colectiva ( Colectivo reserva_colectiva ) throws Exception {
 		// TODO
 
 		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
@@ -472,7 +478,7 @@ public class DAOReserva {
 						"SELECT S.ID_" + tipo_inmueble + " " +
 						"FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO " + 
 						"WHERE T.NOMBRE IN " + cadena_servicios + " "  +
-						");" + 
+						")" + 
 						"";
 
 		System.out.println(propuestas);
@@ -500,23 +506,24 @@ public class DAOReserva {
 		String fecha_registro = df.format(today);
 
 		int suma = reserva_colectiva.getCantidad_inmuebles();
-		
+		DAOPersona dao = new DAOPersona();
+		dao.setConn(this.conn);
+
 		PROPUESTAS : for ( Integer prop : propuestas_id ) {
 			if ( suma > 0 ) {
 				UsuarioEnColectivo usuario = reserva_colectiva.getUusuarios().get(suma);
-				
+
+				Propuesta pp = dao.getPropuestaById(prop.longValue());
+				Double xx = pp == null ? Math.random() * 1000000 :  pp.getSub_total();
+
 				// id reserva / fecha registro / fecha cancelacion / fecha inicio estadia / duracion / costo total / cantidad personas / hay multa / valor multa / propuesta / cliente / id colectivo
-				try {
+
 				Reserva res = new Reserva(usuario.getId_reserva(), fecha_registro, null, reserva_colectiva.getFecha_inicio_estadia(), 
-						reserva_colectiva.getDuracion(), this.getReservaById(usuario.getId_reserva()).getCosto_total(), 
+						reserva_colectiva.getDuracion(), xx , 
 						usuario.getCantidad_personas(), false, 0.0, Long.parseLong(""+prop), usuario.getId(), 
 						reserva_colectiva.getId());
 				reservas.add(res);
-				} catch (Exception e) {
-					System.out.println("FAIL CRENADO RESERVA COLECTIVA EN RF 7");
-					e.printStackTrace();
-					break PROPUESTAS;
-				}
+
 			} else 
 				break PROPUESTAS;
 			suma--;

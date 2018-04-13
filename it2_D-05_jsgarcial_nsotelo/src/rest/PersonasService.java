@@ -438,6 +438,28 @@ public class PersonasService {
 
 
 
+	
+	
+	/**
+	 * @return
+	 */
+	@GET
+	@Path( "/propuestas/{id: \\d+}" )
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response get_propuesta_porId( @PathParam( "id" ) Long id  ){
+
+		try{
+			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+			
+
+			return Response.status( 200 ).entity( tm.getPropuestaById(id) ).build( );			
+		}
+		catch( Exception e )
+		{
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
 
 
 
