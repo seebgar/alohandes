@@ -47,10 +47,10 @@ tr:nth-child(even) {
       </tr>
 
       <tr ng-repeat="reserva in reservas"  >
-          <td><a >{{reserva}}</a></td>
-          <td>{{reserva}}</td>
-          <td>{{reserva}}</td>
-          <td>{{reserva}}</td>
+          <td><a >{{reserva.id}}</a></td>
+          <td>{{reserva.fecha_inicio_estadia}}</td>
+          <td>{{reserva.duracion}} &nbsp; dias</td>
+          <td>{{reserva.costo_total | currency}}</td>
           <td> <a href="" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
       </tr>
         

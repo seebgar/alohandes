@@ -47,10 +47,10 @@ tr:nth-child(even) {
       </tr>
 
       <tr ng-repeat="propuesta in propuestas"  >
-          <td><a >{{propuesta}}</a></td>
-          <td>{{propuesta}}</td>
-          <td>{{propuesta}}</td>
-          <td>{{propuesta}}</td>
+          <td><a >{{propuesta.id}}</a></td>
+          <td>{{propuesta.tipo_inmueble}}</td>
+          <td>{{propuesta.disponible}}</td>
+          <td>{{propuesta.sub_total | currency}}</td>
           <td> <a href="" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
       </tr>
         
