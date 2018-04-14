@@ -1,0 +1,72 @@
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+    
+    .tittle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+  
+    
+</style>
+
+<style type="text/css">a {text-decoration: none}</style>
+
+
+<div class="lista" style="width: 100%; font-size: 80%";>
+    <br/>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Fecha Inicio Estadia</th>
+        <th>Duracion Contrato</th>
+        <th>Costo Total</th>
+        <th></th>
+      </tr>
+
+      <tr ng-repeat="reserva in reservas"  >
+          <td><a ui-sref=".reserva" >{{reserva}}</a></td>
+          <td>{{reserva}}</td>
+          <td>{{reserva}}</td>
+          <td>{{reserva}}</td>
+          <td> <a href="" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+      </tr>
+        
+        <div ui-view ></div>
+        
+    </table>
+    
+</div>
+
+
+
+
+
+<!--
+        <th>ID</th>
+        <th>Tipo Inmueble</th>
+        <th>Fecha Registro</th>
+        <th>Fecha Inicio Estadia</th>
+        <th>Fecha Cancelacion</th>
+        <th>Duracion Contrato</th>
+        <th>Cantidad Personas</th>
+        <th>Costo Total</th>
+        <th></th>
+-->
+
+
+
+
+

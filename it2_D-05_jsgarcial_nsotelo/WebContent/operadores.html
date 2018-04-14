@@ -1,0 +1,43 @@
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+
+<div class="lista">
+    <h3 style="text-align: right;">
+    ID operador &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+        &nbsp; &nbsp;
+        <a href="operadores_menu.html" style="color: gray;">enviar</a>
+    </h3>
+   
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+      </tr>
+
+      <tr ng-repeat="operador in operadores"  >
+          <td>{{operador}}</td>
+          <td>{{operador}} {{operador}}</td>
+          <td>{{operador}}</td>
+          <td>{{operador}}</td>
+      </tr>
+    </table>
+    
+</div>
+
+

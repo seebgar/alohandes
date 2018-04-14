@@ -1,4 +1,10 @@
 
+* {
+    overflow-x: hidden;
+}
+
+
+
 header {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.60)), to(rgba(0, 0, 0, 0.40))), url(resources/bogota.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.40)), url(resources/bogota.jpg);
@@ -13,6 +19,7 @@ header {
 
 .c1_text_box {
     margin-top: 2em;
+    padding: 0.5em;
     text-align: center;
     -webkit-transform: scale(1.7);
     transform: scale(1.7)
@@ -51,3 +58,82 @@ header {
     display: block;
     padding-top: 10em;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LISTA EN PAGINA INICIAL */
+ 
+.lista {
+    margin: 4em auto 4em auto;
+    width: 50%;
+    padding: 2em 4em ;
+    background-color: #f0f0f0;
+    color: #5d5b5b;
+    border-radius: 0.3em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** menu principal **/
+/* NAVIGATION MENU */
+.menu {
+    position: absolute;
+    right: 1em;
+    top: 1.5em;
+    list-style-type: none;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.menu > li {
+    float: right;
+    display: inline-block;
+    padding: 0 1em;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+.menu >li > a:link, 
+.menu >li > a:visited {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 90%; /* la base es 20px*/
+    padding: 0.2em 0;
+    border-top: 2px solid rgba(0, 0, 0, 0);
+    -webkit-transition: border-top 0.2s;
+    transition: border-top 0.2s;
+}
+.menu >li > a:hover, 
+.menu >li > a:active {
+    border-top: 2px solid #e67e22;
+}
+
+
+
+

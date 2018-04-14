@@ -34,16 +34,20 @@
         
         <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
         <header class="parallax">
-          
-            <img class="logo" src="resources/SVG/icon.svg" alt="logo">
-                
-            <!-- MAIN TEXT -->
-            <div class="c1_text_box">
-                <br/>
-                <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="clientes">Cliente</a>
-                <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="operadores">Operador</a>
-                <br/>
-            </div>
+            
+            <nav style="color: whitesmoke">
+                <ul class="menu js_menu_nav" style="display: block">
+                    <li><a href="index.html" >Inicio</a></li>
+                    <li><a ui-sref="reservas" >Reservas</a></li>
+                    <li><a >Reservas Colectivas</a></li>
+                    <li><a >Perfil</a></li>
+                </ul>
+
+                <!-- MENU STYLE FOR MOBILE -->
+                <a class="menu_dinamic js_menu_mobile"><i class="ion-android-close menu_icon"></i></a>
+
+            </nav>
+            
                     
             <div>
                 <div ui-view></div>
