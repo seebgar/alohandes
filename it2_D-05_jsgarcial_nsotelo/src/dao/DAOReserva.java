@@ -531,7 +531,7 @@ public class DAOReserva {
 		//reservas a realizar
 		List<Reserva> reservas = new ArrayList<>();
 
-		DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); // formato fecha SQL
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); // formato fecha SQL
 		Date today = Calendar.getInstance().getTime(); // Fecha en la que se registro la reserva, supone que es el mismo dia de la transaccion        
 
 		String fecha_registro = df.format(today);
