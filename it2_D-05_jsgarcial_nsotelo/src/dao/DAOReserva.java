@@ -115,18 +115,19 @@ public class DAOReserva {
 	public void registrarReserva( Reserva reserva ) throws SQLException, BusinessLogicException, Exception {
 		DAOPersona dao = new DAOPersona();
 		dao.setConn(conn);
+
 		if ( reserva == null )
 			throw new BusinessLogicException("La reserva que se piensa registrar es nula.");
 
 		// REGLAS:
-		// 1. una persona no puede reservar maÌ�s de un alojamiento en un mismo diÌ�a
+		// 1. una persona no puede reservar mas de un alojamiento en un mismo diÌ�a
 		// 2. un alojamiento no acepta reservas que superen su capacidad <CAPACIDAD_MAXIMA>
-		// 3.  el alojamiento en vivienda universitaria soÌ�lo estaÌ� habilitado a estudiantes, profesores, empleados y profesores visitantes.
+		// 3.  el alojamiento en vivienda universitaria solo esta habilitado a estudiantes, profesores, empleados y profesores visitantes.
 
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 
 		//consigo las reservas que hay para ese dia
-		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID ="+ reserva.getId()+" AND FECHA_INICIO_ESTADIA ='"+reserva.getFecha_inicio_estadia()+"'");
+		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID = "+ reserva.getId()+" AND FECHA_INICIO_ESTADIA = '"+reserva.getFecha_inicio_estadia()+"'");
 		System.out.println(reservas);
 		PreparedStatement prepStmt1= conn.prepareStatement(reservas);
 		recursos.add(prepStmt1); 
@@ -140,9 +141,11 @@ public class DAOReserva {
 
 		//se valida que el cliente no haga mas reservas un mismo dia
 		for(Reserva res: reservasEnFecha) {
-			Persona cliente = dao.get_Persona_ById(res.getId_cliente());
-			if( solicitado.getId() == cliente.getId() )
-				throw new BusinessLogicException("No puede hacer mas reservas el mismo dia :: ID = " + solicitado.getId() );
+			if ( res.getId() != reserva.getId() ) {
+				Persona cliente = dao.get_Persona_ById(res.getId_cliente());
+				if( solicitado.getId() == cliente.getId() )
+					throw new BusinessLogicException("No puede hacer mas reservas el mismo dia :: ID = " + solicitado.getId() );
+			}
 		}
 
 
@@ -474,14 +477,24 @@ public class DAOReserva {
 	 */
 	public List<Reserva> RF7_registrar_reserva_colectiva ( Colectivo reserva_colectiva ) throws Exception {
 
-		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
-		String cadena_servicios = "( ";
+		if ( reserva_colectiva == null )
+			throw new BusinessLogicException("La reserva colectiva que se piensa realizar es nula");
 
-		for( String serv : reserva_colectiva.getServicios_deseados() ) {
-			cadena_servicios += "'" + serv.toLowerCase() + "', "; // tiene comillas simples
+		// ejemplo de la siguiente cadena  = "( 'baño', 'tv')"
+		String condicional_sql = " ";
+
+		if ( reserva_colectiva.getServicios_deseados().size() > 0 ) {
+
+			String cadena_servicios = "( ";
+
+			for( String serv : reserva_colectiva.getServicios_deseados() ) {
+				cadena_servicios += "'" + serv.toLowerCase() + "', "; // tiene comillas simples
+			}
+			cadena_servicios = cadena_servicios.substring( 0, cadena_servicios.length() - 2 ); 
+			cadena_servicios += ")";
+
+			condicional_sql = "WHERE T.NOMBRE IN " + cadena_servicios + " ";
 		}
-		cadena_servicios = cadena_servicios.substring( 0, cadena_servicios.length() - 2 ); 
-		cadena_servicios += ")";
 
 		String tipo_inmueble = reserva_colectiva.getTipo_inmueble();
 
@@ -494,7 +507,7 @@ public class DAOReserva {
 						"IN ( " + 
 						"SELECT S.ID_" + tipo_inmueble + " " +
 						"FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO " + 
-						"WHERE T.NOMBRE IN " + cadena_servicios + " "  +
+						condicional_sql  +
 						")" + 
 						"";
 
@@ -513,33 +526,41 @@ public class DAOReserva {
 			System.out.println("El sistema no cuenta con los suficientes inmuebles que se requieren. # " + tipo_inmueble + "s = " + propuestas_id.size());
 
 		if ( propuestas_id.size() == 0 )
-			throw new BusinessLogicException("El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + cadena_servicios + " para el tipo de inmueble " + tipo_inmueble);
+			throw new BusinessLogicException(" <<< El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + condicional_sql + " para el tipo de inmueble " + tipo_inmueble + " >>>");
 
 		//reservas a realizar
 		List<Reserva> reservas = new ArrayList<>();
 
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); // formato fecha SQL
 		Date today = Calendar.getInstance().getTime(); // Fecha en la que se registro la reserva, supone que es el mismo dia de la transaccion        
+
 		String fecha_registro = df.format(today);
 
-		int suma = reserva_colectiva.getCantidad_inmuebles();
+		int suma = reserva_colectiva.getCantidad_inmuebles() - 1;
 		DAOPersona dao = new DAOPersona();
 		dao.setConn(this.conn);
 
 		PROPUESTAS : for ( Integer prop : propuestas_id ) {
-			if ( suma > 0 ) {
-				UsuarioEnColectivo usuario = reserva_colectiva.getUusuarios().get(suma);
+			if ( suma >= 0 ) {
 
+				UsuarioEnColectivo usuario = reserva_colectiva.getUusuarios().get(suma);
 				Propuesta pp = dao.getPropuestaById(prop.longValue());
-				Double xx = pp == null ? Math.random() * 1000000 :  pp.getSub_total();
 
 				// id reserva / fecha registro / fecha cancelacion / fecha inicio estadia / duracion / costo total / cantidad personas / hay multa / valor multa / propuesta / cliente / id colectivo
 
-				Reserva res = new Reserva(usuario.getId_reserva(), fecha_registro, null, reserva_colectiva.getFecha_inicio_estadia(), 
-						reserva_colectiva.getDuracion(), xx , 
-						usuario.getCantidad_personas(), false, 0.0, Long.parseLong(""+prop), usuario.getId(), 
-						reserva_colectiva.getId());
-				System.out.println(res.getId_colectivo() + " << ID COLECTIVO");
+				Long id_reserva = usuario.getId_reserva();
+				String fecha_cancelacion = null;
+				String fecha_inicio_estadia = reserva_colectiva.getFecha_inicio_estadia();
+				Integer duracion = reserva_colectiva.getDuracion();
+				Double costo_total = pp == null ? Math.random() * 1000000 :  pp.getSub_total();
+				Integer cantidad_personas = usuario.getCantidad_personas();
+				Boolean hay_multa = false;
+				Double valor_multa = 0.0;
+				Long id_propuesta = prop.longValue();
+				Long id_cliente = usuario.getId();
+				Long id_colectivo = reserva_colectiva.getId();
+
+				Reserva res = new Reserva(id_reserva, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion, costo_total, cantidad_personas, hay_multa, valor_multa, id_propuesta, id_cliente, id_colectivo);
 				reservas.add(res);
 
 			} else 
@@ -547,17 +568,11 @@ public class DAOReserva {
 			suma--;
 		}
 
-		//REALIZA EFECTIVAMENTE LA RESERVA EN EL SISTEMA
-		reservas.forEach( reserva -> {
-			try {
-				this.registrarReserva(reserva);
-			} catch (Exception e) {
-				System.out.println("FAIL CREANDO RESERVA COLECTIVA RF7");
-				e.printStackTrace();
-			}
-		});
+		//realiza el registro de las reservas en el sistema
+		for ( Reserva reserva : reservas) 
+			this.registrarReserva(reserva);
 
-
+		//se retornan las reservas realizadas
 		return reservas;
 	}
 
@@ -657,38 +672,38 @@ public class DAOReserva {
 	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) throws Exception, SQLException {
 
 		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuesta.getId();
-		
+
 		PreparedStatement st = conn.prepareStatement(sql_reservas);
 		System.out.println(st);
 		recursos.add(st);
-		
+
 		ResultSet rs = st.executeQuery();
-		
+
 		List<Reserva> reservas = new ArrayList<>();
-		
+
 		while ( rs.next() ) {
 			reservas.add( this.convertResultSetTo_Reserva(rs) );
 		}
-		
+
 
 		Date xx = new Date();
 		Calendar hoy = Calendar.getInstance();
 		hoy.setTime(xx);
 
 		List<Reserva> vigentes = new ArrayList<>();
-		
+
 		for( Reserva reserva : reservas) {
 			String fecha_inicio = reserva.getFecha_inicio_estadia();
 			DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 			Date fecha_i = format.parse(fecha_inicio);
-			
+
 			Calendar cal_i = Calendar.getInstance();
 			cal_i.setTime(fecha_i);
-			
+
 			Calendar cal_f = Calendar.getInstance();
 			cal_f.setTime(fecha_i);
 			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
-			
+
 			if ( hoy.after(cal_i) && hoy.before(cal_f) ) {
 				vigentes.add(reserva);
 			}
