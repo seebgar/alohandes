@@ -180,6 +180,17 @@ public class DAOReserva {
 		recursos.add(prepStmt);
 		prepStmt.executeQuery(); //se inserta la reserva
 
+
+		// set id_colectivo
+		if ( reserva.getId_colectivo() != null ) {
+			String colectivo  = "UPDATE RESERVAS R SET R.ID_COLECTIVO = " + reserva.getId_colectivo() + " WHERE R.ID = " + reserva.getId();
+			PreparedStatement lect = conn.prepareStatement(colectivo);
+			System.out.println(lect);
+			recursos.add(lect);
+			lect.executeQuery();
+		}
+
+
 		//  CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
 
 		String update = "UPDATE PROPUESTAS P SET P.DISPONIBLE = 0 WHERE P.ID = " + reserva.getId_propuesta();
@@ -528,6 +539,7 @@ public class DAOReserva {
 						reserva_colectiva.getDuracion(), xx , 
 						usuario.getCantidad_personas(), false, 0.0, Long.parseLong(""+prop), usuario.getId(), 
 						reserva_colectiva.getId());
+				System.out.println(res.getId_colectivo() + " << ID COLECTIVO");
 				reservas.add(res);
 
 			} else 
@@ -640,18 +652,47 @@ public class DAOReserva {
 	 * reservas mientras no se haya rehabilitado (ver RF10)
 	 * @param propuesta
 	 * @return
+	 * @throws Exception 
 	 */
-	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) {
+	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) throws Exception, SQLException {
 
-		Date hoy = new Date();
+		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuesta.getId();
+		
+		PreparedStatement st = conn.prepareStatement(sql_reservas);
+		System.out.println(st);
+		recursos.add(st);
+		
+		ResultSet rs = st.executeQuery();
+		
+		List<Reserva> reservas = new ArrayList<>();
+		
+		while ( rs.next() ) {
+			reservas.add( this.convertResultSetTo_Reserva(rs) );
+		}
+		
 
-		//		String fecha = reserva.getFecha_inicio_estadia();
-		//		DateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		//		Date fecha_inicio_estadia = format.parse(fecha);
+		Date xx = new Date();
+		Calendar hoy = Calendar.getInstance();
+		hoy.setTime(xx);
 
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(hoy);
-
+		List<Reserva> vigentes = new ArrayList<>();
+		
+		for( Reserva reserva : reservas) {
+			String fecha_inicio = reserva.getFecha_inicio_estadia();
+			DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+			Date fecha_i = format.parse(fecha_inicio);
+			
+			Calendar cal_i = Calendar.getInstance();
+			cal_i.setTime(fecha_i);
+			
+			Calendar cal_f = Calendar.getInstance();
+			cal_f.setTime(fecha_i);
+			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
+			
+			if ( hoy.after(cal_i) && hoy.before(cal_f) ) {
+				vigentes.add(reserva);
+			}
+		};
 
 		return null;
 
