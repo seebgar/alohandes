@@ -18,9 +18,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
 
 import dao.DAOPersona;
 import dao.DAOReserva;
+import vos.AnalisisPropuesta;
+import vos.ClienteFrecuente;
 import vos.Colectivo;
 import vos.DineroOperador;
 import vos.Filtro;
@@ -1375,17 +1378,169 @@ public class AlohandesTransactionManager {
 		}
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// REQUERIMIENTOS DE CONSULTA ITERACION 2
+	//----------------------------------------------------------------------------------------------------------------------------------
+
 	
 	
 	
+	/**
+	 * RC7
+	 * 
+	 * @param filtro
+	 * @param tiempo
+	 * @param tipo_alojamiento
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AnalisisPropuesta> RC7_analisis_propuestas( String filtro, String tiempo, String tipo_alojamiento) throws Exception {
+		DAOPersona dao= new DAOPersona();
+		List<AnalisisPropuesta> ps = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			ps = dao.RC7_analisis_propuestas(filtro, tiempo, tipo_alojamiento)	;
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return ps;
+	}
+	
+	/**
+	 * RC8
+	 * 
+	 * @param filtro
+	 * @param tiempo
+	 * @param tipo_alojamiento
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ClienteFrecuente> RC8_clientes_frecuentes ( String tipo_alojamiento ) throws Exception {
+		DAOPersona dao= new DAOPersona();
+		List<ClienteFrecuente> ps = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			ps = dao.RC8_clientes_frecuentes(tipo_alojamiento)	;
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return ps;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * RC9
+	 * 
+	 * @param filtro
+	 * @param tiempo
+	 * @param tipo_alojamiento
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Propuesta> RC9_poca_demanda ( ) throws Exception {
+		DAOPersona dao= new DAOPersona();
+		List<Propuesta> ps = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			ps = dao.RC9_poca_demanda()	;
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return ps;
+	}
+
+
+
+
+
+
+
+
+
 }

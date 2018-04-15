@@ -287,7 +287,6 @@ public class DAOPersona {
 	/**
 	 * RF-1
 	 * RF-3
-	 * TODO
 	 * 
 	 * 
 	 * Metodo que agregar la informacion de un nuevo persona en la Base de Datos a partir del parametro ingresado<br/>
@@ -333,7 +332,6 @@ public class DAOPersona {
 
 	/**
 	 * RF-2
-	 * TODO
 	 * 
 	 * 
 	 * Agrega la informacion de una propuestas a la base de datos
@@ -426,7 +424,6 @@ public class DAOPersona {
 
 	/**
 	 * RF-6
-	 * TODO
 	 * Elimina una Propuestas si es posible
 	 * Si tiene reservas solo se cambia su estado de se_va_retirar a true
 	 * para que no acepte más reservas
@@ -735,7 +732,6 @@ public class DAOPersona {
 
 	/**
 	 * RFC 1
-	 * TODO
 	 * Retorna el dinero recibido por cada operador
 	 * 
 	 * 
@@ -784,7 +780,6 @@ public class DAOPersona {
 
 	/**
 	 * RFC2
-	 * TODO
 	 * Retorna las 20 ofertas mas populares
 	 * 
 	 * 
@@ -1010,20 +1005,250 @@ public class DAOPersona {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// ITERACION 2
 	// SISTEMAS TRANSACCIONALES
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// REQUERIMIENTOS DE CONSULTA
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+	/**
+	 * RFC7 - ANALIZAR LA OPERACIÓN DE ALOHANDES 
+	 * 
+	 * Para una unidad de tiempo definido (por ejemplo, semana o mes) y un tipo de alojamiento, considerando todo
+	 * el tiempo de operación de AloHandes, indicar cuáles fueron las fechas de mayor demanda (mayor cantidad de
+	 * alojamientos ocupados), las de mayores ingresos (mayor cantidad de dinero recibido) y las de menor ocupación.
+	 * @param filtro { mayor | ingresos | menor } = Mayor ocupacion, mayores ingresos o menor ocupacion.
+	 * @param tiempo { semana | mes } = String que especifica si se trata de las semanaas o de los meses
+	 * @param tipo_alojamiento { Apartamento | Hotel | Hostel | Vivienda Universitaria | Vivienda Express | Habitacion }
+	 * @return Lista de las 
+	 * @throws BusinessLogicException, SQLException, Exception 
+	 */
+	public List<AnalisisPropuesta> RC7_analisis_propuestas ( String filtro, String tiempo, String tipo_alojamiento ) throws BusinessLogicException, SQLException, Exception {
+
+		if ( filtro.isEmpty() || tiempo.isEmpty() || tipo_alojamiento.isEmpty() )
+			throw new BusinessLogicException("Parametros invalidos : " + filtro + " " + tiempo + " " +tipo_alojamiento);
+
+		if ( filtro.equalsIgnoreCase("mayor") || filtro.equalsIgnoreCase("menor") ) {
+
+			String desc = filtro.equalsIgnoreCase("mayor") ? "DESC" : " ";
+			String mayor_ocupacional = "";
+
+			if ( tiempo.equalsIgnoreCase("semana") ) {
+				mayor_ocupacional = 
+						"SELECT to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')) AS \"TIEMPO\",  COUNT (to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW'))) AS \"CANTIDAD_RESERVAS\" " + 
+								"FROM RESERVAS R " + 
+								"INNER JOIN PROPUESTAS P ON " + 
+								"R.ID_PROPUESTA = P.ID " + 
+								"WHERE UPPER(P.TIPO_INMUEBLE) = UPPER('"+ tipo_alojamiento +"') " + 
+								"AND ( R.HAY_MULTA IS NULL " + 
+								"OR R.HAY_MULTA = 0 ) " + 
+								"GROUP BY to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')) " + 
+								"ORDER BY \"CANTIDAD_RESERVAS\" " + desc + " ";
+			} else if ( tiempo.equalsIgnoreCase("mes") ) {
+				mayor_ocupacional = 
+						"SELECT TO_CHAR(TO_DATE(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'), 'Month') AS \"TIEMPO\", COUNT (TO_CHAR(TO_DATE(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'), 'Month')) AS \"CANTIDAD_RESERVAS\" " + 
+								"FROM RESERVAS R " + 
+								"INNER JOIN PROPUESTAS P ON " + 
+								"R.ID_PROPUESTA = P.ID " + 
+								"WHERE UPPER(P.TIPO_INMUEBLE) = UPPER('" + tipo_alojamiento + "') " + 
+								"AND ( R.HAY_MULTA IS NULL " + 
+								"OR R.HAY_MULTA = 0 ) " + 
+								"GROUP BY TO_CHAR(TO_DATE(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'), 'Month') " + 
+								"ORDER BY \"CANTIDAD_RESERVAS\" " + desc + " ";
+			}
+
+
+			List<AnalisisPropuesta> apps = new ArrayList<>();
+
+			PreparedStatement prepStmt = conn.prepareStatement(mayor_ocupacional);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+
+			while ( rs.next() ) {
+				AnalisisPropuesta ap = new AnalisisPropuesta(rs.getString("TIEMPO"), rs.getDouble("CANTIDAD_RESERVAS"));
+				apps.add(ap);
+			}
+
+			return apps;
+		}
+
+
+		else if ( filtro.equalsIgnoreCase("ingresos") ) {
+
+			String ingresos = "";
+
+			if ( tiempo.equalsIgnoreCase("semana") ) {
+
+				ingresos = 
+						"SELECT to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')) AS \"TIEMPO\", SUM(R.COSTO_TOTAL) AS \"INGRESOS\" " + 
+								"FROM RESERVAS R " + 
+								"INNER JOIN PROPUESTAS P ON " + 
+								"R.ID_PROPUESTA = P.ID " + 
+								"WHERE UPPER(P.TIPO_INMUEBLE) = UPPER('" + tipo_alojamiento + "') " + 
+								"AND ( R.HAY_MULTA IS NULL " + 
+								"OR R.HAY_MULTA = 0 ) " + 
+								"GROUP BY to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')) " + 
+								"ORDER BY \"INGRESOS\" DESC";
+
+			} else if ( tiempo.equalsIgnoreCase("mes") ) {
+
+				ingresos = 
+						"SELECT TO_CHAR(TO_DATE(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'), 'Month') AS \"TIEMPO\", SUM(R.COSTO_TOTAL) AS \"INGRESOS\" " + 
+								"FROM RESERVAS R " + 
+								"INNER JOIN PROPUESTAS P ON " + 
+								"R.ID_PROPUESTA = P.ID " + 
+								"WHERE UPPER(P.TIPO_INMUEBLE) = UPPER('" + tipo_alojamiento + "') " +
+								"AND ( R.HAY_MULTA IS NULL  " + 
+								"OR R.HAY_MULTA = 0 ) " + 
+								"GROUP BY TO_CHAR(TO_DATE(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'), 'Month') " + 
+								"ORDER BY \"INGRESOS\" DESC";
+			}
+
+			List<AnalisisPropuesta> apps = new ArrayList<>();
+
+			PreparedStatement prepStmt = conn.prepareStatement(ingresos);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+
+			while ( rs.next() ) {
+				AnalisisPropuesta ap = new AnalisisPropuesta(rs.getString("TIEMPO"), rs.getDouble("INGRESOS"));
+				apps.add(ap);
+			}
+
+			return apps;
+		}
+
+
+		return new ArrayList<>();
+	}
 
 
 
 
 
+
+
+
+
+
+
+
+
+	/**
+	 * RFC8 - ENCONTRAR LOS CLIENTES FRECUENTES
+	 * 
+	 * Para un alojamiento dado, encontrar la información de sus clientes frecuentes. se considera frecuente a un
+	 * cliente si ha utilizado (o tiene reservado) ese alojamiento por lo menos en tres ocasiones o por lo menos 15
+	 * noches, durante todo el periodo de operación de AlohAndes
+	 * @param tipo_alojamiento { Apartamento | Hotel | Hostel | Vivienda Universitaria | Vivienda Express | Habitacion }
+	 * @return
+	 */
+	public List<ClienteFrecuente> RC8_clientes_frecuentes( String tipo_alojamiento ) throws BusinessLogicException, Exception, SQLException {
+
+		if ( tipo_alojamiento.isEmpty() )
+			throw new BusinessLogicException("Tipo de alojamiento invalido");
+
+		String sql_frecuentes = 
+				"SELECT Q.ID_PERSONA, q.\"CANTIDAD_RESERVAS\", P.NOMBRE, P.APELLIDO, P.TIPO FROM " + 
+						"( " + 
+						"SELECT R.ID_PERSONA, COUNT(R.ID_PERSONA) AS \"CANTIDAD_RESERVAS\" " + 
+						"FROM RESERVAS R " + 
+						"WHERE R.ID_PROPUESTA IN ( " + 
+						"    SELECT P.ID FROM PROPUESTAS P WHERE UPPER(P.TIPO_INMUEBLE) = UPPER('" + tipo_alojamiento + "') " + 
+						") " + 
+						"AND R.DURACION_CONTRATO >= 15 " + 
+						"GROUP BY R.ID_PERSONA " + 
+						"HAVING COUNT(R.ID_PERSONA) >= 3 " + 
+						"ORDER BY \"CANTIDAD_RESERVAS\" DESC " + 
+						") Q " + 
+						"JOIN PERSONAS P " + 
+						"ON Q.ID_PERSONA = P.ID ";
+
+
+		List<ClienteFrecuente> cfs = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql_frecuentes);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			ClienteFrecuente cf = new ClienteFrecuente(rs.getLong("ID_PERSONA"), rs.getInt("CANTIDAD_RESERVAS"), rs.getString("NOMBRE") + " " + rs.getString("APELLIDO"), rs.getString("TIPO"));
+			cfs.add(cf);
+		}
+
+		return cfs;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * RC 9 - ENCONTRAR LAS OFERTAS DE ALOJAMIENTO QUE NO TIENEN MUCHA DEMANDA
+	 * 
+	 * Encontrar las ofertas de alojamiento que no han recibido clientes en periodos superiores a 1 mes, durante todo
+	 * el periodo de operación de AlohAndes
+	 * @return
+	 * @throws SQLException 
+	 */
+	public List<Propuesta> RC9_poca_demanda () throws SQLException {
+		
+		String sql = 
+				"SELECT * " + 
+				"FROM PROPUESTAS P " + 
+				"WHERE P.CANTIDAD_DIAS_DISPONIBLE >= 30";
+		
+		List<Propuesta> propuestas = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			propuestas.add( convertResultSetTo_Propuesta(rs) );
+		}
+		
+		return propuestas;
+	}
 
 
 

@@ -201,6 +201,25 @@ public class DAOReserva {
 		System.out.println(update);
 		recursos.add(up);
 		up.executeQuery();
+		
+		// TODO ACTUALIZAR FECHAS DISPONIBILIDAD DE UNA PROPUESTA
+		try {
+			String fecha_disponible = 
+					"UPDATE PROPUESTAS P" + 
+							" " + 
+							"SET P.FECHA_FINAL_DISPONIBILIDAD = '" + reserva.getFecha_inicio_estadia() + "' " + 
+							", P.CANTIDAD_DIAS_DISPONIBLE = ( SELECT trunc( to_date(P.FECHA_FINAL_DISPONIBILIDAD,'YYYY-MM-DD') - to_date(P.FECHA_INICIO_DISPONIBILIDAD,'YYYY-MM-DD')) FROM DUAL ) " + 
+							" " + 
+							"WHERE P.ID IN ( " + 
+							"    SELECT R.ID_PROPUESTA FROM RESERVAS R WHERE R.ID = " + reserva.getId() + 
+							");" ;
+			System.out.println(fecha_disponible);
+			PreparedStatement fd = conn.prepareStatement(fecha_disponible);
+			recursos.add(fd);
+			fd.executeQuery();
+		} catch (Exception e) {
+			System.out.println("FAIL UPDATE PROPUESTAS FECHA FINAL DE DISPONIBILIDAD EN METODO REGISTRAR RESERVA");
+		}
 
 	}
 
@@ -323,6 +342,27 @@ public class DAOReserva {
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 
+		// TODO Actualizar fechas de disponibilidad de una Propuesta
+		try {
+			String fecha_disponible = 
+					"UPDATE PROPUESTAS P" + 
+							" " + 
+							"SET P.FECHA_INICIO_DISPONIBILIDAD = '" + reserva.getFecha_cancelacion() + "' " + 
+							", P.FECHA_FINAL_DISPONIBILIDAD = null " + 
+							", P.CANTIDAD_DIAS_DISPONIBLE = ( SELECT trunc( to_date(P.FECHA_FINAL_DISPONIBILIDAD,'YYYY-MM-DD') - to_date(P.FECHA_INICIO_DISPONIBILIDAD,'YYYY-MM-DD')) FROM DUAL ) " + 
+							" " + 
+							"WHERE P.ID IN ( " + 
+							"    SELECT R.ID_PROPUESTA FROM RESERVAS R WHERE R.ID = " + reserva.getId() + 
+							");" ;
+			System.out.println(fecha_disponible);
+			PreparedStatement fd = conn.prepareStatement(fecha_disponible);
+			recursos.add(fd);
+			fd.executeQuery();
+		} catch (Exception e) {
+			System.out.println("FAIL UPDATE PROPUESTAS FECHA INICIAL DE DISPONIBILIDAD EN METODO CANCELAR RESERVA AUX");
+		}
+
+
 		// Se elimina la reserva de la base de datos
 		String delete = String.format(
 				"DELETE FROM RESERVAS R "
@@ -332,7 +372,7 @@ public class DAOReserva {
 		recursos.add(delete_sql);
 		delete_sql.executeQuery();
 
-		// TODO CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
+		// CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
 		PreparedStatement estado = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE PROPUESTA.ID=? ");            
 		estado.setLong(1, reserva.getId_propuesta());
 		recursos.add(estado);
