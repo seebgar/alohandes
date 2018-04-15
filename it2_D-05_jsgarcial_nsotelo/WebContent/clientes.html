@@ -28,10 +28,10 @@ tr:nth-child(even) {
       <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Tipo</th>
+        <th>Relacion con la Universidad</th>
       </tr>
 
-      <tr ng-repeat="cliente in clientes"  >
+      <tr ng-repeat="cliente in clientes | orderBy : 'id'"  >
           <td>{{cliente.id}}</td>
           <td>{{cliente.nombre}} {{cliente.apellido}}</td>
           <td>{{cliente.tipo}}</td>
