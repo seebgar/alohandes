@@ -5,12 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.UUID;
 import tm.AlohandesTransactionManager;
 import tm.BusinessLogicException;
@@ -201,7 +207,7 @@ public class DAOReserva {
 		System.out.println(update);
 		recursos.add(up);
 		up.executeQuery();
-		
+
 		// TODO ACTUALIZAR FECHAS DISPONIBILIDAD DE UNA PROPUESTA
 		try {
 			String fecha_disponible = 
@@ -711,6 +717,9 @@ public class DAOReserva {
 	 */
 	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) throws Exception, SQLException {
 
+		DAOPersona propuestas= new DAOPersona();
+		propuestas.setConn(conn);
+		List<Reserva> reservasEitosas= new ArrayList<>();
 		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuesta.getId();
 
 		PreparedStatement st = conn.prepareStatement(sql_reservas);
@@ -719,10 +728,22 @@ public class DAOReserva {
 
 		ResultSet rs = st.executeQuery();
 
-		List<Reserva> reservas = new ArrayList<>();
+		List<Reserva> reservasaReabilitar = new ArrayList<>();
 
 		while ( rs.next() ) {
-			reservas.add( this.convertResultSetTo_Reserva(rs) );
+			reservasaReabilitar.add( this.convertResultSetTo_Reserva(rs) );
+		}
+		
+		Queue<Propuesta> colaParaLasPropuestas= new LinkedList<>();
+		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuesta.getTipo_inmueble() +"'"+ "AND ID !="+propuesta.getId()+"AND DISPONIBLE = 1";
+
+		PreparedStatement sta = conn.prepareStatement(sql_propuestas);
+		System.out.println(sta);
+		recursos.add(sta);
+
+		ResultSet rsa = sta.executeQuery();
+		while ( rsa.next() ) {
+			colaParaLasPropuestas.add( propuestas.convertResultSetTo_Propuesta(rsa));
 		}
 
 
@@ -731,8 +752,10 @@ public class DAOReserva {
 		hoy.setTime(xx);
 
 		List<Reserva> vigentes = new ArrayList<>();
+		List<Reserva> reservasSegundoOrden=new ArrayList<>();
+		List<Reserva> reservasColectivas= new ArrayList<>();
 
-		for( Reserva reserva : reservas) {
+		for( Reserva reserva : reservasaReabilitar) {
 			String fecha_inicio = reserva.getFecha_inicio_estadia();
 			DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 			Date fecha_i = format.parse(fecha_inicio);
@@ -744,12 +767,122 @@ public class DAOReserva {
 			cal_f.setTime(fecha_i);
 			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
 
-			if ( hoy.after(cal_i) && hoy.before(cal_f) ) {
+			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==null) {
 				vigentes.add(reserva);
+			}
+			else if( reserva.getId_colectivo()!=null) 
+			{
+				reservasColectivas.add(reserva);
+			}
+			else {
+				reservasSegundoOrden.add(reserva);
 			}
 		};
 
-		return null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+		//Primero las vigentes
+		//Ordeno por cuando se hizo el registro de cada una desecndentemente
+		vigentes.sort(new Comparator<Reserva>() {
+
+			@Override
+			public int compare(Reserva o1, Reserva o2) {
+				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
+				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+
+				return fecha1.compareTo(fecha2);
+			}
+		});
+
+		//Luego van las colectivas
+		reservasColectivas.sort(new Comparator<Reserva>() {
+
+			@Override
+			public int compare(Reserva o1, Reserva o2) {
+				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
+				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+
+				return fecha1.compareTo(fecha2);
+			}
+		});
+
+		//Finalmente las otras reservas
+		reservasSegundoOrden.sort(new Comparator<Reserva>() {
+
+			@Override
+			public int compare(Reserva o1, Reserva o2) {
+				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
+				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+
+				return fecha1.compareTo(fecha2);
+			}
+		});
+       Propuesta  propuestaNueva= colaParaLasPropuestas.poll();
+		for (Reserva reservaARestaurar : vigentes) 
+		{ 	
+			cancelarReserva(reservaARestaurar);
+			
+			reservaARestaurar.setId_propuesta(propuestaNueva.getId());
+			registrarReserva(reservaARestaurar);
+			
+			//Verificar que si se hizo
+			if(getReservaById(reservaARestaurar.getId())!=null)
+			{
+				reservasEitosas.add(reservaARestaurar);
+			}
+			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
+			ResultSet verif= verificacion.executeQuery();
+			if(verif.getInt(0)==0)
+			{
+				propuestaNueva=colaParaLasPropuestas.poll();
+			}
+		}
+
+
+		for (Reserva reserva : reservasSegundoOrden) 
+		{
+			cancelarReserva(reserva);
+			reserva.setId_propuesta(propuestaNueva.getId());
+			registrarReserva(reserva);
+			//Verificar que si se hizo
+			if(getReservaById(reserva.getId())!=null)
+			{
+				reservasEitosas.add(reserva);
+			}
+			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
+			ResultSet verif= verificacion.executeQuery();
+			if(verif.getInt(0)==0)
+			{
+				propuestaNueva=colaParaLasPropuestas.poll();
+			}
+		}
+
+		//caso especial
+
+		for (Reserva reserva : reservasColectivas) 
+		{
+			cancelarReserva(reserva);
+			reserva.setId_propuesta(propuestaNueva.getId());
+			registrarReserva(reserva);
+			//Verificar que si se hizo
+			if(getReservaById(reserva.getId())!=null)
+			{
+				reservasEitosas.add(reserva);
+			}
+			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
+			ResultSet verif= verificacion.executeQuery();
+			if(verif.getInt(0)==0)
+			{
+				propuestaNueva=colaParaLasPropuestas.poll();
+			}
+		}
+
+
+
+		PreparedStatement updateDeLaPropuesta = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 0 WHERE ID ="+propuesta.getId());
+		recursos.add(st);
+		updateDeLaPropuesta.executeUpdate();
+
+		return reservasEitosas;
 
 	}
 

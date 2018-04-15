@@ -31,6 +31,7 @@ import vos.Bebedor;
 import vos.Persona;
 import vos.Populares;
 import vos.Propuesta;
+import vos.Reserva;
 
 /**
  * Clase que expone servicios REST con ruta base: 
@@ -213,15 +214,20 @@ public class PropuestasService {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
+	@PUT
+	@Path("/deshabilitar")
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response deshabilitarPropuesta( Propuesta propuesta )
+	{
+	try {
+		AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+		List<Reserva>lista= tm.deshabilitarOfertaDeAlojamiento(propuesta); 
+		return Response.status( 200 ).entity(lista).build();
+	} catch (Exception e) {
+		return Response.status( 500 ).entity(doErrorMessage(e)).build();
+	}
+}
 }
 
 

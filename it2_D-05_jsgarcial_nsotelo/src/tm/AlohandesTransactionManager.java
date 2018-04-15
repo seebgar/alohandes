@@ -1342,6 +1342,44 @@ public class AlohandesTransactionManager {
 
 
 
+	public List<Reserva> deshabilitarOfertaDeAlojamiento(	Propuesta propuesta) throws Exception  {
+		DAOReserva dao= new DAOReserva();
+		try
+		{
+			System.out.println("Ejecutando operacion");
+			this.conn = darConexion();
+			dao.setConn( conn );
+			return dao.RF9_deshabilitar_propuesta(propuesta);
+
+		}
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close(); 
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+
+		}
+
+	}
+
+
 	public List<Reserva> obtenerTodasLasReservasColectivas() throws Exception  {
 		DAOReserva dao= new DAOReserva();
 		try
@@ -1378,9 +1416,6 @@ public class AlohandesTransactionManager {
 		}
 
 	}
-
-
-
 
 
 
