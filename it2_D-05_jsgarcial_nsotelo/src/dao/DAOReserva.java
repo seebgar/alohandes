@@ -379,7 +379,7 @@ public class DAOReserva {
 		delete_sql.executeQuery();
 
 		// CAMBIAR EL ATRIBUTO DE DISPONIBILIDAD DE UNA PROPUESTA
-		PreparedStatement estado = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE PROPUESTA.ID=? ");            
+		PreparedStatement estado = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE ID=? ");            
 		estado.setLong(1, reserva.getId_propuesta());
 		recursos.add(estado);
 		estado.executeQuery();
@@ -715,12 +715,21 @@ public class DAOReserva {
 	 * @return
 	 * @throws Exception 
 	 */
-	public List<Reserva> RF9_deshabilitar_propuesta ( Propuesta propuesta ) throws Exception, SQLException {
+	public List<Reserva> RF9_deshabilitar_propuesta ( Long propuesta ) throws Exception, SQLException {
 
 		DAOPersona propuestas= new DAOPersona();
 		propuestas.setConn(conn);
+		
+		PreparedStatement propuestaActual= conn.prepareStatement("SELECT * FROM PROPUESTAS WHERE ID = "+propuesta);
+		ResultSet rspropuesta = propuestaActual.executeQuery();
+		Propuesta propuestaAcancelar= null;
+		
+		while ( rspropuesta.next() ) {
+			propuestaAcancelar=  propuestas.convertResultSetTo_Propuesta(rspropuesta) ;
+		}
+		
 		List<Reserva> reservasEitosas= new ArrayList<>();
-		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuesta.getId();
+		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuestaAcancelar.getId();
 
 		PreparedStatement st = conn.prepareStatement(sql_reservas);
 		System.out.println(st);
@@ -735,7 +744,7 @@ public class DAOReserva {
 		}
 		
 		Queue<Propuesta> colaParaLasPropuestas= new LinkedList<>();
-		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuesta.getTipo_inmueble() +"'"+ "AND ID !="+propuesta.getId()+"AND DISPONIBLE = 1";
+		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuestaAcancelar.getTipo_inmueble() +"'"+ "AND ID !="+propuestaAcancelar.getId()+"AND DISPONIBLE = 1";
 
 		PreparedStatement sta = conn.prepareStatement(sql_propuestas);
 		System.out.println(sta);
@@ -767,29 +776,29 @@ public class DAOReserva {
 			cal_f.setTime(fecha_i);
 			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
 
-			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==null) {
+			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==0) {
 				vigentes.add(reserva);
 			}
-			else if( reserva.getId_colectivo()!=null) 
+			else if( reserva.getId_colectivo()!=0) 
 			{
+				System.out.println(reserva.getId_colectivo());
 				reservasColectivas.add(reserva);
 			}
 			else {
 				reservasSegundoOrden.add(reserva);
 			}
 		};
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"+vigentes.size());
+		
 		//Primero las vigentes
 		//Ordeno por cuando se hizo el registro de cada una desecndentemente
 		vigentes.sort(new Comparator<Reserva>() {
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
-				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+				
 
-				return fecha1.compareTo(fecha2);
+				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
 		});
 
@@ -798,10 +807,9 @@ public class DAOReserva {
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
-				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+		
 
-				return fecha1.compareTo(fecha2);
+				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
 		});
 
@@ -810,31 +818,26 @@ public class DAOReserva {
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-				LocalDate fecha1= LocalDate.parse(o1.getFecha_registro(),formatter); 
-				LocalDate fecha2= LocalDate.parse(o2.getFecha_registro(),formatter); 
+				
 
-				return fecha1.compareTo(fecha2);
+				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
 		});
+		
        Propuesta  propuestaNueva= colaParaLasPropuestas.poll();
+       System.out.println(vigentes.size());
 		for (Reserva reservaARestaurar : vigentes) 
 		{ 	
 			cancelarReserva(reservaARestaurar);
 			
 			reservaARestaurar.setId_propuesta(propuestaNueva.getId());
 			registrarReserva(reservaARestaurar);
+			System.out.println(reservasEitosas.size());
+			reservasEitosas.add(reservaARestaurar);
 			
-			//Verificar que si se hizo
-			if(getReservaById(reservaARestaurar.getId())!=null)
-			{
-				reservasEitosas.add(reservaARestaurar);
-			}
-			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
-			ResultSet verif= verificacion.executeQuery();
-			if(verif.getInt(0)==0)
-			{
-				propuestaNueva=colaParaLasPropuestas.poll();
-			}
+			
+			propuestaNueva=colaParaLasPropuestas.poll();
+			
 		}
 
 
@@ -844,41 +847,36 @@ public class DAOReserva {
 			reserva.setId_propuesta(propuestaNueva.getId());
 			registrarReserva(reserva);
 			//Verificar que si se hizo
-			if(getReservaById(reserva.getId())!=null)
-			{
+				System.out.println( reserva.toString());
 				reservasEitosas.add(reserva);
-			}
-			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
-			ResultSet verif= verificacion.executeQuery();
-			if(verif.getInt(0)==0)
-			{
+		
 				propuestaNueva=colaParaLasPropuestas.poll();
-			}
+			
 		}
 
 		//caso especial
 
-		for (Reserva reserva : reservasColectivas) 
-		{
-			cancelarReserva(reserva);
-			reserva.setId_propuesta(propuestaNueva.getId());
-			registrarReserva(reserva);
-			//Verificar que si se hizo
-			if(getReservaById(reserva.getId())!=null)
-			{
-				reservasEitosas.add(reserva);
-			}
-			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
-			ResultSet verif= verificacion.executeQuery();
-			if(verif.getInt(0)==0)
-			{
-				propuestaNueva=colaParaLasPropuestas.poll();
-			}
-		}
+//		for (Reserva reserva : reservasColectivas) 
+//		{
+//			cancelarReserva(reserva);
+//			reserva.setId_propuesta(propuestaNueva.getId());
+//			registrarReserva(reserva);
+//			//Verificar que si se hizo
+//			if(getReservaById(reserva.getId())!=null)
+//			{
+//				reservasEitosas.add(reserva);
+//			}
+//			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
+//			ResultSet verif= verificacion.executeQuery();
+//			if(verif.getInt(0)==0)
+//			{
+//				propuestaNueva=colaParaLasPropuestas.poll();
+//			}
+//		}
 
 
 
-		PreparedStatement updateDeLaPropuesta = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 0 WHERE ID ="+propuesta.getId());
+		PreparedStatement updateDeLaPropuesta = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 0 WHERE ID ="+propuestaAcancelar.getId());
 		recursos.add(st);
 		updateDeLaPropuesta.executeUpdate();
 

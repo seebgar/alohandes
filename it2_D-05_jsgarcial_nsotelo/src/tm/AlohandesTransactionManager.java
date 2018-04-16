@@ -1339,17 +1339,22 @@ public class AlohandesTransactionManager {
 
 
 
+/**
+ * Metodo que permite deshabilitar una oferta de alojamiento (RF9)
+ * @param id
+ * @return
+ * @throws Exception
+ */
 
 
-
-	public List<Reserva> deshabilitarOfertaDeAlojamiento(	Propuesta propuesta) throws Exception  {
+	public List<Reserva> deshabilitarOfertaDeAlojamiento(	Long id) throws Exception  {
 		DAOReserva dao= new DAOReserva();
 		try
 		{
 			System.out.println("Ejecutando operacion");
 			this.conn = darConexion();
 			dao.setConn( conn );
-			return dao.RF9_deshabilitar_propuesta(propuesta);
+			return dao.RF9_deshabilitar_propuesta(id);
 
 		}
 		catch (SQLException sqlException) {
