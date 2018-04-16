@@ -176,7 +176,7 @@ public class DAOReserva {
 				"  " + reserva.getId_cliente() + " , " + 
 				"  " + reserva.getId_propuesta() + " , " + 
 				"'" + reserva.getFecha_registro() + "'," + 
-				"  " + xx + "   , " + 
+				" ' " + xx + " '  , " + 
 				"'"+ reserva.getFecha_inicio_estadia() +"'," + 
 				"   " + reserva.getDuracion() + "  , " + 
 				"   " + reserva.getCosto_total() + "   , " + 
@@ -744,17 +744,19 @@ public class DAOReserva {
 		}
 		
 		Queue<Propuesta> colaParaLasPropuestas= new LinkedList<>();
-		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuestaAcancelar.getTipo_inmueble() +"'"+ "AND ID !="+propuestaAcancelar.getId()+"AND DISPONIBLE = 1";
+		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuestaAcancelar.getTipo_inmueble() +"'"+ "AND ID !="+propuestaAcancelar.getId();
 
 		PreparedStatement sta = conn.prepareStatement(sql_propuestas);
 		System.out.println(sta);
 		recursos.add(sta);
 
 		ResultSet rsa = sta.executeQuery();
-		while ( rsa.next() ) {
+		while ( rsa.next() ) 
+		{
+			System.out.println(rsa.toString());
 			colaParaLasPropuestas.add( propuestas.convertResultSetTo_Propuesta(rsa));
 		}
-
+System.out.println(colaParaLasPropuestas.size());
 
 		Date xx = new Date();
 		Calendar hoy = Calendar.getInstance();
@@ -835,22 +837,20 @@ System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"
 			System.out.println(reservasEitosas.size());
 			reservasEitosas.add(reservaARestaurar);
 			
-			
-			propuestaNueva=colaParaLasPropuestas.poll();
-			
 		}
 
 
 		for (Reserva reserva : reservasSegundoOrden) 
 		{
 			cancelarReserva(reserva);
+			System.out.println();
 			reserva.setId_propuesta(propuestaNueva.getId());
 			registrarReserva(reserva);
 			//Verificar que si se hizo
 				System.out.println( reserva.toString());
 				reservasEitosas.add(reserva);
 		
-				propuestaNueva=colaParaLasPropuestas.poll();
+			
 			
 		}
 
