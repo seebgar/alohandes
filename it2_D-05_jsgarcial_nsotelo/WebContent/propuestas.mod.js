@@ -70,9 +70,11 @@
         function ($scope, $http, propuestaContext) {
             // id_operador
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/' + $scope.id_operador + '/propuestas').then(function (response) {
-                $scope.propuestas = response.data;
-            });
+           $scope.get = function() { 
+                   $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/' + $scope.id_operador + '/propuestas').then(function (response) {
+                    $scope.propuestas = response.data;
+                });
+                                   }
 			
             // http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento
 			$http.get('data/mayores.json').then(function (response) {

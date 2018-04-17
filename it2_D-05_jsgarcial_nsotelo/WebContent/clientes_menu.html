@@ -33,7 +33,16 @@
     <body>
         
         <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
-        <header class="parallax">
+        <header class="parallax" style="position: relative">
+            
+            <div ng-module="reservaModule" style="text-align: left; color: whitesmoke; position: absolute; left: 1em;">
+                <h3 style="text-align: right;" ng-controller="reservasController">
+                ID cliente &nbsp; &nbsp; 
+                    <input  ng-model="id_cliente" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+                    &nbsp; &nbsp;
+                    <a href="clientes_menu.html" style="color: whitesmoke;" ng-click="get()" >enviar</a>
+                </h3>
+            </div>
             
             <nav style="color: whitesmoke">
                 <ul class="menu js_menu_nav" style="display: block">

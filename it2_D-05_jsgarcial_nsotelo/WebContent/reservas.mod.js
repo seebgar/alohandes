@@ -40,10 +40,12 @@
         
         function ($scope, $http, reservasContext) {
             // http://localhost:8080/Alohandes_IT1/rest/personas/clientes/$scope.id_cliente/reservas
-            console.log($scope.id_cliente);
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/' + $scope.id_cliente + '/reservas').then(function (response) {
-                $scope.reservas = response.data;
-            });
+            $scope.get = function() {
+                console.log($scope.id_cliente);
+                    $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/' + $scope.id_cliente + '/reservas').then(function (response) {
+                    $scope.reservas = response.data;
+                });
+            }
             
             // http://localhost:8080/Alohandes_IT1/rest/personas/ 
             $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_cliente).then(function (response) {
