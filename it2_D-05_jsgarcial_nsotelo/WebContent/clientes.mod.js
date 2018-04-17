@@ -32,7 +32,7 @@
         
         function ($scope, $http, clientesContext) {
 			//http://localhost:8080/Alohandes_IT1/rest/personas/clientes
-            $http.get('data/clientes.json').then(function (response) {
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes').then(function (response) {
                 $scope.clientes = response.data;
             });
         }

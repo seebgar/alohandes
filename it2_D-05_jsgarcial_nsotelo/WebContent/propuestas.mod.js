@@ -101,7 +101,7 @@
             
             // INFORMACION DE UN OPERADOR USUARIO
             // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador').then(function (response) {
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador).then(function (response) {
                 $scope.operador = response.data;
             });
         }
