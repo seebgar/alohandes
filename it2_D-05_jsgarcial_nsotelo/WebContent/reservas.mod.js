@@ -48,9 +48,11 @@
             }
             
             // http://localhost:8080/Alohandes_IT1/rest/personas/ 
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_cliente).then(function (response) {
+            $scope.get_2 = function() {
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_cliente).then(function (response) {
                 $scope.cliente = response.data;
             });
+            }
             
             
         }
