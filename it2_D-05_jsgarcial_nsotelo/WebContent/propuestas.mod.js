@@ -54,7 +54,7 @@
                 param: {
                     id_operador: null
                 },
-                templateUrl: "panel_propuestas_porID.html",
+                templateUrl: "panel_consulta/panel_propuestas_porID.html",
                 controller: 'propuestasController'
             })
 
