@@ -39,15 +39,16 @@
     mod.controller('reservasController', ['$scope', '$http', 'reservasContext',
         
         function ($scope, $http, reservasContext) {
-            // http://localhost:8080/Alohandes_IT1/rest/personas/clientes/40/reservas
-            $http.get('data/reservas.json').then(function (response) {
+            // http://localhost:8080/Alohandes_IT1/rest/personas/clientes/$scope.id_cliente/reservas
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/' + $scope.id_cliente + '/reservas').then(function (response) {
                 $scope.reservas = response.data;
             });
             
-            // http://localhost:8080/Alohandes_IT1/rest/personas/400
-            $http.get('data/operador.json').then(function (response) {
+            // http://localhost:8080/Alohandes_IT1/rest/personas/ 
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_cliente).then(function (response) {
                 $scope.cliente = response.data;
             });
+            
             
         }
                                           

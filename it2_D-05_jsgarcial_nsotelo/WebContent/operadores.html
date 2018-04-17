@@ -16,9 +16,9 @@ tr:nth-child(even) {
 </style>
 
 
-<div class="lista">
-    <h3 style="text-align: right;">
-    ID operador &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+<div class="lista" ng-module="propuestaModule"> 
+    <h3 style="text-align: right;" ng-controller="propuestasController">
+    ID operador &nbsp; &nbsp; <input ng-model="id_operador" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
         &nbsp; &nbsp;
         <a href="operadores_menu.html" style="color: gray;">enviar</a>
         <br/>

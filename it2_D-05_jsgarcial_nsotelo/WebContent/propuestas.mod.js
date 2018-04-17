@@ -68,8 +68,9 @@
     mod.controller('propuestasController', ['$scope', '$http', 'propuestaContext',
         
         function ($scope, $http, propuestaContext) {
+            // id_operador
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
-            $http.get('data/propuestas.json').then(function (response) {
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/' + $scope.id_operador + '/propuestas').then(function (response) {
                 $scope.propuestas = response.data;
             });
 			
@@ -100,7 +101,7 @@
             
             // INFORMACION DE UN OPERADOR USUARIO
             // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-            $http.get('data/operador.json').then(function (response) {
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador').then(function (response) {
                 $scope.operador = response.data;
             });
         }
