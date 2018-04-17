@@ -49,6 +49,15 @@
                 controller: 'propuestasController'
             })
 
+            .state('propuestasID', {
+                url: "/propuestasID",
+                param: {
+                    id_operador: null
+                },
+                templateUrl: "panel_propuestas_porID.html",
+                controller: 'propuestasController'
+            })
+
 
 
 
@@ -63,9 +72,9 @@
     var mod = ng.module("propuestaModule");
     mod.constant("propuestaContext", "api/propuestas");
 
-    mod.controller('propuestasController', ['$scope', '$http', 'propuestaContext',
+    mod.controller('propuestasController', ['$scope', '$http', 'propuestaContext', '$state' , 
 
-        function ($scope, $http, propuestaContext) {
+        function ($scope, $http, propuestaContext, $state) {
             // id_operador
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
             $http.get('data/propuestas.json').then(function (response) {
@@ -103,6 +112,15 @@
             $http.get('data/operador.json').then(function (response) {
                 $scope.operador = response.data;
             });
+            
+            
+            if (($state.params.id_operador !== undefined) && ($state.params.id_operador !== null)) {
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id_operador +'/propuestas').then(function (response) {
+                    $scope.propuestasID = response.data;
+                });
+            }
+            
+            
         }
 
     ]);
