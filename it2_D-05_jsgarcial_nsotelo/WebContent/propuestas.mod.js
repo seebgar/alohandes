@@ -68,39 +68,46 @@
         function ($scope, $http, propuestaContext) {
             // id_operador
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
-            $http.get('data/propuestas.json').then(function (response) {
+    		// data/propuestas.json
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas').then(function (response) {
                 $scope.propuestas = response.data;
             });
 
 
             // http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento
-            $http.get('data/mayores.json').then(function (response) {
+            // data/mayores.json
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento').then(function (response) {
                 $scope.lista_mayores = response.data;
             });
 
             // http://localhost:8080/Alohandes_IT1/rest/consultas/ingresos/mes/apartamento
-            $http.get('data/ingresos.json').then(function (response) {
+            // 'data/ingresos.json'
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/consultas/ingresos/mes/apartamento').then(function (response) {
                 $scope.lista_ingresos = response.data;
             });
 
             // http://localhost:8080/Alohandes_IT1/rest/consultas/menor/mes/apartamento
-            $http.get('data/menores.json').then(function (response) {
+            // 'data/menores.json'
+            $http.get( 'http://localhost:8080/Alohandes_IT1/rest/consultas/menor/mes/apartamento' ).then(function (response) {
                 $scope.lista_menores = response.data;
             });
 
             //http://localhost:8080/Alohandes_IT1/rest/consultas/frecuentes/apartamento
-            $http.get('data/frecuentes.json').then(function (response) {
+            // 'data/frecuentes.json'
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/consultas/frecuentes/apartamento').then(function (response) {
                 $scope.lista_frecuentes = response.data;
             });
 
             // http://localhost:8080/Alohandes_IT1/rest/consultas/poca_demanda
-            $http.get('data/pocos.json').then(function (response) {
+            // 'data/pocos.json'
+            $http.get( 'http://localhost:8080/Alohandes_IT1/rest/consultas/poca_demanda' ).then(function (response) {
                 $scope.lista_pocos = response.data;
             });
 
             // INFORMACION DE UN OPERADOR USUARIO
             // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-            $http.get('data/operador.json').then(function (response) {
+            // 'data/operador.json'
+            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/20').then(function (response) {
                 $scope.operador = response.data;
             });
         }
