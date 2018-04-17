@@ -1,0 +1,86 @@
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+    
+    .tittle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+  
+    
+</style>
+
+<style type="text/css">a {text-decoration: none}</style>
+
+
+<div class="lista" style="width: 80%">
+    <div class="tittle">
+        <h3 class="1">Propuestas </h3>
+        <h3 style="text-align: right;" class="2">
+            ID propuesta &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+            &nbsp; &nbsp;
+        <a href="" style="color: gray;">buscar</a>
+            <br/>
+        <h3>
+            <a ui-sref="mes" style="text-align: right;"><strong>agregar propuesta</strong></a>
+        </h3>
+    </h3>
+    </div>
+    
+   
+    <br/>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Inmueble</th>
+        <th>Disponible</th>
+        <th>Costo Total</th>
+        <th></th>
+      </tr>
+
+      <tr ng-repeat="propuesta in propuestasID"  >
+          <td><a >{{propuesta.id}}</a></td>
+          <td>{{propuesta.tipo_inmueble}}</td>
+          <td>{{propuesta.disponible}}</td>
+          <td>{{propuesta.sub_total | currency}}</td>
+          <td> <a ui-sref="eliminar_propuesta" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+      </tr>
+        
+        <div ui-view ></div>
+        
+    </table>
+    
+</div>
+
+
+
+
+
+<!--
+        <th>ID</th>
+        <th>Tipo Inmueble</th>
+        <th>Fecha Registro</th>
+        <th>Fecha Inicio Estadia</th>
+        <th>Fecha Cancelacion</th>
+        <th>Duracion Contrato</th>
+        <th>Cantidad Personas</th>
+        <th>Costo Total</th>
+        <th></th>
+-->
+
+
+
+
+
