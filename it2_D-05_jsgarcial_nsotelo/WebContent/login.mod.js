@@ -37,7 +37,9 @@
                     nombre: $scope.nombre,
                     apellido: $scope.apellido,
                     tipo: $scope.tipo,
-                    cedula: $scope.cedula
+                    cedula: $scope.cedula,
+                    rol: $scope.rol,
+                    email: $scope.email
                 };
                 
                 // DIRECCION HTTP 

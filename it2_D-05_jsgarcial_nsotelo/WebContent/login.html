@@ -24,9 +24,7 @@
 		.login {
 			margin: auto;
 			color: gray;
-			margin-top: 7em;
 			width: 30em;
-			height: 30em;
 			background-color: white;
 			border-radius: 0.5em;
 		}
@@ -49,7 +47,7 @@
 
 	<header ng-app="loginModule">
         
-        <h3 style="padding: 2em;"><a href="index.html">inico</a></h3>
+        <h3 style="padding-top: 2em; padding-left: 2em;"><a href="index.html" style="color: whitesmoke">inicio</a></h3>
 		
 		<div class="login" ng-controller="loginController">
 			
@@ -58,6 +56,8 @@
 			<div style="height: 2em; padding-left: 1em; grid-area: nombre; margin-bottom: 2em;"><input type="number" required style="width: 96%; height: 2.5em;" placeholder="ID" ng-model="id"> </div>
 			<div style="height: 2em; padding-left: 1em; grid-area: apellido; margin-bottom: 2em;"><input type="text" required style="width: 96%; height: 2.5em;" placeholder="Nombre" ng-model="nombre"> </div>
 			<div style="height: 2em; padding-left: 1em; grid-area: email; margin-bottom: 2em;"><input type="text" required style="width: 96%; height: 2.5em;" placeholder="Apellido" ng-model="apellido"> </div>
+            <div style="height: 2em; padding-left: 1em; grid-area: email; margin-bottom: 2em;"><input type="email" required style="width: 96%; height: 2.5em;" placeholder="Email" ng-model="email"> </div>
+            <div style="height: 2em; padding-left: 1em; grid-area: email; margin-bottom: 2em;"><input type="text" required style="width: 96%; height: 2.5em;" placeholder="Rol {cliente, operador}" ng-model="rol"> </div>
             <div style="height: 2em; padding-left: 1em; grid-area: email; margin-bottom: 2em;"><input type="text" required style="width: 96%; height: 2.5em;" placeholder="Relacion con la universidad {estudiante, empleado, profesor, padre, egresado}" ng-model="tipo"> </div>
             <!-- ROL ES CLIENTE -->
             <div style="height: 2em; padding-left: 1em; grid-area: nombre; margin-bottom: 2em;"><input type="number" required style="width: 96%; height: 2.5em;" placeholder="Cedula" ng-model="cedula"> </div>
