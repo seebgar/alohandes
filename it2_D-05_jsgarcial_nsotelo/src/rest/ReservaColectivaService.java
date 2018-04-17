@@ -78,7 +78,24 @@ public class ReservaColectivaService {
 		}
 	}
 
+	/**
+	 * Get reservas colectiavs de cliente
+	 */
+	@GET
+	@Path("/clientes/{id: \\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response getReservasColectivasPorCliente(@PathParam("id") Long id) 
+	{
+		try {
 
+			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
+			List<Reserva> lista= tm.get_Reservas_Cliente_PorID(id);
+			return Response.status(200).entity(lista).build();
+
+		}catch( Exception e ){
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
 
 
 	/**

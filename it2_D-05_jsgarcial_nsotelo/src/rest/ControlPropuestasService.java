@@ -42,7 +42,7 @@ public class ControlPropuestasService
 	private String doErrorMessage(Exception e){
 		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
 	}
-	
+
 	@PUT
 	@Path("/deshabilitar/{id:\\d+}")
 	@Produces( { MediaType.APPLICATION_JSON } )
@@ -54,6 +54,22 @@ public class ControlPropuestasService
 			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
 			List<Reserva>lista= tm.deshabilitarOfertaDeAlojamiento(id); 
 			return Response.status( 200 ).entity(lista).build();
+		} catch (Exception e) {
+			return Response.status( 500 ).entity(doErrorMessage(e)).build();
+		}
+	}
+
+	@PUT
+	@Path("/habilitar/{id:\\d+}")
+	@Produces( { MediaType.APPLICATION_JSON } )
+	@Consumes( { MediaType.APPLICATION_JSON } )
+	public Response habilitarPropuesta( @PathParam( "id" ) Long id)
+	{
+		try 
+		{
+			AlohandesTransactionManager tm= new AlohandesTransactionManager(getPath());
+			tm.rehabilitarOfertaDeAlojamiento(id); 
+			return Response.status( 200 ).entity(id).build();
 		} catch (Exception e) {
 			return Response.status( 500 ).entity(doErrorMessage(e)).build();
 		}

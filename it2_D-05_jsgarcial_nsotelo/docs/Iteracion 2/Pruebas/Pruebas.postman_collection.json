@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "614f3e3c-0242-44a9-8f5c-6e68a00e3f79",
+		"_postman_id": "fc63c2a7-0723-458b-b383-d4e116d47ef5",
 		"name": "Pruebas",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -544,7 +544,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n \"id\": 1,\r\n  \"usuarios\": [\r\n    {\r\n      \"id\": 20,\r\n      \"id_reserva\": 801,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 21,\r\n      \"id_reserva\": 802,\r\n      \"cantidad_personas\": 3\r\n    },\r\n    {\r\n      \"id\": 22,\r\n      \"id_reserva\": 803,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 23,\r\n      \"id_reserva\": 804,\r\n      \"cantidad_personas\": 3\r\n    },\r\n    {\r\n      \"id\": 24,\r\n      \"id_reserva\": 805,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 25,\r\n      \"id_reserva\": 806,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 26,\r\n      \"id_reserva\": 807,\r\n      \"cantidad_personas\": 3\r\n    },\r\n    {\r\n      \"id\": 27,\r\n      \"id_reserva\": 808,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 28,\r\n      \"id_reserva\": 809,\r\n      \"cantidad_personas\": 2\r\n    },\r\n    {\r\n      \"id\": 29,\r\n      \"id_reserva\": 810,\r\n      \"cantidad_personas\": 1\r\n    },\r\n    {\r\n      \"id\": 30,\r\n      \"id_reserva\": 811,\r\n      \"cantidad_personas\": 2\r\n    }\r\n  ],\r\n  \"duracion\": 30,\r\n  \"fecha_inicio_estadia\": \"04/30/2018\",\r\n  \"tipo_inmueble\": \"Apartamento\",\r\n  \"privacidad\": \"sencilla\",\r\n  \"cantidad_inmuebles\": 10,\r\n  \"servicios_deseados\": [\r\n    \"luz\",\r\n    \"tv\",\r\n    \"internet\"\r\n  ]\r\n}"
+					"raw": "{\n \"id\": 1,\n  \"usuarios\": [\n    {\n      \"id\": 20,\n      \"id_reserva\": 801,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 21,\n      \"id_reserva\": 802,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 22,\n      \"id_reserva\": 803,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 23,\n      \"id_reserva\": 804,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 24,\n      \"id_reserva\": 805,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 25,\n      \"id_reserva\": 806,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 26,\n      \"id_reserva\": 807,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 27,\n      \"id_reserva\": 808,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 28,\n      \"id_reserva\": 809,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 29,\n      \"id_reserva\": 810,\n      \"cantidad_personas\": 1\n    },\n    {\n      \"id\": 30,\n      \"id_reserva\": 811,\n      \"cantidad_personas\": 2\n    }\n  ],\n  \"duracion\": 30,\n  \"fecha_inicio_estadia\": \"2018-05-14\",\n  \"tipo_inmueble\": \"Apartamento\",\n  \"privacidad\": \"sencilla\",\n  \"cantidad_inmuebles\": 10,\n  \"servicios_deseados\": [\n    \"luz\",\n    \"tv\",\n    \"internet\"\n  ]\n}\n"
 				},
 				"url": {
 					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas",
@@ -577,7 +577,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/deshabilitar/22",
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/deshabilitar/19",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -588,6 +588,30 @@
 						"rest",
 						"propuestas",
 						"deshabilitar",
+						"19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RF10 Rehabilitar propuesta en el sistema",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Alohandes_IT1",
+						"rest",
+						"propuestas",
+						"habilitar",
 						"22"
 					]
 				}
@@ -690,6 +714,29 @@
 					]
 				},
 				"description": "Retorna las propuestas con poce demanda o que estuvieron disponibles por mas de un 1 mes"
+			},
+			"response": []
+		},
+		{
+			"name": "RF8 borrar reserva colectiva ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Alohandes_IT1",
+						"rest",
+						"reservasColectivas",
+						"2"
+					]
+				}
 			},
 			"response": []
 		}

@@ -73,7 +73,8 @@ public class DAOReserva {
 	/**
 	 * Metodo constructor de la clase DAOPersona <br/>
 	 */
-	public DAOReserva() {
+	public DAOReserva() 
+	{
 		recursos = new ArrayList<Object>();
 	}
 
@@ -132,6 +133,7 @@ public class DAOReserva {
 
 		ArrayList<Reserva> reservasEnFecha = new ArrayList<>();
 
+
 		//consigo las reservas que hay para ese dia
 		String reservas = String.format("SELECT * FROM RESERVAS WHERE ID = "+ reserva.getId()+" AND FECHA_INICIO_ESTADIA = '"+reserva.getFecha_inicio_estadia()+"'");
 		System.out.println(reservas);
@@ -168,7 +170,7 @@ public class DAOReserva {
 
 		//sentencia para insertar la resrva en la base de datos
 		int hay_m = reserva.getHayMulta().toString().equals("true") ? 1 : 0;
-		String xx = reserva.getFecha_cancelacion() == null ? "null" : reserva.getFecha_cancelacion(); 
+		String xx = reserva.getFecha_cancelacion() == null ? "null" : "'" + reserva.getFecha_cancelacion() + "'"; 
 		String sql = "INSERT INTO RESERVAS  " + 
 				"( ID, ID_PERSONA, ID_PROPUESTA, FECHA_REGISTRO, FECHA_CANCELACION, FECHA_INICIO_ESTADIA, DURACION_CONTRATO, COSTO_TOTAL, CANTIDAD_PERSONAS, HAY_MULTA, VALOR_MULTA, ID_COLECTIVO ) " + 
 				"VALUES " + 
@@ -176,7 +178,7 @@ public class DAOReserva {
 				"  " + reserva.getId_cliente() + " , " + 
 				"  " + reserva.getId_propuesta() + " , " + 
 				"'" + reserva.getFecha_registro() + "'," + 
-				" ' " + xx + " '  , " + 
+				"  " + xx + "   , " + 
 				"'"+ reserva.getFecha_inicio_estadia() +"'," + 
 				"   " + reserva.getDuracion() + "  , " + 
 				"   " + reserva.getCosto_total() + "   , " + 
@@ -451,7 +453,7 @@ public class DAOReserva {
 
 
 	//----------------------------------------------------------------------------------------------------------------------------------
-	// PROVACIDAD
+	// PRIVACIDAD
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -562,6 +564,7 @@ public class DAOReserva {
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 
+
 		List<Integer> propuestas_id = new ArrayList<>();
 		while( rs.next() ) 
 			propuestas_id.add(rs.getInt("ID"));
@@ -572,7 +575,12 @@ public class DAOReserva {
 			System.out.println("El sistema no cuenta con los suficientes inmuebles que se requieren. # " + tipo_inmueble + "s = " + propuestas_id.size());
 
 		if ( propuestas_id.size() == 0 )
+		{
+			//			conn.rollback();
 			throw new BusinessLogicException(" <<< El sistema no cuenta con inmuebles que cumplan con las restricciones requeridas: " + condicional_sql + " para el tipo de inmueble " + tipo_inmueble + " >>>");
+
+		}
+
 
 		//reservas a realizar
 		List<Reserva> reservas = new ArrayList<>();
@@ -616,7 +624,11 @@ public class DAOReserva {
 
 		//realiza el registro de las reservas en el sistema
 		for ( Reserva reserva : reservas) 
+		{
 			this.registrarReserva(reserva);
+			conn.commit();
+		}
+
 
 		//se retornan las reservas realizadas
 		return reservas;
@@ -656,6 +668,7 @@ public class DAOReserva {
 				sentenciaParaCancelar.setLong(1, reserva.getId());
 				System.out.println(sentenciaParaCancelar);
 				sentenciaParaCancelar.executeUpdate();
+				conn.commit();
 				try {
 					cancelarReserva(reserva);
 				} catch (Exception e) {
@@ -666,6 +679,7 @@ public class DAOReserva {
 			} catch (SQLException e) {
 				System.out.println("FAIL SQL< ELIMIANDO DESDE RF8");
 				e.printStackTrace();
+				conn.rollback();
 			}
 
 		}
@@ -690,8 +704,27 @@ public class DAOReserva {
 
 		return rta;
 	}
+	
+	/**
+	 * Retorna todas las reservas que se hicieron de manera colectiva  de una persona.
+	 * @param idPersona 
+	 * @return
+	 * @throws Exception
+	 */
+	public List <Reserva> getReservaColectivaPorPersona(Long idPerosna) throws SQLException,Exception
+	{
+		List<Reserva> rta= new ArrayList<>();
+		PreparedStatement sentenciaParaBuscar;
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null and id_persona = ?");
+		sentenciaParaBuscar.setLong(1,idPerosna);
 
+		ResultSet rs = sentenciaParaBuscar.executeQuery();
+		while (rs.next())
+			rta.add(convertResultSetTo_Reserva(rs));
 
+		return rta;
+
+	}
 
 
 
@@ -719,15 +752,15 @@ public class DAOReserva {
 
 		DAOPersona propuestas= new DAOPersona();
 		propuestas.setConn(conn);
-		
+
 		PreparedStatement propuestaActual= conn.prepareStatement("SELECT * FROM PROPUESTAS WHERE ID = "+propuesta);
 		ResultSet rspropuesta = propuestaActual.executeQuery();
 		Propuesta propuestaAcancelar= null;
-		
+
 		while ( rspropuesta.next() ) {
 			propuestaAcancelar=  propuestas.convertResultSetTo_Propuesta(rspropuesta) ;
 		}
-		
+
 		List<Reserva> reservasEitosas= new ArrayList<>();
 		String sql_reservas = "SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = " + propuestaAcancelar.getId();
 
@@ -742,7 +775,7 @@ public class DAOReserva {
 		while ( rs.next() ) {
 			reservasaReabilitar.add( this.convertResultSetTo_Reserva(rs) );
 		}
-		
+
 		Queue<Propuesta> colaParaLasPropuestas= new LinkedList<>();
 		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuestaAcancelar.getTipo_inmueble() +"'"+ "AND ID !="+propuestaAcancelar.getId();
 
@@ -756,7 +789,7 @@ public class DAOReserva {
 			System.out.println(rsa.toString());
 			colaParaLasPropuestas.add( propuestas.convertResultSetTo_Propuesta(rsa));
 		}
-System.out.println(colaParaLasPropuestas.size());
+		System.out.println(colaParaLasPropuestas.size());
 
 		Date xx = new Date();
 		Calendar hoy = Calendar.getInstance();
@@ -778,27 +811,29 @@ System.out.println(colaParaLasPropuestas.size());
 			cal_f.setTime(fecha_i);
 			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
 
-			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==0) {
+
+			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==0) 
+			{
 				vigentes.add(reserva);
 			}
 			else if( reserva.getId_colectivo()!=0) 
 			{
-				System.out.println(reserva.getId_colectivo());
+
 				reservasColectivas.add(reserva);
 			}
 			else {
 				reservasSegundoOrden.add(reserva);
 			}
 		};
-System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"+vigentes.size());
-		
+
+
 		//Primero las vigentes
 		//Ordeno por cuando se hizo el registro de cada una desecndentemente
 		vigentes.sort(new Comparator<Reserva>() {
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-				
+
 
 				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
@@ -809,7 +844,7 @@ System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-		
+
 
 				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
@@ -820,60 +855,52 @@ System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"
 
 			@Override
 			public int compare(Reserva o1, Reserva o2) {
-				
+
 
 				return o1.getFecha_registro().compareTo(o2.getFecha_registro());
 			}
 		});
-		
-       Propuesta  propuestaNueva= colaParaLasPropuestas.poll();
-       System.out.println(vigentes.size());
+
+		Propuesta  propuestaNueva= colaParaLasPropuestas.poll();
+
 		for (Reserva reservaARestaurar : vigentes) 
 		{ 	
 			cancelarReserva(reservaARestaurar);
-			
+
 			reservaARestaurar.setId_propuesta(propuestaNueva.getId());
 			registrarReserva(reservaARestaurar);
-			System.out.println(reservasEitosas.size());
+
 			reservasEitosas.add(reservaARestaurar);
-			
+
+
 		}
 
+		propuestaNueva= colaParaLasPropuestas.poll();
 
 		for (Reserva reserva : reservasSegundoOrden) 
 		{
 			cancelarReserva(reserva);
-			System.out.println();
+
 			reserva.setId_propuesta(propuestaNueva.getId());
 			registrarReserva(reserva);
 			//Verificar que si se hizo
-				System.out.println( reserva.toString());
-				reservasEitosas.add(reserva);
-		
-			
-			
+
+			reservasEitosas.add(reserva);
+
 		}
 
 		//caso especial
+		propuestaNueva= colaParaLasPropuestas.poll();
 
-//		for (Reserva reserva : reservasColectivas) 
-//		{
-//			cancelarReserva(reserva);
-//			reserva.setId_propuesta(propuestaNueva.getId());
-//			registrarReserva(reserva);
-//			//Verificar que si se hizo
-//			if(getReservaById(reserva.getId())!=null)
-//			{
-//				reservasEitosas.add(reserva);
-//			}
-//			PreparedStatement verificacion= conn.prepareStatement("SELECT DISPONIBLE FROM PROPUESTAS WHERE ID = "+ propuestaNueva.getId());
-//			ResultSet verif= verificacion.executeQuery();
-//			if(verif.getInt(0)==0)
-//			{
-//				propuestaNueva=colaParaLasPropuestas.poll();
-//			}
-//		}
+		for (Reserva reserva : reservasColectivas) 
+		{
+			cancelarReserva(reserva);
+			reserva.setId_propuesta(propuestaNueva.getId());
+			registrarReserva(reserva);
+			//Verificar que si se hizo
 
+			reservasEitosas.add(reserva);
+		}
 
 
 		PreparedStatement updateDeLaPropuesta = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 0 WHERE ID ="+propuestaAcancelar.getId());
@@ -883,6 +910,24 @@ System.out.println(reservasColectivas.size()+"-"+reservasSegundoOrden.size()+"-"
 		return reservasEitosas;
 
 	}
+
+	/**
+	 * RF10 - REHABILITAR OFERTA DE ALOJAMIENTO
+	 *Esta operación es la inversa de la anterior, 
+	 *cuando la oferta de alojamiento vuelve a estar disponible y puede por lo tanto aceptar nuevas reservas.
+	 *ALOHANDES debe informar de manera completa y clara las operaciones realizadas.
+	 * @throws SQLException,Exception 
+	 */
+
+	public void  rehabilitarOfertaDeAlojamineto(Long idPropuesta) throws SQLException,Exception
+	{
+		PreparedStatement updateDeLaPropuesta = conn.prepareStatement("UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE ID ="+idPropuesta);
+		updateDeLaPropuesta.executeUpdate();
+
+	}
+
+
+
 
 
 
