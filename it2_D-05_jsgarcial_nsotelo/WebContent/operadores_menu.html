@@ -104,8 +104,8 @@
 
     <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
     <header class="parallax">
-        <div class="navigation">
-            <div class="navbar">
+        <div class="navigation" ng-app="propuestaModule">
+            <div class="navbar" ng-controller="propuestasController">
 
                 <a ui-sref="perfil">Perfil</a>
 
@@ -121,6 +121,7 @@
                 </div>
 
                 <a ui-sref="propuestas">Propuestas</a>
+                
                 <a href="index.html">Inicio</a>
 
             </div>
@@ -141,7 +142,8 @@
         </div>
 
     </header>
-
+    
+     
     <!-- ANGULAR UI ROUTER -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
@@ -181,6 +183,8 @@
         }
 
     </script>
+
+   
 </body>
 
 </html>

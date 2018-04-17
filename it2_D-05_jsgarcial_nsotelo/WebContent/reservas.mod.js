@@ -42,8 +42,8 @@
                 $scope.reservas = response.data;
             });
 
-            // http://localhost:8080/Alohandes_IT1/rest/personas/ 
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/20').then(function (response) {
+            // http://localhost:8080/Alohandes_IT1/rest/personas/20 
+            $http.get('data/operador.json').then(function (response) {
                 $scope.cliente = response.data;
             });
 

@@ -71,7 +71,7 @@
             // id_operador
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
            $scope.get = function() { 
-                   $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/' + $scope.id_operador + '/propuestas').then(function (response) {
+                   $http.get('data/propuestas.json').then(function (response) {
                     $scope.propuestas = response.data;
                 });
                                    }
@@ -103,7 +103,7 @@
             
             // INFORMACION DE UN OPERADOR USUARIO
             // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador).then(function (response) {
+            $http.get('data/operador.json').then(function (response) {
                 $scope.operador = response.data;
             });
         }

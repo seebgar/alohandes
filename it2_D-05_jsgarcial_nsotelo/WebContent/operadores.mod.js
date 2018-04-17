@@ -29,7 +29,7 @@
         
         function ($scope, $http, operadoresContext) {
             //http://localhost:8080/Alohandes_IT1/rest/personas/operadores
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores').then(function (response) {
+            $http.get('data/operadores.json').then(function (response) {
                 $scope.operadores = response.data;
             });
         }
