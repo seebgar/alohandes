@@ -121,29 +121,31 @@
                 </div>
 
                 <a ui-sref="propuestas">Propuestas</a>
-                
+
                 <a href="index.html">Inicio</a>
 
             </div>
 
-            <div ng-module="propuestaModule" style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
-                
-                <h3 style="text-align: right;" ng-controller="propuestasController">
+            <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
+                <h3 style="text-align: right;">
                     <h3>ID operador &nbsp; &nbsp; <input ng-model="id_operador" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right; padding-right: 2em;"> &nbsp; &nbsp;
                         <a href="" style="color: whitesmoke; text-decoration: none">enviar</a> </h3>
                 </h3>
-                
             </div>
 
+
+            <div>
+                <div ui-view></div>
+            </div>
+
+
         </div>
 
-        <div>
-            <div ui-view></div>
-        </div>
+
 
     </header>
-    
-     
+
+
     <!-- ANGULAR UI ROUTER -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
@@ -167,7 +169,7 @@
 
     <script>
         /* When the user clicks on the button, 
-                                                        toggle between hiding and showing the dropdown content */
+                                                                toggle between hiding and showing the dropdown content */
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
@@ -184,7 +186,7 @@
 
     </script>
 
-   
+
 </body>
 
 </html>
