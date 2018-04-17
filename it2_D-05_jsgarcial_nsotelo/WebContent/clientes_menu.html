@@ -114,10 +114,12 @@
                 <a href="index.html">Inicio</a>
             </div>
 
-            <div ng-module="reservaModule" style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
-                <h3 style="text-align: right;" ng-controller="reservasController">
-                    <h3>ID cliente &nbsp; &nbsp; <input ng-model="id_cliente" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right; padding-right: 2em;"> &nbsp; &nbsp;
-                        <a href="" style="color: whitesmoke; text-decoration: none">enviar</a> </h3>
+            <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
+                <h3 style="text-align: right;">
+                    <h3>ID cliente &nbsp; &nbsp; 
+    <input ng-model="num" type="text" value="143" placeholder="143" style="height: 2em; text-align: right; padding-right: 2em;"> 
+                        &nbsp; &nbsp;
+     <a href="" style="color: whitesmoke; text-decoration: none" ui-sref="reservasID({ id: num })">enviar</a> </h3>
                 </h3>
             </div>
 
