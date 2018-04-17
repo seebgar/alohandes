@@ -50,9 +50,9 @@
             })
 
             .state('propuestasID', {
-                url: "/propuestasID",
+                url: "/propuestasID/:id",
                 param: {
-                    id_operador: null
+                    id: null
                 },
                 templateUrl: "panel_consulta/panel_propuestas_porID.html",
                 controller: 'propuestasController'
@@ -121,14 +121,20 @@
             });
 
 
-            if (($state.params.id_operador !== undefined) && ($state.params.id_operador !== null)) {
-                // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id_operador +'/propuestas'
-                $http.get('data/p-' + $state.params.id_operador).then(function (response) {
+            if (($state.params.id !== undefined) && ($state.params.id !== null)) {
+                // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas'
+                console.log($state.id + ' <<<<< sin params' );
+                console.log($state.params.id + ' <<<<<' );
+                // 'data/p-' + $state.params.id + '.json'
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas').then(function (response) {
                     $scope.propuestasID = response.data;
                 });
             } else {
-                console.log('Esa vaina no existe');
+                console.log($state.id + ' <<<<< sin params' );
+                console.log($state.params.id + ' <<<<<' );
+                
             }
+            
 
 
         }
