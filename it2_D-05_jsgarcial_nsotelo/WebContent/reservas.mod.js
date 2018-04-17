@@ -25,7 +25,7 @@
                     param: {
                         id: null
                     },
-                    templateUrl: "panel_consultas/panel_reservas_porID.html.html",
+                    templateUrl: "panel_consulta/panel_reservas_porID.html",
                     controller: 'reservasController'
                 })
 
@@ -42,9 +42,9 @@
     var mod = ng.module("reservaModule");
     mod.constant("reservasContext", "api/reservas");
 
-    mod.controller('reservasController', ['$scope', '$http', 'reservasContext',
+    mod.controller('reservasController', ['$scope', '$http', 'reservasContext', '$state',
 
-        function ($scope, $http, reservasContext) {
+        function ($scope, $http, reservasContext, $state) {
             // http://localhost:8080/Alohandes_IT1/rest/personas/clientes/$scope.id_cliente/reservas
             // http://localhost:8080/Alohandes_IT1/rest/personas/clientes/20/reservas
             $http.get('data/reservas.json').then(function (response) {
@@ -61,7 +61,7 @@
                 console.log($state.id + ' <<<<< sin params' );
                 console.log($state.params.id + ' <<<<<' );
                 // 'data/p-' + $state.params.id + '.json'
-                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas').then(function (response) {
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/'+ $state.params.id +'/reservas').then(function (response) {
                     $scope.reservasID = response.data;
                 });
             } else {
