@@ -1,103 +1,170 @@
 <!DOCTYPE html>
 <html ng-app='main'>
+
+<head>
+    <!-- ASCII por defecto -->
+    <meta charset="utf-8">
+    <!-- relacion 1:1 en tamaños de ventana-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Sebastian Garcia 201630047 Nicolas Sotelo 201623026">
+    <meta name="description" content="Iteracion 2 Sistemas Transaccionales Alohandes">
+
+    <title>Alohandes</title>
+
+    <!-- FAV ICONS IMPORTA ICONOS DE http://ionicons.com -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- FAV ICONS -->
+
+    <!-- ICONS paquete por defecto -->
+    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
+
+    <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+
+    <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
+    <link rel="stylesheet" type="text/css" href="media.css">
     
-    <head>
-        <!-- ASCII por defecto -->
-        <meta charset="utf-8">
-        <!-- relacion 1:1 en tamaños de ventana-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Sebastian Garcia 201630047 Nicolas Sotelo 201623026">
-        <meta name="description" content="Iteracion 2 Sistemas Transaccionales Alohandes">
-        
-        <title>Alohandes</title>
-        
-        <!-- FAV ICONS IMPORTA ICONOS DE http://ionicons.com -->
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="theme-color" content="#ffffff">
-        <!-- FAV ICONS -->
-    
-        <!-- ICONS paquete por defecto -->
-        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-        
-        <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-        
-        <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
-        <link rel="stylesheet" type="text/css" href="media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .navbar {
+            text-align: right;
+            overflow: hidden;
+            font-family: 'Roboto', Helvetica, sans-serif;
+            right: 1em;
+        }
 
-    </head>
-    <body>
-        
-        <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
-        <header class="parallax" style="position: relative">
-            
-            
-            
-            <nav style="color: whitesmoke">
-                <ul class="menu js_menu_nav" style="display: block">
-                    <li><a href="index.html" >Inicio</a></li>
-                    <li><a ui-sref="reservas" >Reservas</a></li>
-                    <li><a >Reservas Colectivas</a></li>
-                    <li><a ui-sref="perfil_cliente" >Perfil</a></li>
-                </ul>
+        .navbar a {
+            float: right;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-                <!-- MENU STYLE FOR MOBILE -->
-                <a class="menu_dinamic js_menu_mobile"><i class="ion-android-close menu_icon"></i></a>
+        .dropdown {
+            float: right;
+            overflow: hidden;
+        }
 
-            </nav>
-            
-            <br>
-            <div ng-module="reservaModule" style="text-align: left; color: whitesmoke; position: absolute; left: 1em;">
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .navbar a:hover,
+        .dropdown:hover .dropbtn,
+        .dropbtn:focus {
+            background-color: rgba(245, 245, 245, 0);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
+    <header class="parallax" style="position: relative">
+
+
+        <div class="navigation">
+            <div class="navbar">
+                <a ui-sref="perfil_cliente">Perfil</a>
+                <a>Reservas Colectivas</a>
+                <a ui-sref="reservas">Reservas</a>
+                <a href="index.html">Inicio</a>
+            </div>
+
+            <div ng-module="reservaModule" style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
                 <h3 style="text-align: right;" ng-controller="reservasController">
-                ID cliente &nbsp; &nbsp; 
-                    <input  ng-model="id_cliente" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
-                    &nbsp; &nbsp;
-                    <a href="" style="color: whitesmoke;" ng-click="get()" ng-click="get_2()" ui-sref="reservas">enviar</a>
+                    <h3>ID cliente &nbsp; &nbsp; <input ng-model="id_cliente" type="text" id="id_cliente" value="1" style="height: 2em; text-align: right; padding-right: 2em;"> &nbsp; &nbsp;
+                        <a href="" style="color: whitesmoke; text-decoration: none">enviar</a> </h3>
                 </h3>
             </div>
-            
-                    
-            <div>
-                <div ui-view></div>
-            </div>
-            
-        
-        </header>
-        
-        
-        <!-- ANGULAR UI ROUTER -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-		<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-        
-         <!-- CLIENTES -->
-        <script src="clientes.mod.js" type="text/javascript"></script>
-        
-        <!-- OPERADORES -->
-        <script src="operadores.mod.js" type="text/javascript"></script>
-        
-         <!-- RESERVAS -->
-        <script src="reservas.mod.js" type="text/javascript"></script>
-        
-        <!-- PROPUESTAS -->
-        <script src="propuestas.mod.js" type="text/javascript"></script>
-        
-        <!-- log in -->
-        <script src="login.mod.js" type="text/javascript"></script>
-        
-		<script src="app.js"></script>
-        
-        
-        
-        
-        <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
-        <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
-        </script>
-        <script src="code.js"></script>
 
-    </body>
+        </div>
+
+       
+
+        <div>
+            <div ui-view></div>
+        </div>
+
+
+    </header>
+
+
+    <!-- ANGULAR UI ROUTER -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+    <!-- CLIENTES -->
+    <script src="clientes.mod.js" type="text/javascript"></script>
+
+    <!-- OPERADORES -->
+    <script src="operadores.mod.js" type="text/javascript"></script>
+
+    <!-- RESERVAS -->
+    <script src="reservas.mod.js" type="text/javascript"></script>
+
+    <!-- PROPUESTAS -->
+    <script src="propuestas.mod.js" type="text/javascript"></script>
+
+    <!-- log in -->
+    <script src="login.mod.js" type="text/javascript"></script>
+
+    <script src="app.js"></script>
+
+
+
+
+    <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
+    <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+
+
+    </script>
+    <script src="code.js"></script>
+
+</body>
+
 </html>
