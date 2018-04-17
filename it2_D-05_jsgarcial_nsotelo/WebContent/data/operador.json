@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "nombre": "Amy",
+    "apellido": "Hallyburton",
+    "tipo": "empresa",
+    "rol": "operador",
+    "nit": null,
+    "cedula": "1632643",
+    "email": "ahallyburton0@sphinn.com",
+    "propuestas": [],
+    "costo_multa": 0
+}

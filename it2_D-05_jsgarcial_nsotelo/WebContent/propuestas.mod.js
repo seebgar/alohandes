@@ -45,6 +45,12 @@
                                 controller: 'propuestasController'
                             })
         
+                .state('perfil', {
+                                url: "/perfil",
+                                templateUrl: "panel_consulta/perfil.html",
+                                controller: 'propuestasController'
+                            })
+        
     
     
     
@@ -62,28 +68,40 @@
     mod.controller('propuestasController', ['$scope', '$http', 'propuestaContext',
         
         function ($scope, $http, propuestaContext) {
+            //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
             $http.get('data/propuestas.json').then(function (response) {
                 $scope.propuestas = response.data;
             });
 			
+            // http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento
 			$http.get('data/mayores.json').then(function (response) {
                 $scope.lista_mayores = response.data;
             });
 			
+            // http://localhost:8080/Alohandes_IT1/rest/consultas/ingresos/mes/apartamento
 			$http.get('data/ingresos.json').then(function (response) {
                 $scope.lista_ingresos = response.data;
             });
 			
+            // http://localhost:8080/Alohandes_IT1/rest/consultas/menor/mes/apartamento
 			$http.get('data/menores.json').then(function (response) {
                 $scope.lista_menores = response.data;
             });
 			
+            //http://localhost:8080/Alohandes_IT1/rest/consultas/frecuentes/apartamento
 			$http.get('data/frecuentes.json').then(function (response) {
                 $scope.lista_frecuentes = response.data;
             });
 			
+            // http://localhost:8080/Alohandes_IT1/rest/consultas/poca_demanda
 			$http.get('data/pocos.json').then(function (response) {
                 $scope.lista_pocos = response.data;
+            });
+            
+            // INFORMACION DE UN OPERADOR USUARIO
+            // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
+            $http.get('data/operador.json').then(function (response) {
+                $scope.operador = response.data;
             });
         }
                                           

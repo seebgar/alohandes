@@ -15,13 +15,10 @@
 							templateUrl: "operadores.html",
                             controller: 'operadoresController' 
 						}) ;
-        
-    
-    
-    
     }]);
     
 })(window.angular);
+
 
 (function (ng) {
    
@@ -31,6 +28,7 @@
     mod.controller('operadoresController', ['$scope', '$http', 'operadoresContext',
         
         function ($scope, $http, operadoresContext) {
+            //http://localhost:8080/Alohandes_IT1/rest/personas/operadores
             $http.get('data/operadores.json').then(function (response) {
                 $scope.operadores = response.data;
             });

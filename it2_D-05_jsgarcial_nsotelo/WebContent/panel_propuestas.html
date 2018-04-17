@@ -29,9 +29,13 @@ tr:nth-child(even) {
     <div class="tittle">
         <h3 class="1">Propuestas </h3>
         <h3 style="text-align: right;" class="2">
-        ID propuesta &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
-        &nbsp; &nbsp;
+            ID propuesta &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+            &nbsp; &nbsp;
         <a href="" style="color: gray;">buscar</a>
+            <br/>
+        <h3>
+            <a ui-sref="mes" style="text-align: right;"><strong>agregar propuesta</strong></a>
+        </h3>
     </h3>
     </div>
     
@@ -51,7 +55,7 @@ tr:nth-child(even) {
           <td>{{propuesta.tipo_inmueble}}</td>
           <td>{{propuesta.disponible}}</td>
           <td>{{propuesta.sub_total | currency}}</td>
-          <td> <a href="" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+          <td> <a ui-sref="eliminar_propuesta" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
       </tr>
         
         <div ui-view ></div>

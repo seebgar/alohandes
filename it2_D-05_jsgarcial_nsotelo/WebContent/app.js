@@ -7,7 +7,8 @@
         'clienteModule',
         'operadorModule',
         'reservaModule',
-        'propuestaModule'
+        'propuestaModule',
+        'loginModule'
 
     ]);
     
