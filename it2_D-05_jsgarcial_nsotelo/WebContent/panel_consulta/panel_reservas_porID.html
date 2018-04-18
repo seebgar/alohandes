@@ -29,14 +29,13 @@ tr:nth-child(even) {
 
 <div class="lista" style="width: 80%">
     <div class="tittle">
-        <h3 class="1">Propuestas </h3>
+        <h3 class="1">Reservas </h3>
         <h3 style="text-align: right;" class="2">
-            ID propuesta &nbsp; &nbsp; <input type="text" id="id_cliente" value="1" style="height: 2em; text-align: right;">
+            ID reserva &nbsp; &nbsp; <input type="text" ng-model="id_filtro_reserva" style="height: 2em; text-align: right;">
             &nbsp; &nbsp;
-        <a href="" style="color: gray;">buscar</a>
             <br/>
         <h3>
-            <a ui-sref="mes" style="text-align: right;"><strong>agregar propuesta</strong></a>
+            <a ui-sref="mes" style="text-align: right;"><strong>agregar reserva</strong></a>
         </h3>
     </h3>
     </div>
@@ -46,13 +45,13 @@ tr:nth-child(even) {
     <table>
       <tr>
         <th>ID</th>
-        <th>Inmueble</th>
-        <th>Disponible</th>
+        <th>Fecha incio estadia</th>
+        <th>Duración</th>
         <th>Costo Total</th>
         <th></th>
       </tr>
 
-      <tr ng-repeat="reserva in reservasID | orderBy: 'id'"  >
+      <tr ng-repeat="reserva in reservasID | orderBy: 'id' | filter: id_filtro_reserva"  >
           <td><a >{{reserva.id}}</a></td>
           <td>{{reserva.fecha_inicio_estadia}}</td>
           <td>{{reserva.duracion}} &nbsp; dias</td>

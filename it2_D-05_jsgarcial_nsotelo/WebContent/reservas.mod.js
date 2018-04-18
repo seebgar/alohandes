@@ -58,15 +58,12 @@
 
             if (($state.params.id !== undefined) && ($state.params.id !== null)) {
                 // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas'
-                console.log($state.id + ' <<<<< sin params' );
-                console.log($state.params.id + ' <<<<<' );
                 // 'data/p-' + $state.params.id + '.json'
                 $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/'+ $state.params.id +'/reservas').then(function (response) {
                     $scope.reservasID = response.data;
                 });
             } else {
-                console.log($state.id + ' <<<<< sin params' );
-                console.log($state.params.id + ' <<<<<' );
+                console.log($state.id + ' <<<<< Entra en el else' );
                 
             }
 
