@@ -8,7 +8,8 @@
         'operadorModule',
         'reservaModule',
         'propuestaModule',
-        'loginModule'
+        'loginModule',
+        'post_colectivasModule'
 
     ]);
     

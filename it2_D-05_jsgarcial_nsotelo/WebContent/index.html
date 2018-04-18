@@ -2,87 +2,91 @@
 <html ng-app='main'>
     
     <head>
-        <!-- ASCII por defecto -->
-        <meta charset="utf-8">
-        <!-- relacion 1:1 en tamaños de ventana-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Sebastian Garcia 201630047 Nicolas Sotelo 201623026">
-        <meta name="description" content="Iteracion 2 Sistemas Transaccionales Alohandes">
-        
-        <title>Alohandes</title>
-        
-        <!-- FAV ICONS IMPORTA ICONOS DE http://ionicons.com -->
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="theme-color" content="#ffffff">
-        <!-- FAV ICONS -->
-    
-        <!-- ICONS paquete por defecto -->
-        <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-        
-        <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-        
-        <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
-        <link rel="stylesheet" type="text/css" href="media.css">
-        
-    </head>
-    <body>
-        
-        <header class="parallax">
-          
-            <img class="logo" src="resources/SVG/icon.svg" alt="logo">
-                
-            <!-- MAIN TEXT -->
-            <div class="c1_text_box">
-                <br/>
-                <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="clientes">Cliente</a>
-                <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="operadores">Operador</a>
-                <br/>
-            </div>
-                    
-            <div>
-                <div ui-view></div>
-            </div>
-            
-        
-        </header>
-        
-        
-        
-        <!-- ANGULAR UI ROUTER -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-		<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-		
-        <!-- CLIENTES -->
-        <script src="clientes.mod.js" type="text/javascript"></script>
-        
-        <!-- OPERADORES -->
-        <script src="operadores.mod.js" type="text/javascript"></script>
-        
-        <!-- RESERVAS -->
-        <script src="reservas.mod.js" type="text/javascript"></script>
-        
-        <!-- PROPUESTAS -->
-        <script src="propuestas.mod.js" type="text/javascript"></script>
-        
-        <!-- log in -->
-        <script src="login.mod.js" type="text/javascript"></script>
-        
-        <script src="app.js"></script>
-       
-        
-        
-        
-        
-        <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
-        <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
-        </script>
-        <script src="code.js"></script>
+    <!-- ASCII por defecto -->
+    <meta charset="utf-8">
+    <!-- relacion 1:1 en tamaños de ventana-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    </body>
+    <meta name="author" content="Sebastian Garcia 201630047 Nicolas Sotelo 201623026">
+    <meta name="description" content="Iteracion 2 Sistemas Transaccionales Alohandes">
+
+    <title>Alohandes</title>
+
+    <!-- FAV ICONS IMPORTA ICONOS DE http://ionicons.com -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <!-- FAV ICONS -->
+
+    <!-- ICONS paquete por defecto -->
+    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
+
+    <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+
+    <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
+    <link rel="stylesheet" type="text/css" href="media.css">
+
+</head>
+
+<body>
+
+    <header class="parallax">
+
+        <img class="logo" src="resources/SVG/icon.svg" alt="logo">
+
+        <!-- MAIN TEXT -->
+        <div class="c1_text_box">
+            <br/>
+            <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="clientes">Cliente</a>
+            <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="operadores">Operador</a>
+            <br/>
+        </div>
+
+        <div>
+            <div ui-view></div>
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ANGULAR UI ROUTER -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+    <!-- CLIENTES -->
+    <script src="clientes.mod.js" type="text/javascript"></script>
+
+    <!-- OPERADORES -->
+    <script src="operadores.mod.js" type="text/javascript"></script>
+
+    <!-- RESERVAS -->
+    <script src="reservas.mod.js" type="text/javascript"></script>
+
+    <!-- PROPUESTAS -->
+    <script src="propuestas.mod.js" type="text/javascript"></script>
+
+    <!-- log in -->
+    <script src="login.mod.js" type="text/javascript"></script>
+
+    <!-- REGISTRAR RESERVA -->
+    <script src="POST/post_colectivas.mod.json" type="text/javascript"></script>
+
+    <script src="app.js"></script>
+
+
+
+
+
+    <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
+    <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+    </script>
+    <script src="code.js"></script>
+
+</body>
 </html>

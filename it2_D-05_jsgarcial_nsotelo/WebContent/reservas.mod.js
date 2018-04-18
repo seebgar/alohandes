@@ -28,6 +28,17 @@
                     templateUrl: "panel_consulta/panel_reservas_porID.html",
                     controller: 'reservasController'
                 })
+        
+        
+            .state('reservas_colectivas', {
+                    url: "/reservas_colectivas/:id",
+                    param: {
+                                id: null
+                            },
+                    templateUrl: "panel_consulta/panel_reservas_porID_co.html",
+                    controller: 'reservasController'
+                })
+                
 
 
 
@@ -62,6 +73,12 @@
                 $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/clientes/'+ $state.params.id +'/reservas').then(function (response) {
                     $scope.reservasID = response.data;
                 });
+                
+                
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/' + 5 /*$state.params.id*/ ).then(function (response) {
+                    $scope.reservasID_co = response.data;
+                });
+                
             } else {
                 console.log($state.id + ' <<<<< Entra en el else' );
                 

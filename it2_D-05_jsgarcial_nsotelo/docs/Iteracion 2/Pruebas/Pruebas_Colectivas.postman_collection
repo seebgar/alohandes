@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fc63c2a7-0723-458b-b383-d4e116d47ef5",
+		"_postman_id": "451bfbd8-2121-4695-a92e-7a4ec82fc109",
 		"name": "Pruebas",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -176,7 +176,7 @@
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/40/reservas",
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/23/reservas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -187,7 +187,7 @@
 						"rest",
 						"personas",
 						"clientes",
-						"40",
+						"23",
 						"reservas"
 					]
 				}
@@ -563,7 +563,33 @@
 			"response": []
 		},
 		{
-			"name": "Deshabilitar una propuesta de alojamiento RF9",
+			"name": "RF8 borrar reserva colectiva ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Alohandes_IT1",
+						"rest",
+						"reservasColectivas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RF9 Deshabilitar una propuesta de alojamiento",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -599,7 +625,10 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/22",
 					"protocol": "http",
@@ -718,13 +747,13 @@
 			"response": []
 		},
 		{
-			"name": "RF8 borrar reserva colectiva ",
+			"name": "GET Reservas Colectivas Por Cliente ID",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
+					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -734,7 +763,8 @@
 						"Alohandes_IT1",
 						"rest",
 						"reservasColectivas",
-						"2"
+						"clientes",
+						"5"
 					]
 				}
 			},
