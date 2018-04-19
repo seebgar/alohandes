@@ -89,7 +89,7 @@ public class ReservaColectivaService {
 		try {
 
 			AlohandesTransactionManager tm = new AlohandesTransactionManager(getPath());
-			List<Reserva> lista= tm.get_Reservas_Cliente_PorID(id);
+			List<Reserva> lista= tm.getReservasColectivaPorId(id);
 			return Response.status(200).entity(lista).build();
 
 		}catch( Exception e ){

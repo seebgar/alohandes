@@ -96,10 +96,20 @@
 
     <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
     <header class="parallax">
+       
         <div class="navigation" ng-app="propuestaModule">
             <div class="navbar" ng-controller="propuestasController">
+            
+            <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
+                <h3 style="text-align: right;">
+                    <h3>ID operador &nbsp; &nbsp; 
+    <input ng-model="num" type="text" value="143" placeholder="143" style="height: 2em; text-align: right; padding-right: 2em;"> 
+                        &nbsp; &nbsp;
+                </h3>
+            </div>
+            
 
-                <a ui-sref="perfil">Perfil</a>
+                <a ui-sref="perfil_operador({ id: num })">Perfil</a>
 
                 <div class="dropdown">
                     <button class="dropbtn" onclick="myFunction()">Consultas &nbsp;<i class="fa fa-caret-down"></i></button>
@@ -112,21 +122,13 @@
                     </div>
                 </div>
 
-                <a ui-sref="propuestas">Propuestas</a>
+                <a ui-sref="propuestas_id({ id: num })">Propuestas</a>
 
                 <a href="../../index.html">Inicio</a>
 
             </div>
 
-            <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
-                <h3 style="text-align: right;">
-                    <h3>ID operador &nbsp; &nbsp; 
-    <input ng-model="num" type="text" value="143" placeholder="143" style="height: 2em; text-align: right; padding-right: 2em;"> 
-                        &nbsp; &nbsp;
-     <a href="#" style="color: whitesmoke; text-decoration: none" ui-sref="propuestasID({ id: num })">enviar</a> </h3>
-                </h3>
-            </div>
-
+            
 
             <div>
                 <div ui-view></div>

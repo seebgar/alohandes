@@ -1,5 +1,3 @@
- <!-- panel_reservas_porID.html -->
-
 
 <style>
 table {
@@ -29,13 +27,13 @@ tr:nth-child(even) {
 
 <div class="lista" style="width: 80%">
     <div class="tittle">
-        <h3 class="1">Reservas </h3>
+        <h3 class="1">Propuestas </h3>
         <h3 style="text-align: right;" class="2">
-            ID reserva &nbsp; &nbsp; <input type="text" ng-model="id_filtro_reserva" style="height: 2em; text-align: right;">
+            ID propuesta &nbsp; &nbsp; <input ng-model="id_propuesta_filtro" type="text" style="height: 2em; text-align: right;">
             &nbsp; &nbsp;
             <br/>
         <h3>
-            <a href="../../modules/reservas/post_colectivas.html" style="text-align: right;"><strong>agregar reserva</strong></a>
+            <a href="../../modules/propuestas/post_propuesta.html" style="text-align: right; text-decoration: none;"><strong>agregar propuesta</strong></a>
         </h3>
     </h3>
     </div>
@@ -45,18 +43,18 @@ tr:nth-child(even) {
     <table>
       <tr>
         <th>ID</th>
-        <th>Fecha incio estadia</th>
-        <th>Duración</th>
+        <th>Inmueble</th>
+        <th>Disponible</th>
         <th>Costo Total</th>
         <th></th>
       </tr>
 
-      <tr ng-repeat="reserva in reservasID | orderBy: 'id' | filter: id_filtro_reserva"  >
-          <td><a >{{reserva.id}}</a></td>
-          <td>{{reserva.fecha_inicio_estadia}}</td>
-          <td>{{reserva.duracion}} &nbsp; dias</td>
-          <td>{{reserva.costo_total | currency}}</td>
-          <td> <a ui-sref="eliminar_reserva" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+      <tr ng-repeat="p in props | orderBy: 'id' | filter: id_propuesta_filtro"  >
+          <td><a >{{p.id}}</a></td>
+          <td>{{p.tipo_inmueble}}</td>
+          <td>{{p.disponible}}</td>
+          <td>{{p.sub_total | currency}}</td>
+          <td> <a ng-click="deshabilitar(p.id)" style="color: gray; font-size: 80%; text-align: right">deshabilitar</a></td>
       </tr>
         
         <div ui-view ></div>

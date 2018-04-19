@@ -45,6 +45,7 @@ tr:nth-child(even) {
     <table>
       <tr>
         <th>ID</th>
+        <th>ID Colectivo</th>
         <th>Fecha incio estadia</th>
         <th>Duración</th>
         <th>Costo Total</th>
@@ -53,10 +54,11 @@ tr:nth-child(even) {
 
       <tr ng-repeat="reserva in reservasID_co | orderBy: 'id' | filter: id_filtro_reserva"  >
           <td><a >{{reserva.id}}</a></td>
+          <td><a >{{reserva.id_colectivo}}</a></td>
           <td>{{reserva.fecha_inicio_estadia}}</td>
           <td>{{reserva.duracion}} &nbsp; dias</td>
           <td>{{reserva.costo_total | currency}}</td>
-          <td> <a ui-sref="eliminar_reserva" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+          <td> <a ng-click="eliminar_co(reserva.id_colectivo)" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
       </tr>
         
         <div ui-view ></div>

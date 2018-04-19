@@ -7,11 +7,6 @@
         $urlRouterProvider.otherwise("/x");
 
         $stateProvider
-            .state('propuestas', {
-                url: "/propuestas",
-                templateUrl: "../../modules/propuestas/panel_propuestas.html",
-                controller: 'propuestasController'
-            })
 
             .state('mayores', {
                 url: "/mayores",
@@ -43,18 +38,22 @@
                 controller: 'propuestasController'
             })
 
-            .state('perfil', {
+            
+            .state('perfil_operador', {
                 url: "/perfil",
-                templateUrl: "../../modules/propuestas/perfil.html",
+                param: {
+                    id: null
+                },
+                templateUrl: "../../modules/propuestas/perfil_operador.html",
                 controller: 'propuestasController'
             })
 
-            .state('propuestasID', {
+            .state('propuestas_id', {
                 url: "/propuestasID/:id",
                 param: {
                     id: null
                 },
-                templateUrl: "../../modules/propuestas/panel_propuestas_porID.html",
+                templateUrl: "../../modules/propuestas/panel_lista_propuestas.html",
                 controller: 'propuestasController'
             })
 
@@ -75,14 +74,7 @@
     mod.controller('propuestasController', ['$scope', '$http', 'propuestaContext', '$state',
 
         function ($scope, $http, propuestaContext, $state) {
-            // id_operador
-            //http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas
-            // data/propuestas.json
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas').then(function (response) {
-                $scope.propuestas = response.data;
-            });
-
-
+           
             // http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento
             // data/mayores.json
             $http.get('http://localhost:8080/Alohandes_IT1/rest/consultas/mayor/mes/apartamento').then(function (response) {
@@ -116,26 +108,29 @@
             
             if (($state.params.id !== undefined) && ($state.params.id !== null)) {
                 // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas'
-                console.log($state.params.id + ' <<<<<' );
                 // 'data/p-' + $state.params.id + '.json'
                 
                 $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas').then(function (response) {
-                    $scope.propuestasID = response.data;
+                    $scope.props = response.data;
                 });
                
                 $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $state.params.id).then(function (response) {
-                $scope.operador = response.data;
+                $scope.op = response.data;
                 });
+                
                 
             } else {
-                console.log($state.params.id + ' <<<<<' );
-                // INFORMACION DE UN OPERADOR USUARIO
-                // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-                // 'data/operador.json'
-                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + 20).then(function (response) {
+            	console.log('USUARIO INVALIDO >> ' +  $state.params.id );
+            };
+            
+            
+            $scope.deshabilitar = function ( id ) {
+            	
+            	console.log(id + '<< Se va a deshabilitar')
+            	$http.put('http://localhost:8080/Alohandes_IT1/rest/propuestas/deshabilitar/' + id).then(function (response) {
                     $scope.operador = response.data;
                 });
-                
+            	
             }
             
 

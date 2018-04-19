@@ -1,0 +1,19 @@
+[
+    {
+        "id": 347,
+        "fecha_registro": "2016-04-15 16:22:52",
+        "fecha_cancelacion": "2017-07-24 01:50:40",
+        "fecha_inicio_estadia": "2018-02-11 07:52:37",
+        "duracion": 28,
+        "costo_total": 122885.1171875,
+        "cantidad_personas": 3,
+        "hay_multa": false,
+        "valor_multa": 0,
+        "id_propuesta": 21,
+        "id_cliente": 5,
+        "id_colectivo": 1,
+        "hayMulta": false,
+        "valorMulta": 0,
+        "fechaFinal": 1518094357000
+    }
+]

@@ -59,7 +59,9 @@
 
                         $scope.post_data = response.data;
 
-                    });
+                    }).then(function (response) {
+						alert(response);
+					});
 
                 }
 

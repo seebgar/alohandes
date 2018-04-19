@@ -99,20 +99,22 @@
 
 
         <div class="navigation">
-            <div class="navbar">
-                <a ui-sref="perfil_cliente">Perfil</a>
-                <a ui-sref="reservas_colectivas">Reservas Colectivas</a>
-                <a ui-sref="reservas">Reservas</a>
-                <a href="../../index.html">Inicio</a>
-            </div>
+            
 
             <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
                 <h3 style="text-align: right;">
                     <h3>ID cliente &nbsp; &nbsp; 
     <input ng-model="num" type="text" value="40" placeholder="40" style="height: 2em; text-align: right; padding-right: 2em;"> 
                         &nbsp; &nbsp;
-     <a href="#" style="color: whitesmoke; text-decoration: none" ui-sref="reservasID({ id: num })">enviar</a> </h3>
+  <!--     <a href="#" style="color: whitesmoke; text-decoration: none" ui-sref="">enviar</a> </h3> -->
                 </h3>
+            </div>
+            
+            <div class="navbar">
+                <a ui-sref="perfil_c({ id: num })">Perfil</a>
+                <a ui-sref="reservas_colectivas({ id: num })">Reservas Colectivas</a>
+                <a ui-sref="r_ID({ id: num })">Reservas</a>
+                <a href="../../index.html">Inicio</a>
             </div>
 
         </div>

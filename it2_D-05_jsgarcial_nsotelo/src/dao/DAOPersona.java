@@ -415,9 +415,9 @@ public class DAOPersona {
 
 		System.out.println(sql);
 
-		PreparedStatement prepStmt = conn.prepareStatement(sql);
-		recursos.add(prepStmt);
-		prepStmt.executeQuery();
+		PreparedStatement prepStmt_add_propuesta = conn.prepareStatement(sql);
+		recursos.add(prepStmt_add_propuesta);
+		prepStmt_add_propuesta.executeQuery();
 
 	}
 

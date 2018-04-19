@@ -193,7 +193,7 @@ public class DAOReserva {
 
 
 		// set id_colectivo
-		if ( reserva.getId_colectivo() != null ) {
+		if ( reserva.getId_colectivo() != null & reserva.getId_colectivo() != 0 ) {
 			String colectivo  = "UPDATE RESERVAS R SET R.ID_COLECTIVO = " + reserva.getId_colectivo() + " WHERE R.ID = " + reserva.getId();
 			PreparedStatement lect = conn.prepareStatement(colectivo);
 			System.out.println(lect);
@@ -415,7 +415,7 @@ public class DAOReserva {
 
 		id_propuesta = resultSet.getLong("ID_PROPUESTA");
 		id_persona = resultSet.getLong("ID_PERSONA");
-		id_colectivo=resultSet.getLong("ID_COLECTIVO");
+		id_colectivo = resultSet.getLong("ID_COLECTIVO") > 0 ? resultSet.getLong("ID_COLECTIVO") : null ;
 
 		Reserva res = new Reserva((long)id, fecha_registro, fecha_cancelacion, fecha_inicio_estadia, duracion_contrato, (double)costo_total, 
 				cantidad_personas, hay_multa == 0 ? false : true, (double)valor_multa,
@@ -696,7 +696,8 @@ public class DAOReserva {
 	public List<Reserva> getReservasColectivas() throws Exception {
 		List<Reserva> rta= new ArrayList<>();
 		PreparedStatement sentenciaParaBuscar;
-		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null");
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null"
+				+ " AND r.id_colectivo != 0");
 
 		ResultSet rs = sentenciaParaBuscar.executeQuery();
 		while (rs.next())
@@ -715,8 +716,8 @@ public class DAOReserva {
 	{
 		List<Reserva> rta= new ArrayList<>();
 		PreparedStatement sentenciaParaBuscar;
-		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null and id_persona = ?");
-		sentenciaParaBuscar.setLong(1,idPerosna);
+		sentenciaParaBuscar = conn.prepareStatement("Select * from reservas r where r.id_colectivo is not null and id_persona = " + idPerosna
+				+ " AND r.id_colectivo != 0 ");
 
 		ResultSet rs = sentenciaParaBuscar.executeQuery();
 		while (rs.next())
