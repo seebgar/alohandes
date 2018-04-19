@@ -35,7 +35,7 @@ tr:nth-child(even) {
             &nbsp; &nbsp;
             <br/>
         <h3>
-            <a ui-sref="mes" style="text-align: right;"><strong>agregar reserva</strong></a>
+            <a href="../../modules/reservas/post_colectivas.html" style="text-align: right;"><strong>agregar reserva</strong></a>
         </h3>
     </h3>
     </div>
@@ -51,7 +51,7 @@ tr:nth-child(even) {
         <th></th>
       </tr>
 
-      <tr ng-repeat="reserva in reservasID | orderBy: 'id' | filter: id_filtro_reserva"  >
+      <tr ng-repeat="reserva in reservasID_co | orderBy: 'id' | filter: id_filtro_reserva"  >
           <td><a >{{reserva.id}}</a></td>
           <td>{{reserva.fecha_inicio_estadia}}</td>
           <td>{{reserva.duracion}} &nbsp; dias</td>

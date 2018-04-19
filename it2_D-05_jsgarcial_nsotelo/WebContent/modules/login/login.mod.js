@@ -7,15 +7,6 @@
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
                 
-        $stateProvider
-                .state('enviado', {
-							url: "/y",
-							templateUrl: "?.html",
-                            controller: 'loginController' 
-						}) ;
-        
-    
-    
     
     }]);
     

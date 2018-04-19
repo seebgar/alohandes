@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Alohandes </title>
+
+    <style>
+        * {
+            overflow-x: hidden;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url(../../style/resources/uniandes.jpg);
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 110vh;
+            width: 100%;
+            overflow-y: hidden;
+        }
+
+        .login {
+            margin: auto;
+            color: gray;
+            width: 32em;
+            background-color: white;
+            border-radius: 0.5em;
+        }
+
+        h3,
+        p {
+            color: #555;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+        }
+    </style>
+    
+
+    <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header ng-app="post_propuestaModule">
+
+        <h3 style="padding-top: 0.5em; padding-left: 2em;"><a href="../../index.html" style="color: whitesmoke; text-decoration: none">inicio</a></h3>
+
+        <div class="login" ng-controller="post_propuestaController">
+
+            <div style="grid-area: space"> &nbsp; </div>
+            <div style="text-align: center;">
+                <h3 style="font-weight: 300">Registrar Propuesta</h3>
+            </div>
+
+            <!-- ID PROPUESTA -->
+            <div style="height: 2em; padding-left: 1em;  margin-bottom: 2em;"><input type="number" required style="width: 96%; height: 2.5em;" placeholder="ID Propuesta" ng-model="id"> </div>
+
+            <!-- CAPACIDAD MAXIMA -->
+            <div style="height: 2em; padding-left: 1em;  margin-bottom: 2em;"><input type="number" required style="width: 96%; height: 2.5em;" placeholder="Capacidad de Usuarios Maxima del inmueble" ng-model="capacidad_maxima"> </div>
+
+            <!-- PERSON -->
+            <div style="height: 2em; padding-left: 1em;  margin-bottom: 2em;"><input type="number" required style="width: 96%; height: 2.5em;" placeholder="ID Persona" ng-model="persona"> </div>
+
+            <!-- CANTIDAD DIAS DISPONIBLE -->
+            <!-- POR DEFECTO EMPIEZA SIENDO NULL -->
+
+            <!-- FECHA FINAL DISPONIBILIDAD -->
+            <!-- POR DEFECTO ES NULL -->
+
+            <!-- FECHA INICIO DISPONIBILIDAD -->
+            <!-- POR DEFECTO ES LA FECHA EN LA QUE SE POSTEAA-->
+            <div style="height: 2em; padding-left: 1em;  margin-bottom: 2em;"><input type="text" required style="width: 96%; height: 2.5em;" placeholder="Fecha Inicio Disponibilidad {{date | date:'yyyy-MM-dd'}}" ng-model="fecha_inicio_disponibilidad"> </div>
+
+            <!-- DISPONIBLE -->
+            <!-- POR DEFECTO ES TRUE -->
+
+            <!-- id_persona -->
+            <!-- id_persona por defecto es el mismo que persona -->
+
+            <!-- TIPO INMUEBLE PARA DEFINIR ID -->
+            <p style="padding-left: 1em;">Tipo de Inmueble</p>
+            <div style="height: 2em; padding-left: 1em;  margin-bottom: 2em;">
+                <select ng-model="tipo_select">
+                      <option disabled selected value>Seleccionar Inmueble</option>
+                      <option value="apartamento">Apartamento</option>
+                      <option value="habitacion">Habitacion</option>
+                      <option value="hostel">Hostal</option>
+                      <option value="hotel">Hotel</option>
+                      <option value="vivienda express">Vivienda Express</option>
+                      <option value="vivienda universitaria">Vivienda Universitaria</option>
+                </select>
+                
+                &nbsp;
+                <input style="height: 2em;" type="number" placeholder="ID Inmueble" ng-model="id_inmueble">
+            </div>
+
+            <!-- seVaRetirar -->
+            <!-- POR DEFECTO ES FALSE -->
+
+            <!-- ENVIAR  ../index.html-->
+            <div style="height: 2em; padding-left: 1em; text-align: center; "> <a href="../../index.html" ng-click="enviar()" style="text-decoration: none; color: darkgray; padding-bottom: 1em; margin-bottom: 2em;"> ENVIAR </a> </div>
+
+        </div>
+
+    </header>
+
+    <!-- ANGULAR UI ROUTER -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+    <!-- CLIENTES -->
+    <script src="../clientes/clientes.mod.js" type="text/javascript"></script>
+
+    <!-- OPERADORES -->
+    <script src="../operadores/operadores.mod.js" type="text/javascript"></script>
+    
+    <!-- log in -->
+    <script src="../login/login.mod.js" type="text/javascript"></script>
+    
+    <!-- PROPUESTAS -->
+    <script src="propuestas.mod.js" type="text/javascript"></script>
+    
+    <!-- REGISTRAR PROPUESTA -->
+    <script src="post_propuesta.mod.js" type="text/javascript"></script>
+    
+    <!-- RESERVAS -->
+    <script src="../reservas/reservas.mod.js" type="text/javascript"></script>
+
+    <!-- REGISTRAR RESERVA -->
+    <script src="../reservas/post_colectivas.mod.js" type="text/javascript"></script>
+
+    
+    
+    <script src="../../app.js"></script>
+
+</body>
+
+</html>

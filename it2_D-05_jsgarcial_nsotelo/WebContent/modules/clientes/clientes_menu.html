@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='main'>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ASCII por defecto -->
     <meta charset="utf-8">
     <!-- relacion 1:1 en tamaños de ventana-->
@@ -13,23 +12,15 @@
 
     <title>Alohandes</title>
 
-    <!-- FAV ICONS IMPORTA ICONOS DE http://ionicons.com -->
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
-    <!-- FAV ICONS -->
-
-    <!-- ICONS paquete por defecto -->
-    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-
     <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
 
     <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../../style/style.css">
     <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
-    <link rel="stylesheet" type="text/css" href="media.css">
-
+    <link rel="stylesheet" type="text/css" href="../../style/media.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .navbar {
@@ -98,51 +89,39 @@
         }
 
     </style>
+
 </head>
 
 <body>
 
     <!-- SECCION PRINCIPAL es la ventan de inicio, parallax es el efecto del fondo de pantalla -->
-    <header class="parallax">
-        <div class="navigation" ng-app="propuestaModule">
-            <div class="navbar" ng-controller="propuestasController">
+    <header class="parallax" style="position: relative">
 
-                <a ui-sref="perfil">Perfil</a>
 
-                <div class="dropdown">
-                    <button class="dropbtn" onclick="myFunction()">Consultas &nbsp;<i class="fa fa-caret-down"></i></button>
-                    <div class="dropdown-content" id="myDropdown">
-                        <a ui-sref="mayores">Mayor Operacion</a>
-                        <a ui-sref="ingresos">Mayores Ingresos</a>
-                        <a ui-sref="menores">Menor Operacion</a>
-                        <a ui-sref="frecuentes">Clientes Frecuentes</a>
-                        <a ui-sref="pocos">Menor Demanda</a>
-                    </div>
-                </div>
-
-                <a ui-sref="propuestas">Propuestas</a>
-
-                <a href="index.html">Inicio</a>
-
+        <div class="navigation">
+            <div class="navbar">
+                <a ui-sref="perfil_cliente">Perfil</a>
+                <a ui-sref="reservas_colectivas">Reservas Colectivas</a>
+                <a ui-sref="reservas">Reservas</a>
+                <a href="../../index.html">Inicio</a>
             </div>
 
             <div style="text-align: left; color: whitesmoke; position: absolute; left: 2em;">
                 <h3 style="text-align: right;">
-                    <h3>ID operador &nbsp; &nbsp; 
-    <input ng-model="num" type="text" value="143" placeholder="143" style="height: 2em; text-align: right; padding-right: 2em;"> 
+                    <h3>ID cliente &nbsp; &nbsp; 
+    <input ng-model="num" type="text" value="40" placeholder="40" style="height: 2em; text-align: right; padding-right: 2em;"> 
                         &nbsp; &nbsp;
-     <a href="" style="color: whitesmoke; text-decoration: none" ui-sref="propuestasID({ id: num })">enviar</a> </h3>
+     <a href="#" style="color: whitesmoke; text-decoration: none" ui-sref="reservasID({ id: num })">enviar</a> </h3>
                 </h3>
             </div>
 
-
-            <div>
-                <div ui-view></div>
-            </div>
-
-
         </div>
 
+       
+
+        <div>
+            <div ui-view></div>
+        </div>
 
 
     </header>
@@ -156,41 +135,36 @@
     <script src="clientes.mod.js" type="text/javascript"></script>
 
     <!-- OPERADORES -->
-    <script src="operadores.mod.js" type="text/javascript"></script>
+    <script src="../operadores/operadores.mod.js" type="text/javascript"></script>
+    
+    <!-- log in -->
+    <script src="../login/login.mod.js" type="text/javascript"></script>
 
     <!-- RESERVAS -->
-    <script src="reservas.mod.js" type="text/javascript"></script>
+    <script src="../reservas/reservas.mod.js" type="text/javascript"></script>
 
     <!-- PROPUESTAS -->
-    <script src="propuestas.mod.js" type="text/javascript"></script>
+    <script src="../propuestas/propuestas.mod.js" type="text/javascript"></script>
 
-    <!-- log in -->
-    <script src="login.mod.js" type="text/javascript"></script>
+    <!-- REGISTRAR RESERVA -->
+    <script src="../reservas/post_colectivas.mod.js" type="text/javascript"></script>
+
+    <!-- REGISTRAR PROPUESTA -->
+    <script src="../propuestas/post_propuesta.mod.js" type="text/javascript"></script>
+
     
-     <!-- REGISTRAR RESERVA -->
-    <script src="POST/post_colectivas.mod.json" type="text/javascript"></script>
+    <script src="../../app.js"></script>
 
-    <script src="app.js"></script>
 
-    <script>
-        /* When the user clicks on the button, 
-                                                                toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(e) {
-            if (!e.target.matches('.dropbtn')) {
-                var myDropdown = document.getElementById("myDropdown");
-                if (myDropdown.classList.contains('show')) {
-                    myDropdown.classList.remove('show');
-                }
-            }
-        }
+
+    <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
+    <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+
 
     </script>
-
+    <script src="../../style/code.js"></script>
 
 </body>
 

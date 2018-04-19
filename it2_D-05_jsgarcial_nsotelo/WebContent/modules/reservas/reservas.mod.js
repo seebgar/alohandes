@@ -9,13 +9,13 @@
         $stateProvider
             .state('reservas', {
                 url: "/reservas",
-                templateUrl: "panel_reservas.html",
+                templateUrl: "../../modules/reservas/panel_reservas.html",
                 controller: 'reservasController'
             })
 
             .state('perfil_cliente', {
                 url: "/perfil_cliente",
-                templateUrl: "data/perfil_cliente.html",
+                templateUrl: "../../modules/reservas/perfil.html",
                 controller: 'reservasController'
             })
 
@@ -25,7 +25,7 @@
                     param: {
                         id: null
                     },
-                    templateUrl: "panel_consulta/panel_reservas_porID.html",
+                    templateUrl: "../../modules/reservas/panel_reservas_porID.html",
                     controller: 'reservasController'
                 })
         
@@ -35,7 +35,7 @@
                     param: {
                                 id: null
                             },
-                    templateUrl: "panel_consulta/panel_reservas_porID_co.html",
+                    templateUrl: "../../modules/reservas/panel_reservas_porID_co.html",
                     controller: 'reservasController'
                 })
                 
@@ -62,10 +62,7 @@
                 $scope.reservas = response.data;
             });
 
-            // http://localhost:8080/Alohandes_IT1/rest/personas/20 
-            $http.get('data/operador.json').then(function (response) {
-                $scope.cliente = response.data;
-            });
+            
 
             if (($state.params.id !== undefined) && ($state.params.id !== null)) {
                 // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas'
@@ -75,13 +72,23 @@
                 });
                 
                 
-                $http.get('http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/' + 5 /*$state.params.id*/ ).then(function (response) {
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/' + $state.params.id ).then(function (response) {
                     $scope.reservasID_co = response.data;
                 });
                 
+                // http://localhost:8080/Alohandes_IT1/rest/personas/20 
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $state.params.id).then(function (response) {
+                    $scope.cliente = response.data;
+                });
+                
+                
+                
             } else {
                 console.log($state.id + ' <<<<< Entra en el else' );
-                
+                // http://localhost:8080/Alohandes_IT1/rest/personas/20 
+                $http.get('data/operador.json').then(function (response) {
+                    $scope.cliente = response.data;
+                });
             }
 
         }

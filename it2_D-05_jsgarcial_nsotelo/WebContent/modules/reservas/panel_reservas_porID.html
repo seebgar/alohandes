@@ -1,3 +1,5 @@
+ <!-- panel_reservas_porID.html -->
+
 
 <style>
 table {
@@ -27,13 +29,13 @@ tr:nth-child(even) {
 
 <div class="lista" style="width: 80%">
     <div class="tittle">
-        <h3 class="1">Propuestas </h3>
+        <h3 class="1">Reservas </h3>
         <h3 style="text-align: right;" class="2">
-            ID propuesta &nbsp; &nbsp; <input ng-model="id_propuesta_filtro" type="text" style="height: 2em; text-align: right;">
+            ID reserva &nbsp; &nbsp; <input type="text" ng-model="id_filtro_reserva" style="height: 2em; text-align: right;">
             &nbsp; &nbsp;
             <br/>
         <h3>
-            <a ui-sref="mes" style="text-align: right;"><strong>agregar propuesta</strong></a>
+            <a href="../../modules/reservas/post_colectivas.html" style="text-align: right;"><strong>agregar reserva</strong></a>
         </h3>
     </h3>
     </div>
@@ -43,18 +45,18 @@ tr:nth-child(even) {
     <table>
       <tr>
         <th>ID</th>
-        <th>Inmueble</th>
-        <th>Disponible</th>
+        <th>Fecha incio estadia</th>
+        <th>Duración</th>
         <th>Costo Total</th>
         <th></th>
       </tr>
 
-      <tr ng-repeat="propuesta in propuestasID | orderBy: 'id' | filter: id_propuesta_filtro"  >
-          <td><a >{{propuesta.id}}</a></td>
-          <td>{{propuesta.tipo_inmueble}}</td>
-          <td>{{propuesta.disponible}}</td>
-          <td>{{propuesta.sub_total | currency}}</td>
-          <td> <a ui-sref="eliminar_propuesta" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
+      <tr ng-repeat="reserva in reservasID | orderBy: 'id' | filter: id_filtro_reserva"  >
+          <td><a >{{reserva.id}}</a></td>
+          <td>{{reserva.fecha_inicio_estadia}}</td>
+          <td>{{reserva.duracion}} &nbsp; dias</td>
+          <td>{{reserva.costo_total | currency}}</td>
+          <td> <a ui-sref="eliminar_reserva" style="color: gray; font-size: 80%; text-align: right">cancelar</a></td>
       </tr>
         
         <div ui-view ></div>

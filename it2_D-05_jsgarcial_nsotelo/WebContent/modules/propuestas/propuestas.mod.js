@@ -9,43 +9,43 @@
         $stateProvider
             .state('propuestas', {
                 url: "/propuestas",
-                templateUrl: "panel_propuestas.html",
+                templateUrl: "../../modules/propuestas/panel_propuestas.html",
                 controller: 'propuestasController'
             })
 
             .state('mayores', {
                 url: "/mayores",
-                templateUrl: "panel_consulta/panel_mayores.html",
+                templateUrl: "../../modules/consultas/panel_mayores.html",
                 controller: 'propuestasController'
             })
 
             .state('ingresos', {
                 url: "/ingresos",
-                templateUrl: "panel_consulta/panel_ingresos.html",
+                templateUrl: "../../modules/consultas/panel_ingresos.html",
                 controller: 'propuestasController'
             })
 
             .state('menores', {
                 url: "/menores",
-                templateUrl: "panel_consulta/panel_menores.html",
+                templateUrl: "../../modules/consultas/panel_menores.html",
                 controller: 'propuestasController'
             })
 
             .state('frecuentes', {
                 url: "/frecuentes",
-                templateUrl: "panel_consulta/panel_frecuentes.html",
+                templateUrl: "../../modules/consultas/panel_frecuentes.html",
                 controller: 'propuestasController'
             })
 
             .state('pocos', {
                 url: "/pocos",
-                templateUrl: "panel_consulta/panel_pocos.html",
+                templateUrl: "../../modules/consultas/panel_pocos.html",
                 controller: 'propuestasController'
             })
 
             .state('perfil', {
                 url: "/perfil",
-                templateUrl: "panel_consulta/perfil.html",
+                templateUrl: "../../modules/propuestas/perfil.html",
                 controller: 'propuestasController'
             })
 
@@ -54,7 +54,7 @@
                 param: {
                     id: null
                 },
-                templateUrl: "panel_consulta/panel_propuestas_porID.html",
+                templateUrl: "../../modules/propuestas/panel_propuestas_porID.html",
                 controller: 'propuestasController'
             })
 
@@ -113,25 +113,28 @@
                 $scope.lista_pocos = response.data;
             });
 
-            // INFORMACION DE UN OPERADOR USUARIO
-            // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
-            // 'data/operador.json'
-            $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/20').then(function (response) {
-                $scope.operador = response.data;
-            });
-
-
+            
             if (($state.params.id !== undefined) && ($state.params.id !== null)) {
                 // 'http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas'
-                console.log($state.id + ' <<<<< sin params' );
                 console.log($state.params.id + ' <<<<<' );
                 // 'data/p-' + $state.params.id + '.json'
+                
                 $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/'+ $state.params.id +'/propuestas').then(function (response) {
                     $scope.propuestasID = response.data;
                 });
+               
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + $state.params.id).then(function (response) {
+                $scope.operador = response.data;
+                });
+                
             } else {
-                console.log($state.id + ' <<<<< sin params' );
                 console.log($state.params.id + ' <<<<<' );
+                // INFORMACION DE UN OPERADOR USUARIO
+                // http://localhost:8080/Alohandes_IT1/rest/personas/' + $scope.id_operador
+                // 'data/operador.json'
+                $http.get('http://localhost:8080/Alohandes_IT1/rest/personas/' + 20).then(function (response) {
+                    $scope.operador = response.data;
+                });
                 
             }
             
