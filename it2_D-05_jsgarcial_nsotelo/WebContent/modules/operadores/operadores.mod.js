@@ -12,7 +12,7 @@
         $stateProvider
                 .state('operadores', {
 							url: "/operadores",
-							templateUrl: "../../modules/operadores/operadores.html",
+							templateUrl: "modules/operadores/operadores.html",
                             controller: 'operadoresController' 
 						}) ;
     }]);
