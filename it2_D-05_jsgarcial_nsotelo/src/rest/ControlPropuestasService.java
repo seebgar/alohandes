@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -46,7 +47,6 @@ public class ControlPropuestasService
 	@PUT
 	@Path("/deshabilitar/{id:\\d+}")
 	@Produces( { MediaType.APPLICATION_JSON } )
-	@Consumes( { MediaType.APPLICATION_JSON } )
 	public Response deshabilitarPropuesta( @PathParam( "id" ) Long id)
 	{
 		try 
@@ -62,7 +62,6 @@ public class ControlPropuestasService
 	@PUT
 	@Path("/habilitar/{id:\\d+}")
 	@Produces( { MediaType.APPLICATION_JSON } )
-	@Consumes( { MediaType.APPLICATION_JSON } )
 	public Response habilitarPropuesta( @PathParam( "id" ) Long id)
 	{
 		try 
