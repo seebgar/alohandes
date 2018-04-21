@@ -1,14 +1,16 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "451bfbd8-2121-4695-a92e-7a4ec82fc109",
 		"name": "Pruebas",
+		"_postman_id": "9c8aa67b-908b-2b25-299b-dd40e04ae847",
 		"description": "Pruba los servicios ofrcidos por alohandes",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "GET persona by ID",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/1",
 				"method": "GET",
 				"header": [
 					{
@@ -20,26 +22,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"1"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET BONO 4 filtros",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/filtro",
 				"method": "GET",
 				"header": [
 					{
@@ -51,26 +41,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/filtro",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"filtro"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET BONO 3 indices",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/indices",
 				"method": "GET",
 				"header": [
 					{
@@ -82,26 +60,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/indices",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"indices"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET all operadores",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores",
 				"method": "GET",
 				"header": [
 					{
@@ -113,26 +79,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"operadores"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET all clientes",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes",
 				"method": "GET",
 				"header": [
 					{
@@ -144,26 +98,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"clientes"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET reservas de persona id",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/23/reservas",
 				"method": "GET",
 				"header": [
 					{
@@ -175,28 +117,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/23/reservas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"clientes",
-						"23",
-						"reservas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET propuestas de persona id",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas",
 				"method": "GET",
 				"header": [
 					{
@@ -208,28 +136,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/143/propuestas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"operadores",
-						"143",
-						"propuestas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET dinero operadores",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/dinero",
 				"method": "GET",
 				"header": [
 					{
@@ -241,26 +155,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/dinero",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"dinero"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET 20 propuestas mas populares",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/1/propuestas/populares",
 				"method": "GET",
 				"header": [
 					{
@@ -272,29 +174,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/1/propuestas/populares",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"operadores",
-						"1",
-						"propuestas",
-						"populares"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST  FAIL crea un cliente por PK",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
 				"method": "POST",
 				"header": [
 					{
@@ -306,25 +193,14 @@
 					"mode": "raw",
 					"raw": " {\n        \"id\": 1997,\n        \"nombre\": \"Florencia\",\n        \"apellido\": \"Ramirez\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"cliente\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST  crea un cliente por PK",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
 				"method": "POST",
 				"header": [
 					{
@@ -336,25 +212,14 @@
 					"mode": "raw",
 					"raw": " {\n        \"id\": 2997,\n        \"nombre\": \"Florencia\",\n        \"apellido\": \"Ramirez\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"cliente\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST crea una reserva",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas",
 				"method": "POST",
 				"header": [
 					{
@@ -366,28 +231,14 @@
 					"mode": "raw",
 					"raw": "{\r\n\r\n    \"id\": 1002,\r\n\r\n    \"fecha_registro\": \"2016-03-22 20:01:34\",\r\n\r\n    \"fecha_cancelacion\": null,\r\n\r\n    \"fecha_inicio_estadia\": \"2018-02-12 06:50:47\",\r\n\r\n    \"duracion\": 2,\r\n\r\n    \"costo_total\": 164071.734375,\r\n\r\n    \"cantidad_personas\": 3,\r\n\r\n    \"hay_multa\": false,\r\n\r\n    \"valor_multa\": 0,\r\n\r\n    \"id_propuesta\": 3,\r\n\r\n    \"id_cliente\": 212,\r\n\r\n    \"id_colectivo\": null,\r\n\r\n    \"hayMulta\": false,\r\n\r\n    \"valorMulta\": 0\r\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"clientes",
-						"212",
-						"reservas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST FAIL crea un operador PK",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas",
 				"method": "POST",
 				"header": [
 					{
@@ -399,142 +250,76 @@
 					"mode": "raw",
 					"raw": " {\n        \"id\": 297,\n        \"nombre\": \"Sebastian\",\n        \"apellido\": \"Garcia\",\n        \"tipo\": \"estudiante\",\n        \"rol\": \"operador\",\n        \"nit\": \"123\",\n        \"cedula\": \"90372912\"\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST crea una propuesta",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/192/propuestas",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"id\": 5997,\r\n\r\n    \"tipo_inmueble\": \"apartamento\",\r\n\r\n    \"capacidad_maxima\": 6,\r\n\r\n    \"persona\": 192,\r\n\r\n    \"cantidad_dias_disponibles\": null,\r\n\r\n    \"fecha_final_disponibilidad\": \"2018-02-12 06:50:47\",\r\n\r\n    \"fecha_inicio_disponibilidad\": \"2018-02-12 06:50:47\",\r\n\r\n    \"disponible\": true,\r\n\r\n    \"vivienda_universitaria\": null,\r\n\r\n    \"se_va_retirar\": false,\r\n\r\n    \"disonible\": true,\r\n\r\n    \"id_persona\": 192,\r\n\r\n    \"apartamento\": null,\r\n\r\n    \"habitacion\": null,\r\n\r\n    \"hostel\": null,\r\n\r\n    \"hotel\": null,\r\n\r\n    \"vivienda_express\": null,\r\n\r\n    \"vivienda_universitarias\": null,\r\n\r\n    \"seVaRetirar\": false\r\n\r\n}"
+					"raw": "{\r\n\r\n    \"id\": 906,\r\n    \"tipo_inmueble\": \"Apartamento\",\r\n    \"capacidad_maxima\": 16,\r\n    \"id_persona\": 192,\r\n    \"fecha_final_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"fecha_inicio_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"disponible\": true,\r\n    \"apartamento\": 60,\r\n    \"disonible\": true,\r\n    \"habitacion\": null,\r\n    \"hostel\": null,\r\n    \"hotel\": null,\r\n    \"vivienda_express\": null,\r\n    \"vivienda_universitarias\": null,\r\n    \"sub_total\": 234928\r\n\r\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/192/propuestas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"operadores",
-						"192",
-						"propuestas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE persona fail por FK integridad",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/90",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/90",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"90"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE reserva",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas/1002",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/clientes/212/reservas/1002",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"clientes",
-						"212",
-						"reservas",
-						"1002"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE propuesta",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/16/propuestas/300",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/personas/operadores/16/propuestas/300",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"personas",
-						"operadores",
-						"16",
-						"propuestas",
-						"300"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "POST <RF7> Reserva Colectiva",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas",
 				"method": "POST",
 				"header": [
 					{
@@ -546,51 +331,28 @@
 					"mode": "raw",
 					"raw": "{\n \"id\": 1,\n  \"usuarios\": [\n    {\n      \"id\": 20,\n      \"id_reserva\": 801,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 21,\n      \"id_reserva\": 802,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 22,\n      \"id_reserva\": 803,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 23,\n      \"id_reserva\": 804,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 24,\n      \"id_reserva\": 805,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 25,\n      \"id_reserva\": 806,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 26,\n      \"id_reserva\": 807,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 27,\n      \"id_reserva\": 808,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 28,\n      \"id_reserva\": 809,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 29,\n      \"id_reserva\": 810,\n      \"cantidad_personas\": 1\n    },\n    {\n      \"id\": 30,\n      \"id_reserva\": 811,\n      \"cantidad_personas\": 2\n    }\n  ],\n  \"duracion\": 30,\n  \"fecha_inicio_estadia\": \"2018-05-14\",\n  \"tipo_inmueble\": \"Apartamento\",\n  \"privacidad\": \"sencilla\",\n  \"cantidad_inmuebles\": 10,\n  \"servicios_deseados\": [\n    \"luz\",\n    \"tv\",\n    \"internet\"\n  ]\n}\n"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"reservasColectivas"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "RF8 borrar reserva colectiva ",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"reservasColectivas",
-						"2"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "RF9 Deshabilitar una propuesta de alojamiento",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/deshabilitar/19",
 				"method": "PUT",
 				"header": [
 					{
@@ -602,54 +364,28 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/deshabilitar/19",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"propuestas",
-						"deshabilitar",
-						"19"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "RF10 Rehabilitar propuesta en el sistema",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/22",
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/22",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"propuestas",
-						"habilitar",
-						"22"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GET RC7 Filtros Demanda / Ingresos",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/ingresos/mes/apartamento",
 				"method": "GET",
 				"header": [
 					{
@@ -660,22 +396,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
-				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/consultas/ingresos/mes/apartamento",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"consultas",
-						"ingresos",
-						"mes",
-						"apartamento"
-					]
 				},
 				"description": "Retorna objetos que contienen el tiempo con su valor respectivo sobre la conuslta "
 			},
@@ -684,6 +404,7 @@
 		{
 			"name": "GET RC8 Clientes Frecuentes ",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/frecuentes/apartamento",
 				"method": "GET",
 				"header": [
 					{
@@ -694,21 +415,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
-				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/consultas/frecuentes/apartamento",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"consultas",
-						"frecuentes",
-						"apartamento"
-					]
 				},
 				"description": "Retorna los clientes frecuentes para un tipo de inmueble especifico"
 			},
@@ -717,6 +423,7 @@
 		{
 			"name": "GET RC9 Propuestas Poca Demanda",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/poca_demanda",
 				"method": "GET",
 				"header": [
 					{
@@ -728,20 +435,6 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/consultas/poca_demanda",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"consultas",
-						"poca_demanda"
-					]
-				},
 				"description": "Retorna las propuestas con poce demanda o que estuvieron disponibles por mas de un 1 mes"
 			},
 			"response": []
@@ -749,24 +442,14 @@
 		{
 			"name": "GET Reservas Colectivas Por Cliente ID",
 			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/5",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/clientes/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"Alohandes_IT1",
-						"rest",
-						"reservasColectivas",
-						"clientes",
-						"5"
-					]
-				}
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		}
