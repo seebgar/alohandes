@@ -26,13 +26,12 @@
                         tipo_inmueble: $scope.tipo_select,
                         capacidad_maxima: $scope.capacidad_maxima,
                         persona: $scope.persona,
-                        cantidad_dias_disponibles: null,
                         fecha_final_disponibilidad: null,
                         fecha_inicio_disponibilidad: $scope.fecha_inicio_disponibilidad === null ? $scope.date : $scope.fecha_inicio_disponibilidad,
                         disponible: true,
                         se_va_retirar: false,
-                        seVaRetirar: false,
                         id_persona: $scope.persona,
+                        sub_total: $scope.sub_total,
                         vivienda_universitarias: 
                         $scope.tipo_select === 'vivienda universitaria' ? $scope.id_inmueble : null,
                         apartamento: 

@@ -45,43 +45,43 @@ public class Propuesta {
 	 * Representa el tipo de inmuble apartamento de la propuesta
 	 */
 	@JsonProperty(value="apartamento")
-	private Apartamento apartamento;
+	private Long apartamento;
 
 	/**
 	 * Representa el tipo de inmuble habitacion de la propuesta
 	 */
 	@JsonProperty(value="habitacion")
-	private Habitacion habitacion;
+	private Long habitacion;
 
 	/**
 	 * Representa el tipo de inmuble hostel de la propuesta
 	 */
 	@JsonProperty(value="hostel")
-	private Hostel hostel;
+	private Long hostel;
 
 	/**
 	 * Representa el tipo de inmuble hotel de la propuesta
 	 */
 	@JsonProperty(value="hotel")
-	private Hotel hotel;
+	private Long hotel;
 
 	/**
 	 * Representa el tipo de inmuble vivienda express de la propuesta
 	 */
 	@JsonProperty(value="vivienda_express")
-	private ViviendaExpress vivienda_express;
+	private Long vivienda_express;
 
 	/**
 	 * Representa el tipo de inmuble vivienda universitaria de la propuesta
 	 */
 	@JsonProperty(value="vivienda_universitaria")
-	private ViviendaUniversitaria vivienda_universitarias;
+	private Long vivienda_universitarias;
 
 	/**
 	 * atributo que define si la propuesta se debe retirar
 	 */
 	@JsonProperty(value="se_va_retirar")
-	private Boolean seVaRetirar;
+	private Boolean se_va_retirar;
 
 	/**
 	 * Numero maximo de personas que pueder habitar este inmueble
@@ -92,7 +92,7 @@ public class Propuesta {
 	/**
 	 * Id del operador responsable de esta propuesta
 	 */
-	@JsonProperty(value="persona")
+	@JsonProperty(value="id_persona")
 	private Integer id_persona;
 	/**
 	 * Boolean que representa si una propuesta esta disponble o no
@@ -156,7 +156,7 @@ public class Propuesta {
 		this.hotel = null;
 		this.vivienda_express = null;
 		this.vivienda_universitarias = null;
-		this.seVaRetirar= false;
+		this.se_va_retirar= false;
 		this.capacidad_maxima = cap;
 		this.id_persona = id_persona;
 		this.disonible=disponible;
@@ -234,51 +234,51 @@ public class Propuesta {
 		this.id = id;
 	}
 
-	public Apartamento getApartamento() {
+	public Long getApartamento() {
 		return apartamento;
 	}
 
-	public void setApartamento(Apartamento apartamento) {
+	public void setApartamento(Long apartamento) {
 		this.apartamento = apartamento;
 	}
 
-	public Habitacion getHabitacion() {
+	public Long getHabitacion() {
 		return habitacion;
 	}
 
-	public void setHabitacion(Habitacion habitacion) {
+	public void setHabitacion(Long habitacion) {
 		this.habitacion = habitacion;
 	}
 
-	public Hostel getHostel() {
+	public Long getHostel() {
 		return hostel;
 	}
 
-	public void setHostel(Hostel hostel) {
+	public void setHostel(Long hostel) {
 		this.hostel = hostel;
 	}
 
-	public Hotel getHotel() {
+	public Long getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(Hotel hotel) {
+	public void setHotel(Long hotel) {
 		this.hotel = hotel;
 	}
 
-	public ViviendaExpress getVivienda_express() {
+	public Long getVivienda_express() {
 		return vivienda_express;
 	}
 
-	public void setVivienda_express(ViviendaExpress vivienda_express) {
+	public void setVivienda_express(Long vivienda_express) {
 		this.vivienda_express = vivienda_express;
 	}
 
-	public ViviendaUniversitaria getVivienda_universitarias() {
+	public Long getVivienda_universitarias() {
 		return vivienda_universitarias;
 	}
 
-	public void setVivienda_universitarias(ViviendaUniversitaria vivienda_universitarias) {
+	public void setVivienda_universitarias(Long vivienda_universitarias) {
 		this.vivienda_universitarias = vivienda_universitarias;
 	}
 
@@ -295,7 +295,7 @@ public class Propuesta {
 	 * @return the seVaRetirar
 	 */
 	public Boolean getSeVaRetirar() {
-		return seVaRetirar;
+		return se_va_retirar;
 	}
 
 
@@ -303,7 +303,7 @@ public class Propuesta {
 	 * @param seVaRetirar the seVaRetirar to set
 	 */
 	public void setSeVaRetirar(Boolean seVaRetirar) {
-		this.seVaRetirar = seVaRetirar;
+		this.se_va_retirar = seVaRetirar;
 	}
 
 

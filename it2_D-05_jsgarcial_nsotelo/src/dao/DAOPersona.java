@@ -364,54 +364,66 @@ public class DAOPersona {
 
 		//Verificacion de IDS para conectar el inmueble
 		if ( propuesta.getHostel() == null ) ID_HOSTEL = "null";
-		else ID_HOSTEL = propuesta.getHostel().getId();
+		else ID_HOSTEL = propuesta.getHostel();
 
 		if ( propuesta.getHotel() == null ) ID_HOTEL = "null";
-		else ID_HOTEL = propuesta.getHotel().getId();
+		else ID_HOTEL = propuesta.getHotel();
 
 		if ( propuesta.getVivienda_express() == null ) ID_VIVIENDA_EXPRESS = "null";
-		else ID_VIVIENDA_EXPRESS = propuesta.getVivienda_express().getId();
+		else ID_VIVIENDA_EXPRESS = propuesta.getVivienda_express();
 
 		if ( propuesta.getApartamento() == null ) ID_APARTAMENTO = "null";
-		else ID_APARTAMENTO = propuesta.getApartamento().getId();
+		else ID_APARTAMENTO = propuesta.getApartamento();
 
 		if ( propuesta.getVivienda_universitarias() == null ) ID_VIVIENDA_UNIVERSITARIA = "null";
-		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias().getId();
+		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias();
 
 		if ( propuesta.getVivienda_universitarias() == null ) ID_VIVIENDA_UNIVERSITARIA = "null";
-		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias().getId();
+		else ID_VIVIENDA_UNIVERSITARIA = propuesta.getVivienda_universitarias();
 
 		if ( propuesta.getHabitacion() == null ) ID_HABITACION = "null";
-		else ID_HABITACION = propuesta.getHabitacion().getId();
+		else ID_HABITACION = propuesta.getHabitacion();
 
 		Integer DISPONIBLE = propuesta.getDisonible() == true ? 1 : 0;
 
 		Integer CANTIDAD_DIAS_DISPONIBLES = propuesta.getCantidad_dias_disponibles() == null ? 0 : propuesta.getCantidad_dias_disponibles();
 
+		String capacidad_maxima = propuesta.getCapacidad_maxima() == null ? "0" :  propuesta.getCapacidad_maxima().toString();
+
+		String fecha_f_d = propuesta.getFecha_final_disponibilidad() == null ? "null" : propuesta.getFecha_final_disponibilidad();
+
 		// SE VA RETIRAR se inicializa con false en el constructor de propuesta
 		// FECHA_INICIO_DISPONIBILIDAD se entiende como la fecha en la que se registra la propuesta. Luego se cambia cuando se acaba una reserva.
+
 		String sql =
-				"INSERT INTO PROPUESTAS (ID, TIPO_INMUEBLE, ID_PERSONA, ID_HOTEL, ID_HOSTEL, ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, CAPACIDAD_MAXIMA, DISPONIBLE, FECHA_INICIO_DISPONIBILIDAD,"
-						+ " FECHA_FINAL_DISPONIBILIDAD, CANTIDAD_DIAS_DISPONIBLE "
-
-				+ " VALUES ( "
-
-				+ propuesta.getId() + ", " // ID
-				+ propuesta.getTipo_inmueble() +  ", " // TIPO_INMUEBLE
-				+ propuesta.getId_persona() + ", " // ID_PERSONA
-				+ ID_HOTEL + ", " // ID_HOTEL
-				+ ID_HOSTEL + ", " // ID_HOSTEL
-				+ ID_VIVIENDA_EXPRESS + ", " // ID_VIVIENDA_EXPRESS
-				+ ID_APARTAMENTO + ", " // ID_APARTAMENTO
-				+ ID_VIVIENDA_UNIVERSITARIA + ", " // ID_VIVIENDA_UNIVERSITARIA
-				+ ID_HABITACION + ", " // ID_HABITACION
-				+ propuesta.getCapacidad_maxima() == null ? "0" :  propuesta.getCapacidad_maxima()  + ", "	// CAPACIDAD_MAXIMA
-						+ DISPONIBLE  + ", "		//DISPOBLE
-						+ propuesta.getFecha_inicio_disponibilidad() + ", "			// FECHA_INICIO_DISPONIBILIDAD
-						+ propuesta.getFecha_final_disponibilidad() == null ? "null" : propuesta.getFecha_final_disponibilidad() + ", "			// FECHA_FINAL_DISPONIBILIDAD
-								+ CANTIDAD_DIAS_DISPONIBLES + ", "			// CANTIDAD_DIAS_DISPONIBLES
-
-								+ " )";
+				"INSERT INTO PROPUESTAS " + 
+				"(ID, TIPO_INMUEBLE, ID_PERSONA, " + 
+				"ID_HOTEL, ID_HOSTEL, " + 
+				"ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, " + 
+				"SE_VA_RETIRAR,CAPACIDAD_MAXIMA, DISPONIBLE, " + 
+				"FECHA_INICIO_DISPONIBILIDAD, " + 
+				"FECHA_FINAL_DISPONIBILIDAD, " + 
+				"CANTIDAD_DIAS_DISPONIBLE, " + 
+				"SUB_TOTAL " + 
+				") " + 
+				"VALUES ( " + 
+				+ propuesta.getId() + ", " +  
+				" '" + propuesta.getTipo_inmueble() + "', " + 
+				+ propuesta.getId_persona() + ", " + 
+				ID_HOTEL + ", " + 
+				ID_HOSTEL + ", " + 
+				ID_VIVIENDA_EXPRESS + ", " + 
+				ID_APARTAMENTO + ", " + 
+				ID_VIVIENDA_UNIVERSITARIA + ", " + 
+				ID_HABITACION + ", " + 
+				"0 , " + 
+				capacidad_maxima + ", " + 
+				"1, " + 
+				"'" + propuesta.getFecha_inicio_disponibilidad() + "', " + 
+				"'" + fecha_f_d + "', " + 
+				"0, " + 
+				+ propuesta.getSub_total() + "  " + 
+				")";
 
 		System.out.println(sql);
 
@@ -644,7 +656,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setApartamento(new Apartamento(rs.getLong("ID"), rs.getInt("AMOBLADO") == 0 ? false : true , rs.getDouble("COSTO_ADMIN"), capacidad));
+				prop.setApartamento(rs.getLong("ID"));
 			}
 		} 
 
@@ -654,7 +666,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setHabitacion( new Habitacion(rs.getLong("ID"), rs.getInt("PRECIO_ESPECIAL") == 0 ? false : true, rs.getString("TIPO_HABITACION"), capacidad) );
+				prop.setHabitacion( rs.getLong("ID") );
 			}
 		}
 
@@ -664,7 +676,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setHostel( new Hostel(rs.getLong("ID"), rs.getString("REGISTRO_CAMARA_COMERCIO"), rs.getString("REGISTRO_SUPERINTENDENCIA"), rs.getString("TIPO_HABITACION"), rs.getString("UBICACION"), rs.getInt("HORARIO_ADMIN_INICIAL"), rs.getInt("HORARIO_ADMIN_FINAL"), capacidad) );
+				prop.setHostel( rs.getLong("ID") );
 			}
 		}
 
@@ -674,7 +686,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setHotel( new Hotel(rs.getLong("ID"), rs.getString("REGISTRO_CAMARA_COMERCIO"), rs.getString("REGISTRO_SUPERINTENDENCIA"), rs.getString("TIPO_HABITACION"), rs.getString("UBICACION"), rs.getInt("HORARIO_ADMIN_24H") == 0 ? false : true, capacidad) );
+				prop.setHotel(rs.getLong("ID") );
 			}
 		}
 
@@ -684,7 +696,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setVivienda_express( new ViviendaExpress(rs.getLong("ID"), rs.getString("MENAJE"), rs.getString("UBICACION"), capacidad) );
+				prop.setVivienda_express( rs.getLong("ID") );
 			}
 		}
 
@@ -694,7 +706,7 @@ public class DAOPersona {
 			recursos.add(prepStmt);
 			ResultSet rs = prepStmt.executeQuery();
 			if (rs.next()) {
-				prop.setVivienda_universitarias( new ViviendaUniversitaria(rs.getLong("ID"), rs.getString("UBICACION"), rs.getString("CAPACIDAD"), rs.getString("MENAJE"), rs.getString("DESCRIPCION"), rs.getString("TIPO"), rs.getInt("MENSUAL") == 0 ? false : true, capacidad) );
+				prop.setVivienda_universitarias( rs.getLong("ID"));
 			}
 		}
 
@@ -1022,16 +1034,16 @@ public class DAOPersona {
 	//----------------------------------------------------------------------------------------------------------------------------------
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
 	//----------------------------------------------------------------------------------------------------------------------------------
 	// REQUERIMIENTOS DE CONSULTA
@@ -1209,19 +1221,19 @@ public class DAOPersona {
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * RC 9 - ENCONTRAR LAS OFERTAS DE ALOJAMIENTO QUE NO TIENEN MUCHA DEMANDA
 	 * 
@@ -1231,12 +1243,12 @@ public class DAOPersona {
 	 * @throws SQLException 
 	 */
 	public List<Propuesta> RC9_poca_demanda () throws SQLException {
-		
+
 		String sql = 
 				"SELECT * " + 
-				"FROM PROPUESTAS P " + 
-				"WHERE P.CANTIDAD_DIAS_DISPONIBLE >= 30";
-		
+						"FROM PROPUESTAS P " + 
+						"WHERE P.CANTIDAD_DIAS_DISPONIBLE >= 30";
+
 		List<Propuesta> propuestas = new ArrayList<>();
 
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
@@ -1246,7 +1258,7 @@ public class DAOPersona {
 		while ( rs.next() ) {
 			propuestas.add( convertResultSetTo_Propuesta(rs) );
 		}
-		
+
 		return propuestas;
 	}
 
