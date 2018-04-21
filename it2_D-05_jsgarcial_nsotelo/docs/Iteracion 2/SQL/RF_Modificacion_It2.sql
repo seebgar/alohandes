@@ -74,9 +74,14 @@ SELECT * FROM PROPUESTAS;
 
 
 
+-- REQUERIMIENTOS FUNCIONALES DE MODIFICACION
 
 
 -- RF 7 REGISTRAR RESERVAS COLECTIVAS
+-- Para realizar este metodo se reciben como parametros el tipo de inmueble y una lista de strings que representan losservicios deseados
+SELECT P.ID from PROPUESTAS P WHERE UPPER(TIPO_INMUEBLE) = UPPER('" + tipo_inmueble + "') AND P.ID_APARTAMENTO 
+IN ( SELECT S.ID_APARTAMENTO FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO 
+    WHERE T.NOMBRE IN ( 'baño', 'tv') ) ;
 
 
 
