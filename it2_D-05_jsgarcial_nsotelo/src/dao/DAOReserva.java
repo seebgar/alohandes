@@ -193,7 +193,7 @@ public class DAOReserva {
 
 
 		// set id_colectivo
-		if ( reserva.getId_colectivo() != null & reserva.getId_colectivo() != 0 ) {
+		if ( reserva.getId_colectivo() != null ) {
 			String colectivo  = "UPDATE RESERVAS R SET R.ID_COLECTIVO = " + reserva.getId_colectivo() + " WHERE R.ID = " + reserva.getId();
 			PreparedStatement lect = conn.prepareStatement(colectivo);
 			System.out.println(lect);
@@ -771,12 +771,15 @@ public class DAOReserva {
 
 		ResultSet rs = st.executeQuery();
 
+		;
 		List<Reserva> reservasaReabilitar = new ArrayList<>();
 
 		while ( rs.next() ) {
 			reservasaReabilitar.add( this.convertResultSetTo_Reserva(rs) );
 		}
 
+		System.out.println("Relocalizando "+reservasaReabilitar.size()+" reservas" );
+		
 		Queue<Propuesta> colaParaLasPropuestas= new LinkedList<>();
 		String sql_propuestas = "SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE =" + "'"+ propuestaAcancelar.getTipo_inmueble() +"'"+ "AND ID !="+propuestaAcancelar.getId();
 
@@ -790,7 +793,7 @@ public class DAOReserva {
 			System.out.println(rsa.toString());
 			colaParaLasPropuestas.add( propuestas.convertResultSetTo_Propuesta(rsa));
 		}
-		System.out.println(colaParaLasPropuestas.size());
+		System.out.println("Disponible "+colaParaLasPropuestas.size()+" propuestas del mismo tipo"+propuestaAcancelar.getTipo_inmueble());
 
 		Date xx = new Date();
 		Calendar hoy = Calendar.getInstance();
@@ -811,13 +814,15 @@ public class DAOReserva {
 			Calendar cal_f = Calendar.getInstance();
 			cal_f.setTime(fecha_i);
 			cal_f.add(Calendar.DAY_OF_WEEK, reserva.getDuracion());
+System.out.println("Primero va la reserva: " +reserva.toString());
 
-
-			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==0) 
+			if ( hoy.after(cal_i) && hoy.before(cal_f) && reserva.getId_colectivo()==null) 
 			{
 				vigentes.add(reserva);
 			}
-			else if( reserva.getId_colectivo()!=0) 
+			
+			
+			else if( reserva.getId_colectivo() != null) 
 			{
 
 				reservasColectivas.add(reserva);
@@ -826,7 +831,10 @@ public class DAOReserva {
 				reservasSegundoOrden.add(reserva);
 			}
 		};
-
+		System.out.println("reservas de primera prioridad :" +vigentes.size());
+		System.out.println("reservas de segunda prioridad :" +reservasColectivas.size());
+		System.out.println("reservas de terecera prioridad :" +reservasSegundoOrden.size());
+		
 
 		//Primero las vigentes
 		//Ordeno por cuando se hizo el registro de cada una desecndentemente
