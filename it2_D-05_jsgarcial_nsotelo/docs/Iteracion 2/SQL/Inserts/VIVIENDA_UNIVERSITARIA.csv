@@ -1,0 +1,1001 @@
+ID,UBICACION,MENAJE,TIPO_HABITACION,MENSUAL,DESCRIPCION,CAPACIDAD_MAXIMA
+1,905 Ohio Avenue,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",sencilla,0,Aenean sit amet justo.,1564
+2,407 Rieder Park,Vivamus vestibulum sagittis sapien.,compartida,1,Maecenas ut massa quis augue luctus tincidunt.,2312
+3,63684 Harper Court,Vestibulum sed magna at nunc commodo placerat.,compartida,1,Nulla nisl.,2908
+4,4774 Merchant Point,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",compartida,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,4439
+5,6249 Hagan Place,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,compartida,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2130
+6,26817 Center Junction,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",sencilla,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",3180
+7,364 Mayer Trail,Cras pellentesque volutpat dui.,compartida,1,Vestibulum ac est lacinia nisi venenatis tristique.,2484
+8,3 Katie Pass,Morbi non quam nec dui luctus rutrum.,compartida,1,In hac habitasse platea dictumst.,4313
+9,59307 Eggendart Trail,Donec posuere metus vitae ipsum.,compartida,1,Curabitur gravida nisi at nibh.,2597
+10,72 Mcbride Way,Phasellus sit amet erat.,compartida,0,Curabitur in libero ut massa volutpat convallis.,2775
+11,0 Morrow Road,Mauris lacinia sapien quis libero.,compartida,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,4958
+12,253 Summer Ridge Avenue,In sagittis dui vel nisl.,sencilla,1,Maecenas pulvinar lobortis est.,4548
+13,74 Fairview Way,Curabitur at ipsum ac tellus semper interdum.,sencilla,1,Nullam molestie nibh in lectus.,1254
+14,75 Red Cloud Lane,In hac habitasse platea dictumst.,compartida,1,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",1396
+15,1 Cardinal Terrace,Nulla facilisi.,sencilla,0,Integer ac leo.,3526
+16,7 Moulton Lane,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",sencilla,1,Curabitur at ipsum ac tellus semper interdum.,2219
+17,05392 Old Shore Avenue,Aenean auctor gravida sem.,compartida,0,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",1311
+18,75 Washington Park,In hac habitasse platea dictumst.,sencilla,0,Pellentesque eget nunc.,4517
+19,61279 Anhalt Pass,Morbi quis tortor id nulla ultrices aliquet.,compartida,0,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",2308
+20,323 Heffernan Terrace,In congue.,compartida,1,Ut tellus.,3579
+21,27974 Hazelcrest Park,Duis mattis egestas metus.,compartida,1,Donec posuere metus vitae ipsum.,2361
+22,1 Maple Wood Park,Praesent blandit.,sencilla,1,Ut tellus.,1537
+23,8667 Spohn Point,In hac habitasse platea dictumst.,compartida,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",4853
+24,104 Weeping Birch Place,Mauris lacinia sapien quis libero.,sencilla,1,Proin interdum mauris non ligula pellentesque ultrices.,4809
+25,7 Algoma Pass,Nulla facilisi.,sencilla,1,Duis ac nibh.,3959
+26,6 Lakewood Plaza,Pellentesque ultrices mattis odio.,sencilla,0,Vivamus in felis eu sapien cursus vestibulum.,3286
+27,3123 Nevada Circle,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",sencilla,1,Nunc rhoncus dui vel sem.,3127
+28,25072 Northland Plaza,Morbi ut odio.,sencilla,1,Vivamus in felis eu sapien cursus vestibulum.,2492
+29,4392 Doe Crossing Street,Ut at dolor quis odio consequat varius.,compartida,0,Etiam faucibus cursus urna.,4839
+30,20595 Randy Drive,Morbi vel lectus in quam fringilla rhoncus.,sencilla,1,Aliquam quis turpis eget elit sodales scelerisque.,3633
+31,69 Marquette Way,Donec posuere metus vitae ipsum.,sencilla,1,Morbi non quam nec dui luctus rutrum.,1658
+32,665 Merry Park,Phasellus sit amet erat.,sencilla,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",2086
+33,36477 Debra Terrace,Duis ac nibh.,sencilla,1,Integer ac neque.,3930
+34,2 Karstens Alley,Proin eu mi.,compartida,0,Nullam varius.,4627
+35,838 Vahlen Circle,Sed vel enim sit amet nunc viverra dapibus.,sencilla,0,Morbi ut odio.,2463
+36,4 Cherokee Junction,Vestibulum sed magna at nunc commodo placerat.,sencilla,0,Morbi a ipsum.,4503
+37,9 Lindbergh Avenue,Vivamus tortor.,compartida,1,Vivamus in felis eu sapien cursus vestibulum.,1622
+38,52 Marquette Lane,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",compartida,0,Ut at dolor quis odio consequat varius.,1302
+39,49681 Dryden Junction,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,1,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",2674
+40,615 3rd Pass,Morbi ut odio.,compartida,0,Suspendisse potenti.,1169
+41,6239 Sheridan Way,Morbi a ipsum.,compartida,0,Duis mattis egestas metus.,3164
+42,16273 Esker Drive,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,Nulla tempus.,3095
+43,3575 Armistice Parkway,Donec ut mauris eget massa tempor convallis.,sencilla,1,Sed vel enim sit amet nunc viverra dapibus.,1821
+44,500 Granby Terrace,In quis justo.,sencilla,1,Morbi ut odio.,1174
+45,2336 Meadow Ridge Avenue,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,Donec posuere metus vitae ipsum.,3140
+46,21260 Monument Trail,Duis ac nibh.,sencilla,1,Cras non velit nec nisi vulputate nonummy.,3464
+47,35 Forest Pass,Donec posuere metus vitae ipsum.,sencilla,0,Nunc purus.,1638
+48,428 Springs Place,Suspendisse ornare consequat lectus.,sencilla,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",1896
+49,7 Elmside Center,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",sencilla,1,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",1430
+50,841 Portage Street,Praesent blandit lacinia erat.,sencilla,0,Duis consequat dui nec nisi volutpat eleifend.,4753
+51,301 Merry Court,Phasellus in felis.,compartida,1,Nulla tellus.,2750
+52,42097 Helena Avenue,Pellentesque eget nunc.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",1060
+53,05620 Bunting Circle,Duis at velit eu est congue elementum.,compartida,1,In hac habitasse platea dictumst.,2482
+54,292 Roxbury Center,Maecenas rhoncus aliquam lacus.,compartida,1,Donec ut dolor.,3777
+55,3 Dayton Road,In hac habitasse platea dictumst.,sencilla,1,Donec semper sapien a libero.,4147
+56,5635 Logan Court,Duis at velit eu est congue elementum.,sencilla,0,Nulla tellus.,1298
+57,067 Anniversary Place,Suspendisse ornare consequat lectus.,sencilla,0,Nulla justo.,1269
+58,18 Novick Parkway,Duis aliquam convallis nunc.,compartida,1,Duis mattis egestas metus.,1862
+59,29059 Springs Lane,Etiam faucibus cursus urna.,sencilla,1,Nulla facilisi.,4204
+60,77 Forest Run Lane,Suspendisse potenti.,sencilla,1,Pellentesque eget nunc.,2840
+61,6 Maryland Court,Pellentesque ultrices mattis odio.,compartida,1,Morbi quis tortor id nulla ultrices aliquet.,1800
+62,94538 Monument Hill,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,1,Praesent blandit.,2726
+63,155 Westport Circle,Vivamus in felis eu sapien cursus vestibulum.,sencilla,0,Donec ut dolor.,4042
+64,28057 Wayridge Drive,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",compartida,0,Nulla ut erat id mauris vulputate elementum.,1206
+65,264 Fieldstone Terrace,Praesent blandit lacinia erat.,sencilla,1,Duis bibendum.,2857
+66,4768 Sugar Way,Nullam sit amet turpis elementum ligula vehicula consequat.,sencilla,1,Nulla nisl.,3228
+67,6243 Lillian Hill,In quis justo.,sencilla,0,Donec ut mauris eget massa tempor convallis.,2795
+68,245 Bunker Hill Pass,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",compartida,0,Praesent blandit lacinia erat.,1070
+69,598 Almo Place,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",compartida,1,Donec vitae nisi.,4959
+70,853 Eliot Crossing,Vivamus tortor.,sencilla,0,Pellentesque at nulla.,1775
+71,2296 Daystar Terrace,Nullam sit amet turpis elementum ligula vehicula consequat.,compartida,0,Vivamus vel nulla eget eros elementum pellentesque.,2462
+72,122 Monica Pass,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,1,Nullam molestie nibh in lectus.,1756
+73,03 Bunting Circle,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",2386
+74,84 Cardinal Plaza,Integer ac neque.,compartida,0,Vivamus tortor.,2436
+75,4 Dorton Alley,Aenean lectus.,sencilla,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",1430
+76,74 Northland Center,Nulla tempus.,sencilla,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",1493
+77,86 Schmedeman Trail,Maecenas ut massa quis augue luctus tincidunt.,sencilla,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",3126
+78,78 Weeping Birch Crossing,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",compartida,1,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",1887
+79,30 Melby Circle,Donec ut mauris eget massa tempor convallis.,sencilla,1,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",3090
+80,31 Farmco Place,Fusce consequat.,sencilla,1,Morbi non lectus.,3507
+81,17 Village Crossing,Sed accumsan felis.,compartida,1,Nulla justo.,4906
+82,4151 Glendale Lane,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,0,Aenean fermentum.,3772
+83,8992 Boyd Circle,In quis justo.,sencilla,1,Nulla justo.,3684
+84,598 Merchant Pass,In hac habitasse platea dictumst.,sencilla,0,Cras non velit nec nisi vulputate nonummy.,4003
+85,8156 Ridgeview Drive,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,1,Suspendisse accumsan tortor quis turpis.,3968
+86,8 Amoth Hill,Etiam pretium iaculis justo.,sencilla,1,Aliquam non mauris.,1438
+87,0 Bay Circle,Etiam justo.,compartida,0,Ut tellus.,3779
+88,30 Holmberg Plaza,Duis consequat dui nec nisi volutpat eleifend.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",2626
+89,9 Oneill Way,In hac habitasse platea dictumst.,compartida,0,Mauris sit amet eros.,1778
+90,294 Sunfield Road,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",sencilla,1,Etiam justo.,3985
+91,19369 Golf Court,Ut tellus.,sencilla,0,Duis bibendum.,1290
+92,8 Loeprich Plaza,Phasellus in felis.,compartida,1,Proin at turpis a pede posuere nonummy.,4191
+93,1021 Mariners Cove Parkway,Donec dapibus.,sencilla,1,Morbi porttitor lorem id ligula.,4163
+94,34 Crest Line Crossing,Sed ante.,compartida,0,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",1654
+95,1 Killdeer Point,Nulla facilisi.,sencilla,1,Nulla suscipit ligula in lacus.,3013
+96,08047 8th Park,Integer non velit.,compartida,1,Nullam molestie nibh in lectus.,2823
+97,15495 Huxley Drive,Vestibulum ac est lacinia nisi venenatis tristique.,sencilla,1,Ut tellus.,2389
+98,80517 Morningstar Road,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",sencilla,0,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",3792
+99,969 Nelson Street,Suspendisse potenti.,sencilla,0,Integer non velit.,3198
+100,291 Lyons Crossing,Nulla ac enim.,compartida,1,Nam nulla.,3519
+101,60976 Toban Plaza,Donec dapibus.,compartida,1,Mauris lacinia sapien quis libero.,3441
+102,2266 Arizona Court,Nam nulla.,sencilla,1,Quisque porta volutpat erat.,2386
+103,45121 Jenna Hill,Mauris lacinia sapien quis libero.,sencilla,1,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",2125
+104,1 Randy Pass,Nullam porttitor lacus at turpis.,sencilla,0,Quisque porta volutpat erat.,2929
+105,6202 Katie Way,Vestibulum rutrum rutrum neque.,sencilla,1,Nulla ac enim.,1715
+106,8430 Hauk Parkway,Pellentesque eget nunc.,compartida,0,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",3510
+107,70730 Warner Center,Donec semper sapien a libero.,compartida,0,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",2966
+108,8 Darwin Park,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",compartida,0,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",4422
+109,39 Sherman Road,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",compartida,1,Fusce consequat.,1558
+110,2 Oak Valley Center,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",compartida,0,Cras pellentesque volutpat dui.,2399
+111,7 Susan Court,Curabitur in libero ut massa volutpat convallis.,sencilla,1,Vestibulum sed magna at nunc commodo placerat.,4949
+112,6 Dorton Pass,Nulla tellus.,compartida,0,Nam nulla.,1106
+113,05941 Dennis Drive,Mauris ullamcorper purus sit amet nulla.,sencilla,1,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",2698
+114,3743 Tony Way,Suspendisse ornare consequat lectus.,compartida,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",1224
+115,898 Dunning Crossing,Duis at velit eu est congue elementum.,sencilla,0,Nulla justo.,2208
+116,77840 Schurz Trail,Donec ut mauris eget massa tempor convallis.,sencilla,1,Morbi porttitor lorem id ligula.,2129
+117,13028 Haas Terrace,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",compartida,1,Vivamus vel nulla eget eros elementum pellentesque.,2926
+118,7520 Hoepker Court,Donec ut dolor.,sencilla,0,Curabitur gravida nisi at nibh.,3935
+119,4019 Ryan Crossing,Donec ut mauris eget massa tempor convallis.,compartida,0,Donec semper sapien a libero.,4146
+120,413 Pierstorff Plaza,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",compartida,0,Vivamus vel nulla eget eros elementum pellentesque.,3742
+121,83 Brown Trail,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",1361
+122,7969 Dryden Terrace,Proin interdum mauris non ligula pellentesque ultrices.,compartida,0,Etiam vel augue.,2726
+123,3 Rowland Place,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,1,Mauris ullamcorper purus sit amet nulla.,3442
+124,9 Scoville Circle,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,Morbi non lectus.,3922
+125,6189 Eagan Center,Aliquam erat volutpat.,compartida,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",4780
+126,25 Hudson Parkway,Sed vel enim sit amet nunc viverra dapibus.,sencilla,0,Integer ac neque.,4883
+127,331 Vera Plaza,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",sencilla,1,Sed sagittis.,1356
+128,69 Calypso Trail,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",sencilla,0,Maecenas tincidunt lacus at velit.,2989
+129,4090 Dunning Hill,Duis consequat dui nec nisi volutpat eleifend.,sencilla,0,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",2310
+130,17253 Delaware Drive,Pellentesque ultrices mattis odio.,sencilla,1,Integer ac neque.,2490
+131,650 Forest Dale Avenue,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",sencilla,0,In eleifend quam a odio.,2622
+132,76980 Di Loreto Junction,Nunc nisl.,sencilla,1,Ut at dolor quis odio consequat varius.,1237
+133,59 Tony Road,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",2982
+134,557 Anniversary Place,Pellentesque ultrices mattis odio.,sencilla,0,Phasellus in felis.,4514
+135,42953 Messerschmidt Park,Nam tristique tortor eu pede.,sencilla,1,Cras non velit nec nisi vulputate nonummy.,2019
+136,79440 Fieldstone Avenue,Phasellus sit amet erat.,compartida,0,Donec vitae nisi.,4618
+137,3190 Bobwhite Crossing,In quis justo.,compartida,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2929
+138,21528 Arizona Crossing,Nunc purus.,compartida,1,Vivamus tortor.,1952
+139,5 Birchwood Lane,Duis consequat dui nec nisi volutpat eleifend.,compartida,1,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",1960
+140,66088 Cherokee Hill,Ut at dolor quis odio consequat varius.,sencilla,0,Donec posuere metus vitae ipsum.,1868
+141,97 Sunnyside Court,Mauris sit amet eros.,sencilla,1,Cras in purus eu magna vulputate luctus.,2787
+142,2 Anthes Road,In sagittis dui vel nisl.,sencilla,1,Phasellus in felis.,3011
+143,258 Montana Center,Etiam faucibus cursus urna.,compartida,0,Etiam faucibus cursus urna.,1165
+144,433 Maryland Center,Cras non velit nec nisi vulputate nonummy.,sencilla,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",3114
+145,0 Northland Lane,Aliquam erat volutpat.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",2489
+146,4 Lakeland Pass,Praesent lectus.,compartida,0,Nulla tempus.,1535
+147,67842 2nd Junction,Etiam pretium iaculis justo.,sencilla,1,Duis mattis egestas metus.,3681
+148,0985 Nelson Circle,Suspendisse potenti.,compartida,0,Integer non velit.,3305
+149,79 Pennsylvania Plaza,Morbi non lectus.,sencilla,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1669
+150,0031 Colorado Road,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",compartida,0,Duis ac nibh.,3939
+151,421 6th Junction,Nam tristique tortor eu pede.,compartida,1,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",3579
+152,73 Sheridan Hill,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3611
+153,0063 Mosinee Avenue,Praesent id massa id nisl venenatis lacinia.,compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",4222
+154,6 Carey Pass,Ut at dolor quis odio consequat varius.,compartida,1,Sed sagittis.,3944
+155,7375 Pearson Hill,In hac habitasse platea dictumst.,sencilla,1,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",3365
+156,35 Dayton Road,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,0,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",1338
+157,06 Meadow Ridge Drive,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,0,Maecenas pulvinar lobortis est.,4686
+158,992 Elgar Point,Etiam faucibus cursus urna.,sencilla,0,Donec semper sapien a libero.,3701
+159,81 Reinke Street,Nunc rhoncus dui vel sem.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,3247
+160,91 Portage Drive,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Suspendisse potenti.,3973
+161,09197 Gerald Plaza,Duis mattis egestas metus.,sencilla,0,Sed sagittis.,2011
+162,62 Porter Street,Pellentesque ultrices mattis odio.,compartida,0,Suspendisse potenti.,4109
+163,780 Thompson Circle,Aenean lectus.,sencilla,0,Integer tincidunt ante vel ipsum.,3321
+164,89554 Green Ridge Place,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,0,Mauris lacinia sapien quis libero.,3753
+165,75 Knutson Parkway,Integer ac neque.,sencilla,0,Etiam pretium iaculis justo.,3862
+166,54933 Texas Street,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",sencilla,0,Nulla suscipit ligula in lacus.,1198
+167,988 Amoth Crossing,Nulla mollis molestie lorem.,compartida,0,Nullam varius.,1102
+168,69 Waxwing Place,Quisque id justo sit amet sapien dignissim vestibulum.,compartida,1,Quisque ut erat.,3827
+169,61 Roth Way,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",sencilla,1,Praesent lectus.,2205
+170,20426 Reindahl Park,Vestibulum rutrum rutrum neque.,compartida,1,Donec ut mauris eget massa tempor convallis.,3489
+171,1 Eastwood Park,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",sencilla,0,Donec semper sapien a libero.,3903
+172,95 Clove Pass,Nulla ac enim.,compartida,1,Pellentesque eget nunc.,4856
+173,8 Linden Circle,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,1,Duis ac nibh.,3176
+174,46 Sheridan Drive,Morbi a ipsum.,compartida,0,Nulla tempus.,1531
+175,0129 Moland Alley,Maecenas rhoncus aliquam lacus.,sencilla,1,Nullam porttitor lacus at turpis.,2333
+176,5 Bowman Lane,Pellentesque eget nunc.,compartida,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,1096
+177,69894 Chinook Lane,Duis aliquam convallis nunc.,compartida,0,Phasellus id sapien in sapien iaculis congue.,3891
+178,166 Rockefeller Alley,Curabitur gravida nisi at nibh.,compartida,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2626
+179,0981 Birchwood Parkway,Mauris lacinia sapien quis libero.,sencilla,0,In eleifend quam a odio.,2225
+180,21781 Badeau Alley,Sed ante.,sencilla,0,Duis consequat dui nec nisi volutpat eleifend.,2839
+181,18 Pawling Alley,Vestibulum sed magna at nunc commodo placerat.,compartida,0,Maecenas rhoncus aliquam lacus.,2542
+182,89071 Sycamore Avenue,Pellentesque viverra pede ac diam.,compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",1509
+183,5131 Calypso Junction,Suspendisse potenti.,sencilla,1,Praesent lectus.,4194
+184,276 Delaware Alley,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,compartida,0,Vivamus in felis eu sapien cursus vestibulum.,1088
+185,39310 Kedzie Plaza,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",sencilla,1,Proin at turpis a pede posuere nonummy.,4406
+186,6 Luster Lane,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",sencilla,0,Vestibulum sed magna at nunc commodo placerat.,1177
+187,85 Ridgeway Point,Proin at turpis a pede posuere nonummy.,sencilla,1,Curabitur in libero ut massa volutpat convallis.,3009
+188,8453 Sunnyside Trail,Donec posuere metus vitae ipsum.,sencilla,0,Duis aliquam convallis nunc.,2687
+189,795 Scoville Crossing,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",compartida,1,Curabitur gravida nisi at nibh.,4821
+190,6885 Sullivan Way,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",2491
+191,71673 Dapin Center,Vivamus tortor.,sencilla,1,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",3648
+192,236 Thompson Parkway,Fusce posuere felis sed lacus.,compartida,1,Nunc rhoncus dui vel sem.,3875
+193,455 Farragut Circle,Vestibulum ac est lacinia nisi venenatis tristique.,sencilla,1,Suspendisse potenti.,3594
+194,2341 Farwell Court,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",2896
+195,85 Arrowood Street,Duis bibendum.,compartida,0,Integer ac neque.,4382
+196,2544 Schurz Hill,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,0,Duis consequat dui nec nisi volutpat eleifend.,4037
+197,573 Maryland Junction,Vestibulum rutrum rutrum neque.,sencilla,1,Curabitur convallis.,2743
+198,72 Magdeline Pass,Morbi quis tortor id nulla ultrices aliquet.,compartida,1,Aliquam quis turpis eget elit sodales scelerisque.,1270
+199,97219 School Center,Donec semper sapien a libero.,compartida,1,Fusce consequat.,1185
+200,32146 Everett Avenue,Etiam faucibus cursus urna.,compartida,0,Duis ac nibh.,3874
+201,6533 Burrows Junction,Nullam porttitor lacus at turpis.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,3384
+202,5 Southridge Junction,Proin eu mi.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2887
+203,47 Scofield Point,Suspendisse ornare consequat lectus.,sencilla,1,Integer tincidunt ante vel ipsum.,3655
+204,58 Mallard Drive,Morbi vel lectus in quam fringilla rhoncus.,sencilla,0,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",4685
+205,48 Hoepker Pass,Etiam justo.,sencilla,0,Fusce consequat.,4505
+206,837 Spenser Lane,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,0,Cras in purus eu magna vulputate luctus.,1142
+207,0 Stone Corner Pass,Nulla suscipit ligula in lacus.,compartida,1,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",4110
+208,87 Lyons Road,Nulla tempus.,sencilla,1,Maecenas pulvinar lobortis est.,2131
+209,996 Fuller Alley,Integer ac neque.,sencilla,1,Cras pellentesque volutpat dui.,2449
+210,7484 Moulton Circle,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",compartida,0,Nulla ut erat id mauris vulputate elementum.,4055
+211,65 Kim Street,Nulla tempus.,sencilla,0,Sed ante.,3722
+212,7 Comanche Plaza,Nulla tellus.,compartida,0,Proin risus.,4147
+213,3 Everett Alley,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,1,Vivamus vestibulum sagittis sapien.,3619
+214,593 Rieder Trail,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",4504
+215,5 Eliot Way,Mauris ullamcorper purus sit amet nulla.,sencilla,1,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",4828
+216,5402 Barnett Way,Cras non velit nec nisi vulputate nonummy.,compartida,1,Donec ut dolor.,4252
+217,2 Florence Pass,Etiam vel augue.,sencilla,0,Suspendisse potenti.,3133
+218,60 Surrey Way,Suspendisse accumsan tortor quis turpis.,sencilla,0,Pellentesque viverra pede ac diam.,4624
+219,243 Homewood Place,Donec dapibus.,compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",4753
+220,36867 Division Parkway,In hac habitasse platea dictumst.,sencilla,1,Phasellus id sapien in sapien iaculis congue.,4070
+221,618 Northwestern Road,Duis ac nibh.,sencilla,1,Proin eu mi.,4371
+222,906 Sherman Hill,Vivamus tortor.,compartida,1,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",4651
+223,922 Burrows Place,Etiam justo.,sencilla,0,Suspendisse potenti.,1066
+224,200 Upham Alley,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",compartida,1,Donec posuere metus vitae ipsum.,1827
+225,5 Karstens Court,Morbi non lectus.,compartida,1,Morbi non quam nec dui luctus rutrum.,4634
+226,3 Manufacturers Road,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,0,Nulla justo.,3148
+227,65744 Forest Run Court,In blandit ultrices enim.,sencilla,1,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",3647
+228,6 Texas Crossing,In eleifend quam a odio.,sencilla,1,Nam dui.,2481
+229,356 Commercial Junction,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",compartida,1,Morbi a ipsum.,1780
+230,39 Fairfield Park,Sed accumsan felis.,sencilla,1,In quis justo.,1660
+231,80 Forest Avenue,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,Nulla mollis molestie lorem.,1288
+232,7 Basil Terrace,Duis aliquam convallis nunc.,sencilla,0,Vivamus vestibulum sagittis sapien.,3120
+233,85766 Brown Parkway,Cras in purus eu magna vulputate luctus.,sencilla,0,Phasellus sit amet erat.,3325
+234,4 Straubel Place,Etiam justo.,compartida,0,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",2572
+235,7668 Buell Street,Nulla tempus.,sencilla,1,Morbi a ipsum.,3679
+236,0470 Bowman Terrace,Morbi porttitor lorem id ligula.,compartida,1,Nulla facilisi.,4155
+237,8 Red Cloud Road,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,0,Suspendisse potenti.,4785
+238,7 Jenifer Road,Pellentesque viverra pede ac diam.,sencilla,0,Nulla justo.,2211
+239,13847 Northland Hill,Morbi vel lectus in quam fringilla rhoncus.,compartida,0,Quisque porta volutpat erat.,1595
+240,0 Fordem Pass,Nunc purus.,compartida,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",3783
+241,79525 Pierstorff Drive,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",sencilla,0,Quisque porta volutpat erat.,4034
+242,3 Messerschmidt Crossing,Mauris lacinia sapien quis libero.,sencilla,1,Aenean sit amet justo.,3130
+243,58248 Village Crossing,Donec quis orci eget orci vehicula condimentum.,sencilla,1,Duis aliquam convallis nunc.,2149
+244,524 Porter Road,Donec vitae nisi.,sencilla,1,Phasellus in felis.,2777
+245,376 Myrtle Drive,In hac habitasse platea dictumst.,sencilla,1,Vivamus tortor.,3188
+246,755 Sutteridge Pass,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,Morbi quis tortor id nulla ultrices aliquet.,4359
+247,8085 Independence Alley,Curabitur in libero ut massa volutpat convallis.,sencilla,0,Pellentesque at nulla.,2142
+248,3 Brentwood Center,Curabitur convallis.,sencilla,1,In blandit ultrices enim.,3078
+249,39 South Junction,Vivamus tortor.,sencilla,1,Cras pellentesque volutpat dui.,3803
+250,4461 Golf Trail,Donec semper sapien a libero.,compartida,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",3045
+251,7 Schmedeman Crossing,In hac habitasse platea dictumst.,compartida,1,Duis aliquam convallis nunc.,2904
+252,8 Talisman Court,In blandit ultrices enim.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,1226
+253,3 Meadow Vale Lane,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",sencilla,0,Vestibulum ac est lacinia nisi venenatis tristique.,2183
+254,45 Green Pass,Nunc purus.,sencilla,1,Nulla ut erat id mauris vulputate elementum.,2075
+255,3248 Service Parkway,Phasellus id sapien in sapien iaculis congue.,compartida,1,Integer tincidunt ante vel ipsum.,2583
+256,1035 Maywood Place,Sed ante.,compartida,0,In hac habitasse platea dictumst.,4903
+257,854 7th Road,Aenean sit amet justo.,sencilla,0,Suspendisse potenti.,3536
+258,1 Talisman Pass,Aliquam sit amet diam in magna bibendum imperdiet.,sencilla,1,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",4353
+259,457 Erie Lane,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",sencilla,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",2758
+260,9320 Golf Plaza,Aliquam non mauris.,compartida,1,Vestibulum ac est lacinia nisi venenatis tristique.,2307
+261,2 Acker Park,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",sencilla,1,Curabitur gravida nisi at nibh.,3685
+262,98 Butternut Drive,Donec semper sapien a libero.,sencilla,0,Morbi quis tortor id nulla ultrices aliquet.,4505
+263,060 Oriole Crossing,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,sencilla,1,Duis mattis egestas metus.,4295
+264,4 Nelson Alley,Fusce posuere felis sed lacus.,compartida,0,Nullam porttitor lacus at turpis.,1139
+265,68 Graceland Hill,Nunc purus.,sencilla,0,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",2254
+266,3564 Mcbride Pass,Donec semper sapien a libero.,compartida,1,Pellentesque viverra pede ac diam.,1621
+267,3 Helena Point,Duis bibendum.,compartida,1,In hac habitasse platea dictumst.,4879
+268,1 Kenwood Point,Integer non velit.,sencilla,1,Duis consequat dui nec nisi volutpat eleifend.,1532
+269,9 Ridgeview Street,In eleifend quam a odio.,sencilla,0,Donec ut mauris eget massa tempor convallis.,2388
+270,309 Northridge Court,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Etiam faucibus cursus urna.,1051
+271,9 Northview Parkway,Nulla ut erat id mauris vulputate elementum.,compartida,0,Cras non velit nec nisi vulputate nonummy.,1828
+272,556 2nd Trail,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,1,Quisque id justo sit amet sapien dignissim vestibulum.,2031
+273,4 Heath Court,Morbi non quam nec dui luctus rutrum.,compartida,0,Aenean fermentum.,1010
+274,692 Independence Terrace,Nulla suscipit ligula in lacus.,compartida,0,Donec posuere metus vitae ipsum.,2787
+275,579 6th Center,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",compartida,0,Etiam vel augue.,1595
+276,2 Talmadge Hill,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",sencilla,1,Curabitur in libero ut massa volutpat convallis.,1759
+277,06 Cardinal Terrace,In hac habitasse platea dictumst.,sencilla,0,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",2752
+278,8341 Dapin Alley,Pellentesque at nulla.,sencilla,0,In hac habitasse platea dictumst.,4712
+279,389 Straubel Circle,Praesent blandit.,compartida,1,Fusce posuere felis sed lacus.,4239
+280,99035 Jackson Court,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",compartida,0,In hac habitasse platea dictumst.,3281
+281,832 Packers Street,Vivamus vel nulla eget eros elementum pellentesque.,compartida,0,Duis aliquam convallis nunc.,2816
+282,22848 Melody Park,Duis at velit eu est congue elementum.,compartida,1,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",3180
+283,602 Golf Junction,Ut at dolor quis odio consequat varius.,sencilla,0,Sed sagittis.,2226
+284,2828 Boyd Court,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,0,Praesent lectus.,3105
+285,3692 Eastlawn Road,Pellentesque viverra pede ac diam.,sencilla,0,Suspendisse potenti.,3996
+286,2 Sutteridge Road,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",4223
+287,1575 Logan Place,Donec ut dolor.,sencilla,1,Proin risus.,3515
+288,3000 Blackbird Alley,Mauris sit amet eros.,sencilla,1,Suspendisse potenti.,1152
+289,7769 Red Cloud Lane,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",sencilla,0,Donec semper sapien a libero.,3803
+290,0 Mifflin Trail,Sed sagittis.,compartida,0,Duis bibendum.,2846
+291,815 Johnson Plaza,In hac habitasse platea dictumst.,compartida,0,Suspendisse ornare consequat lectus.,2251
+292,7 Loeprich Way,Duis aliquam convallis nunc.,compartida,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1454
+293,442 Browning Alley,Nulla tempus.,sencilla,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3919
+294,35951 Calypso Lane,Nullam porttitor lacus at turpis.,sencilla,0,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",2243
+295,465 Redwing Place,Sed accumsan felis.,compartida,0,Sed ante.,2307
+296,604 Division Hill,Nunc rhoncus dui vel sem.,compartida,1,Curabitur gravida nisi at nibh.,1992
+297,133 Susan Parkway,In eleifend quam a odio.,sencilla,1,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",4123
+298,1 Lake View Court,Donec vitae nisi.,compartida,0,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",2023
+299,30 Becker Way,Donec ut dolor.,compartida,0,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",1046
+300,9497 West Court,Suspendisse potenti.,compartida,0,Nullam molestie nibh in lectus.,1253
+301,1483 Bonner Road,Vivamus tortor.,compartida,0,Vivamus in felis eu sapien cursus vestibulum.,2302
+302,7513 Bellgrove Parkway,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2939
+303,60755 Morrow Park,Aliquam sit amet diam in magna bibendum imperdiet.,compartida,1,In hac habitasse platea dictumst.,2500
+304,86 Homewood Way,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",compartida,0,Morbi non lectus.,1313
+305,0142 6th Crossing,Nulla tellus.,sencilla,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1715
+306,393 Almo Point,Suspendisse potenti.,sencilla,1,Pellentesque viverra pede ac diam.,2127
+307,3288 Lukken Parkway,Duis consequat dui nec nisi volutpat eleifend.,compartida,0,Etiam pretium iaculis justo.,2310
+308,8015 Main Circle,Suspendisse ornare consequat lectus.,compartida,0,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",2978
+309,78881 Rowland Court,Nulla mollis molestie lorem.,sencilla,1,In blandit ultrices enim.,4966
+310,47 Cascade Place,Donec dapibus.,sencilla,0,Nunc purus.,1777
+311,46 Ohio Road,Nunc rhoncus dui vel sem.,sencilla,1,Praesent blandit.,1215
+312,58 Valley Edge Junction,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,sencilla,0,Etiam vel augue.,2681
+313,5979 Hauk Center,In quis justo.,sencilla,1,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",1854
+314,091 Forest Run Way,Nam tristique tortor eu pede.,sencilla,1,Mauris lacinia sapien quis libero.,4859
+315,5 Corscot Circle,Phasellus sit amet erat.,compartida,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1631
+316,5819 Ridgeview Pass,Sed ante.,sencilla,1,Nunc purus.,4950
+317,3 Service Junction,Vestibulum sed magna at nunc commodo placerat.,compartida,1,Sed vel enim sit amet nunc viverra dapibus.,2836
+318,92 Summerview Hill,Fusce consequat.,compartida,0,Aliquam non mauris.,2501
+319,623 Thompson Terrace,Aenean lectus.,sencilla,1,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",1715
+320,3 Acker Avenue,Integer tincidunt ante vel ipsum.,compartida,1,Integer tincidunt ante vel ipsum.,4598
+321,8671 Warner Circle,Nunc rhoncus dui vel sem.,compartida,0,Nulla tellus.,3701
+322,9 Golf Course Way,Praesent id massa id nisl venenatis lacinia.,compartida,0,Phasellus in felis.,2217
+323,36 Clarendon Center,Praesent blandit.,sencilla,0,Integer ac neque.,4184
+324,03104 Ryan Street,Mauris sit amet eros.,sencilla,1,Morbi non lectus.,2652
+325,5 Walton Park,Ut at dolor quis odio consequat varius.,compartida,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",2458
+326,616 Londonderry Trail,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,compartida,1,Phasellus id sapien in sapien iaculis congue.,3395
+327,20 American Ash Crossing,Etiam vel augue.,sencilla,0,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",2271
+328,88571 Forest Dale Park,Integer non velit.,compartida,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",4319
+329,3001 Graceland Park,Praesent id massa id nisl venenatis lacinia.,sencilla,1,Nulla ut erat id mauris vulputate elementum.,2271
+330,95354 Leroy Road,Maecenas ut massa quis augue luctus tincidunt.,compartida,1,Praesent id massa id nisl venenatis lacinia.,2127
+331,347 Charing Cross Avenue,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",2192
+332,9138 Hoard Plaza,Proin risus.,compartida,0,Integer ac leo.,2430
+333,8 Kingsford Alley,Pellentesque eget nunc.,sencilla,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",1652
+334,762 Eastlawn Plaza,Aliquam non mauris.,sencilla,0,Proin risus.,1518
+335,031 Ridgeview Plaza,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2662
+336,89 Russell Avenue,Suspendisse accumsan tortor quis turpis.,sencilla,1,Quisque id justo sit amet sapien dignissim vestibulum.,4741
+337,49 Mccormick Drive,Nulla facilisi.,sencilla,0,Nullam varius.,2251
+338,75779 Moose Center,Nulla ac enim.,sencilla,1,In eleifend quam a odio.,4995
+339,3 Columbus Center,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",2716
+340,293 Amoth Avenue,Quisque id justo sit amet sapien dignissim vestibulum.,sencilla,0,In hac habitasse platea dictumst.,1581
+341,8153 Kings Alley,Proin risus.,compartida,1,Phasellus sit amet erat.,2654
+342,25633 Randy Hill,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,compartida,1,Ut at dolor quis odio consequat varius.,1122
+343,6 Scofield Plaza,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",sencilla,1,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",4238
+344,9 Laurel Way,Phasellus in felis.,sencilla,1,Suspendisse ornare consequat lectus.,2907
+345,687 Tennyson Avenue,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",compartida,0,Nullam porttitor lacus at turpis.,2773
+346,60 Armistice Pass,Phasellus in felis.,sencilla,0,Maecenas rhoncus aliquam lacus.,2127
+347,618 Reindahl Parkway,Morbi porttitor lorem id ligula.,compartida,0,Integer ac leo.,2594
+348,182 Nancy Plaza,Nunc rhoncus dui vel sem.,compartida,1,Suspendisse accumsan tortor quis turpis.,2487
+349,3 Everett Pass,Donec posuere metus vitae ipsum.,sencilla,1,Donec vitae nisi.,1644
+350,329 Westerfield Park,Aenean lectus.,sencilla,1,Vivamus tortor.,3205
+351,6402 Mesta Junction,Integer a nibh.,compartida,1,Pellentesque eget nunc.,3171
+352,239 7th Circle,Aenean lectus.,compartida,1,Etiam justo.,2233
+353,5790 Vera Circle,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,1,Donec vitae nisi.,1841
+354,8632 Village Trail,Nunc rhoncus dui vel sem.,sencilla,1,In sagittis dui vel nisl.,4725
+355,50 Shopko Parkway,Mauris ullamcorper purus sit amet nulla.,compartida,0,Suspendisse potenti.,3919
+356,041 Rigney Road,Nullam varius.,compartida,1,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",1709
+357,137 Village Green Junction,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",sencilla,0,Donec ut dolor.,3402
+358,19 Westerfield Point,Suspendisse potenti.,sencilla,1,Duis at velit eu est congue elementum.,1909
+359,673 Eggendart Center,Nulla tempus.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,4311
+360,60653 Bluestem Terrace,In sagittis dui vel nisl.,compartida,1,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",2893
+361,87643 Sachtjen Terrace,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",sencilla,0,Mauris sit amet eros.,3530
+362,1 Monterey Alley,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",sencilla,0,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",4024
+363,66547 Bunting Alley,Suspendisse potenti.,sencilla,0,Duis at velit eu est congue elementum.,1325
+364,7807 Artisan Alley,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",compartida,1,Cras non velit nec nisi vulputate nonummy.,1441
+365,2643 Eggendart Parkway,Morbi ut odio.,compartida,1,Nam dui.,3896
+366,61 Bartelt Drive,Nunc nisl.,compartida,1,Morbi porttitor lorem id ligula.,4130
+367,01 Michigan Pass,In congue.,sencilla,1,Curabitur in libero ut massa volutpat convallis.,1187
+368,863 Meadow Vale Circle,Integer tincidunt ante vel ipsum.,compartida,1,Pellentesque viverra pede ac diam.,2832
+369,1111 Rockefeller Junction,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",sencilla,1,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",2597
+370,33360 Main Alley,Fusce consequat.,sencilla,1,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",2915
+371,1748 Duke Street,Aenean fermentum.,compartida,1,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",2111
+372,4858 Bonner Circle,Morbi ut odio.,compartida,0,Pellentesque viverra pede ac diam.,3109
+373,92 Mendota Alley,Integer tincidunt ante vel ipsum.,compartida,0,Integer a nibh.,4187
+374,191 Longview Trail,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Morbi vel lectus in quam fringilla rhoncus.,1271
+375,437 1st Parkway,Nullam sit amet turpis elementum ligula vehicula consequat.,sencilla,0,Suspendisse potenti.,2929
+376,6 Manufacturers Plaza,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,1,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",2263
+377,027 Amoth Place,Phasellus sit amet erat.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2023
+378,712 Northport Center,Curabitur at ipsum ac tellus semper interdum.,sencilla,1,Aliquam non mauris.,4790
+379,38 Wayridge Street,Aliquam non mauris.,sencilla,1,Proin eu mi.,4147
+380,65 Evergreen Lane,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",sencilla,1,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",2948
+381,268 Green Alley,Proin at turpis a pede posuere nonummy.,sencilla,0,Aenean auctor gravida sem.,3923
+382,98494 Melvin Drive,Curabitur at ipsum ac tellus semper interdum.,sencilla,0,Nam tristique tortor eu pede.,4357
+383,34 Sloan Junction,Morbi quis tortor id nulla ultrices aliquet.,compartida,0,Phasellus in felis.,3855
+384,4590 Packers Place,Integer a nibh.,sencilla,1,Nullam sit amet turpis elementum ligula vehicula consequat.,2750
+385,407 Village Way,Aenean fermentum.,compartida,0,Ut tellus.,2566
+386,99159 Namekagon Park,In hac habitasse platea dictumst.,compartida,0,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",3648
+387,7279 Merrick Hill,Praesent blandit lacinia erat.,sencilla,0,Nunc nisl.,3764
+388,51 Meadow Ridge Street,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",sencilla,1,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",1222
+389,455 Grim Place,Nulla suscipit ligula in lacus.,compartida,1,Donec semper sapien a libero.,2384
+390,5 Leroy Junction,Pellentesque ultrices mattis odio.,compartida,0,Maecenas tincidunt lacus at velit.,4057
+391,10249 Briar Crest Junction,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",sencilla,1,In hac habitasse platea dictumst.,1395
+392,1 Texas Trail,Integer ac leo.,compartida,0,Ut at dolor quis odio consequat varius.,4664
+393,98694 Arizona Terrace,Nulla suscipit ligula in lacus.,sencilla,0,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",3121
+394,49 Lien Crossing,Nulla justo.,compartida,0,Quisque porta volutpat erat.,4178
+395,71 Vidon Crossing,In blandit ultrices enim.,sencilla,1,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",2441
+396,4 Londonderry Center,Duis consequat dui nec nisi volutpat eleifend.,sencilla,0,Nam nulla.,2997
+397,49 Transport Trail,Proin eu mi.,sencilla,1,In quis justo.,3758
+398,78932 Namekagon Plaza,In eleifend quam a odio.,compartida,0,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",4628
+399,9 Ruskin Way,Integer ac leo.,sencilla,0,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",3516
+400,6 Warrior Road,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,compartida,1,Mauris ullamcorper purus sit amet nulla.,1389
+401,3 Schiller Street,Aliquam sit amet diam in magna bibendum imperdiet.,compartida,0,Nulla ut erat id mauris vulputate elementum.,2212
+402,444 2nd Lane,Cras in purus eu magna vulputate luctus.,compartida,1,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",1472
+403,81880 Kedzie Road,Aenean lectus.,sencilla,1,Nulla justo.,4816
+404,4089 Summit Pass,Sed accumsan felis.,sencilla,0,Fusce posuere felis sed lacus.,1125
+405,2 Caliangt Pass,In sagittis dui vel nisl.,compartida,1,Aenean fermentum.,3220
+406,5 Continental Avenue,Donec ut dolor.,compartida,1,Aliquam sit amet diam in magna bibendum imperdiet.,1915
+407,488 Corscot Crossing,In hac habitasse platea dictumst.,compartida,1,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",4023
+408,5687 Eastlawn Parkway,Donec quis orci eget orci vehicula condimentum.,sencilla,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",2130
+409,9 Ohio Pass,In sagittis dui vel nisl.,sencilla,0,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",3871
+410,6 Atwood Parkway,Vivamus vestibulum sagittis sapien.,compartida,0,Donec quis orci eget orci vehicula condimentum.,3957
+411,21967 Lindbergh Parkway,Nulla nisl.,sencilla,1,Nullam sit amet turpis elementum ligula vehicula consequat.,4438
+412,81 Garrison Crossing,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",sencilla,0,Praesent lectus.,2532
+413,2 Grayhawk Place,Aenean fermentum.,sencilla,0,Nullam molestie nibh in lectus.,4874
+414,91 Becker Hill,In sagittis dui vel nisl.,sencilla,1,Morbi a ipsum.,1396
+415,51927 Glendale Drive,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",sencilla,0,Integer a nibh.,4275
+416,98 Ilene Crossing,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",sencilla,0,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",4020
+417,0132 Bartelt Way,In hac habitasse platea dictumst.,sencilla,1,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",3852
+418,6 Cardinal Place,Sed ante.,compartida,1,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",4938
+419,90755 Pierstorff Pass,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",compartida,1,Morbi a ipsum.,4791
+420,12500 Sunbrook Road,Vivamus vestibulum sagittis sapien.,compartida,0,Maecenas tincidunt lacus at velit.,1324
+421,7945 Arrowood Trail,Etiam faucibus cursus urna.,compartida,1,Nulla mollis molestie lorem.,1791
+422,87008 Memorial Plaza,Suspendisse potenti.,sencilla,1,Ut tellus.,4760
+423,38458 Westerfield Crossing,Maecenas rhoncus aliquam lacus.,compartida,0,Nullam varius.,3671
+424,9 Atwood Lane,Nulla ac enim.,compartida,0,Aliquam non mauris.,4705
+425,6167 Veith Road,Morbi non quam nec dui luctus rutrum.,sencilla,0,Vivamus vel nulla eget eros elementum pellentesque.,2980
+426,4123 Duke Center,Integer non velit.,sencilla,1,Curabitur convallis.,1782
+427,35 High Crossing Trail,Pellentesque at nulla.,sencilla,0,Nam tristique tortor eu pede.,3309
+428,1670 Mallard Hill,Phasellus sit amet erat.,compartida,1,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",1241
+429,44438 Golden Leaf Court,Morbi non lectus.,compartida,1,In hac habitasse platea dictumst.,4093
+430,85 Sutherland Drive,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",sencilla,0,Aenean fermentum.,4873
+431,47417 Sullivan Court,In hac habitasse platea dictumst.,compartida,0,Suspendisse potenti.,4659
+432,019 Sycamore Plaza,Quisque id justo sit amet sapien dignissim vestibulum.,compartida,1,Aenean lectus.,1500
+433,76012 Michigan Point,Vivamus vestibulum sagittis sapien.,sencilla,1,Suspendisse potenti.,1537
+434,5710 Hoepker Hill,Duis mattis egestas metus.,sencilla,0,Donec dapibus.,4199
+435,97873 Annamark Point,Mauris ullamcorper purus sit amet nulla.,compartida,1,Nulla nisl.,4492
+436,6837 Norway Maple Trail,Cras pellentesque volutpat dui.,sencilla,1,In quis justo.,3486
+437,46 Artisan Trail,Vestibulum ac est lacinia nisi venenatis tristique.,sencilla,1,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",2390
+438,5494 Stuart Crossing,Quisque porta volutpat erat.,sencilla,0,Duis at velit eu est congue elementum.,3608
+439,8 Gina Way,Curabitur convallis.,compartida,0,Nulla facilisi.,1694
+440,3 Lunder Pass,Suspendisse potenti.,sencilla,0,Pellentesque ultrices mattis odio.,4978
+441,0716 Corben Way,Etiam faucibus cursus urna.,compartida,0,Nulla mollis molestie lorem.,4498
+442,4 Oak Pass,Praesent id massa id nisl venenatis lacinia.,sencilla,1,Integer tincidunt ante vel ipsum.,4741
+443,797 Starling Way,Suspendisse potenti.,compartida,1,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",2575
+444,33241 Melvin Crossing,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",sencilla,1,Donec ut mauris eget massa tempor convallis.,4916
+445,2892 Gulseth Court,Nam tristique tortor eu pede.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,4792
+446,883 Towne Hill,Nulla tempus.,compartida,1,Praesent id massa id nisl venenatis lacinia.,3024
+447,981 Vera Court,Maecenas tincidunt lacus at velit.,sencilla,0,In hac habitasse platea dictumst.,3586
+448,84 Hagan Place,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",sencilla,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",2784
+449,243 Macpherson Hill,In hac habitasse platea dictumst.,compartida,0,Suspendisse potenti.,1255
+450,4 Hooker Avenue,Vestibulum rutrum rutrum neque.,compartida,0,Phasellus id sapien in sapien iaculis congue.,4191
+451,3 Dapin Way,Donec ut dolor.,sencilla,0,In blandit ultrices enim.,2284
+452,89 Miller Terrace,Proin at turpis a pede posuere nonummy.,sencilla,1,Nulla ac enim.,2906
+453,7038 Moland Crossing,In quis justo.,compartida,0,Suspendisse potenti.,2164
+454,3606 Mendota Point,Proin at turpis a pede posuere nonummy.,compartida,0,Curabitur convallis.,4749
+455,6 Algoma Pass,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,Nulla mollis molestie lorem.,3043
+456,6 Florence Drive,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",compartida,0,Pellentesque eget nunc.,3850
+457,996 Pearson Hill,Donec semper sapien a libero.,compartida,1,Etiam pretium iaculis justo.,3949
+458,8 Lukken Junction,Duis at velit eu est congue elementum.,sencilla,1,Proin at turpis a pede posuere nonummy.,3086
+459,613 Granby Park,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",compartida,0,In hac habitasse platea dictumst.,1610
+460,704 Dakota Crossing,Praesent id massa id nisl venenatis lacinia.,compartida,1,Praesent id massa id nisl venenatis lacinia.,2018
+461,94273 Linden Hill,Pellentesque viverra pede ac diam.,compartida,1,Aliquam sit amet diam in magna bibendum imperdiet.,1833
+462,678 Autumn Leaf Avenue,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",sencilla,1,Aenean auctor gravida sem.,4901
+463,147 Lighthouse Bay Drive,Integer a nibh.,sencilla,0,Proin risus.,3743
+464,882 Welch Parkway,Curabitur in libero ut massa volutpat convallis.,compartida,1,Praesent blandit.,2477
+465,06577 Summer Ridge Park,Cras non velit nec nisi vulputate nonummy.,sencilla,0,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",2827
+466,4 Crescent Oaks Way,Sed accumsan felis.,compartida,1,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",3546
+467,938 Katie Plaza,Aliquam erat volutpat.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,2833
+468,0019 Texas Lane,Nam nulla.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,1630
+469,3 Mesta Parkway,Nullam varius.,compartida,1,Nullam porttitor lacus at turpis.,2799
+470,928 Shoshone Terrace,Vestibulum ac est lacinia nisi venenatis tristique.,compartida,0,In hac habitasse platea dictumst.,2723
+471,21791 Roxbury Parkway,Vestibulum rutrum rutrum neque.,sencilla,1,Sed vel enim sit amet nunc viverra dapibus.,1897
+472,87177 Summer Ridge Road,Duis aliquam convallis nunc.,compartida,1,Suspendisse accumsan tortor quis turpis.,1334
+473,7297 Northfield Hill,Morbi porttitor lorem id ligula.,compartida,1,Duis aliquam convallis nunc.,1386
+474,2479 Cambridge Crossing,Aenean sit amet justo.,sencilla,1,Duis mattis egestas metus.,2996
+475,6 Longview Court,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,0,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",2175
+476,81 Lake View Point,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",compartida,0,Nunc nisl.,2469
+477,175 Rusk Parkway,Maecenas ut massa quis augue luctus tincidunt.,sencilla,1,Proin at turpis a pede posuere nonummy.,1012
+478,52797 Waywood Hill,Duis aliquam convallis nunc.,sencilla,0,Suspendisse ornare consequat lectus.,4493
+479,90 Calypso Road,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",sencilla,1,Morbi quis tortor id nulla ultrices aliquet.,3343
+480,911 Almo Terrace,Nunc nisl.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,1535
+481,1873 Hudson Lane,Vivamus in felis eu sapien cursus vestibulum.,sencilla,1,Nulla ac enim.,2641
+482,482 Columbus Point,Maecenas rhoncus aliquam lacus.,sencilla,1,Praesent lectus.,4865
+483,43431 Garrison Road,Donec quis orci eget orci vehicula condimentum.,sencilla,1,Maecenas ut massa quis augue luctus tincidunt.,3518
+484,7 Forest Dale Alley,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",sencilla,0,In quis justo.,4354
+485,92 Vermont Point,Maecenas ut massa quis augue luctus tincidunt.,sencilla,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",1442
+486,20963 Meadow Ridge Avenue,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",sencilla,0,In congue.,1148
+487,24 Parkside Center,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",compartida,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2622
+488,129 Northview Court,Duis ac nibh.,compartida,1,Nunc nisl.,1211
+489,7121 West Junction,Suspendisse accumsan tortor quis turpis.,sencilla,0,Nulla suscipit ligula in lacus.,2496
+490,743 Barby Plaza,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",compartida,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",3027
+491,111 Washington Parkway,Vivamus tortor.,compartida,0,Etiam faucibus cursus urna.,1801
+492,8483 Northwestern Road,Nam dui.,sencilla,0,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",1713
+493,3456 Talisman Point,Integer non velit.,sencilla,0,Pellentesque ultrices mattis odio.,1734
+494,6 Holmberg Drive,Phasellus in felis.,sencilla,1,Duis ac nibh.,1584
+495,52 Tomscot Lane,Integer ac neque.,compartida,1,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",3698
+496,37 Farmco Trail,Cras non velit nec nisi vulputate nonummy.,compartida,0,Proin interdum mauris non ligula pellentesque ultrices.,2840
+497,39 Talisman Terrace,Aliquam erat volutpat.,compartida,1,Integer non velit.,2203
+498,006 Merry Terrace,Morbi non quam nec dui luctus rutrum.,compartida,0,Donec ut dolor.,4310
+499,3 Clemons Terrace,Mauris lacinia sapien quis libero.,compartida,0,In hac habitasse platea dictumst.,4389
+500,004 Upham Way,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",sencilla,1,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",4313
+501,5424 Iowa Point,Etiam pretium iaculis justo.,compartida,0,Praesent lectus.,4832
+502,11 Ludington Place,Nulla mollis molestie lorem.,compartida,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",1962
+503,1 Bluejay Drive,Nam nulla.,compartida,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",3878
+504,94100 Mallory Alley,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,In eleifend quam a odio.,4137
+505,98593 Clemons Lane,Nunc nisl.,sencilla,1,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",4750
+506,11649 Fisk Hill,Morbi non quam nec dui luctus rutrum.,sencilla,1,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",1875
+507,8796 Fairview Point,Mauris ullamcorper purus sit amet nulla.,compartida,0,Duis ac nibh.,2136
+508,4 Browning Point,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,sencilla,0,Integer ac leo.,1038
+509,4535 Tennessee Avenue,Morbi ut odio.,sencilla,0,Donec dapibus.,4907
+510,0 Green Ridge Lane,In eleifend quam a odio.,compartida,0,Maecenas tincidunt lacus at velit.,1222
+511,6502 Grayhawk Drive,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,0,In eleifend quam a odio.,3558
+512,1579 Kipling Plaza,Donec ut mauris eget massa tempor convallis.,sencilla,0,Nullam varius.,4409
+513,733 Artisan Court,Vestibulum ac est lacinia nisi venenatis tristique.,sencilla,1,In congue.,2388
+514,97 Dennis Avenue,Integer non velit.,compartida,0,Curabitur convallis.,1285
+515,034 Marquette Lane,In hac habitasse platea dictumst.,sencilla,1,Nullam porttitor lacus at turpis.,1817
+516,589 Roxbury Parkway,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",compartida,0,Etiam justo.,1965
+517,2978 Orin Street,Nullam porttitor lacus at turpis.,compartida,0,Aenean fermentum.,1242
+518,65 Pine View Terrace,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",sencilla,0,In sagittis dui vel nisl.,3809
+519,14476 High Crossing Drive,Donec ut dolor.,sencilla,1,Donec quis orci eget orci vehicula condimentum.,3734
+520,5 Glendale Street,In quis justo.,compartida,0,Vestibulum rutrum rutrum neque.,3213
+521,1 Melvin Center,Nam tristique tortor eu pede.,sencilla,1,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",4591
+522,3734 Carioca Court,Etiam justo.,compartida,1,Morbi quis tortor id nulla ultrices aliquet.,1559
+523,47594 Parkside Pass,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Duis consequat dui nec nisi volutpat eleifend.,4808
+524,734 Packers Alley,Donec posuere metus vitae ipsum.,sencilla,0,Duis aliquam convallis nunc.,2129
+525,75739 Stephen Court,Aliquam quis turpis eget elit sodales scelerisque.,compartida,0,In hac habitasse platea dictumst.,4424
+526,11752 Mitchell Plaza,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",compartida,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2372
+527,8021 Arizona Avenue,Vivamus vel nulla eget eros elementum pellentesque.,sencilla,1,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",4986
+528,610 Cascade Lane,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",compartida,0,Nulla nisl.,1377
+529,8 Sundown Terrace,Phasellus id sapien in sapien iaculis congue.,sencilla,1,In hac habitasse platea dictumst.,2913
+530,4618 Grasskamp Way,Phasellus in felis.,sencilla,1,Pellentesque ultrices mattis odio.,4075
+531,08007 Arapahoe Way,Vestibulum rutrum rutrum neque.,compartida,0,Nulla mollis molestie lorem.,1190
+532,86751 Laurel Avenue,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",compartida,0,Maecenas tincidunt lacus at velit.,3873
+533,4 Hoffman Road,Nunc nisl.,sencilla,0,Praesent lectus.,2344
+534,4 Ridge Oak Parkway,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",sencilla,1,Phasellus in felis.,2495
+535,479 Kedzie Plaza,Nam dui.,sencilla,1,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",4245
+536,6605 Village Green Center,Cras in purus eu magna vulputate luctus.,compartida,1,Nunc nisl.,1949
+537,725 Milwaukee Trail,Aenean auctor gravida sem.,compartida,0,Quisque id justo sit amet sapien dignissim vestibulum.,3951
+538,64520 Randy Park,Nulla ac enim.,compartida,1,Donec ut mauris eget massa tempor convallis.,2348
+539,74524 Rusk Plaza,Morbi a ipsum.,sencilla,1,Integer ac neque.,1083
+540,47045 Hazelcrest Alley,Proin at turpis a pede posuere nonummy.,compartida,1,Quisque id justo sit amet sapien dignissim vestibulum.,1462
+541,8349 Milwaukee Hill,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",compartida,1,Etiam justo.,1949
+542,90552 Mallory Alley,Maecenas ut massa quis augue luctus tincidunt.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,3369
+543,56516 Crowley Park,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",compartida,0,Etiam vel augue.,1620
+544,7 Meadow Valley Drive,Duis bibendum.,sencilla,1,Cras pellentesque volutpat dui.,3100
+545,49874 Swallow Junction,In hac habitasse platea dictumst.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,4924
+546,0 Dottie Trail,Suspendisse ornare consequat lectus.,sencilla,0,Suspendisse accumsan tortor quis turpis.,2017
+547,49792 Birchwood Way,Aliquam quis turpis eget elit sodales scelerisque.,sencilla,1,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",3438
+548,57 Kim Hill,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",compartida,1,Nulla tellus.,2887
+549,216 Sage Parkway,Praesent id massa id nisl venenatis lacinia.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",1331
+550,271 Tony Park,Fusce posuere felis sed lacus.,sencilla,0,Praesent id massa id nisl venenatis lacinia.,2664
+551,941 Eliot Lane,Morbi a ipsum.,compartida,1,Nullam porttitor lacus at turpis.,3047
+552,0687 Warbler Pass,Etiam faucibus cursus urna.,sencilla,1,Integer ac leo.,2329
+553,3035 Northport Street,Praesent blandit lacinia erat.,sencilla,0,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",2663
+554,32127 Mifflin Circle,Nulla nisl.,compartida,1,Nunc nisl.,3989
+555,9 Dexter Road,Nunc nisl.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,1097
+556,304 Vera Hill,Suspendisse potenti.,sencilla,0,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",3257
+557,07309 David Alley,Duis ac nibh.,compartida,1,Fusce consequat.,2332
+558,1659 Crownhardt Junction,Aenean auctor gravida sem.,compartida,0,Integer a nibh.,2752
+559,835 Rieder Alley,Donec ut mauris eget massa tempor convallis.,sencilla,1,Vivamus vestibulum sagittis sapien.,1790
+560,48 Beilfuss Alley,Pellentesque ultrices mattis odio.,sencilla,0,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",2072
+561,14652 Commercial Drive,In hac habitasse platea dictumst.,sencilla,1,Morbi vel lectus in quam fringilla rhoncus.,3555
+562,85 Surrey Circle,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,2008
+563,488 Knutson Road,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",sencilla,0,Donec ut dolor.,3366
+564,26 Kings Hill,Suspendisse potenti.,sencilla,0,Nullam molestie nibh in lectus.,4882
+565,73180 Independence Lane,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",sencilla,1,Quisque porta volutpat erat.,2876
+566,85440 Summit Place,Donec posuere metus vitae ipsum.,sencilla,1,Sed vel enim sit amet nunc viverra dapibus.,4688
+567,85728 Colorado Point,In hac habitasse platea dictumst.,sencilla,1,Suspendisse potenti.,3664
+568,937 Moose Point,Praesent blandit.,compartida,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",1940
+569,0901 Dryden Avenue,Aliquam quis turpis eget elit sodales scelerisque.,sencilla,0,Nulla suscipit ligula in lacus.,1048
+570,9 Pankratz Trail,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",compartida,0,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",3600
+571,58 Acker Street,Vivamus vel nulla eget eros elementum pellentesque.,sencilla,0,Cras non velit nec nisi vulputate nonummy.,3789
+572,303 Hintze Avenue,Nulla tellus.,sencilla,1,Donec quis orci eget orci vehicula condimentum.,2526
+573,66 Dakota Way,Proin risus.,sencilla,1,Suspendisse potenti.,3737
+574,28 Delladonna Terrace,Maecenas ut massa quis augue luctus tincidunt.,compartida,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",1075
+575,4 Onsgard Hill,Praesent lectus.,compartida,1,Cras non velit nec nisi vulputate nonummy.,4326
+576,34372 Amoth Way,In congue.,compartida,0,Etiam faucibus cursus urna.,2632
+577,5 Blaine Pass,Morbi a ipsum.,compartida,1,Nulla nisl.,4071
+578,37654 Delladonna Parkway,Mauris ullamcorper purus sit amet nulla.,compartida,0,Suspendisse potenti.,4355
+579,8 Dayton Junction,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,sencilla,1,Curabitur gravida nisi at nibh.,4208
+580,997 Dakota Parkway,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,0,Duis bibendum.,4812
+581,160 Oakridge Hill,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,1,Morbi quis tortor id nulla ultrices aliquet.,2041
+582,8 Sycamore Circle,In hac habitasse platea dictumst.,compartida,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,1435
+583,9452 Green Park,Suspendisse potenti.,compartida,0,Aliquam erat volutpat.,2927
+584,34 Browning Road,Nulla nisl.,compartida,0,Praesent id massa id nisl venenatis lacinia.,2477
+585,6 Blackbird Road,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,1,Vestibulum ac est lacinia nisi venenatis tristique.,1143
+586,0386 Monica Pass,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",sencilla,1,Donec dapibus.,4892
+587,8731 Saint Paul Road,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",sencilla,0,In congue.,1181
+588,56974 Ramsey Drive,Aliquam sit amet diam in magna bibendum imperdiet.,compartida,1,Nunc nisl.,2573
+589,35 Tennyson Way,Nulla ut erat id mauris vulputate elementum.,sencilla,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",1217
+590,0 Bultman Terrace,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",compartida,0,Pellentesque at nulla.,3513
+591,87512 Pennsylvania Terrace,Suspendisse potenti.,sencilla,1,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",1534
+592,28677 Pepper Wood Road,Nulla tellus.,sencilla,0,Nunc rhoncus dui vel sem.,3824
+593,6967 Village Green Court,Donec quis orci eget orci vehicula condimentum.,compartida,1,Vivamus tortor.,4122
+594,8 Corscot Way,Sed ante.,compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3265
+595,782 Miller Park,Nunc rhoncus dui vel sem.,sencilla,0,Ut at dolor quis odio consequat varius.,1653
+596,46075 Meadow Valley Center,Curabitur at ipsum ac tellus semper interdum.,sencilla,1,Fusce consequat.,3622
+597,1 Derek Court,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3023
+598,1 Swallow Court,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",sencilla,1,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",4118
+599,306 Bonner Road,Proin risus.,compartida,0,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",1436
+600,937 Norway Maple Trail,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,sencilla,0,Phasellus id sapien in sapien iaculis congue.,3828
+601,6815 Meadow Vale Trail,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",compartida,1,Morbi a ipsum.,1755
+602,02660 Mccormick Junction,Phasellus in felis.,sencilla,0,Ut tellus.,3574
+603,995 Twin Pines Avenue,Donec semper sapien a libero.,compartida,0,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",3375
+604,355 Carpenter Avenue,Nam nulla.,sencilla,1,Suspendisse potenti.,1583
+605,1 Pine View Plaza,Morbi quis tortor id nulla ultrices aliquet.,sencilla,0,Praesent lectus.,2452
+606,3 Stuart Center,Pellentesque eget nunc.,compartida,1,Etiam vel augue.,1213
+607,796 Donald Point,Suspendisse ornare consequat lectus.,sencilla,0,Mauris ullamcorper purus sit amet nulla.,4319
+608,3555 Holy Cross Way,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",compartida,1,In sagittis dui vel nisl.,4824
+609,3 Kim Park,Maecenas tincidunt lacus at velit.,sencilla,0,Cras non velit nec nisi vulputate nonummy.,4774
+610,5843 Quincy Parkway,Integer a nibh.,sencilla,1,Integer non velit.,4767
+611,4464 Jenifer Place,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,0,Nulla justo.,1671
+612,933 Sundown Way,Pellentesque at nulla.,compartida,1,Quisque ut erat.,2122
+613,083 Artisan Junction,Sed vel enim sit amet nunc viverra dapibus.,sencilla,1,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",1554
+614,63 Hallows Junction,Vivamus vel nulla eget eros elementum pellentesque.,compartida,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",3447
+615,5592 Lillian Point,Morbi quis tortor id nulla ultrices aliquet.,compartida,0,Aenean fermentum.,1944
+616,93 Manitowish Park,Nulla facilisi.,sencilla,1,Integer tincidunt ante vel ipsum.,3581
+617,016 Heffernan Trail,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,3275
+618,46859 Annamark Place,Pellentesque ultrices mattis odio.,compartida,0,Vestibulum sed magna at nunc commodo placerat.,1724
+619,10466 Linden Lane,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,sencilla,0,Maecenas tincidunt lacus at velit.,3783
+620,7 New Castle Lane,Etiam pretium iaculis justo.,compartida,1,Morbi quis tortor id nulla ultrices aliquet.,3702
+621,6031 Lakeland Drive,In hac habitasse platea dictumst.,compartida,0,Nunc rhoncus dui vel sem.,2620
+622,8066 Towne Drive,Fusce posuere felis sed lacus.,sencilla,0,Vivamus in felis eu sapien cursus vestibulum.,1880
+623,992 Sherman Street,Morbi ut odio.,sencilla,0,Morbi non lectus.,1496
+624,4 Burrows Court,Aliquam erat volutpat.,compartida,1,Donec quis orci eget orci vehicula condimentum.,3531
+625,8322 Vera Pass,Donec ut dolor.,compartida,0,Nullam molestie nibh in lectus.,4038
+626,048 Barby Avenue,Integer ac leo.,sencilla,1,In hac habitasse platea dictumst.,2998
+627,3 Acker Point,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",compartida,1,Aliquam non mauris.,1606
+628,67 Bellgrove Alley,Vivamus vel nulla eget eros elementum pellentesque.,compartida,1,Suspendisse potenti.,2228
+629,992 Del Mar Court,Cras pellentesque volutpat dui.,sencilla,0,Sed sagittis.,1325
+630,02100 Bayside Parkway,Nullam sit amet turpis elementum ligula vehicula consequat.,sencilla,0,Nulla ac enim.,3702
+631,007 Porter Crossing,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,Etiam faucibus cursus urna.,2072
+632,823 Marcy Plaza,Suspendisse potenti.,sencilla,1,Aenean auctor gravida sem.,1021
+633,030 Macpherson Trail,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",sencilla,0,Donec quis orci eget orci vehicula condimentum.,4384
+634,17720 Union Trail,Nullam porttitor lacus at turpis.,compartida,0,Maecenas rhoncus aliquam lacus.,3714
+635,7256 Westport Terrace,In hac habitasse platea dictumst.,sencilla,1,Nulla ut erat id mauris vulputate elementum.,3201
+636,56503 Portage Alley,Ut tellus.,compartida,1,Curabitur in libero ut massa volutpat convallis.,3172
+637,5 North Crossing,Donec semper sapien a libero.,compartida,1,Aliquam erat volutpat.,3905
+638,7971 Ridgeview Lane,Aenean lectus.,sencilla,0,Morbi non lectus.,3773
+639,467 Gulseth Street,In hac habitasse platea dictumst.,compartida,1,Nunc rhoncus dui vel sem.,1132
+640,6909 Bobwhite Drive,Pellentesque eget nunc.,sencilla,1,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",2906
+641,37373 Shasta Drive,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",sencilla,0,In eleifend quam a odio.,4020
+642,65 Blue Bill Park Trail,Nam tristique tortor eu pede.,compartida,1,Pellentesque eget nunc.,3836
+643,689 Victoria Park,Morbi porttitor lorem id ligula.,sencilla,0,Aenean sit amet justo.,3797
+644,3 Heath Junction,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",compartida,0,Donec quis orci eget orci vehicula condimentum.,3516
+645,076 Fisk Way,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",compartida,1,Duis aliquam convallis nunc.,2979
+646,25 Roxbury Trail,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",sencilla,1,Ut tellus.,1340
+647,6719 Esch Plaza,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",compartida,0,In congue.,3861
+648,19 Warbler Court,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",sencilla,1,Nulla nisl.,4650
+649,87 Kingsford Hill,Aliquam erat volutpat.,sencilla,0,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",2568
+650,9 Helena Avenue,Duis aliquam convallis nunc.,sencilla,0,Curabitur at ipsum ac tellus semper interdum.,3175
+651,05 Kings Road,Cras in purus eu magna vulputate luctus.,compartida,0,In hac habitasse platea dictumst.,3186
+652,7947 Rieder Way,Aenean lectus.,compartida,1,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",1936
+653,68 Forest Circle,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,1,Quisque ut erat.,2725
+654,957 Granby Road,In hac habitasse platea dictumst.,sencilla,1,Nulla ac enim.,1784
+655,90 Kensington Court,Nulla justo.,compartida,1,In eleifend quam a odio.,3986
+656,81 Mayer Trail,Vivamus in felis eu sapien cursus vestibulum.,sencilla,1,Aenean fermentum.,4909
+657,11 Iowa Trail,Duis bibendum.,sencilla,1,In congue.,2668
+658,167 Jana Park,Pellentesque viverra pede ac diam.,compartida,0,Suspendisse potenti.,2219
+659,993 Harper Lane,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",compartida,1,Cras pellentesque volutpat dui.,2492
+660,0605 Troy Plaza,Integer non velit.,sencilla,0,Aliquam quis turpis eget elit sodales scelerisque.,3969
+661,23360 Prairieview Parkway,Duis ac nibh.,sencilla,1,Nullam varius.,2719
+662,2233 Kropf Place,Nulla ac enim.,compartida,1,Suspendisse potenti.,3046
+663,51 Mayer Junction,Etiam justo.,sencilla,1,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",4418
+664,8172 Aberg Junction,In quis justo.,compartida,0,Vestibulum rutrum rutrum neque.,4079
+665,52053 Norway Maple Trail,Curabitur at ipsum ac tellus semper interdum.,sencilla,1,Nulla suscipit ligula in lacus.,3725
+666,99465 Transport Terrace,Nullam porttitor lacus at turpis.,compartida,1,In sagittis dui vel nisl.,3337
+667,5 Southridge Point,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",sencilla,1,Donec quis orci eget orci vehicula condimentum.,1801
+668,41 Granby Pass,Nam tristique tortor eu pede.,sencilla,1,Donec ut dolor.,1466
+669,9 Green Ridge Pass,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,sencilla,0,Integer a nibh.,1252
+670,205 Sundown Lane,Nulla ac enim.,sencilla,0,Mauris ullamcorper purus sit amet nulla.,1099
+671,8 Melody Point,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",sencilla,1,Sed vel enim sit amet nunc viverra dapibus.,2880
+672,30401 Mariners Cove Pass,Suspendisse potenti.,compartida,0,Vestibulum ac est lacinia nisi venenatis tristique.,4758
+673,338 Lighthouse Bay Drive,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",sencilla,1,Nullam sit amet turpis elementum ligula vehicula consequat.,2135
+674,925 Forest Avenue,In hac habitasse platea dictumst.,sencilla,0,Curabitur in libero ut massa volutpat convallis.,2694
+675,47148 Maryland Pass,Donec semper sapien a libero.,sencilla,1,Donec semper sapien a libero.,3695
+676,46 Calypso Road,Quisque id justo sit amet sapien dignissim vestibulum.,compartida,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",4896
+677,580 Bellgrove Pass,Nam nulla.,sencilla,0,Cras non velit nec nisi vulputate nonummy.,2088
+678,6 Delladonna Parkway,Sed ante.,sencilla,1,Phasellus id sapien in sapien iaculis congue.,2753
+679,1734 Bashford Parkway,Nam nulla.,sencilla,1,In hac habitasse platea dictumst.,2473
+680,38042 Arapahoe Avenue,Ut at dolor quis odio consequat varius.,compartida,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,1553
+681,38 Waubesa Parkway,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,Ut tellus.,3584
+682,02 Sunnyside Lane,Nulla mollis molestie lorem.,compartida,0,Aliquam sit amet diam in magna bibendum imperdiet.,4170
+683,27 Melody Court,In hac habitasse platea dictumst.,compartida,0,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",4415
+684,1381 Columbus Street,Mauris lacinia sapien quis libero.,sencilla,0,Nulla mollis molestie lorem.,4012
+685,48295 Rusk Center,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",sencilla,0,Morbi vel lectus in quam fringilla rhoncus.,3894
+686,01 Northport Lane,Praesent id massa id nisl venenatis lacinia.,compartida,0,Praesent lectus.,2315
+687,85 Dahle Center,Integer tincidunt ante vel ipsum.,sencilla,1,Quisque id justo sit amet sapien dignissim vestibulum.,2504
+688,81 Texas Court,Ut at dolor quis odio consequat varius.,sencilla,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",2009
+689,5125 Thierer Crossing,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",sencilla,1,Morbi vel lectus in quam fringilla rhoncus.,1072
+690,196 Bonner Road,Integer tincidunt ante vel ipsum.,sencilla,1,Duis aliquam convallis nunc.,4648
+691,3674 Stuart Lane,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",4879
+692,568 Mcguire Trail,Quisque porta volutpat erat.,sencilla,1,Suspendisse ornare consequat lectus.,3656
+693,3 Texas Alley,Duis ac nibh.,sencilla,1,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",1909
+694,1 Melvin Street,Nunc purus.,compartida,0,Nullam porttitor lacus at turpis.,4773
+695,8 Old Gate Avenue,Aenean sit amet justo.,compartida,0,Praesent id massa id nisl venenatis lacinia.,4400
+696,36 Maple Wood Park,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",sencilla,0,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",3998
+697,73905 Brickson Park Circle,Proin risus.,sencilla,1,Nulla nisl.,1661
+698,02009 Nobel Junction,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",compartida,0,Nam tristique tortor eu pede.,3099
+699,167 Caliangt Pass,Etiam faucibus cursus urna.,sencilla,0,Donec posuere metus vitae ipsum.,3381
+700,292 Monument Terrace,Proin interdum mauris non ligula pellentesque ultrices.,compartida,0,Praesent blandit lacinia erat.,1731
+701,353 Thierer Crossing,Suspendisse accumsan tortor quis turpis.,sencilla,0,Aliquam erat volutpat.,4235
+702,9 Schurz Alley,Ut tellus.,sencilla,0,In blandit ultrices enim.,1900
+703,7 Norway Maple Pass,Aenean sit amet justo.,compartida,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",2202
+704,32187 International Circle,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,sencilla,0,Morbi quis tortor id nulla ultrices aliquet.,2905
+705,31121 Canary Hill,Aenean lectus.,sencilla,0,Proin risus.,2405
+706,012 Fulton Point,Aenean fermentum.,sencilla,0,Proin interdum mauris non ligula pellentesque ultrices.,2720
+707,54821 Autumn Leaf Parkway,Aenean auctor gravida sem.,sencilla,0,Donec ut mauris eget massa tempor convallis.,4092
+708,039 Laurel Junction,Praesent lectus.,sencilla,0,Sed accumsan felis.,3096
+709,89 Larry Lane,Aliquam erat volutpat.,compartida,0,Morbi quis tortor id nulla ultrices aliquet.,2809
+710,2308 Springs Avenue,Maecenas tincidunt lacus at velit.,compartida,0,Integer non velit.,3460
+711,50 Westerfield Terrace,In congue.,sencilla,1,Pellentesque ultrices mattis odio.,4415
+712,589 Columbus Court,Nunc rhoncus dui vel sem.,compartida,1,Morbi quis tortor id nulla ultrices aliquet.,3217
+713,609 Gulseth Park,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",compartida,0,Morbi vel lectus in quam fringilla rhoncus.,3065
+714,0729 Melody Street,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,0,Maecenas rhoncus aliquam lacus.,2544
+715,9940 Sullivan Place,Praesent id massa id nisl venenatis lacinia.,compartida,0,Integer ac leo.,2286
+716,1028 Sherman Plaza,Vivamus tortor.,sencilla,1,Nulla ac enim.,4338
+717,45445 Ridgeview Place,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",sencilla,1,Praesent blandit lacinia erat.,3971
+718,1342 Logan Avenue,Aliquam sit amet diam in magna bibendum imperdiet.,sencilla,0,Phasellus in felis.,2420
+719,04 Ludington Street,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,0,Cras pellentesque volutpat dui.,1859
+720,591 Corben Plaza,Nulla tempus.,compartida,0,Suspendisse ornare consequat lectus.,4162
+721,24419 Village Green Terrace,Integer ac leo.,compartida,0,Aliquam sit amet diam in magna bibendum imperdiet.,2910
+722,70359 Sommers Way,Proin at turpis a pede posuere nonummy.,compartida,1,Ut tellus.,2973
+723,650 Division Trail,Proin at turpis a pede posuere nonummy.,sencilla,0,Integer a nibh.,3592
+724,5 Jackson Lane,Vivamus vestibulum sagittis sapien.,compartida,0,Mauris ullamcorper purus sit amet nulla.,1110
+725,60 Packers Crossing,Nulla mollis molestie lorem.,sencilla,0,Vestibulum ac est lacinia nisi venenatis tristique.,1342
+726,88 Acker Plaza,Quisque ut erat.,compartida,0,Nulla nisl.,1852
+727,569 Pepper Wood Street,Nunc purus.,sencilla,0,Ut tellus.,2883
+728,32996 Bay Drive,Etiam faucibus cursus urna.,sencilla,0,In quis justo.,1700
+729,529 Dwight Drive,Morbi ut odio.,compartida,1,Nulla suscipit ligula in lacus.,3674
+730,762 Derek Pass,Aliquam erat volutpat.,compartida,1,Morbi non lectus.,2543
+731,9 Anniversary Junction,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,0,Pellentesque ultrices mattis odio.,1705
+732,9278 Cascade Lane,Donec ut mauris eget massa tempor convallis.,sencilla,0,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",2548
+733,317 Dovetail Way,Aliquam erat volutpat.,compartida,1,Donec vitae nisi.,4837
+734,387 Everett Drive,Pellentesque eget nunc.,compartida,1,In quis justo.,4960
+735,621 Westridge Place,Nunc rhoncus dui vel sem.,sencilla,1,Curabitur at ipsum ac tellus semper interdum.,4016
+736,0290 Erie Terrace,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",compartida,0,Praesent lectus.,4101
+737,8 International Drive,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",compartida,1,Donec quis orci eget orci vehicula condimentum.,3930
+738,73014 Green Ridge Avenue,Nulla ut erat id mauris vulputate elementum.,compartida,1,Nulla tempus.,2374
+739,7 Sutherland Crossing,Donec ut mauris eget massa tempor convallis.,compartida,0,Donec ut dolor.,4242
+740,868 Merrick Park,Cras pellentesque volutpat dui.,compartida,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,4336
+741,01007 Sutherland Junction,Pellentesque at nulla.,compartida,1,Morbi a ipsum.,4495
+742,2546 Tony Center,Vivamus in felis eu sapien cursus vestibulum.,sencilla,1,Integer non velit.,1528
+743,6 Bluejay Lane,Nulla ut erat id mauris vulputate elementum.,compartida,0,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",3491
+744,1 Heath Plaza,In hac habitasse platea dictumst.,sencilla,0,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",4413
+745,22 Duke Parkway,Duis ac nibh.,sencilla,0,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",2064
+746,37 Service Parkway,Vivamus vel nulla eget eros elementum pellentesque.,sencilla,0,Donec quis orci eget orci vehicula condimentum.,4297
+747,7 Birchwood Avenue,Curabitur gravida nisi at nibh.,sencilla,0,Vestibulum ac est lacinia nisi venenatis tristique.,2411
+748,0512 Corben Parkway,Proin at turpis a pede posuere nonummy.,sencilla,0,Nunc purus.,2910
+749,8347 Aberg Lane,Nullam molestie nibh in lectus.,compartida,1,Nulla justo.,3090
+750,0394 Warner Junction,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",sencilla,1,Nulla ac enim.,3323
+751,042 Sullivan Point,Morbi non lectus.,sencilla,1,Vestibulum ac est lacinia nisi venenatis tristique.,2044
+752,96 Vahlen Place,Donec dapibus.,compartida,1,Suspendisse accumsan tortor quis turpis.,1110
+753,1 Mifflin Trail,Morbi non quam nec dui luctus rutrum.,sencilla,0,Pellentesque viverra pede ac diam.,2338
+754,3 Barnett Junction,Morbi vel lectus in quam fringilla rhoncus.,compartida,0,Suspendisse potenti.,4743
+755,94 Talisman Hill,Proin at turpis a pede posuere nonummy.,compartida,1,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",1771
+756,4703 Randy Pass,Duis at velit eu est congue elementum.,compartida,1,Nulla ac enim.,2102
+757,7006 Reindahl Point,Fusce posuere felis sed lacus.,compartida,0,Quisque id justo sit amet sapien dignissim vestibulum.,1681
+758,58 Tennyson Way,Aliquam non mauris.,sencilla,1,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",3632
+759,679 Schmedeman Plaza,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",compartida,0,Nulla suscipit ligula in lacus.,2555
+760,776 Valley Edge Street,Aenean lectus.,sencilla,1,Praesent blandit lacinia erat.,4958
+761,63 Bartelt Terrace,Nulla suscipit ligula in lacus.,sencilla,1,Donec dapibus.,4537
+762,53869 Holmberg Trail,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",sencilla,1,Nulla tellus.,2179
+763,5342 Esker Park,Etiam faucibus cursus urna.,sencilla,0,Nullam sit amet turpis elementum ligula vehicula consequat.,1791
+764,5 Bobwhite Crossing,Mauris lacinia sapien quis libero.,sencilla,1,Etiam faucibus cursus urna.,1310
+765,23 Macpherson Junction,Vestibulum sed magna at nunc commodo placerat.,compartida,0,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",4926
+766,0 Fuller Circle,Mauris lacinia sapien quis libero.,compartida,0,Vestibulum ac est lacinia nisi venenatis tristique.,1945
+767,08269 Delaware Court,Aliquam non mauris.,sencilla,1,Integer non velit.,2997
+768,9 Corben Junction,Mauris sit amet eros.,compartida,0,Nulla ut erat id mauris vulputate elementum.,2975
+769,4227 Kingsford Point,Etiam pretium iaculis justo.,sencilla,1,Vivamus tortor.,4438
+770,4198 Quincy Drive,Nunc rhoncus dui vel sem.,compartida,0,Nullam varius.,4661
+771,8 Graceland Avenue,Nulla tempus.,compartida,1,In congue.,2839
+772,3782 Cody Center,In congue.,compartida,1,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",2888
+773,83 Holy Cross Street,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",sencilla,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",2080
+774,17 Crest Line Point,Aliquam non mauris.,sencilla,0,Integer ac neque.,4981
+775,552 Lakewood Gardens Terrace,Nullam porttitor lacus at turpis.,compartida,1,In blandit ultrices enim.,3992
+776,970 Lighthouse Bay Pass,Morbi quis tortor id nulla ultrices aliquet.,compartida,0,Suspendisse accumsan tortor quis turpis.,4615
+777,25170 Graceland Hill,Suspendisse ornare consequat lectus.,sencilla,0,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",1660
+778,7 Fallview Street,Praesent lectus.,compartida,1,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",4845
+779,52197 Golf View Pass,Etiam pretium iaculis justo.,sencilla,1,Sed vel enim sit amet nunc viverra dapibus.,1091
+780,49 Hintze Way,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,0,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",3201
+781,422 Dunning Alley,Proin risus.,sencilla,1,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",1639
+782,7 3rd Road,Nullam sit amet turpis elementum ligula vehicula consequat.,sencilla,1,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",2884
+783,717 Muir Plaza,Suspendisse accumsan tortor quis turpis.,compartida,0,Duis consequat dui nec nisi volutpat eleifend.,2236
+784,67 Waywood Circle,Ut tellus.,sencilla,0,Cras in purus eu magna vulputate luctus.,2220
+785,1 Crowley Way,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",sencilla,1,Maecenas tincidunt lacus at velit.,3602
+786,345 Bowman Plaza,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,1,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",1245
+787,249 Butternut Place,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",compartida,0,Suspendisse ornare consequat lectus.,1333
+788,77865 Memorial Hill,Aliquam sit amet diam in magna bibendum imperdiet.,compartida,0,Fusce consequat.,3698
+789,9809 Reindahl Crossing,Praesent blandit.,compartida,0,Donec posuere metus vitae ipsum.,2244
+790,106 Union Terrace,Praesent lectus.,sencilla,0,Cras pellentesque volutpat dui.,4628
+791,67 Farwell Park,Quisque ut erat.,compartida,0,Morbi a ipsum.,4038
+792,0 Transport Parkway,Aenean sit amet justo.,compartida,1,Aenean sit amet justo.,1107
+793,10 Rowland Parkway,Nunc rhoncus dui vel sem.,sencilla,0,Phasellus in felis.,2795
+794,83 Toban Court,Maecenas pulvinar lobortis est.,sencilla,1,Integer ac neque.,1404
+795,07 Darwin Avenue,Pellentesque viverra pede ac diam.,compartida,0,Aliquam erat volutpat.,4828
+796,525 Tony Road,Vestibulum rutrum rutrum neque.,sencilla,0,Aenean fermentum.,4441
+797,5887 Sycamore Trail,Nam nulla.,compartida,1,Phasellus sit amet erat.,4651
+798,606 Longview Center,Integer ac leo.,sencilla,0,Donec semper sapien a libero.,4595
+799,273 Fairview Junction,Morbi porttitor lorem id ligula.,compartida,0,Maecenas ut massa quis augue luctus tincidunt.,3858
+800,1 Schlimgen Court,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",sencilla,0,Vivamus vestibulum sagittis sapien.,2629
+801,1864 Kenwood Crossing,Nam tristique tortor eu pede.,compartida,0,Maecenas pulvinar lobortis est.,3058
+802,53768 Towne Plaza,Cras pellentesque volutpat dui.,compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3854
+803,84842 Sugar Point,Nulla mollis molestie lorem.,compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3111
+804,2569 Express Parkway,Pellentesque ultrices mattis odio.,sencilla,1,Curabitur at ipsum ac tellus semper interdum.,2094
+805,02 Del Sol Point,Donec posuere metus vitae ipsum.,compartida,1,Pellentesque eget nunc.,4474
+806,1420 Londonderry Terrace,Maecenas rhoncus aliquam lacus.,sencilla,1,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",1949
+807,13330 Sheridan Point,Aliquam quis turpis eget elit sodales scelerisque.,sencilla,0,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",3646
+808,023 Ruskin Court,Sed accumsan felis.,sencilla,0,Fusce posuere felis sed lacus.,2092
+809,792 Eagle Crest Drive,Praesent blandit.,compartida,0,Morbi ut odio.,4184
+810,34979 Banding Parkway,Etiam vel augue.,sencilla,1,Aenean fermentum.,3248
+811,45 Rowland Center,Aenean sit amet justo.,sencilla,0,Quisque ut erat.,3387
+812,84 Dexter Avenue,Duis at velit eu est congue elementum.,compartida,1,Sed accumsan felis.,1110
+813,46112 Namekagon Lane,Nulla suscipit ligula in lacus.,sencilla,0,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",2054
+814,5299 Russell Way,Phasellus in felis.,sencilla,1,Pellentesque eget nunc.,2146
+815,48729 Northfield Parkway,Cras pellentesque volutpat dui.,sencilla,1,Donec semper sapien a libero.,4793
+816,29 Starling Trail,Etiam pretium iaculis justo.,compartida,1,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",4670
+817,0 Huxley Plaza,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",compartida,0,Donec quis orci eget orci vehicula condimentum.,1131
+818,658 Buhler Pass,Aliquam non mauris.,sencilla,0,Suspendisse ornare consequat lectus.,4060
+819,8914 Rutledge Crossing,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,compartida,1,Maecenas ut massa quis augue luctus tincidunt.,4978
+820,8563 Surrey Pass,In hac habitasse platea dictumst.,sencilla,1,Phasellus in felis.,2952
+821,78919 Mayer Trail,Nam tristique tortor eu pede.,compartida,0,Maecenas pulvinar lobortis est.,3598
+822,21103 Monument Park,Phasellus id sapien in sapien iaculis congue.,compartida,1,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",2812
+823,375 Shoshone Street,Suspendisse potenti.,compartida,0,Nulla suscipit ligula in lacus.,1239
+824,40 Raven Center,Nunc purus.,sencilla,1,Proin risus.,4429
+825,972 Village Avenue,Praesent blandit.,sencilla,0,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",2218
+826,234 Kinsman Point,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,0,Suspendisse ornare consequat lectus.,2730
+827,3 Kenwood Crossing,Nulla tempus.,compartida,1,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",4266
+828,38 Longview Way,Morbi non quam nec dui luctus rutrum.,compartida,1,Nullam varius.,4625
+829,320 Bluejay Avenue,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",compartida,0,Donec ut mauris eget massa tempor convallis.,1815
+830,3020 Coolidge Drive,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",compartida,0,Nunc rhoncus dui vel sem.,4171
+831,40715 Trailsway Pass,Nullam sit amet turpis elementum ligula vehicula consequat.,compartida,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",3286
+832,964 Mcbride Plaza,Proin at turpis a pede posuere nonummy.,compartida,0,Nullam porttitor lacus at turpis.,1597
+833,7461 Cherokee Point,Donec semper sapien a libero.,compartida,0,Quisque id justo sit amet sapien dignissim vestibulum.,2474
+834,05 Golf Course Trail,Vivamus in felis eu sapien cursus vestibulum.,sencilla,0,Donec vitae nisi.,4771
+835,89553 Fieldstone Drive,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",compartida,0,Proin at turpis a pede posuere nonummy.,4614
+836,324 Mcguire Pass,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",compartida,1,Morbi non lectus.,3232
+837,1 Pankratz Road,Nulla justo.,compartida,1,Morbi non quam nec dui luctus rutrum.,3832
+838,3 Anderson Trail,Sed accumsan felis.,compartida,0,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2181
+839,04566 Jana Alley,Curabitur convallis.,compartida,1,Curabitur in libero ut massa volutpat convallis.,4734
+840,977 Bellgrove Road,"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",3460
+841,7994 Armistice Center,Maecenas rhoncus aliquam lacus.,compartida,0,Cras pellentesque volutpat dui.,1526
+842,6404 7th Alley,Curabitur convallis.,sencilla,1,Nam tristique tortor eu pede.,3561
+843,69 Tennyson Trail,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,0,Quisque ut erat.,2695
+844,1323 Shelley Drive,Donec vitae nisi.,compartida,1,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",4034
+845,06 Scofield Park,Praesent blandit lacinia erat.,sencilla,1,Quisque ut erat.,4790
+846,35 Vernon Junction,Phasellus in felis.,compartida,0,In hac habitasse platea dictumst.,1465
+847,49 Colorado Circle,Praesent blandit.,sencilla,1,Donec ut dolor.,2004
+848,2062 Hanson Court,Pellentesque viverra pede ac diam.,sencilla,0,Nullam porttitor lacus at turpis.,1596
+849,25380 Eastlawn Pass,Donec dapibus.,sencilla,0,Vivamus in felis eu sapien cursus vestibulum.,1266
+850,264 Eagle Crest Drive,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",compartida,1,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",4986
+851,0859 Blue Bill Park Drive,Maecenas rhoncus aliquam lacus.,compartida,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",2696
+852,5882 Clemons Park,Mauris ullamcorper purus sit amet nulla.,sencilla,1,In congue.,3716
+853,7501 Dwight Pass,In hac habitasse platea dictumst.,compartida,0,Donec quis orci eget orci vehicula condimentum.,1916
+854,21192 Rowland Terrace,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,Cras pellentesque volutpat dui.,3111
+855,7401 Roth Avenue,Pellentesque eget nunc.,sencilla,0,Duis mattis egestas metus.,1658
+856,30614 Fremont Center,Vivamus vel nulla eget eros elementum pellentesque.,compartida,1,Vivamus vel nulla eget eros elementum pellentesque.,2647
+857,44681 Westend Avenue,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,compartida,0,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",1445
+858,7085 Onsgard Junction,Curabitur in libero ut massa volutpat convallis.,sencilla,0,Curabitur gravida nisi at nibh.,4290
+859,8975 Menomonie Drive,Suspendisse potenti.,sencilla,0,Pellentesque viverra pede ac diam.,1884
+860,39 Jenna Center,Pellentesque viverra pede ac diam.,compartida,0,Proin eu mi.,3355
+861,31678 Buena Vista Plaza,Fusce posuere felis sed lacus.,compartida,0,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",2123
+862,09 8th Way,Sed sagittis.,sencilla,0,Nunc rhoncus dui vel sem.,4594
+863,6 Brown Crossing,Nunc purus.,sencilla,1,In blandit ultrices enim.,4856
+864,7 New Castle Road,Suspendisse ornare consequat lectus.,compartida,0,Vivamus vel nulla eget eros elementum pellentesque.,2979
+865,41 Mifflin Place,Pellentesque at nulla.,sencilla,0,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",2827
+866,4657 Hollow Ridge Avenue,Duis aliquam convallis nunc.,compartida,0,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",4739
+867,7774 Blue Bill Park Court,Phasellus sit amet erat.,compartida,0,Duis ac nibh.,3173
+868,104 Division Place,Curabitur gravida nisi at nibh.,compartida,1,Aliquam erat volutpat.,1380
+869,2 Meadow Ridge Lane,Duis consequat dui nec nisi volutpat eleifend.,sencilla,1,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",3714
+870,555 Monterey Terrace,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",compartida,1,Sed ante.,3814
+871,8385 Meadow Ridge Avenue,Donec quis orci eget orci vehicula condimentum.,compartida,0,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",1455
+872,79920 Vahlen Avenue,Quisque id justo sit amet sapien dignissim vestibulum.,sencilla,1,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",2195
+873,839 Pleasure Alley,Proin at turpis a pede posuere nonummy.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",3286
+874,1696 Stuart Point,In hac habitasse platea dictumst.,compartida,0,Phasellus sit amet erat.,3424
+875,0 Ronald Regan Center,In hac habitasse platea dictumst.,sencilla,0,Praesent lectus.,1744
+876,784 Corscot Park,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",sencilla,1,Sed accumsan felis.,4789
+877,58 Aberg Parkway,Duis consequat dui nec nisi volutpat eleifend.,sencilla,0,Phasellus sit amet erat.,3622
+878,439 Nova Parkway,Nunc purus.,compartida,0,Curabitur convallis.,2930
+879,0784 Pankratz Drive,Sed vel enim sit amet nunc viverra dapibus.,compartida,0,Vivamus tortor.,2000
+880,7254 Carberry Road,Suspendisse potenti.,sencilla,0,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",2917
+881,7 Ruskin Terrace,Nulla suscipit ligula in lacus.,sencilla,1,Integer ac neque.,2658
+882,04 Vermont Point,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",sencilla,1,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",4189
+883,106 Arapahoe Terrace,Nullam molestie nibh in lectus.,compartida,0,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",3958
+884,4 Jenifer Alley,Proin at turpis a pede posuere nonummy.,sencilla,1,Quisque porta volutpat erat.,4502
+885,976 Garrison Point,Nulla facilisi.,sencilla,0,Nulla nisl.,3176
+886,10 Milwaukee Avenue,Praesent id massa id nisl venenatis lacinia.,compartida,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,4121
+887,2 Grayhawk Point,Integer ac leo.,sencilla,0,Morbi a ipsum.,2051
+888,6617 School Court,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",sencilla,0,Aliquam non mauris.,3647
+889,5444 Fieldstone Drive,Pellentesque viverra pede ac diam.,sencilla,0,Etiam faucibus cursus urna.,2164
+890,856 Stephen Parkway,Sed sagittis.,sencilla,0,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",4140
+891,4336 Garrison Way,Morbi vel lectus in quam fringilla rhoncus.,compartida,0,Cras non velit nec nisi vulputate nonummy.,3726
+892,364 Vahlen Lane,Duis consequat dui nec nisi volutpat eleifend.,sencilla,1,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",2435
+893,181 Spenser Hill,Suspendisse potenti.,compartida,1,Morbi quis tortor id nulla ultrices aliquet.,1555
+894,02431 Del Sol Crossing,Quisque ut erat.,compartida,1,Donec vitae nisi.,2267
+895,709 Loftsgordon Plaza,Etiam vel augue.,sencilla,1,Integer ac neque.,3168
+896,98924 Bultman Junction,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",compartida,0,Mauris lacinia sapien quis libero.,3870
+897,36302 Dapin Point,Vivamus tortor.,compartida,1,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",2882
+898,028 Welch Crossing,Cras non velit nec nisi vulputate nonummy.,compartida,0,Nunc purus.,1235
+899,3 Bashford Pass,Etiam vel augue.,sencilla,0,Donec dapibus.,4580
+900,10725 Cambridge Plaza,Curabitur gravida nisi at nibh.,sencilla,1,Sed ante.,2065
+901,888 Stoughton Court,Maecenas ut massa quis augue luctus tincidunt.,compartida,0,Aenean auctor gravida sem.,3039
+902,99 Texas Crossing,Vestibulum sed magna at nunc commodo placerat.,sencilla,1,Morbi non lectus.,4938
+903,30 North Terrace,Cras in purus eu magna vulputate luctus.,sencilla,1,Nulla tempus.,4140
+904,732 Florence Hill,Sed ante.,compartida,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",3920
+905,46 Melody Way,Cras pellentesque volutpat dui.,sencilla,0,Praesent blandit lacinia erat.,3227
+906,230 School Lane,Vivamus in felis eu sapien cursus vestibulum.,sencilla,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",3931
+907,368 Swallow Parkway,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",compartida,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",4670
+908,565 Bobwhite Point,Ut tellus.,compartida,1,Suspendisse potenti.,3960
+909,30846 Mifflin Point,Sed vel enim sit amet nunc viverra dapibus.,compartida,0,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",1381
+910,5 Almo Parkway,Nullam sit amet turpis elementum ligula vehicula consequat.,sencilla,0,Aliquam sit amet diam in magna bibendum imperdiet.,3619
+911,52225 Burning Wood Terrace,Etiam faucibus cursus urna.,sencilla,0,Quisque porta volutpat erat.,3089
+912,9848 Lakeland Drive,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",sencilla,0,Phasellus in felis.,3526
+913,68356 Fremont Plaza,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",sencilla,1,Cras in purus eu magna vulputate luctus.,3068
+914,88 Corscot Hill,Quisque porta volutpat erat.,compartida,0,"Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",3553
+915,76 Northridge Circle,Proin at turpis a pede posuere nonummy.,sencilla,0,Duis bibendum.,3417
+916,5352 Browning Park,Pellentesque at nulla.,sencilla,1,Maecenas tincidunt lacus at velit.,1757
+917,8 Bay Point,Morbi vel lectus in quam fringilla rhoncus.,compartida,0,Nulla suscipit ligula in lacus.,1494
+918,4076 Dunning Lane,Ut at dolor quis odio consequat varius.,sencilla,0,Nulla justo.,1318
+919,80320 Dennis Way,"Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",sencilla,1,Pellentesque at nulla.,4345
+920,45 Kedzie Crossing,Phasellus sit amet erat.,compartida,1,Nulla justo.,3928
+921,66906 Lakewood Street,Donec ut dolor.,compartida,1,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",3902
+922,02933 Southridge Center,Quisque id justo sit amet sapien dignissim vestibulum.,sencilla,0,Nulla ac enim.,3918
+923,37519 Butternut Parkway,Donec quis orci eget orci vehicula condimentum.,sencilla,1,Morbi ut odio.,3226
+924,77403 Main Parkway,Morbi porttitor lorem id ligula.,sencilla,0,In blandit ultrices enim.,3494
+925,263 Burning Wood Place,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",compartida,0,Duis aliquam convallis nunc.,3848
+926,25 Sunbrook Circle,Morbi ut odio.,compartida,1,Integer ac leo.,2315
+927,03 Mayer Park,Morbi porttitor lorem id ligula.,sencilla,1,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.,1066
+928,066 Declaration Way,Integer non velit.,compartida,0,Ut tellus.,2201
+929,4 Mcbride Point,Nam nulla.,compartida,1,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",4146
+930,561 Orin Street,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",sencilla,1,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",2384
+931,3 Petterle Crossing,Vestibulum ac est lacinia nisi venenatis tristique.,sencilla,0,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",1393
+932,9327 Hazelcrest Drive,Etiam faucibus cursus urna.,sencilla,1,Vivamus vel nulla eget eros elementum pellentesque.,1956
+933,66 Saint Paul Way,Pellentesque ultrices mattis odio.,compartida,0,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",1890
+934,3455 Meadow Valley Point,In hac habitasse platea dictumst.,sencilla,1,Donec ut mauris eget massa tempor convallis.,1053
+935,5 Linden Street,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,sencilla,0,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",1100
+936,33 Redwing Junction,Etiam pretium iaculis justo.,compartida,1,Aliquam quis turpis eget elit sodales scelerisque.,2605
+937,89598 Texas Circle,Vivamus vel nulla eget eros elementum pellentesque.,compartida,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1813
+938,70305 East Court,Nullam varius.,sencilla,1,Maecenas tincidunt lacus at velit.,3015
+939,278 Lyons Parkway,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.,compartida,0,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",4205
+940,7683 Mockingbird Street,Pellentesque at nulla.,sencilla,0,Phasellus sit amet erat.,2463
+941,784 Schmedeman Alley,Integer ac leo.,sencilla,1,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",4361
+942,3393 Hoffman Center,Aenean lectus.,compartida,1,Aliquam quis turpis eget elit sodales scelerisque.,3655
+943,31936 Thackeray Hill,Suspendisse potenti.,compartida,0,Nulla suscipit ligula in lacus.,4415
+944,9170 Clove Point,"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",sencilla,1,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",4901
+945,2 Stephen Way,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",compartida,1,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",4186
+946,4 Dorton Drive,Cras non velit nec nisi vulputate nonummy.,sencilla,0,Proin eu mi.,3338
+947,7 Southridge Lane,Aenean lectus.,compartida,1,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",2075
+948,51 Sage Hill,Etiam faucibus cursus urna.,compartida,1,Pellentesque at nulla.,2089
+949,4166 Schiller Drive,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",compartida,1,Duis at velit eu est congue elementum.,2440
+950,6633 1st Road,Vestibulum ac est lacinia nisi venenatis tristique.,compartida,0,Mauris sit amet eros.,2052
+951,923 Prairieview Circle,Donec semper sapien a libero.,sencilla,1,Aliquam quis turpis eget elit sodales scelerisque.,2189
+952,50859 Stang Plaza,Morbi non quam nec dui luctus rutrum.,sencilla,0,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",3572
+953,45125 Blue Bill Park Avenue,Proin risus.,sencilla,0,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",3801
+954,0 Hauk Park,Curabitur convallis.,sencilla,0,Morbi vel lectus in quam fringilla rhoncus.,2842
+955,3 Gerald Hill,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",compartida,1,In hac habitasse platea dictumst.,2378
+956,568 Hauk Road,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",sencilla,1,Duis ac nibh.,2799
+957,87 Bay Center,Aliquam erat volutpat.,compartida,0,Nulla tempus.,4049
+958,1 Weeping Birch Lane,Curabitur gravida nisi at nibh.,compartida,0,Morbi vel lectus in quam fringilla rhoncus.,3133
+959,6 Fremont Hill,Nullam molestie nibh in lectus.,compartida,1,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",4566
+960,947 Columbus Circle,Maecenas rhoncus aliquam lacus.,compartida,0,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",3093
+961,643 Portage Court,Suspendisse potenti.,sencilla,1,Ut at dolor quis odio consequat varius.,1161
+962,9 Sutherland Way,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",sencilla,1,Donec dapibus.,1081
+963,24299 Atwood Alley,Morbi vel lectus in quam fringilla rhoncus.,compartida,1,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",4825
+964,39504 Anthes Drive,Suspendisse potenti.,sencilla,0,Vivamus vestibulum sagittis sapien.,3688
+965,8 American Road,Quisque porta volutpat erat.,compartida,0,Nullam varius.,2123
+966,95 Commercial Court,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",compartida,0,Nulla suscipit ligula in lacus.,2223
+967,1364 Heffernan Alley,Aenean sit amet justo.,sencilla,0,Fusce consequat.,3038
+968,717 Quincy Hill,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",compartida,0,Pellentesque at nulla.,3297
+969,9018 Arrowood Court,Nulla justo.,sencilla,0,Mauris ullamcorper purus sit amet nulla.,2143
+970,13318 Glacier Hill Alley,Suspendisse potenti.,compartida,1,Ut tellus.,4834
+971,241 Forest Junction,Proin interdum mauris non ligula pellentesque ultrices.,sencilla,1,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",4289
+972,6447 Moland Circle,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",sencilla,1,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",4049
+973,3 Springview Avenue,Nunc rhoncus dui vel sem.,compartida,1,Proin risus.,2572
+974,9670 Buhler Alley,Praesent blandit.,compartida,1,Integer ac leo.,2825
+975,2 Thackeray Drive,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",sencilla,1,Nunc purus.,4660
+976,4010 Shopko Park,Nam dui.,compartida,0,Suspendisse potenti.,3832
+977,44 Thompson Crossing,Morbi porttitor lorem id ligula.,compartida,0,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",1878
+978,15028 Cordelia Circle,"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.",compartida,1,Donec quis orci eget orci vehicula condimentum.,3741
+979,9186 Sloan Way,Nam nulla.,compartida,0,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",4034
+980,12 American Crossing,Duis mattis egestas metus.,compartida,0,In quis justo.,2551
+981,32 Maryland Point,Aenean auctor gravida sem.,sencilla,1,Suspendisse accumsan tortor quis turpis.,3056
+982,9 Magdeline Center,Etiam faucibus cursus urna.,sencilla,0,Aenean fermentum.,1205
+983,71566 School Hill,Aliquam quis turpis eget elit sodales scelerisque.,compartida,1,Cras in purus eu magna vulputate luctus.,3533
+984,9 Heffernan Point,Nunc purus.,sencilla,1,Integer ac neque.,3124
+985,279 Mariners Cove Way,Nunc nisl.,sencilla,1,Morbi ut odio.,4442
+986,79854 Menomonie Terrace,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",compartida,1,Maecenas ut massa quis augue luctus tincidunt.,4260
+987,84 Hoepker Junction,Vivamus in felis eu sapien cursus vestibulum.,sencilla,0,Maecenas pulvinar lobortis est.,1160
+988,37 Sunbrook Park,"Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",compartida,1,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",1576
+989,08125 Dapin Trail,Pellentesque viverra pede ac diam.,compartida,0,In hac habitasse platea dictumst.,3749
+990,75553 Vera Alley,Mauris ullamcorper purus sit amet nulla.,sencilla,1,"Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",3729
+991,71812 Straubel Trail,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",sencilla,0,Praesent blandit.,3186
+992,036 Graceland Plaza,Nunc nisl.,sencilla,1,Duis ac nibh.,4056
+993,694 Dorton Park,Proin risus.,sencilla,0,Morbi a ipsum.,3367
+994,2492 Barby Lane,Duis at velit eu est congue elementum.,compartida,0,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",4311
+995,9733 Aberg Hill,Integer ac leo.,sencilla,0,Morbi porttitor lorem id ligula.,4029
+996,69714 Columbus Circle,Sed vel enim sit amet nunc viverra dapibus.,compartida,1,Duis bibendum.,1377
+997,3835 Westport Junction,Duis consequat dui nec nisi volutpat eleifend.,compartida,0,Quisque id justo sit amet sapien dignissim vestibulum.,1615
+998,00661 Victoria Road,Maecenas ut massa quis augue luctus tincidunt.,compartida,1,Quisque porta volutpat erat.,4339
+999,4930 Randy Junction,Morbi porttitor lorem id ligula.,sencilla,0,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,2959
+1000,2447 Ilene Circle,Nulla suscipit ligula in lacus.,sencilla,0,Quisque porta volutpat erat.,2403
