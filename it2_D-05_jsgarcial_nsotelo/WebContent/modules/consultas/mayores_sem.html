@@ -1,0 +1,13 @@
+<table>
+      <tr>
+        <th>Mes</th>
+        <th>Cantidad de Reservas Realizadas</th>
+        <th></th>
+      </tr>
+
+      <tr ng-repeat="m in lista_mayores_sem | orderBy: 'tiempo'"  >
+          <td>{{m.tiempo}}</td>
+          <td>{{m.resultado}}</td>
+      </tr>
+        
+    </table>

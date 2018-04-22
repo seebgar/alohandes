@@ -33,26 +33,17 @@ tr:nth-child(even) {
         <h3 class="1" >Mayor Ocupación de Alojamientos</h3>
         <br/>
         <h3>
-            <a ui-sref="mes"><strong>mes</strong></a> &nbsp; &#45; &nbsp; <a ui-sref="semana"> <strong>semana</strong></a>
+            <a ui-sref="mayores.mes"><strong>mes</strong></a> &nbsp; &#45; &nbsp; 
+            <a ui-sref="mayores.semana"> <strong>semana</strong></a>
         </h3>
         <h3 style="text-align: right;" class="2"></h3>
     </div>
     
    
     <br/>
-    <table>
-      <tr>
-        <th>Mes</th>
-        <th>Cantidad de Reservas Realizadas</th>
-        <th></th>
-      </tr>
-
-      <tr ng-repeat="m in lista_mayores"  >
-          <td>{{m.tiempo}}</td>
-          <td>{{m.resultado}}</td>
-      </tr>
-        
-    </table>
+    
+    <div ui-view></div>
+    
     
 </div>
 

@@ -1,60 +1,63 @@
 
 <style>
 table {
-    border-collapse: collapse;
-    width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 td, th {
-    text-align: left;
-    padding: 8px;
+	text-align: left;
+	padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+	background-color: #dddddd;
 }
-    
-    .tittle {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-  
-    
+
+.tittle {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
 </style>
 
-<style type="text/css">a {text-decoration: none}</style>
+<style type="text/css">
+a {
+	text-decoration: none
+}
+</style>
 
 
 <div class="lista" style="width: 80%">
-    <div class="tittle">
-        <h3 class="1">Clientes Frecuentes&nbsp;&nbsp; </h3>
-        <br/>
-        <h3>
-            <a ui-sref="mes"><strong>mes</strong></a> &nbsp; &#45; &nbsp; <a ui-sref="semana"> <strong>semana</strong></a>
-        </h3>
-        <h3 style="text-align: right;" class="2"></h3>
-    </div>
-    
-   
-    <br/>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Cantidad de Reservas Realizadas</th>
-		<th>Nombre</th>
-		<th>Relacion con la Universidad</th>
-        <th></th>
-      </tr>
+	<div class="tittle">
+		<h3 class="1">Clientes Frecuentes&nbsp;&nbsp;</h3>
+		<br />
+		<h3>
+			<div style="text-align: left;">
+				<h3 style="text-align: right;">
+					<h3>
+						Tipo de Inmueble &nbsp; &nbsp;
+						 <select ng-model="frecuentes_tm">
+							<option disabled selected value>Seleccionar Inmueble</option>
+							<option value="apartamento">Apartamento</option>
+							<option value="habitacion">Habitacion</option>
+							<option value="hostel">Hostal</option>
+							<option value="hotel">Hotel</option>
+							<option value="vivienda express">Vivienda Express</option>
+							<option value="vivienda universitaria">Vivienda Universitaria</option>
+						</select> 
+						<a ui-sref="frecuentes.param({ f: frecuentes_tm })">buscar</a>
+						&nbsp; &nbsp;
+					</h3>
+			</div>
+		</h3>
+		<h3 style="text-align: right;" class="2"></h3>
+	</div>
 
-      <tr ng-repeat="m in lista_frecuentes | orderBy : 'id'"  >
-          <td>{{m.id}}</td>
-          <td>{{m.cantidad_reservas}}</td>
-		  <td>{{m.nombre}}</td>
-		  <td>{{m.tipo}}</td>
-      </tr>
-        
-    </table>
-    
+
+	<br />
+	
+	<div ui-view></div>
+
 </div>
 
 

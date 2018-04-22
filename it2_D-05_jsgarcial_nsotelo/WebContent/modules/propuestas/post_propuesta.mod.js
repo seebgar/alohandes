@@ -25,11 +25,9 @@
                         id: $scope.id,
                         tipo_inmueble: $scope.tipo_select,
                         capacidad_maxima: $scope.capacidad_maxima,
-                        persona: $scope.persona,
                         fecha_final_disponibilidad: null,
                         fecha_inicio_disponibilidad: $scope.fecha_inicio_disponibilidad === null ? $scope.date : $scope.fecha_inicio_disponibilidad,
                         disponible: true,
-                        se_va_retirar: false,
                         id_persona: $scope.persona,
                         sub_total: $scope.sub_total,
                         vivienda_universitarias: 
@@ -52,6 +50,7 @@
                     $http.post('http://localhost:8080/Alohandes_IT1/rest/personas/operadores/' + $scope.persona + '/propuestas', data).then(function (response) {
 
                         $scope.post_data = response.data;
+                        console.log(response.data)
 
                     });
 

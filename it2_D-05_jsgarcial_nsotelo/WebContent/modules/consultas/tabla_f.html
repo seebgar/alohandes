@@ -1,0 +1,17 @@
+<table>
+		<tr>
+			<th>ID</th>
+			<th>Cantidad de Reservas Realizadas</th>
+			<th>Nombre</th>
+			<th>Relacion con la Universidad</th>
+			<th></th>
+		</tr>
+
+		<tr ng-repeat="m in lista_frecuentes_f | orderBy : 'id'">
+			<td>{{m.id}}</td>
+			<td>{{m.cantidad_reservas}}</td>
+			<td>{{m.nombre}}</td>
+			<td>{{m.tipo}}</td>
+		</tr>
+
+	</table>
