@@ -81,7 +81,39 @@ SELECT * FROM PROPUESTAS;
 -- Para realizar este metodo se reciben como parametros el tipo de inmueble y una lista de strings que representan losservicios deseados
 SELECT P.ID from PROPUESTAS P WHERE UPPER(TIPO_INMUEBLE) = UPPER('" + tipo_inmueble + "') AND P.ID_APARTAMENTO 
 IN ( SELECT S.ID_APARTAMENTO FROM SERVICIOS_BASICOS S INNER JOIN TIPOS T ON T.ID = S.ID_TIPO 
-    WHERE T.NOMBRE IN ( 'baño', 'tv') ) ;
+    WHERE T.NOMBRE IN ( 'baño', 'tv') );
+
+
+—RF8 eliminar una reserva colectiva
+Para poder cumplir con este requerimiento funcional se reciben como parámetros el id de la reserva colectiva ademas del uso del RF5 como sub-transaccion.
+
+SELECT * FROM RESERVAS R WHERE R.ID_COLECTIVO = “id_colectivo”;
+
+—Acá ocurre la sub-transaccion RF5______
+
+UPDATE RESERVAS SET ID_COLECTIVO = NULL WHERE ID = “id_colectivo”;
+
+COMMIT;
+
+-RF9 deshabitar una oferta de alojamiento 
+Para poder cumplir con este requerimiento funcional se reciben como parámetros el id del alojamiento ademas del uso del RF5  y RF4 como sub-transacciones.
+
+
+SELECT * FROM RESERVAS R WHERE R.ID_PROPUESTA = “id_alojamiento”;
+
+SELECT * FROM PROPUESTAS WHERE TIPO_INMUEBLE = 1 AND ID !=“id_alojamiento”;
+—Acá ocurre la sub-transaccion RF5——
+—Acá ocurre la sub-transaccion RF4______
+
+UPDATE PROPUESTAS SET DISPONIBLE = 0 WHERE ID =“id_alojamiento”;
+
+COMMIT;
+
+-RF10 rehabilitar una oferta de alojamiento Para poder cumplir con este requerimiento funcional se recibe como parámetro el id del alojamiento que se desea rehabilitar
+
+UPDATE PROPUESTAS SET DISPONIBLE = 1 WHERE ID =“id_alojamiento”;
+
+COMMIT;
 
 
 
