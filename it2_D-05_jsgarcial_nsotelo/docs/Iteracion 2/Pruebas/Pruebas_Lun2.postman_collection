@@ -268,7 +268,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\r\n    \"id\": 906,\r\n    \"tipo_inmueble\": \"Apartamento\",\r\n    \"capacidad_maxima\": 16,\r\n    \"id_persona\": 192,\r\n    \"fecha_final_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"fecha_inicio_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"disponible\": true,\r\n    \"apartamento\": 60,\r\n    \"disonible\": true,\r\n    \"habitacion\": null,\r\n    \"hostel\": null,\r\n    \"hotel\": null,\r\n    \"vivienda_express\": null,\r\n    \"vivienda_universitarias\": null,\r\n    \"sub_total\": 234928\r\n\r\n}"
+					"raw": "{\r\n\r\n    \"id\": 910,\r\n    \"tipo_inmueble\": \"Apartamento\",\r\n    \"capacidad_maxima\": 16,\r\n    \"id_persona\": 192,\r\n    \"fecha_final_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"fecha_inicio_disponibilidad\": \"2018-02-12 06:50:47\",\r\n    \"disponible\": true,\r\n    \"apartamento\": 60,\r\n    \"disonible\": true,\r\n    \"habitacion\": null,\r\n    \"hostel\": null,\r\n    \"hotel\": null,\r\n    \"vivienda_express\": null,\r\n    \"vivienda_universitarias\": null,\r\n    \"sub_total\": 234928\r\n\r\n}"
 				},
 				"description": ""
 			},
@@ -324,12 +324,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"id\": 1,\n  \"usuarios\": [\n    {\n      \"id\": 20,\n      \"id_reserva\": 801,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 21,\n      \"id_reserva\": 802,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 22,\n      \"id_reserva\": 803,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 23,\n      \"id_reserva\": 804,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 24,\n      \"id_reserva\": 805,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 25,\n      \"id_reserva\": 806,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 26,\n      \"id_reserva\": 807,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 27,\n      \"id_reserva\": 808,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 28,\n      \"id_reserva\": 809,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 29,\n      \"id_reserva\": 810,\n      \"cantidad_personas\": 1\n    },\n    {\n      \"id\": 30,\n      \"id_reserva\": 811,\n      \"cantidad_personas\": 2\n    }\n  ],\n  \"duracion\": 30,\n  \"fecha_inicio_estadia\": \"2018-05-14\",\n  \"tipo_inmueble\": \"Apartamento\",\n  \"privacidad\": \"sencilla\",\n  \"cantidad_inmuebles\": 10,\n  \"servicios_deseados\": [\n    \"luz\",\n    \"tv\",\n    \"internet\"\n  ]\n}\n"
+					"raw": "{\n \"id\": 5,\n  \"usuarios\": [\n    {\n      \"id\": 60,\n      \"id_reserva\": 901,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 61,\n      \"id_reserva\": 902,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 62,\n      \"id_reserva\": 903,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 63,\n      \"id_reserva\": 904,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 64,\n      \"id_reserva\": 905,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 65,\n      \"id_reserva\": 906,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 66,\n      \"id_reserva\": 907,\n      \"cantidad_personas\": 3\n    },\n    {\n      \"id\": 67,\n      \"id_reserva\": 908,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 68,\n      \"id_reserva\": 909,\n      \"cantidad_personas\": 2\n    },\n    {\n      \"id\": 69,\n      \"id_reserva\": 910,\n      \"cantidad_personas\": 1\n    },\n    {\n      \"id\": 70,\n      \"id_reserva\": 911,\n      \"cantidad_personas\": 2\n    }\n  ],\n  \"duracion\": 30,\n  \"fecha_inicio_estadia\": \"2018-05-14\",\n  \"tipo_inmueble\": \"Apartamento\",\n  \"privacidad\": \"sencilla\",\n  \"cantidad_inmuebles\": 10,\n  \"servicios_deseados\": [\n    \"luz\",\n    \"tv\",\n    \"internet\"\n  ]\n}\n"
 				},
 				"description": ""
 			},
@@ -338,7 +339,7 @@
 		{
 			"name": "RF8 borrar reserva colectiva ",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/2",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/reservasColectivas/5",
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -371,7 +372,7 @@
 		{
 			"name": "RF10 Rehabilitar propuesta en el sistema",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/22",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/propuestas/habilitar/19",
 				"method": "PUT",
 				"header": [],
 				"body": {
