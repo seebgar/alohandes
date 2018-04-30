@@ -1,93 +1,171 @@
 <!DOCTYPE html>
-<html ng-app='main'>
-    
-    <head>
-    <!-- ASCII por defecto -->
+<html lang="es" ng-app="main">
+
+<head>
     <meta charset="utf-8">
-    <!-- relacion 1:1 en tamaños de ventana-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="Sebastian Garcia 201630047 Nicolas Sotelo 201623026">
-    <meta name="description" content="Iteracion 2 Sistemas Transaccionales Alohandes">
+    <meta name="author" content="Sebastian Garcia - Nicolas Sotelo">
+    <meta name="description" content="Alohandes">
 
     <title>Alohandes</title>
 
-    <!-- fonts importa fonst de google fonts :: Merriweather y Roboto -->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+    <!-- SEMANTIC UI-->
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- CSS  PARA DISPLAYS --  MOBILES !! -->
+    <!-- JQEURY-->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+    <!-- SEMANTIC UI JS-->
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" type="text/css" href="style/vendors/css/ionicons.min.css">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- STYLE -->
+    <link rel="stylesheet" type="text/css" href="style/normalize.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <!-- CSS PARA DISPLAYS -- DESKTOP !! -->
-    <link rel="stylesheet" type="text/css" href="style/media.css">
-
-</head>
-
-<body>
-
-    <header class="parallax">
-
-        <img class="logo" src="style/resources/SVG/icon.svg" alt="logo">
-
-        <!-- MAIN TEXT -->
-        <div class="c1_text_box">
-            <br/>
-            <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="clientes">Cliente</a>
-            <a class="btn2 btn btn_sec scroll_sec2" href="#" ui-sref="operadores">Operador</a>
-            <br/>
-        </div>
-
-        <div>
-            <div ui-view></div>
-        </div>
-
-
-    </header>
-
-
 
     <!-- ANGULAR UI ROUTER -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
-    <!-- CLIENTES -->
-    <script src="modules/clientes/clientes.mod.js" type="text/javascript"></script>
+</head>
 
-    <!-- OPERADORES -->
-    <script src="modules/operadores/operadores.mod.js" type="text/javascript"></script>
-    
-    <!-- log in -->
-    <script src="modules/login/login.mod.js" type="text/javascript"></script>
-    
-    
+<body>
 
-    <!-- RESERVAS -->
-    <script src="modules/reservas/reservas.mod.js" type="text/javascript"></script>
 
-    <!-- PROPUESTAS -->
-    <script src="modules/propuestas/propuestas.mod.js" type="text/javascript"></script>
+    <header>
+        
+        <div class="ui text container" style="padding-top: 10em; height: 100%;">
+            <div class="logo"></div>
+            <i class="ion-chevron-down head_arrow_icon"></i>
+        </div>
 
-    
-
-    <!-- REGISTRAR RESERVA -->
-    <script src="modules/reservas/post_colectivas.mod.js" type="text/javascript"></script>
-
-    <!-- REGISTRAR PROPUESTA -->
-    <script src="modules/propuestas/post_propuesta.mod.js" type="text/javascript"></script>
-
-    
-    
-    <script src="app.js"></script>
+    </header>
 
 
 
+    <div class="rol">
+        
+        <div class="ui center aligned basic segment" id="rol_container">
+            <div class="ui center aligned grid">
+                <div class="row">&nbsp;</div>
+                <div class="row">&nbsp;</div>
+                <div class="row">&nbsp;</div>
+
+                <div class="six wide column">
+                    <i class="ion-ios-person-outline" style="font-size: 80px;"></i>
+                    <h1>Soy Cliente</h1>
+                    <p>Realiza reservas, reservas colectivas, o las cancela.<br/>Consulta su uso de la aplicación.</p>
+                    <a class="ui teal basic button">Entrar</a>
+                </div>
+
+               <div class="column">
+                    <div style="border:0.5px solid #a3a2a2; height:20em; width:1px;"></div>
+                </div>
+                
+
+                <div class="six wide column">
+                    <i class="ion-ios-people-outline" style="font-size: 80px;"></i>
+                    <h1>Soy Operador</h1>
+                    <p>Crea, modifica o elimina las ofertas que ofrece en está aplicación.<br/>Consulta el estado de sus ofertas y el uso de las mismas.</p>
+                    <a class="ui teal basic button" href="src/modules/menu.html">Entrar</a>
+                </div>
+
+                <div class="row"></div>
+                <br/>
+                <br/>
+                <br/>
+
+                <div class="row" ng-controller="appController">
+                    <div class="sixteen wide column" style="background-color: dimgray;">
+                        <div class="ui center aligned grid">
+
+                            <div class="four wide column" style="color: white;">
+                                <h1 style="padding-top: 1em; margin-bottom: -5px;" id="odometer_r" class="odometer">0</h1>
+                                <p style="padding-bottom: 1em;">reservas realizadas</p>
+                            </div>
+
+                            <div class="four wide column" style="color: white;">
+                                <h1 style="padding-top: 1em; margin-bottom: -5px;" id="odometer_o" class="odometer">0</h1>
+                                <p style="padding-bottom: 1em;">ofertas disponibles</p>
+                            </div>
+
+                            <div class="four wide column" style="color: white;">
+                                <h1 style="padding-top: 1em; margin-bottom: -5px;" id="odometer_u" class="odometer">0</h1>
+                                <p style="padding-bottom: 1em;">usuarios registrados</p>
+                            </div>
+
+                            <div class="four wide column" style="color: white;">
+                                <h1 style="padding-top: 1em; margin-bottom: -5px;" id="odometer" class="odometer">0</h1>
+                                <p style="padding-bottom: 1em;">operadores registrados</p>
+                            </div>
 
 
-    <!-- <<<<<<<<<<<<<<<<< DECORACION  >>>>>>>>>>>>>>>>>>>> -->
-    <!-- JQUERY PARALLAX EFFECT BACKGROUND -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
-    </script>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+
+
+
+
+    <footer style="overflow: hidden;">
+
+        <div class="ui middle aligned center aligned grid">
+            <div class="nine wide column" style="color: white;">
+                <p>
+                    <br/> Universidad de Los Andes <br/> Ingenieria de Sistemas y Computación <br/> Sistemas Transaccionales <br/>
+                    <br/> Sebastian Garcia 201630047 <br/> Nicolas Sotelo 201630047 <br/>
+                    <br/> 201801 <br/>
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!-- CITIES -->
+    <script src="src/general/app.mod.js" type="text/javascript"></script>
+
+    <!-- DEPENDENCIES -->
+    <script src="src/general/app.js" type="text/javascript"></script>
+
+    <!-- JS CODE -->
     <script src="style/code.js"></script>
 
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="style/od_default.css" />
+
+    <!-- Odometer Number Animation -->
+    <script src="style/odometer.js"></script>
+
+    <script>
+        setTimeout(function() {
+            odometer.innerHTML = 456;
+            odometer_u.innerHTML = 587;
+            odometer_o.innerHTML = 974;
+            odometer_r.innerHTML = 38273;
+        }, 1500);
+    </script>
+
 </body>
+
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="main">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Sebastian Garcia - Nicolas Sotelo">
+    <meta name="description" content="Alohandes">
+
+    <title>Alohandes &#124; Usuario</title>
+
+    <!-- SEMANTIC UI-->
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- JQEURY-->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+    <!-- SEMANTIC UI JS-->
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+
+    <!-- ICONS -->
+    <link rel="stylesheet" type="text/css" href="/style/vendors/css/ionicons.min.css">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- STYLE -->
+    <link rel="stylesheet" type="text/css" href="/style/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/style/style.css">
+
+    <!-- ANGULAR UI ROUTER -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+</head>
+
+<body>
+
+
+    <header>
+
+        <div id="main" class="ui text menu right floated" style="padding: 1em; padding-right: 5em;">
+            <a class="item" style="color: white; font-size: 20px" href="/index.html">Inicio&nbsp; &#124;</a>
+            <a class="item" style="color: white; font-size: 20px" ui-sref="reservas({ id: num })">Reservas&nbsp; &#124;</a>
+            <a class="item" style="color: white; font-size: 20px" ui-sref="reservas_colectivas({ id: num })">Reservas Colectivas&nbsp; &#124;</a>
+            <a class="item" style="color: white; font-size: 20px">Ofertas Disponibles&nbsp; &#124;</a>
+            <a class="item" style="color: white; font-size: 20px">ID&nbsp;
+            <div class="ui category search" style="height: 30px;">
+				<div class="ui icon input" style="height: 30px;">
+					<input ng-model="num" style="height: 30px;" type="number" placeholder="40">
+					<i class="search icon"></i>
+				</div>
+			</div>
+            </a>
+        </div>
+
+
+        <div class="ui container" style="margin-top: 8em;">
+            <div ui-view="content"></div>
+        </div>
+
+
+    </header>
+
+
+
+
+    <footer>
+
+        <div class="ui middle aligned center aligned grid">
+            <div class="nine wide column" style="color: white;">
+                <p>
+                    <br/> Universidad de Los Andes <br/> Ingenieria de Sistemas y Computación <br/> Sistemas Transaccionales <br/>
+                    <br/> Sebastian Garcia 201630047 <br/> Nicolas Sotelo 201630047 <br/>
+                    <br/> 201801 <br/>
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+    <!-- CLIENTE -->
+    <script src="cliente/cliente.mod.js" type="text/javascript"></script>
+    
+    <!-- OPERADOR -->
+    <script src="operador/operador.mod.js" type="text/javascript"></script>
+
+    <!-- DEPENDENCIES -->
+    <script src="app.js" type="text/javascript"></script>
+
+    <!-- JS CODE -->
+    <script src="/style/code.js"></script>
+
+</body>
+
+</html>

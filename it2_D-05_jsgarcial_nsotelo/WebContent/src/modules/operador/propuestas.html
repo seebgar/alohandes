@@ -1,0 +1,23 @@
+<div style="background-color: white; padding: 2em; border-radius: 0.5em;">
+    <h1 style="font-weight: 300; font-family: 'Roboto'; color: gray;">Propuestas</h1>
+    <hr/>
+    
+</div>
+
+
+<div class="ui stackable three column centered grid" style="background-color: white;">
+
+    <!-- ng-repeat="propuesta in propuestas | orderBy: 'id'" -->
+    <div class="five wide column" style="margin: 2px;" ng-repeat="propuesta in propuestas | orderBy: '-id'">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">ID {{propuesta.id}}</div>
+                <div class="description">
+                    Tipo Inmueble {{propuesta.tipo_onmueble}}
+                </div>
+            </div>
+            <div class="ui bottom attached button">Deshabilitar</div>
+        </div>
+    </div>
+
+</div>

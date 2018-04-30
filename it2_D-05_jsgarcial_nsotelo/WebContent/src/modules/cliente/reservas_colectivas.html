@@ -1,0 +1,24 @@
+<div style="background-color: white; padding: 2em; border-radius: 0.5em;">
+    <h1 style="font-weight: 300; font-family: 'Roboto'; color: gray;">Reservas Colectivas</h1>
+    <hr/>
+    
+</div>
+
+
+<div class="ui stackable three column centered grid" style="background-color: white;">
+
+    <!-- ng-repeat="reserva in reservas_colectivas | orderBy: 'id_colectivo'" -->
+    <div class="five wide column" style="margin: 2px;" ng-repeat="reserva in reservas_colectivas | orderBy: '-id_colectivo'">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">ID Colectivo {{reserva.id_colectivo}}</div>
+                <div class="description">
+                    ID Reserva {{reserva.id}} <br/>
+                    Fecha inicio estadia {{reserva.fecha_inicio_estadia}}
+                </div>
+            </div>
+            <div class="ui bottom attached button">Cancelar</div>
+        </div>
+    </div>
+
+</div>

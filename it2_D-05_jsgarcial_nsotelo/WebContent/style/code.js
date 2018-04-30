@@ -1,35 +1,36 @@
-/* JQUERY */
-
-
-
-
-/*+++++++++++++++++++++++++++++++++++*/
-/* PARALLAX EFFECT */
-/*+++++++++++++++++++++++++++++++++++*/
-
-
-
-
-$(document).ready(function () {
-    // jquery goes here
-
-    $(window).scroll(function () {
-        /* PARALLAX BACKGOUND EFFECT*/
-        parallax();
-    });
+$('#rangestart').calendar({
+    type: 'date',
+    endCalendar: $('#rangeend')
+});
+$('#rangeend').calendar({
+    type: 'date',
+    startCalendar: $('#rangestart')
 });
 
 
 
+$("#startCount").on("click", function (evt) {
+    var $el = $("#el"),
+        value = 56.4;
 
-function parallax() {
+    evt.preventDefault();
 
-    let scroll_num = $(window).scrollTop(); // numero que representa el movimeinto de scroll
-    const scroll_factor = 0.35;
-    let parallax = scroll_num * scroll_factor;
+    $({
+        percentage: 0
+    }).stop(true).animate({
+        percentage: value
+    }, {
+        duration: 2000,
+        easing: "easeOutExpo",
+        step: function () {
+            // percentage with 1 decimal;
+            var percentageVal = Math.round(this.percentage * 10) / 10;
 
-    $(".parallax").css({
-        'background-position': 'center ' + (parallax) + 'px'
+            $el.text(percentageVal + '%');
+        }
+    }).promise().done(function () {
+        // hard set the value after animation is done to be
+        // sure the value is correct
+        $el.text(value + "%");
     });
-
-};
+});
