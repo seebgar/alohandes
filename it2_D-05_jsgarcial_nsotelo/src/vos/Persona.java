@@ -247,4 +247,24 @@ public class Persona {
 	}
 	
 	
+	
+	
+	
+	/*
+	 * ITERACION 3
+	 */
+	@JsonProperty(value="inmueble")
+	private String inmueble = "NA";
+
+	public String getInmueble() {
+		return inmueble;
+	}
+
+	public void setInmueble(String inmueble) {
+		this.inmueble = inmueble;
+	}
+	
+	
+	
+	
 }

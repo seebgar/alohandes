@@ -5,7 +5,8 @@
         'ui.router',
         // Internal modules dependencies       
         'clienteModule',
-        'operadorModule'
+        'operadorModule',
+        'appModule'
     ]);
 
 

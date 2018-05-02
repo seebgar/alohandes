@@ -42,7 +42,7 @@
 
     <header>
         
-        <div class="ui text container" style="padding-top: 10em; height: 100%;">
+        <div class="ui text container" style="padding-top: 3em;">
             <div class="logo"></div>
             <i class="ion-chevron-down head_arrow_icon"></i>
         </div>
@@ -63,7 +63,7 @@
                     <i class="ion-ios-person-outline" style="font-size: 80px;"></i>
                     <h1>Soy Cliente</h1>
                     <p>Realiza reservas, reservas colectivas, o las cancela.<br/>Consulta su uso de la aplicación.</p>
-                    <a class="ui teal basic button">Entrar</a>
+                    <a  ng-model="user" ng-click("soyUser()")  class="ui teal basic button" href="src/modules/menu.html">Entrar</a>
                 </div>
 
                <div class="column">
@@ -75,7 +75,7 @@
                     <i class="ion-ios-people-outline" style="font-size: 80px;"></i>
                     <h1>Soy Operador</h1>
                     <p>Crea, modifica o elimina las ofertas que ofrece en está aplicación.<br/>Consulta el estado de sus ofertas y el uso de las mismas.</p>
-                    <a class="ui teal basic button" href="src/modules/menu.html">Entrar</a>
+                    <a  ng-model="admin" ng-click("soyAdmin()")  class="ui teal basic button" href="src/modules/menu.html">Entrar</a>
                 </div>
 
                 <div class="row"></div>

@@ -19,6 +19,21 @@
     mod.controller('appController', ['$scope', '$http', '$state',
 
         function ($scope, $http, $state) {
+    	
+    	
+    	$scope.user = false;
+    	$scope.admin = false;
+    	
+    	$scope.soyUser = function () {
+    		$scope.user = true;
+    		$scope.admin = false;
+    	}
+    	
+    	$scope.soyUser = function () {
+    		$scope.user = false;
+    		$scope.admin = true;
+    	}
+    	
             
             // TODO 
             

@@ -20,7 +20,7 @@
     <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 
     <!-- ICONS -->
-    <link rel="stylesheet" type="text/css" href="/style/vendors/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="../../style/vendors/css/ionicons.min.css">
 
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
@@ -28,8 +28,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- STYLE -->
-    <link rel="stylesheet" type="text/css" href="/style/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/style/style.css">
+    <link rel="stylesheet" type="text/css" href="../../style/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../style/style.css">
 
     <!-- ANGULAR UI ROUTER -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
@@ -44,13 +44,17 @@
 
         <div id="main" class="ui text menu right floated" style="padding: 1em; padding-right: 5em;">
             <a class="item" style="color: white; font-size: 20px" href="/index.html">Inicio&nbsp; &#124;</a>
-            <a class="item" style="color: white; font-size: 20px" ui-sref="reservas({ id: num })">Reservas&nbsp; &#124;</a>
-            <a class="item" style="color: white; font-size: 20px" ui-sref="reservas_colectivas({ id: num })">Reservas Colectivas&nbsp; &#124;</a>
-            <a class="item" style="color: white; font-size: 20px">Ofertas Disponibles&nbsp; &#124;</a>
+            <a ng-if="user" class="item" style="color: white; font-size: 20px" ui-sref="reservas({ id: num })">Reservas&nbsp; &#124;</a>
+            <a  ng-if="user" class="item" style="color: white; font-size: 20px" ui-sref="reservas_colectivas({ id: num })">Reservas Colectivas&nbsp; &#124;</a>
+            <a  ng-if="user" class="item" style="color: white; font-size: 20px">Ofertas Disponibles&nbsp; &#124;</a>
+            
+             <a ng-if="admin" class="item" style="color: white; font-size: 20px" ui-sref="propuestas({ id: num })">Propuestas&nbsp; &#124;</a>
+            
             <a class="item" style="color: white; font-size: 20px">ID&nbsp;
             <div class="ui category search" style="height: 30px;">
 				<div class="ui icon input" style="height: 30px;">
-					<input ng-model="num" style="height: 30px;" type="number" placeholder="40">
+					<input ng-model="num"  ng-if="user" style="height: 30px;" type="number" placeholder="40">
+					<input ng-model="num"  ng-if="admin" style="height: 30px;" type="number" placeholder="192">
 					<i class="search icon"></i>
 				</div>
 			</div>
@@ -90,6 +94,9 @@
     
     <!-- OPERADOR -->
     <script src="operador/operador.mod.js" type="text/javascript"></script>
+    
+    <!-- GENERAL -->
+    <script src="../general/app.mod.js" type="text/javascript"></script>
 
     <!-- DEPENDENCIES -->
     <script src="app.js" type="text/javascript"></script>

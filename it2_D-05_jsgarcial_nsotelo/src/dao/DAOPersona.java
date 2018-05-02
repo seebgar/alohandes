@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.sun.javafx.beans.IDProperty;
 import com.sun.media.sound.PortMixerProvider;
 
 //import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
@@ -397,33 +398,33 @@ public class DAOPersona {
 
 		String sql =
 				"INSERT INTO PROPUESTAS " + 
-				"(ID, TIPO_INMUEBLE, ID_PERSONA, " + 
-				"ID_HOTEL, ID_HOSTEL, " + 
-				"ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, " + 
-				"SE_VA_RETIRAR,CAPACIDAD_MAXIMA, DISPONIBLE, " + 
-				"FECHA_INICIO_DISPONIBILIDAD, " + 
-				"FECHA_FINAL_DISPONIBILIDAD, " + 
-				"CANTIDAD_DIAS_DISPONIBLE, " + 
-				"SUB_TOTAL " + 
-				") " + 
-				"VALUES ( " + 
-				+ propuesta.getId() + ", " +  
-				" '" + propuesta.getTipo_inmueble() + "', " + 
-				+ propuesta.getId_persona() + ", " + 
-				ID_HOTEL + ", " + 
-				ID_HOSTEL + ", " + 
-				ID_VIVIENDA_EXPRESS + ", " + 
-				ID_APARTAMENTO + ", " + 
-				ID_VIVIENDA_UNIVERSITARIA + ", " + 
-				ID_HABITACION + ", " + 
-				"0 , " + 
-				capacidad_maxima + ", " + 
-				"1, " + 
-				"'" + propuesta.getFecha_inicio_disponibilidad() + "', " + 
-				"'" + fecha_f_d + "', " + 
-				"0, " + 
-				+ propuesta.getSub_total() + "  " + 
-				")";
+						"(ID, TIPO_INMUEBLE, ID_PERSONA, " + 
+						"ID_HOTEL, ID_HOSTEL, " + 
+						"ID_VIVIENDA_EXPRESS, ID_APARTAMENTO, ID_VIVIENDA_UNIVERSITARIA, ID_HABITACION, " + 
+						"SE_VA_RETIRAR,CAPACIDAD_MAXIMA, DISPONIBLE, " + 
+						"FECHA_INICIO_DISPONIBILIDAD, " + 
+						"FECHA_FINAL_DISPONIBILIDAD, " + 
+						"CANTIDAD_DIAS_DISPONIBLE, " + 
+						"SUB_TOTAL " + 
+						") " + 
+						"VALUES ( " + 
+						+ propuesta.getId() + ", " +  
+						" '" + propuesta.getTipo_inmueble() + "', " + 
+						+ propuesta.getId_persona() + ", " + 
+						ID_HOTEL + ", " + 
+						ID_HOSTEL + ", " + 
+						ID_VIVIENDA_EXPRESS + ", " + 
+						ID_APARTAMENTO + ", " + 
+						ID_VIVIENDA_UNIVERSITARIA + ", " + 
+						ID_HABITACION + ", " + 
+						"0 , " + 
+						capacidad_maxima + ", " + 
+						"1, " + 
+						"'" + propuesta.getFecha_inicio_disponibilidad() + "', " + 
+						"'" + fecha_f_d + "', " + 
+						"0, " + 
+						+ propuesta.getSub_total() + "  " + 
+						")";
 
 		System.out.println(sql);
 
@@ -1269,6 +1270,260 @@ public class DAOPersona {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+	 * ITERACION 3
+	 */
+
+
+
+
+	/**
+	 * RFC10 - CONSULTAR CONSUMO EN ALOHANDES
+	 * 
+	 * Se quiere conocer la información de los usuarios que realizaron al menos una reserva de una determinada
+	 * oferta de alojamiento en un rango de fechas. Los resultados deben ser clasificados según un criterio deseado
+	 * por quien realiza la consulta. En la clasificación debe ofrecerse la posibilidad de agrupamiento y ordenamiento
+	 * de las respuestas según los intereses del usuario que consulta como, por ejemplo, por los datos del cliente, por
+	 * oferta de alojamiento y por tipo de alojamiento.
+
+	 * @param id_propuesta Long identificador de la propuesta que se piensa analizar
+	 * @param fecha_inicial String fecha inicial formato YYYY-MM-DD
+	 * @param fecha_final String fecha final formato YYY-MM-DD
+	 * @param tipo_ordenamiento String pertenece a { inmueble | id_persona  }
+	 * @return
+	 */
+	public List<Persona> RFC10_consumo_admin ( Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws BusinessLogicException, Exception, SQLException {
+
+		if ( id_propuesta == 0 || id_propuesta == null | fecha_final.isEmpty() | fecha_inicial.isEmpty() | tipo_ordenamiento == null )
+			throw new BusinessLogicException("Digitar datos correctos :: ID_PROPUESTA = " + id_propuesta + "  Rango = " + fecha_inicial + " -- " + fecha_final );
+
+		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
+
+		String sql = 
+				"SELECT PER.*, PP.TIPO " + 
+						"FROM PERSONAS PER " + 
+						"INNER JOIN ( " + 
+						" " + 
+						"    SELECT R.ID_PERSONA AS PERSO, P.TIPO_INMUEBLE AS TIPO " + 
+						"    FROM RESERVAS R  " + 
+						"    INNER JOIN PROPUESTAS P " + 
+						"    ON P.ID = R.ID_PROPUESTA " + 
+						" " + 
+						"    WHERE P.ID = " + id_propuesta + " " + 
+						"    AND R.FECHA_INICIO_ESTADIA BETWEEN '" + fecha_inicial + "' AND '"  + fecha_final +  "' " + 
+						" " + 
+						") " + 
+						"PP ON PP.PERSO = PER.ID " + 
+						" " + 
+						"ORDER BY " + odernamiento;
+
+
+		List<Persona> personas = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			Persona p = this.convertResultSetTo_Persona(rs);
+			p.setInmueble(rs.getString("TIPO_1"));
+			personas.add(p);
+		}
+
+		return personas;
+	}
+
+	/**
+	 * 
+	 * @param id_usuario se define el cliente actual que está utilizando la aplicacion
+	 * @param id_propuesta
+	 * @param fecha_inicial
+	 * @param fecha_final
+	 * @param tipo_ordenamiento
+	 * @return
+	 * @throws BusinessLogicException
+	 * @throws Exception
+	 * @throws SQLException
+	 */
+	public List<Persona> RFC10_consumo_user ( Long id_usuario, Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws BusinessLogicException, Exception, SQLException {
+
+		if ( id_propuesta == 0 || id_propuesta == null | fecha_final.isEmpty() | fecha_inicial.isEmpty() | tipo_ordenamiento == null )
+			throw new BusinessLogicException("Digitar datos correctos :: ID_PROPUESTA = " + id_propuesta + "  Rango = " + fecha_inicial + " -- " + fecha_final );
+
+		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
+
+		String sql = 
+				"SELECT PER.*, PP.TIPO " + 
+						"FROM PERSONAS PER " + 
+						"INNER JOIN ( " + 
+						" " + 
+						"    SELECT R.ID_PERSONA AS PERSO, P.TIPO_INMUEBLE AS TIPO " + 
+						"    FROM RESERVAS R  " + 
+						"    INNER JOIN PROPUESTAS P " + 
+						"    ON P.ID = R.ID_PROPUESTA " + 
+						" " + 
+						"    WHERE P.ID = " + id_propuesta + " " + 
+						"    AND R.FECHA_INICIO_ESTADIA BETWEEN '" + fecha_inicial + "' AND '"  + fecha_final +  "' " + 
+						" " + 
+						") " + 
+						"PP ON PP.PERSO = PER.ID " + 
+						"where per.id = " + id_usuario + 
+						"ORDER BY " + odernamiento;
+
+
+		List<Persona> personas = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			Persona p = this.convertResultSetTo_Persona(rs);
+			p.setInmueble(rs.getString("TIPO_1"));
+			personas.add(p);
+		}
+
+		return personas;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * *RFC11 - CONSULTAR CONSUMO EN ALOHANDES – RFC10-V2
+	 *
+	 *Se quiere conocer la información de los usuarios QUE NO realizaron al menos una reserva de una determinada
+	 *oferta de alojamiento en un rango de fechas. En la clasificación debe ofrecerse la posibilidad de agrupamiento
+	 *y ordenamiento de las respuestas según los intereses del usuario q
+	 *
+	 * @param id_propuesta
+	 * @param fecha_inicial
+	 * @param fecha_final
+	 * @param tipo_ordenamiento
+	 * @return
+	 * @throws BusinessLogicException
+	 * @throws Exception
+	 * @throws SQLException
+	 */
+	public List<Persona> RFC11_inverso_consumo_admin ( Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws BusinessLogicException, Exception, SQLException {
+
+		if ( id_propuesta == 0 || id_propuesta == null | fecha_final.isEmpty() | fecha_inicial.isEmpty() | tipo_ordenamiento == null )
+			throw new BusinessLogicException("Digitar datos correctos :: ID_PROPUESTA = " + id_propuesta + "  Rango = " + fecha_inicial + " -- " + fecha_final );
+
+		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
+
+		String sql = 
+				"SELECT PER.*, PP.TIPO " + 
+						"FROM PERSONAS PER " + 
+						"INNER JOIN ( " + 
+						" " + 
+						"    SELECT R.ID_PERSONA AS PERSO, P.TIPO_INMUEBLE AS TIPO " + 
+						"    FROM RESERVAS R  " + 
+						"    INNER JOIN PROPUESTAS P " + 
+						"    ON P.ID = R.ID_PROPUESTA " + 
+						" " + 
+						"    WHERE P.ID = " + id_propuesta + " " + 
+						"    AND R.FECHA_INICIO_ESTADIA NOT BETWEEN '" + fecha_inicial + "' AND '"  + fecha_final +  "' " + 
+						" " + 
+						") " + 
+						"PP ON PP.PERSO = PER.ID " + 
+						" " + 
+						"ORDER BY " + odernamiento;
+
+
+		List<Persona> personas = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			Persona p = this.convertResultSetTo_Persona(rs);
+			p.setInmueble(rs.getString("TIPO_1"));
+			personas.add(p);
+		}
+
+		return personas;
+	}
+
+	/**
+	 * 
+	 * @param id_usuario se define el cliente actual que está utilizando la aplicacion
+	 * @param id_propuesta
+	 * @param fecha_inicial
+	 * @param fecha_final
+	 * @param tipo_ordenamiento
+	 * @return
+	 * @throws BusinessLogicException
+	 * @throws Exception
+	 * @throws SQLException
+	 */
+	public List<Persona> RFC11_inverso_consumo_user ( Long id_usuario, Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws BusinessLogicException, Exception, SQLException {
+
+		if ( id_propuesta == 0 || id_propuesta == null | fecha_final.isEmpty() | fecha_inicial.isEmpty() | tipo_ordenamiento == null )
+			throw new BusinessLogicException("Digitar datos correctos :: ID_PROPUESTA = " + id_propuesta + "  Rango = " + fecha_inicial + " -- " + fecha_final );
+
+		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
+
+		String sql = 
+				"SELECT PER.*, PP.TIPO " + 
+						"FROM PERSONAS PER " + 
+						"INNER JOIN ( " + 
+						" " + 
+						"    SELECT R.ID_PERSONA AS PERSO, P.TIPO_INMUEBLE AS TIPO " + 
+						"    FROM RESERVAS R  " + 
+						"    INNER JOIN PROPUESTAS P " + 
+						"    ON P.ID = R.ID_PROPUESTA " + 
+						" " + 
+						"    WHERE P.ID = " + id_propuesta + " " + 
+						"    AND R.FECHA_INICIO_ESTADIA NOT BETWEEN '" + fecha_inicial + "' AND '"  + fecha_final +  "' " + 
+						" " + 
+						") " + 
+						"PP ON PP.PERSO = PER.ID " + 
+						"where per.id = " + id_usuario + 
+						"ORDER BY " + odernamiento;
+
+
+		List<Persona> personas = new ArrayList<>();
+
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while ( rs.next() ) {
+			Persona p = this.convertResultSetTo_Persona(rs);
+			p.setInmueble(rs.getString("TIPO_1"));
+			personas.add(p);
+		}
+
+		return personas;
+	}
 
 
 
