@@ -1322,7 +1322,7 @@ public class DAOPersona {
 		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
 
 		String sql = 
-				"SELECT PER.*, PP.TIPO " + 
+				"SELECT PER.*, PP.TIPO as inmueble " + 
 						"FROM PERSONAS PER " + 
 						"INNER JOIN ( " + 
 						" " + 
@@ -1348,7 +1348,7 @@ public class DAOPersona {
 
 		while ( rs.next() ) {
 			Persona p = this.convertResultSetTo_Persona(rs);
-			p.setInmueble(rs.getString("TIPO_1"));
+			p.setInmueble(rs.getString("inmueble"));
 			personas.add(p);
 		}
 
@@ -1375,7 +1375,7 @@ public class DAOPersona {
 		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
 
 		String sql = 
-				"SELECT PER.*, PP.TIPO " + 
+				"SELECT PER.*, PP.TIPO as inmueble " + 
 						"FROM PERSONAS PER " + 
 						"INNER JOIN ( " + 
 						" " + 
@@ -1401,7 +1401,7 @@ public class DAOPersona {
 
 		while ( rs.next() ) {
 			Persona p = this.convertResultSetTo_Persona(rs);
-			p.setInmueble(rs.getString("TIPO_1"));
+			p.setInmueble(rs.getString("inmueble"));
 			personas.add(p);
 		}
 
@@ -1442,7 +1442,7 @@ public class DAOPersona {
 		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
 
 		String sql = 
-				"SELECT PER.*, PP.TIPO " + 
+				"SELECT PER.*, PP.TIPO as inmueble " + 
 						"FROM PERSONAS PER " + 
 						"INNER JOIN ( " + 
 						" " + 
@@ -1468,7 +1468,7 @@ public class DAOPersona {
 
 		while ( rs.next() ) {
 			Persona p = this.convertResultSetTo_Persona(rs);
-			p.setInmueble(rs.getString("TIPO_1"));
+			p.setInmueble(rs.getString("inmueble"));
 			personas.add(p);
 		}
 
@@ -1495,7 +1495,7 @@ public class DAOPersona {
 		String odernamiento = tipo_ordenamiento.equalsIgnoreCase("inmueble") ? "PP.TIPO" : "PER.ID";
 
 		String sql = 
-				"SELECT PER.*, PP.TIPO " + 
+				"SELECT PER.*, PP.TIPO as inmueble " + 
 						"FROM PERSONAS PER " + 
 						"INNER JOIN ( " + 
 						" " + 
@@ -1521,7 +1521,7 @@ public class DAOPersona {
 
 		while ( rs.next() ) {
 			Persona p = this.convertResultSetTo_Persona(rs);
-			p.setInmueble(rs.getString("TIPO_1"));
+			p.setInmueble(rs.getString("inmueble"));
 			personas.add(p);
 		}
 

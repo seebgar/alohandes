@@ -192,7 +192,7 @@ public class ConsultasService {
 	@Path("/{admin}/{id_propuesta}/{fecha_inicial}/{fecha_final}/{tipo_ordenamiento}/{id_usuario}/{inverso}")
 	
 	@Produces( { MediaType.APPLICATION_JSON } )
-	public Response RFC10_consumo_admina( @PathParam("admin") Long admin, @PathParam("id_propuesta") Long id_propuesta, @PathParam("fecha_inicial") String fecha_inicial, 
+	public Response RFC10_11_consumo_admina( @PathParam("admin") Long admin, @PathParam("id_propuesta") Long id_propuesta, @PathParam("fecha_inicial") String fecha_inicial, 
 			@PathParam("fecha_final") String fecha_final, @PathParam("tipo_ordenamiento") String tipo_ordenamiento, @PathParam("id_usuario") Long id_usuario,
 			@PathParam("inverso") String inverso ) {
 
