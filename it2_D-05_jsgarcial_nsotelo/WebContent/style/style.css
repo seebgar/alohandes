@@ -53,36 +53,6 @@ i.head_arrow_icon {
 
 
 
-/* CITIES MAIN */
-
-div.cities {
-	background-color: white;
-}
-
-/* END CITIES MAIN */
-
-
-
-
-
-
-/* FILEDS RESERVATION */
-
-div.reservation {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.0)), url(resources/fondos/rock.jpg);
-	background-attachment: fixed;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 70vh;
-}
-
-/* END RESERVATION */
-
-
-
-
-
 
 /* FOOTER  */
 

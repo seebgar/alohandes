@@ -1653,6 +1653,209 @@ public class AlohandesTransactionManager {
 		return ps;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ITERACION 3
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+	
+	/**
+	 * RFC10 - CONSULTAR CONSUMO EN ALOHANDES
+	 * 
+	 * Se quiere conocer la información de los usuarios que realizaron al menos una reserva de una determinada
+	 * oferta de alojamiento en un rango de fechas. Los resultados deben ser clasificados según un criterio deseado
+	 * por quien realiza la consulta. En la clasificación debe ofrecerse la posibilidad de agrupamiento y ordenamiento
+	 * de las respuestas según los intereses del usuario que consulta como, por ejemplo, por los datos del cliente, por
+	 * oferta de alojamiento y por tipo de alojamiento.
+
+	 * @param id_propuesta Long identificador de la propuesta que se piensa analizar
+	 * @param fecha_inicial String fecha inicial formato YYYY-MM-DD
+	 * @param fecha_final String fecha final formato YYY-MM-DD
+	 * @param tipo_ordenamiento String pertenece a { inmueble | id_persona  }
+	 * @return
+	 */
+	public List<Persona> RFC10_consumo_admina( Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws Exception {
+
+		DAOPersona dao= new DAOPersona();
+		List<Persona> personas = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			personas = dao.RFC10_consumo_admin(id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return personas;
+	}
+	
+	public List<Persona> RFC10_consumo_user ( Long id_usuario, Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws Exception {
+
+		DAOPersona dao= new DAOPersona();
+		List<Persona> personas = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			personas = dao.RFC10_consumo_user(id_usuario, id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return personas;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * *RFC11 - CONSULTAR CONSUMO EN ALOHANDES – RFC10-V2
+	 *
+	 *Se quiere conocer la información de los usuarios QUE NO realizaron al menos una reserva de una determinada
+	 *oferta de alojamiento en un rango de fechas. En la clasificación debe ofrecerse la posibilidad de agrupamiento
+	 *y ordenamiento de las respuestas según los intereses del usuario q
+	 *
+	 * @param id_propuesta
+	 * @param fecha_inicial
+	 * @param fecha_final
+	 * @param tipo_ordenamiento
+	 * @return
+	 * @throws BusinessLogicException
+	 * @throws Exception
+	 * @throws SQLException
+	 */
+	public List<Persona> RFC11_inverso_consumo_admin ( Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento )  throws Exception {
+
+		DAOPersona dao= new DAOPersona();
+		List<Persona> personas = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			personas = dao.RFC11_inverso_consumo_admin(id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return personas;
+	}
+	
+	public List<Persona> RFC11_inverso_consumo_user ( Long id_usuario, Long id_propuesta, String fecha_inicial, String fecha_final, String tipo_ordenamiento ) throws Exception {
+		DAOPersona dao= new DAOPersona();
+		List<Persona> personas = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			personas = dao.RFC11_inverso_consumo_user(id_usuario, id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION RF7] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return personas;
+	}
+	
+	
+	
+	
 
 
 

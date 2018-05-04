@@ -18,6 +18,7 @@ import tm.BusinessLogicException;
 import vos.AnalisisPropuesta;
 import vos.ClienteFrecuente;
 import vos.Filtro;
+import vos.Persona;
 import vos.Propuesta;
 
 /**
@@ -61,11 +62,11 @@ public class ConsultasService {
 
 
 	/**
-	 * RFC7 - ANALIZAR LA OPERACIÓN DE ALOHANDES 
+	 * RFC7 - ANALIZAR LA OPERACIï¿½N DE ALOHANDES 
 	 * 
 	 * Para una unidad de tiempo definido (por ejemplo, semana o mes) y un tipo de alojamiento, considerando todo
-	 * el tiempo de operación de AloHandes, indicar cuáles fueron las fechas de mayor demanda (mayor cantidad de
-	 * alojamientos ocupados), las de mayores ingresos (mayor cantidad de dinero recibido) y las de menor ocupación.
+	 * el tiempo de operaciï¿½n de AloHandes, indicar cuï¿½les fueron las fechas de mayor demanda (mayor cantidad de
+	 * alojamientos ocupados), las de mayores ingresos (mayor cantidad de dinero recibido) y las de menor ocupaciï¿½n.
 	 * @param filtro { mayor | ingresos | menor } = Mayor ocupacion, mayores ingresos o menor ocupacion.
 	 * @param tiempo { semana | mes } = String que especifica si se trata de las semanaas o de los meses
 	 * @param tipo_alojamiento { Apartamento | Hotel | Hostel | Vivienda Universitaria | Vivienda Express | Habitacion }
@@ -93,9 +94,9 @@ public class ConsultasService {
 	/**
 	 * RFC8 - ENCONTRAR LOS CLIENTES FRECUENTES
 	 * 
-	 * Para un alojamiento dado, encontrar la información de sus clientes frecuentes. se considera frecuente a un
+	 * Para un alojamiento dado, encontrar la informaciï¿½n de sus clientes frecuentes. se considera frecuente a un
 	 * cliente si ha utilizado (o tiene reservado) ese alojamiento por lo menos en tres ocasiones o por lo menos 15
-	 * noches, durante todo el periodo de operación de AlohAndes
+	 * noches, durante todo el periodo de operaciï¿½n de AlohAndes
 	 * @param tipo_alojamiento { Apartamento | Hotel | Hostel | Vivienda Universitaria | Vivienda Express | Habitacion }
 	 * @return
 	 */
@@ -121,7 +122,7 @@ public class ConsultasService {
 	 * RC 9 - ENCONTRAR LAS OFERTAS DE ALOJAMIENTO QUE NO TIENEN MUCHA DEMANDA
 	 * 
 	 * Encontrar las ofertas de alojamiento que no han recibido clientes en periodos superiores a 1 mes, durante todo
-	 * el periodo de operación de AlohAndes
+	 * el periodo de operaciï¿½n de AlohAndes
 	 * @return
 	 * @throws SQLException 
 	 */
@@ -142,6 +143,181 @@ public class ConsultasService {
 		}
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------------------------------------
+	// ITERACION 3
+	//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * RFC10 - CONSULTAR CONSUMO EN ALOHANDES
+	 * RFC 11 - INVERSO
+	 * 
+	 * Se quiere conocer la informaciÃ³n de los usuarios que realizaron al menos una reserva de una determinada
+	 * oferta de alojamiento en un rango de fechas. Los resultados deben ser clasificados segÃºn un criterio deseado
+	 * por quien realiza la consulta. En la clasificaciÃ³n debe ofrecerse la posibilidad de agrupamiento y ordenamiento
+	 * de las respuestas segÃºn los intereses del usuario que consulta como, por ejemplo, por los datos del cliente, por
+	 * oferta de alojamiento y por tipo de alojamiento.
+
+	 * @param admin { 1 | 0 } 1 si es administrador el que hace la consulta
+	 * @param id_propuesta
+	 * @param fecha_inicial String fecha inicial formato YYYY-MM-DD
+	 * @param fecha_final  String fecha final formato YYYY-MM-DD
+	 * @param tipo_ordenamiento String pertenece a { inmueble | id_persona  }
+	 * @param id_usuario se es usuario el que hace la consulta, se especifica su identificador
+	 * @param inverso String pertenece a { inverso | normal } para especificar si se quiere hacer la consullat RFC10 o la verison inversa RFC11
+
+	 * @return Response
+	 */
+	@GET
+	
+	@Path("/{admin}/{id_propuesta}/{fecha_inicial}/{fecha_final}/{tipo_ordenamiento}/{id_usuario}/{inverso}")
+	
+	@Produces( { MediaType.APPLICATION_JSON } )
+	public Response RFC10_consumo_admina( @PathParam("admin") Long admin, @PathParam("id_propuesta") Long id_propuesta, @PathParam("fecha_inicial") String fecha_inicial, 
+			@PathParam("fecha_final") String fecha_final, @PathParam("tipo_ordenamiento") String tipo_ordenamiento, @PathParam("id_usuario") Long id_usuario,
+			@PathParam("inverso") String inverso ) {
+
+		/* ADMINISTRADOR */
+		if ( admin == 1 ) {
+
+			if ( inverso.equalsIgnoreCase("inverso") ) {
+				try {
+
+					AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+					/* INVERSO RFC 11*/
+					// TIEMPO
+					long startTime = System.nanoTime();
+					
+					List<Persona> ans = tm.RFC11_inverso_consumo_admin(id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+
+					long endTime = System.nanoTime();
+					long duration = endTime - startTime;
+					double seconds = (double)duration / 1000000000.00;
+					
+					System.out.println("TIEMPO RFC 11 >> "+ seconds + " seg");
+					
+					return Response.status( 200 ).entity( ans ).build( );	
+
+				} catch( Exception e ) {
+					return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+				}
+			} else {
+				try {
+
+					AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+					/* NORMAL RFC 11*/
+					// TIEMPO
+					long startTime = System.nanoTime();
+					
+					List<Persona> ans = tm.RFC10_consumo_admina(id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+					
+					long endTime = System.nanoTime();
+					long duration = endTime - startTime;
+					double seconds = (double)duration / 1000000000.00;
+					
+					System.out.println("TIEMPO RFC 10 >> "+ seconds + " seg");
+
+					return Response.status( 200 ).entity( ans ).build( );	
+
+				} catch( Exception e ) {
+					return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+				}
+			}
+			
+
+			/* USUARIO */
+		} else {
+
+			if ( inverso.equalsIgnoreCase("inverso") ) {
+				try {
+
+					AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+					/* INVERSO RFC 11*/
+					// TIEMPO
+					long startTime = System.nanoTime();
+					
+					List<Persona> ans = tm.RFC11_inverso_consumo_user(id_usuario, id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+					
+					long endTime = System.nanoTime();
+					long duration = endTime - startTime;
+					double seconds = (double)duration / 1000000000.00;
+					
+					System.out.println("TIEMPO RFC 11 >> "+ seconds + " seg");
+
+					return Response.status( 200 ).entity( ans ).build( );	
+
+				} catch( Exception e ) {
+					return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+				}
+			} else {
+				try {
+
+					AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+					/* NORMAL RFC 11*/
+					// TIEMPO
+					long startTime = System.nanoTime();
+					
+					List<Persona> ans = tm.RFC10_consumo_user(id_usuario, id_propuesta, fecha_inicial, fecha_final, tipo_ordenamiento);
+					
+					long endTime = System.nanoTime();
+					long duration = endTime - startTime;
+					double seconds = (double)duration / 1000000000.00;
+					
+					System.out.println("TIEMPO RFC 10 >> "+ seconds + " seg");
+
+					return Response.status( 200 ).entity( ans ).build( );	
+
+				} catch( Exception e ) {
+					return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+				}
+			}
+
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
