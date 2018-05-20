@@ -106,9 +106,87 @@ where per.id = 47
 
 ORDER BY PP.TIPO
 ;
+---RF13---
+SELECT
+    personas.id AS id1,
+    personas.apellido,
+    personas.nombre,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email,
+     COUNT(reservas.id) AS reservasTotales
+FROM
+    reservas
+    INNER JOIN personas ON personas.id = reservas.id_persona
+WHERE
+    reservas.COSTO_TOTAL >2600000
+GROUP BY
+    personas.id,
+    personas.apellido,
+    personas.nombre,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email;
 
 
-
+SELECT
+    personas.id AS id1,
+    personas.apellido,
+    personas.nombre,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email,
+     COUNT(reservas.id) AS reservasTotales
+FROM
+    reservas
+    INNER JOIN personas ON personas.id = reservas.id_persona
+WHERE
+    reservas.fecha_registro < '2016-12-31'
+GROUP BY
+    personas.id,
+    personas.apellido,
+    personas.nombre,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email;
+SELECT
+     COUNT(reservas.id) AS reservastotales,
+    propuestas.tipo_inmueble,
+    hoteles.tipo_habitacion,
+    personas.id AS id1,
+   
+    personas.nombre,
+    personas.apellido,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email
+FROM
+    reservas
+    INNER JOIN propuestas ON propuestas.id = reservas.id_propuesta
+    INNER JOIN hoteles ON hoteles.id = propuestas.id_hotel
+    INNER JOIN personas ON personas.id = reservas.id_persona
+WHERE TIPO_HABITACION='suite'
+GROUP BY
+    propuestas.tipo_inmueble,
+    hoteles.tipo_habitacion,
+    personas.id,
+    personas.nombre,
+    personas.apellido,
+    personas.cedula,
+    personas.tipo,
+    personas.rol,
+    personas.nit,
+    personas.email;
 
 
 
