@@ -1529,7 +1529,123 @@ public class DAOPersona {
 	}
 
 
+public BuenosClientes RFC13_buenosClientes() throws SQLException
+{
+	BuenosClientes rta =new BuenosClientes();
+	
+	// Solo costosos
+	String sql = 
+			"SELECT personas.id AS id1," + 
+			" personas.nombre," + 
+			" personas.apellido," + 
+			" personas.cedula," + 
+			" personas.tipo," + 
+			" personas.rol," + 
+			" personas.email," + 
+			" personas.nit," + 
+			" COUNT(reservas.id) " + 
+			" FROM reservas " + 
+			" INNER JOIN personas ON personas.id = reservas.id_persona" + 
+			" WHERE reservas.costo_total > 39600000 " + 
+			" GROUP BY personas.id, personas.nombre , personas.apellido , personas.cedula , personas.tipo, personas.rol , personas.email , personas.nit";
+	
+	PreparedStatement prepStmt = conn.prepareStatement(sql);
+	System.out.println(sql);
+	
+	recursos.add(prepStmt);
+	ResultSet rs = prepStmt.executeQuery();
+	List<Cliente> aux= new ArrayList<>();
+	while(rs.next())
+	{
+		Cliente cf = new Cliente(rs.getLong("ID1"),
+				rs.getString("APELLIDO"), 
+				rs.getString("NOMBRE"), 
+				rs.getString("TIPO"), 
+				rs.getString("ROL"),
+				rs.getString("EMAIL"), 
+				rs.getString("CEDULA"), 
+				rs.getString("NIT"));
+	aux.add(cf);
+	}
+	rta.setCostosos(aux);
+	
+		rs.close();
+	//String concurrentes 
+	String sql2 ="SELECT COUNT(reservas.id) AS reservas ," + 
+			" personas.id AS id1 ," + 
+			" personas.apellido ," + 
+			" personas.nombre ," + 
+			" personas.cedula ," + 
+			" personas.tipo ," + 
+			" personas.rol ," + 
+			" personas.nit ," + 
+			" personas.email FROM reservas " + 
+			"INNER JOIN personas ON personas.id = reservas.id_persona" + 
+			" WHERE reservas.fecha_registro < '2016-12-31' " + 
+			"GROUP BY personas.id, personas.apellido, personas.nombre, personas.cedula, personas.tipo, personas.rol, personas.nit, personas.email ";
+	
+	PreparedStatement prepStmt2 = conn.prepareStatement(sql2);
+	recursos.add(prepStmt2);
+	System.out.println(sql2);
+	ResultSet rs2 = prepStmt2.executeQuery();
+	List<Cliente> aux2= new ArrayList<>();
+	while(rs2.next())
+	{
+		Cliente cf = new Cliente(
+				rs2.getLong("ID1"),
+				rs2.getString("APELLIDO"), 
+				rs2.getString("NOMBRE"), 
+				rs2.getString("TIPO"), 
+				rs2.getString("ROL"),
+				rs2.getString("EMAIL"), 
+				rs2.getString("CEDULA"), 
+				rs2.getString("NIT"));
+	aux2.add(cf);
+	}
+	rta.setConcurrentes(aux2);
+	
+	//suites
+	String  sql3="SELECT COUNT(reservas.id) AS reservastotales," + 
+			" propuestas.tipo_inmueble," + 
+			" hoteles.tipo_habitacion," + 
+			" personas.id AS id1," + 
+			" personas.nombre," + 
+			" personas.apellido," + 
+			" personas.cedula," + 
+			" personas.tipo," + 
+			" personas.rol," + 
+			" personas.nit," + 
+			" personas.email" + 
+			" FROM reservas" + 
+			" INNER JOIN propuestas ON propuestas.id = reservas.id_propuesta" + 
+			" INNER JOIN hoteles ON hoteles.id = propuestas.id_hotel" + 
+			" INNER JOIN personas ON personas.id = reservas.id_persona" + 
+			" WHERE TIPO_HABITACION='suite'" + 
+			" GROUP BY " + 
+			"propuestas.tipo_inmueble, " + 
+			"hoteles.tipo_habitacion, " + 
+			"personas.id, " + 
+			"personas.nombre, " + 
+			"personas.apellido, " + 
+			"personas.cedula, " + 
+			"personas.tipo, " + 
+			"personas.rol, " + 
+			"personas.nit, " + 
+			"personas.email";
+	PreparedStatement prepStmt3 = conn.prepareStatement(sql3);
+	System.out.println(sql3);
+	recursos.add(prepStmt3);
+	ResultSet rs3= prepStmt3.executeQuery();
+	List<Cliente> aux3= new ArrayList<>();
+	while(rs3.next())
+	{
+		Cliente cf = new Cliente(rs3.getLong("ID1"), rs3.getString("NOMBRE"), rs3.getString("APELLIDO"), rs3.getString("TIPO"), rs3.getString("ROL"), rs3.getString("NIT"), rs3.getString("CEDULA"), rs3.getString("EMAIL"));
+	aux3.add(cf);
+	}
+	rta.setSuites(aux3 );
 
+	return rta;
+}
 
 
 

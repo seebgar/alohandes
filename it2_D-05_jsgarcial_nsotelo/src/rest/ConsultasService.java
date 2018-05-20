@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import tm.AlohandesTransactionManager;
 import tm.BusinessLogicException;
 import vos.AnalisisPropuesta;
+import vos.BuenosClientes;
 import vos.ClienteFrecuente;
 import vos.Filtro;
 import vos.Persona;
@@ -297,8 +298,33 @@ public class ConsultasService {
 
 
 
+@GET
+@Path("/buenos_clientes")
+@Produces( { MediaType.APPLICATION_JSON } )
+public Response RFC13_buenos_clientes() 
 
+{
+	try {
 
+		AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+		/* INVERSO RFC 11*/
+		// TIEMPO
+		long startTime = System.nanoTime();
+		
+		BuenosClientes ans = tm.RFC13darBuenosClientes();
+
+		long endTime = System.nanoTime();
+		long duration = endTime - startTime;
+		double seconds = (double)duration / 1000000000.00;
+		
+		System.out.println("RFC 13 "+ seconds + " seg");
+		
+		return Response.status( 200 ).entity( ans ).build( );	
+
+	} catch( Exception e ) {
+		return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+	}
+}
 
 
 

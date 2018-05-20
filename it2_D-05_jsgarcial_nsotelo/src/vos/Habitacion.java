@@ -73,7 +73,7 @@ public class Habitacion {
 		this.id = id;
 		this.precio_especial = precio_especial;
 		this.tipo_habitacion = tipo_habitacion;
-		//TODO inicializar propesta y servicios
+		
 		this.capacidad_maxima = cap;
 	}
 

@@ -23,6 +23,7 @@ import java.util.concurrent.ExecutionException;
 import dao.DAOPersona;
 import dao.DAOReserva;
 import vos.AnalisisPropuesta;
+import vos.BuenosClientes;
 import vos.ClienteFrecuente;
 import vos.Colectivo;
 import vos.DineroOperador;
@@ -1853,6 +1854,42 @@ public class AlohandesTransactionManager {
 		return personas;
 	}
 	
+	public BuenosClientes RFC13darBuenosClientes() throws SQLException
+	{
+		DAOPersona dao= new DAOPersona();
+		BuenosClientes rta = new BuenosClientes();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			rta = dao.RFC13_buenosClientes();
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION R13] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return rta;
+		
+	}
 	
 	
 	
