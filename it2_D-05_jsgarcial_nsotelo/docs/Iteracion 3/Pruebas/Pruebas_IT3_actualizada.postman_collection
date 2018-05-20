@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Pruebas",
-		"_postman_id": "1b5a847d-9386-0d43-6c25-6639d7c8c03f",
+		"_postman_id": "9d6d7799-6637-92e2-3ef5-869402cef8d2",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -457,7 +457,7 @@
 		{
 			"name": "GET RFC10 ADMIN",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/1/1/2018-01-18/2018-01-28/inmueble/0/normal",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/1/12/2018-01-18/2018-01-28/inmueble/0/normal",
 				"method": "GET",
 				"header": [
 					{
@@ -470,14 +470,14 @@
 					"mode": "raw",
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
-				"description": "Retorna el consumo de alohandes para el administrador"
+				"description": "Retorna el consumo de alohandes para el administrador\n\n* @param admin { 1 | 0 } 1 si es administrador el que hace la consulta\n* \n* @param id_propuesta\n\n* @param fecha_inicial String fecha inicial formato YYYY-MM-DD\n\n* @param fecha_final  String fecha final formato YYYY-MM-DD\n\n* @param tipo_ordenamiento String pertenece a { inmueble | id_persona  }\n\n* @param id_usuario se es usuario el que hace la consulta, se especifica su identificador\n\n* @param inverso String pertenece a { inverso | normal } para especificar si se quiere hacer la consullat RFC10 o la verison inversa RFC11"
 			},
 			"response": []
 		},
 		{
 			"name": "GET RFC11 ADMIN",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/1/1/2018-01-18/2018-01-28/inmueble/0/inverso",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/1/12/2018-01-18/2018-01-28/inmueble/0/inverso",
 				"method": "GET",
 				"header": [
 					{
@@ -497,7 +497,7 @@
 		{
 			"name": "GET RFC10 USER 1",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/0/1/2018-01-18/2018-01-28/inmueble/1/normal",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/0/13/2018-01-18/2018-01-28/inmueble/14/normal",
 				"method": "GET",
 				"header": [
 					{
@@ -517,7 +517,7 @@
 		{
 			"name": "GET RFC11 USER 1",
 			"request": {
-				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/0/1/2018-01-18/2018-01-28/inmueble/1/inverso",
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/0/13/2018-01-18/2018-01-28/inmueble/14/inverso",
 				"method": "GET",
 				"header": [
 					{
