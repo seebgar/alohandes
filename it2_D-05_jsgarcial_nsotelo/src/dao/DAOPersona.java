@@ -634,6 +634,92 @@ public class DAOPersona {
 
 		return pep;
 	}
+	
+	public PropuestaTiempo convertResultSetTo_PropuestaTiempo(ResultSet resultSet) throws SQLException
+	{
+		long id = resultSet.getLong("ID");
+		String tipo_inmueble = resultSet.getString("TIPO_INMUEBLE");
+		Integer capacidad = resultSet.getInt("CAPACIDAD_MAXIMA");
+		Integer id_persona = resultSet.getInt("ID_PERSONA");
+		//TODOO
+		Boolean disponible =resultSet.getInt("DISPONIBLE")==1?true : false ;
+		String fecha_inicio_disponibilidad=resultSet.getString("FECHA_INICIO_DISPONIBILIDAD");
+		String fecha_fin_disponibilidad=resultSet.getString("FECHA_FINAL_DISPONIBILIDAD");
+		Integer dias_disponibilidad=resultSet.getInt("CANTIDAD_DIAS_DISPONIBLE");
+		Double sub_total = resultSet.getDouble("SUB_TOTAL");
+		String tiempo=resultSet.getInt("SEMANA")+ "Semana";
+
+
+		PropuestaTiempo prop = new PropuestaTiempo(id, tipo_inmueble, capacidad, id_persona,dias_disponibilidad,fecha_inicio_disponibilidad,fecha_fin_disponibilidad,disponible, sub_total,tiempo);
+
+		if ( Propuesta.TIPO_INMUEBLE.APARTAMENTO.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.APARTAMENTOS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_APARTAMENTO"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setApartamento(rs.getLong("ID"));
+			}
+		} 
+
+		if ( Propuesta.TIPO_INMUEBLE.HABITACION.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HABITACIONES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HABITACION"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHabitacion( rs.getLong("ID") );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.HOSTEL.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HOSTELES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HOSTEL"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHostel( rs.getLong("ID") );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.HOTEL.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.HOTELES WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_HOTEL"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setHotel(rs.getLong("ID") );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.VIVIENDA_EXPRESS.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.VIVIENDAS_EXPRESS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_VIVIENDA_EXPRESS"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setVivienda_express( rs.getLong("ID") );
+			}
+		}
+
+		if ( Propuesta.TIPO_INMUEBLE.VIVIENDA_UNIVERSITARIA.toString().equalsIgnoreCase(tipo_inmueble) ) {
+			String sql = String.format("SELECT * FROM %1$s.VIVIENDAS_UNIVERSITARIAS WHERE ID = %2$d", USUARIO, resultSet.getLong("ID_VIVIENDA_UNIVERSITARIA"));
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()) {
+				prop.setVivienda_universitarias( rs.getLong("ID"));
+			}
+		}
+
+		int retiro= resultSet.getInt("SE_VA_RETIRAR");
+		Boolean seVaRetirar= (retiro == 1)? true: false;
+		prop.setSeVaRetirar(seVaRetirar);
+
+	
+
+		return prop;
+	}
 
 	public Propuesta convertResultSetTo_Propuesta(ResultSet resultSet) throws SQLException {
 
@@ -1522,10 +1608,99 @@ public class DAOPersona {
 		while ( rs.next() ) {
 			Persona p = this.convertResultSetTo_Persona(rs);
 			p.setInmueble(rs.getString("inmueble"));
+			
 			personas.add(p);
 		}
 
 		return personas;
+	}
+	public Funcionamiento RFC12_funcionamiento(String tipo, String Orden) throws SQLException
+	{
+		Funcionamiento rta= new Funcionamiento();
+		System.out.println("hola");
+		if(tipo.equalsIgnoreCase("alojamiento") && Orden.equalsIgnoreCase("inverso"))
+		{
+			System.out.println("entre");
+			String sql = 
+					"SELECT" + 
+					"    w.semana," + 
+					"    w.\"CANTIDAD RESERVAS\"," + 
+					"    pro.*" + 
+					"FROM" + 
+					"    propuestas pro" + 
+					"    INNER JOIN (" + 
+					"        SELECT" + 
+					"            to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') ) AS semana," + 
+					"            COUNT(to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') ) ) AS \"CANTIDAD RESERVAS\"," + 
+					"            r.id_propuesta AS \"ID Propuesta\"" + 
+					"        FROM" + 
+					"            reservas r\n" + 
+					"            INNER JOIN propuestas p ON r.id_propuesta = p.id" + 
+					"        WHERE" + 
+					"            ( r.hay_multa IS NULL )" + 
+					"            OR ( r.hay_multa = 0 )" + 
+					"        GROUP BY" + 
+					"            to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') )," + 
+					"            r.id_propuesta" + 
+					"    ) w ON w.\"ID Propuesta\" = pro.id" + 
+					"ORDER BY" + 
+					"    w.semana DESC," + 
+					"    w.\"CANTIDAD RESERVAS\" DESC" ;
+		 
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			List<PropuestaTiempo> aux=new ArrayList<>();
+			while ( rs.next() ) {
+				PropuestaTiempo p = this.convertResultSetTo_PropuestaTiempo(rs);
+			aux.add(p);
+				
+			}
+			System.out.println(aux.size());
+			rta.setAlojamientosmayorOcupacion(aux);
+		}
+	
+		if(tipo.equalsIgnoreCase("alojamiento") && Orden.equalsIgnoreCase("derecho"))
+		{
+			String sql = 
+					"SELECT" + 
+					"    w.semana," + 
+					"    w.\"CANTIDAD RESERVAS\"," + 
+					"    pro.*" + 
+					"FROM" + 
+					"    propuestas pro" + 
+					"    INNER JOIN (" + 
+					"        SELECT" + 
+					"            to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') ) AS semana," + 
+					"            COUNT(to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') ) ) AS \"CANTIDAD RESERVAS\"," + 
+					"            r.id_propuesta AS \"ID Propuesta\"" + 
+					"        FROM" + 
+					"            reservas r\n" + 
+					"            INNER JOIN propuestas p ON r.id_propuesta = p.id" + 
+					"        WHERE" + 
+					"            ( r.hay_multa IS NULL )" + 
+					"            OR ( r.hay_multa = 0 )" + 
+					"        GROUP BY" + 
+					"            to_number(TO_CHAR(TO_DATE(r.fecha_inicio_estadia,'YYYY-MM-DD HH24:MI:SS'),'WW') )," + 
+					"            r.id_propuesta" + 
+					"    ) w ON w.\"ID Propuesta\" = pro.id" + 
+					"ORDER BY" + 
+					"    w.semana DESC," + 
+					"    w.\"CANTIDAD RESERVAS\" ASC" ;
+		 
+			PreparedStatement prepStmt = conn.prepareStatement(sql);
+			recursos.add(prepStmt);
+			ResultSet rs = prepStmt.executeQuery();
+			List<PropuestaTiempo> aux=new ArrayList<>();
+			while ( rs.next() ) {
+				PropuestaTiempo p = this.convertResultSetTo_PropuestaTiempo(rs);
+			aux.add(p);
+				
+			}
+			rta.setAlojamientosmenorOcupacion(aux);
+		}
+		return rta;
+		
 	}
 
 

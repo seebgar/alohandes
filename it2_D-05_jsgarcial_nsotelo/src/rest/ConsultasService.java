@@ -19,6 +19,7 @@ import vos.AnalisisPropuesta;
 import vos.BuenosClientes;
 import vos.ClienteFrecuente;
 import vos.Filtro;
+import vos.Funcionamiento;
 import vos.Persona;
 import vos.Propuesta;
 
@@ -296,6 +297,33 @@ public class ConsultasService {
 
 	}
 
+	@GET
+	@Path("/funcionamiento/{tipo}/{orden}")
+	@Produces( { MediaType.APPLICATION_JSON } )
+	public Response RFC13_buenos_clientes(@PathParam("orden") String orden,@PathParam("tipo")String tipo) 
+
+	{
+		try {
+
+			AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+			/* INVERSO RFC 12*/
+			// TIEMPO
+			long startTime = System.nanoTime();
+			
+			Funcionamiento ans = tm.RFC12funcionamiento(orden, tipo);
+
+			long endTime = System.nanoTime();
+			long duration = endTime - startTime;
+			double seconds = (double)duration / 1000000000.00;
+			
+			System.out.println("RFC 12 "+ seconds + " seg");
+			
+			return Response.status( 200 ).entity( ans ).build( );	
+
+		} catch( Exception e ) {
+			return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+		}
+	}
 
 
 @GET

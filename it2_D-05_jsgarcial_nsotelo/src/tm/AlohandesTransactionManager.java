@@ -28,6 +28,7 @@ import vos.ClienteFrecuente;
 import vos.Colectivo;
 import vos.DineroOperador;
 import vos.Filtro;
+import vos.Funcionamiento;
 import vos.Indice;
 import vos.Persona;
 import vos.Populares;
@@ -1853,6 +1854,46 @@ public class AlohandesTransactionManager {
 		}
 		return personas;
 	}
+	
+
+	public Funcionamiento RFC12funcionamiento(String tipo,String orden) throws SQLException
+	{
+		DAOPersona dao= new DAOPersona();
+		Funcionamiento rta = new Funcionamiento();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			System.out.println(tipo +""+ orden);
+			rta = dao.RFC12_funcionamiento(tipo, orden);
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION R13] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return rta;
+		
+	}
+	
 	
 	public BuenosClientes RFC13darBuenosClientes() throws SQLException
 	{
