@@ -1934,7 +1934,42 @@ public class AlohandesTransactionManager {
 	
 	
 	
-
+	public List<Propuesta> algo() throws Exception
+	{
+		DAOPersona dao= new DAOPersona();
+		List<Propuesta> rta = new ArrayList<>();
+		try 
+		{
+			this.conn = darConexion();
+			dao.setConn(conn);
+			rta = dao.algo();
+		} 
+		catch (SQLException sqlException) {
+			System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+			sqlException.printStackTrace();
+			throw sqlException;
+		} 
+		catch (Exception exception) {
+			System.err.println("[EXCEPTION R13] General Exception: \n" + exception.getMessage() + " \n " + exception.getCause());
+			exception.printStackTrace();
+			throw exception;
+		} 
+		finally {
+			try {
+				dao.cerrarRecursos();
+				if(this.conn!=null){
+					this.conn.close();					
+				}
+			}
+			catch (SQLException exception) {
+				System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			}
+		}
+		return rta;
+		
+	}
 
 
 

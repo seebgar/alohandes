@@ -357,6 +357,37 @@ public Response RFC13_buenos_clientes()
 
 
 
+@GET
+@Path("/algo")
+@Produces( { MediaType.APPLICATION_JSON } )
+public Response algo() 
+
+{
+	try {
+
+		AlohandesTransactionManager tm = new AlohandesTransactionManager( getPath( ) );
+		/* INVERSO RFC 11*/
+		// TIEMPO
+		long startTime = System.nanoTime();
+		
+		List<Propuesta> ans = tm.algo();
+
+		long endTime = System.nanoTime();
+		long duration = endTime - startTime;
+		double seconds = (double)duration / 1000000000.00;
+		
+		System.out.println("RFC 12 algo "+ seconds + " seg");
+		
+		return Response.status( 200 ).entity( ans ).build( );	
+
+	} catch( Exception e ) {
+		return Response.status( 500 ).entity( doErrorMessage( e ) ).build( );
+	}
+}
+
+
+
+
 
 
 

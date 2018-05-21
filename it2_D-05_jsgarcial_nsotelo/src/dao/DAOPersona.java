@@ -1829,6 +1829,54 @@ public BuenosClientes RFC13_buenosClientes() throws SQLException
 
 
 
+public List<Propuesta> algo (  ) throws SQLException, Exception
+{
+	String sql = 
+			"SELECT  W.\"SEMANA\", W.\"CANTIDAD RESERVAS\", PRO.* FROM PROPUESTAS PRO\n" + 
+			"\n" + 
+			"INNER JOIN (\n" + 
+			"\n" + 
+			"SELECT\n" + 
+			"to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')) AS \"SEMANA\",  \n" + 
+			"COUNT (to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW'))) AS \"CANTIDAD RESERVAS\",\n" + 
+			"r.id_propuesta as \"ID Propuesta\"\n" + 
+			"\n" + 
+			"FROM RESERVAS R\n" + 
+			"INNER JOIN PROPUESTAS P ON\n" + 
+			"R.ID_PROPUESTA = P.ID\n" + 
+			"\n" + 
+			"WHERE ( R.HAY_MULTA IS NULL \n" + 
+			"OR R.HAY_MULTA = 0 )\n" + 
+			"\n" + 
+			"GROUP BY to_number(to_char(to_date(R.FECHA_INICIO_ESTADIA,'YYYY-MM-DD HH24:MI:SS'),'WW')), r.id_propuesta\n" + 
+			"\n" + 
+			")\n" + 
+			"W\n" + 
+			"ON  W.\"ID Propuesta\" = pro.id\n" + 
+			"ORDER BY w.\"SEMANA\", w.\"CANTIDAD RESERVAS\" DESC \n" + 
+			";";
+
+	List<Propuesta> lista = new ArrayList<>();
+	
+	PreparedStatement prepStmt = conn.prepareStatement(sql);
+	System.out.println(sql);
+	
+	recursos.add(prepStmt);
+	ResultSet rs = prepStmt.executeQuery();
+	while(rs.next())
+	{
+		lista.add(this.convertResultSetTo_Propuesta(rs));
+	}
+	
+	return lista;
+	
+}
+
+
+
+
+
+
 
 
 
