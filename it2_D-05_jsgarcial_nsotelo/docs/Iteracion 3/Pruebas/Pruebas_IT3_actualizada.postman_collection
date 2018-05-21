@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Pruebas",
-		"_postman_id": "9d6d7799-6637-92e2-3ef5-869402cef8d2",
+		"_postman_id": "a8db2cca-0fe3-30e5-b258-cd96d2010dfb",
 		"description": "Pruba los servicios ofrcidos por alohandes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -531,6 +531,26 @@
 					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
 				},
 				"description": "Retorna el consumo de alohandes para el administrador"
+			},
+			"response": []
+		},
+		{
+			"name": "RFC 12 funcionando",
+			"request": {
+				"url": "http://localhost:8080/Alohandes_IT1/rest/consultas/algo",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 12,\n        \"name\": \"Harry Potter 3\",\n        \"duration\": 140\n    }"
+				},
+				"description": ""
 			},
 			"response": []
 		}
