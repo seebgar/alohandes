@@ -1,10 +1,10 @@
 # alohandes
 <br/>
-Iteracion 3 - Sistemas Transaccionales<br/>
+Iteraciones - Sistemas Transaccionales<br/>
 Universiad de Los Andes<br/><br/>
 
-Sebastian Garcia 201630047<br/>
-Nicolas Sotelo 201623026<br/>
+Sebastian Garcia <br/>
+Nicolas Sotelo <br/>
 Grupo D-05<br/>
 <br/>
 Instrucciones<br/>
@@ -24,7 +24,6 @@ Instrucciones<br/>
 
 <br />
 Credenciales SQL Developer para rápido acceso: <br/>
-Nombre:  Sotelo Londoño Nicolás<br/>
 Usuario:  ISIS2304A331810<br/>
 Contraseña: JPzVniT2pm<br/>
 
