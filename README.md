@@ -23,7 +23,6 @@ Instrucciones<br/>
 
 
 <br />
-Credenciales SQL Developer para rápido acceso: <br/>
-Usuario:  ISIS2304A331810<br/>
-Contraseña: JPzVniT2pm<br/>
+ISIS2304A331810<br/>
+JPzVniT2pm<br/>
 
